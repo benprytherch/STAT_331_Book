@@ -1,0 +1,6307 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrreprt}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={STAT 331},
+  pdfauthor={Ben Prytherch},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{STAT 331}
+\author{Ben Prytherch}
+\date{2023-06-07}
+
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, frame hidden, interior hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\bookmarksetup{startatroot}
+
+\hypertarget{introduction-to-stat-331-intermediate-applied-statistical-methods}{%
+\chapter{Introduction to STAT 331: Intermediate Applied Statistical
+Methods}\label{introduction-to-stat-331-intermediate-applied-statistical-methods}}
+
+\hypertarget{purpose-and-intended-audience}{%
+\section{Purpose and intended
+audience}\label{purpose-and-intended-audience}}
+
+STAT 331, as the title states, is an ``applied'' statistics course.
+
+\hypertarget{structure-of-these-notes}{%
+\section{Structure of these notes}\label{structure-of-these-notes}}
+
+\hypertarget{really-good-online-books}{%
+\section{Really good online books}\label{really-good-online-books}}
+
+These notes will frequently reference some other freely available online
+statistics books:
+
+\href{https://www.learnstatswithjamovi.com/}{Learning statistics with
+jamovi}, by Danielle Navarro and David Foxcroft
+
+\href{https://www.kellerbiostat.com/introregression/}{Introduction to
+Regression Analysis in R}, by Kayleigh Keller
+
+\href{https://drive.google.com/file/d/0B1fyuTuvj3YoaFdUR3FZaXNuNXc/view?resourcekey=0-plOmKmQ0TIyMjlfBY3OiyQ}{Statistical
+Analysis with The General Linear Model}, by Jeff Miller and Patricia
+Haden
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-1-review-of-classical-inference}{%
+\chapter{Chapter 1: Review of classical
+inference}\label{chapter-1-review-of-classical-inference}}
+
+STAT 331
+
+Commonly used statistics
+
+Sampling distributions
+
+Confidence intervals
+
+Hypothesis testing
+
+CIs and p-values in jamovi
+
+Module 1:
+
+Review of classical inference
+
+Outline of notes
+
+Module 1 overview
+
+These notes briefly cover material from your introductory statistics
+course that will be relevant in STAT 331.
+
+For a more in-depth review, consult the OpenIntro text, or just do an
+internet search.
+
+Distributions
+
+The term ``distribution'' will be used a lot.
+
+A distribution gives the values a variable takes on, and how often it
+takes them on.
+
+Examples: normal distribution, uniform distribution, distribution of
+exam scores, distribution of heights\ldots{}
+
+STAT 331
+
+Commonly used statistics
+
+Sampling distributions
+
+Confidence intervals
+
+Hypothesis testing
+
+CIs and p-values in jamovi
+
+Commonly used statistics
+
+Mean and median
+
+Variance and standard deviation
+
+The correlation coefficient
+
+Outline of notes
+
+Mean
+
+~
+
+~
+
+Median
+
+Median is the ``middle'' number in a data set. To find the median, put
+the data values in order from smallest to largest, and identify the
+number in the middle.
+
+If there are an even number of data points, the median is the average of
+the middle two numbers:
+
+4
+
+5
+
+5
+
+6
+
+10
+
+10
+
+15
+
+19
+
+20
+
+Mean vs.~Median
+
+In statistical inference (the process of generalizing from sample to
+population), we most often draw inference on the population mean.
+
+Sometimes, though, the median is a more sensible statistic than the
+mean.
+
+This is usually the case when we are studying a ``skewed'' distribution.
+
+Mean vs.~median
+
+Skewed distributions are distributions that take on values that are
+extreme (or outlying) values.
+
+Example: income. Most households have incomes between \$20,000/yr and
+\$100,000/yr. A handful of households have incomes in the millions or
+billions of dollars per year.
+
+The mean is affected by outliers. The median is not. This is why we
+often hear about ``median household income'' rather than ``mean
+household income''.
+
+jamovi example: mean vs median
+
+Try creating a skewed data set in jamovi, then analyzing it by selecting
+for mean and median in the Statistics drop down menu in Descriptives,
+found under Exploration in the Analysis tab
+
+To create a new dataset, enter data into the blank data table jamovi
+creates by default
+
+jamovi example: mean vs median
+
+Variance and standard deviation
+
+~
+
+~
+
+Variance and standard deviation
+
+The standard deviation is simply the square root of the variance
+
+Think of this as the ``standard'' amount by which values deviate from
+their mean.
+
+We will most often look at standard deviation, because it is the more
+interpretable of the two statistics. It is in the same units as the
+original variable.
+
+~
+
+The correlation coefficient
+
+~
+
+~
+
+The correlation coefficient
+
+~
+
+Statistics and parameters
+
+~
+
+STAT 331
+
+Commonly used statistics
+
+Sampling distributions
+
+Confidence intervals
+
+Hypothesis testing
+
+CIs and p-values in jamovi
+
+Outline of notes
+
+Sampling distributions
+
+~
+
+Standard error
+
+~
+
+Sampling dist. and standard error, visually
+
+On Canvas there is a Central Limit Theorem simulator.
+
+When the sample size is large, the distribution of the sample mean is
+not very spread out. In other words, its standard error is small.
+
+When the sample size is small, the standard error is large.
+
+Sampling dist. and standard error, visually
+
+Sampling dist. and standard error, visually
+
+STAT 331
+
+Commonly used statistics
+
+Sampling distributions
+
+Confidence intervals
+
+Hypothesis testing
+
+CIs and p-values in jamovi
+
+Outline of notes
+
+Confidence intervals
+
+A confidence interval (``CI'') is an interval (i.e.~a left endpoint and
+a right endpoint) constructed around a statistic, when that statistic is
+being treated as an estimate for the value of an unknown parameter.
+
+Typical confidence intervals are constructed by adding a ``margin of
+error'' to, and subtracting it from, an estimate:
+
+~
+
+Confidence intervals
+
+~
+
+~
+
+Confidence intervals
+
+~
+
+~
+
+Confidence intervals
+
+The confidence level can also be thought of as the success rate of the
+method being used.
+
+So, 95\% confidence intervals have a 95\% success rate in capturing the
+value of the unknown parameter.
+
+Just as with sampling distributions, we are invoking repeated sampling
+here. We say that a 95\% CI can be trusted because it is created using a
+method that would ``work'' 95\% of the time, if we were to keep taking
+new samples and keep constructing 95\% CIs.
+
+Confidence intervals quantify uncertainty
+
+The most important characteristic of a CI is its width.
+
+We are typically willing to believe that the unknown value of a
+parameter lies inside the confidence interval constructed from our data.
+
+If the confidence interval is wide, there is a lot of uncertainty as to
+the true value of the parameter.
+
+If the confidence interval is narrow, then our estimate for the value of
+the parameter is ``precise'', in that it shouldn't be wrong by much.
+
+Confidence intervals quantify uncertainty
+
+CIs are narrow when the sample size is large and / or the standard
+deviation of our data is small.
+
+CIs are wide with the sample size is small and / or the standard
+deviation of our data is large.
+
+IMPORTANT: CIs, like all inferential statistical methods, are created
+under assumptions. We make distributional assumptions about our data
+(e.g.~normality). We assume our statistic is an unbiased estimate of the
+parameter, i.e.~it will not systematically differ from the parameter
+value under repeated sampling.
+
+Confidence interval simulation apps
+
+There is a confidence interval simulation app on Canvas, that
+demonstrates creating confidence intervals ``under repeated sampling''.
+This app is from Brown University's ``Seeing theory'' series .
+
+There is also a ``sampling distribution and standard error'' app on
+Canvas. It shows a population distribution for a normally distributed
+variable, a sample of data from that distribution, and the sampling
+distribution of the mean.
+
+This app also super-imposes the standard error in pink.
+
+Confidence interval simulation apps
+
+Confidence interval simulation apps
+
+Confidence intervals in jamovi
+
+~
+
+STAT 331
+
+Commonly used statistics
+
+Sampling distributions
+
+Confidence intervals
+
+Hypothesis testing
+
+CIs and p-values in jamovi
+
+Outline of notes
+
+Hypothesis testing
+
+~
+
+Hypothesis testing
+
+~
+
+~
+
+~
+
+The test statistic
+
+~
+
+~
+
+The p-value
+
+~
+
+~
+
+The p-value
+
+~
+
+~
+
+Interpreting ``statistical significance''
+
+``Statistically significant'' results are those that produce a small
+p-value.
+
+Small p-values result from data that would be unlikely to be obtained
+just by chance, if the null hypothesis were true.
+
+So, when you hear that results are ``statistically significant'', you
+can interpret this as meaning ``the data we obtained don't look like the
+kind of data we'd expect to see just by chance''.
+
+Cautions regarding ``statistical significance''
+
+As with confidence intervals, hypothesis tests require assumptions.
+
+These will be covered in detail in the next module.
+
+The most important distinction to be made right now is the distinction
+between statistical significance and practical importance.
+
+Results can be statistically significant, but still seem weak or
+unimpressive by practical standards.
+
+Cautions regarding ``statistical significance''
+
+Example: this is a statistically significant correlation:
+
+~
+
+Cautions regarding ``statistical significance''
+
+Example: this is a statistically significant difference in means:
+
+~
+
+Cautions regarding ``statistical significance''
+
+The use of hypothesis testing is controversial.
+
+I personally do not like hypothesis testing, and I think that
+statistical significance is usually uninteresting.
+
+We'll explore the debates surrounding statistical significance in module
+2.
+
+Confidence intervals vs.~p-values
+
+~
+
+Confidence intervals vs.~p-values example
+
+~
+
+Confidence intervals vs.~p-values example
+
+Here we see 95\% CIs for differences in means, along with their
+corresponding p-values.
+
+Note how much the p-values change for small changes in the CIs.
+
+Note also that different CIs can correspond to the same p-value.
+
+STAT 331
+
+Commonly used statistics
+
+Sampling distributions
+
+Confidence intervals
+
+Hypothesis testing
+
+CIs and p-values in jamovi
+
+Outline of notes
+
+CIs and p-values in jamovi
+
+CIs and p-values can be calculated for a huge variety of statistics.
+
+For now, we will consider testing for a difference in means.
+
+In jamovi, select an Independent Samples T-Test from T-Tests under the
+Analyses tab
+
+Make Max\_Temp\_Challenge be the Dependent variable (the one containing
+measurements), and make Vaccine be the Grouping variable (the one
+identifying which group the measurement belongs to).
+
+CIs and p-values in jamovi
+
+Here is an example using the Vaccine data set. This example uses sheet 3
+of the Excel file, titled ``H3N2\_Clinical\_Max'': Data will need to be
+prepared for test by swapping the rows so that Vaccine occurs first.
+
+Imported Data
+
+Transformed Data for T-test
+
+CIs and p-values in jamovi
+
+CIs and p-values in jamovi
+
+CIs and p-values in jamovi
+
+CIs and p-values in JMP
+
+~
+
+Data format in jamovi
+
+A final note on data formatting: this data set is in ``long form'',
+meaning each row is a single observation and each column is a variable.
+
+jamovi's Independent Samples T-test requires long form data.
+
+Sometimes you'll have data in ``wide form'', where each column is a
+group, and the rows do not correspond to single observations
+
+Data format in jamovi
+
+Example: here's some fake data in wide form:
+
+Fit Independent Samples T-test cannot be used to compare these means.
+jamovi thinks there are 4 observations, each with a measurement on Var1
+and Var 2.
+
+Data format in jamovi
+
+This isn't what we want!
+
+To transform the data into long form, we need to install the Rj --
+Editor module which will allow us to run R-code in jamovi
+
+Installing Rj in jamovi
+
+Navigate to the Analyses tab
+
+Click on Modules in the top right of the jamovi window
+
+Click jamovi library
+
+Scroll until you see ``Rj -- Editor to run R code'', click install
+
+You should now see an R logo under the Analyses tab
+
+Wide form to long form in jamovi
+
+To switch from wide to long form, we will write a simple line of R-code
+using the Rj -- Editor module:
+
+Click on Rj, it will open an empty window where we can enter R - code
+
+Wide form to long form in jamovi
+
+The code below transforms the data into long form by stacking the data
+within Var1 and Var2 into a new column Data and creates a new column
+Labels to identify if data is from Var1 or Var2.
+
+The data will output a csv file which we can import from a new session
+of jamovi
+
+Wide form to long form in jamovi
+
+Importing the transformed csv file to a new jamovi window shows our
+transformed long form data table. Note: column names will need to be
+updated
+
+Compare the two: ``Long form'' ``Wide form''
+
+Wide form to long form in jamovi
+
+Now Independent Samples T-test can be used to compare means:
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-2-model-building-with-linear-regression}{%
+\chapter{Chapter 2: Model building with linear
+regression}\label{chapter-2-model-building-with-linear-regression}}
+
+Module 2 covers linear regression models. Parts 1 through 4 will be
+mostly review for students whose introductory statistics course covered
+regression. Parts 5 through 8 introduce topics not usually covered in
+introductory courses.
+
+\hypertarget{outline-of-notes}{%
+\section{Outline of notes:}\label{outline-of-notes}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  The linear regression equation
+\item
+  Regression analysis in jamovi
+\item
+  Interpreting regression results
+\item
+  Applied example (``The Binary Bias'')
+\item
+  Interaction between variables, conceptually
+\item
+  Interaction between variables in a regression model
+\item
+  Applied example: arthritis treatment data
+\item
+  Centering predictor variables
+\item
+  Standardizing predictor variables
+\end{enumerate}
+
+\hypertarget{part-1-the-linear-regression-equation}{%
+\section{Part 1: The linear regression
+equation}\label{part-1-the-linear-regression-equation}}
+
+Linear regression, in its simplest form, is a method for finding the
+``best fitting'' line through a set of bivariate (two variable) data:
+
+\begin{figure}
+
+{\centering \includegraphics{images/mod2_pt1 (1).png}
+
+}
+
+\end{figure}
+
+What is meant by ``best fitting'' will be addressed shortly. For now,
+think of the line as showing the underlying linear trend through a set
+of data.
+
+The vertical distance between each data point and the line is called a
+``residual''. On the plot above, the red lines represent residuals. They
+quantify the amount by which a data point deviates from the underlying
+linear trend. Every point has a residual; the plot above only shows a
+few of them.
+
+\hypertarget{the-linear-regression-equation-as-a-statistical-model}{%
+\subsection{The linear regression equation as a statistical
+model}\label{the-linear-regression-equation-as-a-statistical-model}}
+
+The line that is drawn through data comes from a \textbf{statistical
+model}. A statistical model is a mathematical expression describing how
+data are generated. It has a \emph{fixed} component and a \emph{random}
+component. Think of the fixed component as describing the underlying
+relationship between variables, and the random component as describing
+any additional variability in data beyond what the fixed component
+describes.
+
+Below is the standard linear regression model. The random component is
+represented by \(``\varepsilon_i"\). Everything from ``\(\beta_0\)'' up
+until ``\(\varepsilon_i\)'' is the fixed component.
+
+\[
+Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_kx_{ki} + \varepsilon_i \\
+\varepsilon_i \sim \text{Normal}(0,\sigma^2) 
+\]
+
+Here's what each term represents:
+
+\begin{itemize}
+\item
+  \(i\) is the index term. It counts through the data, starting at
+  \(i = 1\) and going through \(i=n\), where \(n\) is the sample size.
+\item
+  \(Y_i\) is the \(i^{th}\) value of the outcome variable. When written
+  in upper-case, \(Y_i\) is treated as a random variable whose value has
+  not been observed. When written lower-case, \(y_i\) represents an
+  observed data value.
+
+  \(Y_i\) is often referred to as the ``response'' variable, or the
+  ``dependent'' variable. These notes will use the term ``outcome''
+  variable. I prefer this term on the grounds that the others seem to
+  imply causality: if \(Y\) is ``responding'' to \$x\$, or ``dependent''
+  on \(x\), then it sounds like changing the value of \(x\) will induce
+  a change in the value of \(Y\).
+\item
+  \(x_{1i}\) is the \(i^{th}\) value of the first predictor
+  (i.e.~independent) variable. \(x_{2i}\) is the \(i^{th}\) value of the
+  second predictor, etc. The \(x's\) are always written lower-case, and
+  technically are assumed to be fixed values, either set prior to data
+  collection or measured without error.
+\item
+  \(\beta_1\) is the slope (i.e.~regression coefficient) for the first
+  predictor variable. \(\beta_2\) is the slope of the second predictor,
+  etc. The \(\beta's\) are \emph{parameters}, meaning their values are
+  treated as fixed (existing at the ``population'' level) but unknown.
+
+  We use data to calculate estimated values for the \(\beta's\), and
+  these estimates are written using hat notation. For example,
+  \(\hat{\beta_1}\) is the estimated value for \(\beta_1\).
+\item
+  \(\varepsilon_i\) is the \(i^{th}\) random error value. This is the
+  amount by which \(Y_i\) differs from
+  \(\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_kx_{ki}\),
+  i.e.~the fixed component of the model.
+
+  The amount by which \(y_i\) (the \(i^{th}\) \emph{observed} value of
+  \(y\)) differs from
+  \(\hat{\beta_0}+\hat{\beta_1}x_{1i} + \hat{\beta_2}x_{2i} + \dots + \hat{\beta_k}x_{ki}\)
+  is called the \(i^{th}\) residual, which we can denote \(e_i\).
+
+  The errors are modeled as random values that are drawn from a normal
+  distribution with mean zero and variance \(\sigma^2\).
+\end{itemize}
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, coltitle=black, colframe=quarto-callout-note-color-frame, colback=white, bottomtitle=1mm, leftrule=.75mm, breakable, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, arc=.35mm, bottomrule=.15mm, rightrule=.15mm, toprule=.15mm, opacityback=0]
+
+The errors in a regression model do not have to come from a normal
+distribution. This assumption is made in order to justify inferences
+about the coefficients; more on this soon.
+
+\end{tcolorbox}
+
+When a regression model has only one predictor variable, it is called a
+``simple'' regression model. If it has more than one predictor variable,
+it is called a ``multiple regression'' model.
+
+\hypertarget{assumptions-of-the-regression-model}{%
+\subsection{Assumptions of the regression
+model}\label{assumptions-of-the-regression-model}}
+
+This model implies some assumptions:
+
+\begin{itemize}
+\item
+  The response variable \(Y\) is an additive, linear function of the
+  predictors (the \(x\) variables)
+\item
+  If we fix the value(s) of the \(x\) variable(s), all values of \(Y\)
+  will be normally distributed. In other words, the \textbf{errors} are
+  normally distributed.
+\item
+  The errors have the same variance regardless of the values of the
+  \(x's\). This variance is denoted \(\sigma^2\)
+\end{itemize}
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, coltitle=black, colframe=quarto-callout-note-color-frame, colback=white, bottomtitle=1mm, leftrule=.75mm, breakable, titlerule=0mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, arc=.35mm, bottomrule=.15mm, rightrule=.15mm, toprule=.15mm, opacityback=0]
+
+The square root of the variance is the \emph{standard deviation},
+denoted \(\sigma\). Standard deviation is expressed in the same units of
+the original variable, whereas variance is expressed in squared units.
+
+For this reason, standard deviation is typically referred to when
+interpreting statistical results. Variance has desirable mathematical
+properties, and so is more often referred to in statistical theory
+
+\end{tcolorbox}
+
+Visually, this model treats values of Y as being generated randomly from
+normal distributions centered on the line:
+
+\includegraphics{images/mod2_pt1 (6).png}
+
+\emph{(figure derived from
+\href{https://openstax.org/books/introductory-business-statistics/pages/13-4-the-regression-equation}{OpenStax
+Introductory Business Statistics, section 13.4})}
+
+The ``errors'' are the distances between the line and the values
+generated from the normal distributions.
+
+The errors are treated as random and uncorrelated: knowing the value of
+one error tells you nothing about the likely value of the next.
+
+\hypertarget{regression-analysis-in-jamovi}{%
+\section{Regression analysis in
+jamovi}\label{regression-analysis-in-jamovi}}
+
+\hypertarget{simulating-the-regression-model-in-jamovi}{%
+\subsection{Simulating the regression model in
+jamovi}\label{simulating-the-regression-model-in-jamovi}}
+
+We noted earlier that a statistical model is \emph{data generating}. It
+describes, mathematically, how values of the outcome variable \(Y\) can
+be created using values of the predictor variables. Here, we'll use
+jamovi to generate values of \(Y\) from a regression model.
+
+In jamovi, we first create X values by double-clicking an empty column,
+choosing ``New Computed Variable'' then the fx drop down menu and double
+click UNIF.
+
+Here, we are generating 100 random values from a Uniform(0,100)
+distribution.
+
+10
+
+~
+
+~
+
+Simulating the regression model in jamovi
+
+11
+
+Double click an empty column and choose ``New Computed Variable''.
+
+Now make the formula look like the right side of the regression equation
+from the previous slide:
+
+Simulating the regression model in JMP
+
+12
+
+Now we can take a look using Scatterplot, a downloadable jamovi module.
+Click the icon of the plus sign labeled ``Modules'' to bring up a list
+of available modules you can install.
+
+Simulating the regression model in jamovi
+
+13
+
+After installation Scatterplot is available under Exploration in the
+Analyses tab.
+
+This is random data, so yours will look a little bit different.
+
+Next, we'll fit a regression model to this data
+
+Simulating the regression model in jamovi
+
+14
+
+We can use Regression / Linear Regression to fit a ``simple'' regression
+model, which is a regression model with just one predictor.
+
+Fitting the regression model in jamovi
+
+In practice, we do not know the values of the parameters in our model.
+So we estimate them using data. This is known as ``fitting'' the model
+to the data.
+
+15
+
+Fitting the regression model in jamovi
+
+The response variable is ``Dependent Variable''.
+
+The predictor variable goes under ``Covariates''.
+
+After selecting variables, model will automatically be fit, and output
+will be generated to the right under ``Results''.
+
+16
+
+Fitting the regression model in jamovi
+
+~
+
+17
+
+Fitting the regression model in jamovi
+
+Here is the estimated regression model.
+
+Note that it is standard to denote estimated values using ``hats''.
+
+~
+
+~
+
+18
+
+Fitting the regression model in jamovi
+
+Compare these results to the values used to generate our fake data:
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+~
+
+19
+
+STAT 331
+
+Outline of notes
+
+The regression model
+
+Regression in jamovi
+
+Interpreting regression results
+
+Applied example: ``The binary bias''
+
+~
+
+20
+
+Sums of squares and mean squares
+
+~
+
+21
+
+Total sum of squares
+
+~
+
+22
+
+Error sum of squares
+
+~
+
+23
+
+Error sum of squares
+
+~
+
+24
+
+Mean square error
+
+~
+
+25
+
+Model sum of squares
+
+~
+
+26
+
+Model sum of squares
+
+~
+
+27
+
+~
+
+Total sum of squares are equal to the sum of error sum of squares and
+model sum of squares.
+
+Note that this also implies:
+
+~
+
+~
+
+28
+
+~
+
+~
+
+~
+
+~
+
+29
+
+Interpreting regression results
+
+~
+
+~
+
+30
+
+More on interpreting the slope
+
+~
+
+~
+
+31
+
+More on interpreting the slope
+
+~
+
+32
+
+Inference on the coefficients
+
+~
+
+33
+
+Inference on the coefficients
+
+~
+
+~
+
+34
+
+~
+
+~
+
+~
+
+35
+
+STAT 331
+
+Outline of notes
+
+The regression model
+
+Regression in jamovi
+
+Interpreting regression results
+
+Applied example: ``The binary bias''
+
+36
+
+``The binary bias''
+
+There is a paper up on Canvas, titled ``The Binary Bias: A Systematic
+Distortion in the Integration of Information''. This is a 2018 paper
+published in Psychological Science with open data.
+
+The overall hypothesis is that people tend to assess continuous
+information using binary thinking. The experiments all involve testing
+to see if participants will give higher or lower assessments of where an
+average lies, based on the ``imbalance'' of the data: i.e.~the
+comparative frequency with which very low or very high values turn up.
+
+37
+
+``The binary bias''
+
+Here is the section of the paper describing the results of Study 1a:
+
+38
+
+Reproducing ``The binary bias'' results in jamovi
+
+The data:
+
+39
+
+Reproducing ``The binary bias'' results in jamovi
+
+Telling jamovi to fit the model:
+
+40
+
+Reproducing ``The binary bias'' results in jamovi
+
+The model, before being fit to the data:
+
+The results in jamovi:
+
+~
+
+41
+
+Reproducing ``The binary bias'' results in jamovi
+
+~
+
+42
+
+Reproducing ``The binary bias'' results in jamovi
+
+~
+
+~
+
+43
+
+Reproducing ``The binary bias'' results in jamovi
+
+In multiple regression, each predictor is interpreted under the
+assumption that the values of all other predictors are held constant
+(i.e.~``controlled for'').
+
+So, if we were to observe two participants who were equal in terms of
+``First'', ``Last'', and ``Mode'', but were one unit apart in terms of
+``Imbalance'', we would expect their values for the response variable
+(``Recorded'') to differ by 4.62 units on average.
+
+Or: The predicted (or average) difference in Recorded associated with a
+one unit difference in Imbalance is 4.62 units, if all other predictors
+are held constant.
+
+44
+
+STAT 331
+
+Module 3:
+
+Regression basics
+
+Part 2: Interaction
+
+Outline of notes
+
+Interaction, conceptually
+
+Interaction, in the regression model
+
+jamovi example: arthritis treatment data
+
+Centering predictor variables
+
+Standardizing predictor variables
+
+1
+
+Interaction, conceptually
+
+~
+
+2
+
+Interaction, conceptually
+
+~
+
+3
+
+Interaction example
+
+Suppose a drug for treating rheumatoid arthritis is more effective at
+reducing inflammation for younger patients than it is for older
+patients.
+
+If we conduct an experiment in which inflammation is the response
+variable and the predictors are treatment group (drug vs.~control) and
+age, then we expect treatment group and age to interact.
+
+This is different from saying that age and treatment both affect
+inflammation. It means that the extent to which treatment affects
+inflammation is different for patients of different age.
+
+4
+
+Interaction as ``moderation''
+
+Sometimes interaction is referred to as ``moderation''. This is common
+in the social and behavioral sciences, particularly Psychology.
+
+So, a ``moderator'' variable is one that changes how the primary
+predictor of interest relates to the response.
+
+5
+
+Interaction as ``moderation''
+
+Example: suppose an experiment shows that subjects holding a pen with
+their teeth rate cartoons as funnier vs.~subjects holding a pen with
+their lips.
+
+Suppose also that this ``pen in teeth'' effect disappears if subjects
+see a video camera in the room.
+
+In this case, the presence of the video camera ``moderates'' the effect
+of the pen on cartoon ratings. In the language of interaction, the
+presence of the pen and the presence of the video camera ``interact''.
+
+This is based on a real study that has generated controversy, see:
+https://statmodeling.stat.columbia.edu/2018/11/01/facial-feedback-findings-suggest-minute-differences-experimental-protocol-might-lead-theoretically-meaningful-changes-outcomes/
+
+6
+
+STAT 331
+
+Outline of notes
+
+Interaction, conceptually
+
+Interaction, in the regression model
+
+jamovi example: arthritis treatment data
+
+Centering predictor variables
+
+Standardizing predictor variables
+
+7
+
+Interaction, in the regression model
+
+~
+
+8
+
+Interpreting the interaction coefficient
+
+~
+
+9
+
+Interpreting the interaction coefficient
+
+~
+
+10
+
+~
+
+Interpreting the interaction coefficient
+
+~
+
+11
+
+STAT 331
+
+Outline of notes
+
+Interaction, conceptually
+
+Interaction, in the regression model
+
+jamovi example: arthritis treatment data
+
+Centering predictor variables
+
+Standardizing predictor variables
+
+12
+
+jamovi Example: Arthritis data
+
+The data set ``arthritis\_data.csv'' contains simulated data from a
+(fictional) Randomized Control Trial comparing treatments for
+inflammation from rheumatoid arthritis: a disease-modifying
+anti-rheumatic drug (DMARD) vs.~a non-steroidal anti-inflammatory drug
+(NSAID)
+
+The variables are:
+
+Drug: indicator (0 / 1) variable; 1 = DMARD, 0 = NSAID
+
+Before: Inflammation scan score prior to treatment (scale: 0 to 50)
+
+After: Inflammation scan score six months after treatment
+
+Difference: Difference in scores, before minus after. (Note that larger
+values for difference indicate more reduction in inflammation)
+
+13
+
+Before vs.~after scatterplot
+
+We will fit some regression models using this data, but first let's take
+a look at our data using the Scatterplot module.
+
+Here is ``after'' vs.~``before'', with a linear regression line
+superimposed. Note that most patients had greater inflammation before
+than after treatment.
+
+14
+
+Differences by treatment type
+
+15
+
+Note that the differences tend to be larger for the DMARD group: this
+corresponds to a greater reduction in inflammation.
+
+Use Descriptives to create the boxplot. Select difference as a Variable
+and Split by drug. Then select under Plots -\/- Box plot and Data
+Jittered to superimpose data.
+
+Before vs.~age scatterplot
+
+16
+
+Here we see that age is positively correlated with inflammation before
+the drug trial.
+
+jamovi gives options to superimpose regression output on a scatterplot.
+
+jamovi can also plot ``standard error'' bands around the line. These
+show the standard error for the average value of y (``before''), given x
+(``age'').
+
+Difference vs.~before
+
+17
+
+We don't see an association between amount of inflammation before
+treatment and reduction in inflammation\ldots{}
+
+\ldots{} but maybe we do if we add in drug! Do ``drug'' and ``before''
+interact here?
+
+Difference vs.~age
+
+18
+
+We see a small negative correlation between difference and age\ldots{}
+
+\ldots{} but when we add drug, we see no correlation for the NSAID and
+clear negative correlation for the DMARD. Definite interaction!
+
+Now with model output\ldots{}
+
+19
+
+
+
+And using regression:
+
+OMG! The estimated slope for ``drug'' is the same as the difference in
+means between the drugs!
+
+The following slides show the plots again, plus the regression output
+JMP produces. First up, Difference vs.~Drug, using t-test:
+
+Before vs.~age
+
+20
+
+Difference vs.~age, with interaction
+
+21
+
+~
+
+To do this, create a new column in jamovi, defined as age*drug. May as
+well label it ``age*drug''.
+
+Difference vs.~age, with drug interaction
+
+22
+
+~
+
+Difference vs.~age, with drug interaction
+
+23
+
+Notice also that the slope of ``age'' by itself is nowhere close to
+being statistically significant (the estimate is less than half the
+standard error), but the slope of the interaction is highly significant
+(the estimate is 6 times as large as the standard error)
+
+Now take a look at the plot. There is a clear negative correlation
+between age and difference when drug = 1. There is essentially none when
+drug = 0.
+
+Difference vs.~age, with drug interaction
+
+24
+
+Another way of thinking about this interaction:
+
+If we ask the question: ``how does inflammation reduction differ by
+age?'', the answer is ``it depends on which drug the patient took.''
+
+Similarly, if we ask the question: ``how does inflammation reduction
+differ by drug?'', the answer is ``it depends on the age of the
+patient.''
+
+Interaction is NOT correlation!
+
+25
+
+In this example, we see a clear interaction between drug and age: the
+slope for age is negative for DMARD and flat for NSAID.
+
+Another way of thinking about this: DMARD appears to be more effective
+for younger patients than for older patients. NSAID appears to be
+equally effective regardless of age.
+
+HOWEVER -- this does NOT mean that treatment and age are correlated!
+
+This should make sense, after all patients were randomly assigned to one
+of the two drugs. If drug were correlated with age, there would be bias
+in this study. The whole point of randomization is to remove
+correlations!
+
+Interaction is NOT correlation!
+
+26
+
+Just to confirm, here is the distribution of age, split by drug:
+
+Again, age and drug ``interact'' when it comes to their associations
+with the differences in inflammation scores: the association between
+``age'' and ``difference'' is different for the two different drugs.
+
+Similarly, the association between ``drug'' and ``difference'' is
+different for patients of different ages.
+
+But, age and drug are not correlated with one another!
+
+STAT 331
+
+Outline of notes
+
+Interaction, conceptually
+
+Interaction, in the regression model
+
+JMP example: arthritis treatment data
+
+Centering predictor variables
+
+Standardizing predictor variables
+
+27
+
+``Centering'' the interaction
+
+~
+
+28
+
+~
+
+~
+
+``Centering'' the interaction
+
+~
+
+29
+
+Centered interaction in jamovi
+
+30
+
+To center age, create a new columns called ``centered age'', defined as
+age -- VMEAN(age).
+
+Create another new column for ``centered drug'', defined as drug --
+VMEAN(drug). Now create a final column defined as centered drug *
+centered age, call it ``centered age*drug''
+
+We can't use MEAN() to center variables in jamovi since it works across
+variables, one row at a time. What we want is to take the overall mean
+of a variable and subtract it from each measurement.
+
+So, use VMEAN() to center variables in jamovi.
+
+31
+
+Compare the new results (on the left) to the results we saw when using
+the interaction term we created manually (on the right)
+
+Centered interaction in jamovi
+
+32
+
+~
+
+These slopes are different, because they are being calculated at the
+mean value of the other. 
+
+Centering also reduces the standard errors of the individual slopes!
+
+Centered interaction in JMP
+
+33
+
+Look at the slope for drug when using a centered interaction: it's the
+same value we calculated by plugging the mean of age into the
+interaction term in the non-centered model!
+
+The slope for age in the centered model is harder to interpret. It is
+calculated at the ``average'' for drug, which doesn't make real world
+sense.
+
+Centered interaction in jamovi
+
+34
+
+It would be best if we could center ``age'' but not drug.
+
+But we already created centered age when we created the centered
+interaction.
+
+Only centering one predictor in jamovi
+
+Now we need to create the new interaction where only age is centered.
+Create a new column and define it as ``drug * centered age''.
+
+35
+
+Here are the results. Compare them to the previous two versions:
+
+Only age centered:
+
+Age and drug centered inthe interaction:
+
+Nothing centered:
+
+Only centering one predictor in JMP
+
+36
+
+First, the slope for the interaction is the same in all three models.
+
+Second, the slope for drug is the same in both centered models, but
+different in the non-centered model. It is the centering of age in the
+interaction that changed the slope for drug.
+
+Only centering one predictor in jamovi
+
+(only age centered)
+
+(age and drug centered)
+
+(nothing centered)
+
+37
+
+~
+
+Only centering one predictor in jamovi
+
+(only age centered)
+
+(age and drug centered)
+
+(nothing centered)
+
+38
+
+~
+
+Interpreting the intercept when centering
+
+39
+
+Interpreting the intercept when centering
+
+~
+
+STAT 331
+
+Outline of notes
+
+Interaction, conceptually
+
+Interaction, in the regression model
+
+JMP example: arthritis treatment data
+
+Centering predictor variables
+
+Standardizing predictor variables
+
+40
+
+41
+
+Standardizing predictor variables
+
+~
+
+42
+
+Why standardize?
+
+Just like with a centered variable, the mean of a standardized variable
+is zero. So, standardizing has all the same benefits as centering when
+it comes to interpretation of interactions.
+
+Standardizing has an additional potential benefit: the slope can be
+interpreted as the predicted change in Y for a one standard deviation
+increase in X (while holding all other predictors constant).
+
+Z values are interpreted as ``number of standard deviations from the
+mean''. And so increasing Z by 1 implies increasing X by 1 standard
+deviation.
+
+43
+
+To standardize in jamovi we will need to create a new column defined by
+(age -- VMEAN(age)) / VSTDEV(age).
+
+We will also need to create a column for the new interaction and define
+it as drug * Standardized age
+
+Standardizing in jamovi
+
+44
+
+Here are the results when age is standardized:
+
+Compare to the results when age is centered:
+
+Standardizing in jamovi
+
+45
+
+~
+
+Standardizing in jamovi
+
+46
+
+What has changed is the slope for terms involving age. Now, a one unit
+increase in standardized age is a one standard deviation increase in
+age.
+
+So, for NSAID, the predicted difference in inflammation reduction for
+two people whose ages are one standard deviation apart is 0.14. For
+DMARD, it is 0.14 -- 2.79 = -2.64.
+
+How much is a standard deviation? We can look it up\ldots{}
+
+Standardizing in jamovi
+
+47
+
+This has been a long example. I encourage you to load up the data
+yourself and play around with it in jamovi. At the minimum, make sure
+you can re-create the results in these notes.
+
+Interaction and centering / standardizing summary
+
+The most important take-aways:
+
+Interaction terms allow the slope of predictor to change for different
+values of another predictor. 
+
+Centering helps make regression coefficients (slopes and intercepts)
+more interpretable. Standardizing allows you to interpret them in terms
+of one standard deviation changes, rather than ``one unit'' changes.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-3-assessing-and-improving-model-fit}{%
+\chapter{Chapter 3: Assessing and improving model
+fit}\label{chapter-3-assessing-and-improving-model-fit}}
+
+STAT 331
+
+Module 4:
+
+Assessing and improving model fit
+
+Part 1: assumptions and assumption violations
+
+Outline of notes
+
+Regression assumptions
+
+Linearity
+
+Normality of residuals
+
+Homogeneity of variance
+
+Influential observations
+
+(Multi)collinearity
+
+1
+
+Violating model assumptions
+
+The previous two sets of notes outlined the fundamentals of specifying,
+fitting, and interpreting a linear regression model.
+
+These notes focus on the assumptions that our models are based upon, and
+how we check to see if they are being violated.
+
+If model assumptions are violated, DON'T PANIC! There is nearly always a
+remedy. In these notes we will look at how to spot violations of
+assumptions. In the next set of notes we will look at ways to remedy
+these violations, and how to decide if they pose a serious problem to
+the usefulness of the model.
+
+2
+
+The regression model and what it assumes
+
+~
+
+3
+
+STAT 331
+
+Outline of notes
+
+4
+
+Regression assumptions
+
+Linearity
+
+Normality of residuals
+
+Homogeneity of variance
+
+Influential observations
+
+(Multi)collinearity
+
+Linearity
+
+Remember the ``simple'' (i.e.~single predictor) regression model:
+
+This is linear in that it fits a straight line to the two-dimensional
+data.
+
+A two-predictor model would fit a flat plane to the three-dimensional
+data, and so on
+
+5
+
+~
+
+Linearity
+
+Here's a bad idea: fitting a linear model to non-linear data!
+
+6
+
+Diagnosing non-linearity
+
+~
+
+7
+
+Diagnosing non-linearity
+
+For simple regression, this plot just looks like the regression plot
+with the line turned horizontally.
+
+For multiple regression, there is no (two dimensional) ``regression
+plot'', so the residual plot will be very useful!
+
+8
+
+Diagnosing non-linearity
+
+In this example, there is clear curvature in the data. A straight line
+model is not appropriate.
+
+Here's an example of what a linear relationship might look like:
+
+9
+
+Diagnosing non-linearity
+
+When there is non-linearity, you will see the residuals mostly on one
+side of zero, then on the other size of zero, then back again, and so
+on.
+
+When there is linearity, the residuals should randomly fall on either
+side of zero.
+
+10
+
+What to look for in a residual plot
+
+We will look at many more examples of residual plots in these notes.
+
+We want a residual plot that appears to agree with the model
+assumptions:
+
+Straight line relationship between the predictors and response
+
+Normally distributed random residuals around this line
+
+Equal variance in residuals across line
+
+11
+
+STAT 331
+
+Outline of notes
+
+12
+
+Regression assumptions
+
+Linearity
+
+Normality of residuals
+
+Homogeneity of variance
+
+Influential observations
+
+(Multi)collinearity
+
+Normality of residuals
+
+~
+
+13
+
+Normality of residuals
+
+When fitting a model using ``Linear Regression'' in jamovi, there is an
+option to save residuals. This will create a new column with a residual
+for each row.
+
+14
+
+The option is under the last drop-down menu, under ``Save''.
+
+Normality of residuals
+
+To create a plot of the residuals, select ``Q-Q plot of residuals''
+under ``Assumption Checks'' in ``Linear Regression''
+
+15
+
+The Normal Quantile plot is also known as the QQ plot, for ``quantile
+quantile''.
+
+It is easier to assess normality with a QQ plot than with a histogram.
+
+Assessing normality with a QQ plot
+
+On Canvas under Simulations there is a ``QQ plot generator'' app.
+
+This app allows you to manipulate a distribution, sample from it, and
+then view a histogram next to a QQ plot. It is meant to give you an idea
+of how QQ plots work.
+
+By default, it draws data from a normal distribution. But, you can add
+``skewedness'' or ``peakedness'' (aka kurtosis) to make the distribution
+non-normal. You can also adjust sample size.
+
+16
+
+Assessing normality with a QQ plot
+
+17
+
+Assessing normality with a QQ plot
+
+18
+
+A QQ plot shows you how much the distribution of your data ``agree''
+with a normal distribution.
+
+The horizonal axis gives the distribution data would follow if it were
+perfectly normal.
+
+The vertical axis gives the distribution your data actually follows.
+
+The diagonal line shows perfect agreement between the two.
+
+Assessing normality with a QQ plot
+
+19
+
+The big advantage of the QQ plot vs.~the histogram is that very often
+data that come from a normal distribution don't look normal, especially
+if the sample size is small.
+
+In this case, the histogram isn't clearly normal. But, on the QQ plot
+the data are close to the line.
+
+QQ plot of a right skewed distribution
+
+20
+
+QQ plot of a left skewed distribution
+
+21
+
+QQ plot of a normal distribution
+
+22
+
+Notice that the data still veer from the diagonal line to some extent,
+even though we know for a fact they came from a normal distribution.
+
+Limitations of QQ plots
+
+23
+
+As you can see from the app, sometimes data that come from a normal
+distribution don't sit right on the line.
+
+Sometimes data that come from a skewed distribution look similar to data
+that come from a normal distribution
+
+It's easier to assess normality when sample sizes are larger.
+
+As it turns out, the assumption of normality is not vital to the
+validity of a regression model. If the QQ plot is vague, you're probably
+fine. We only worry when we see extreme non-normality.
+
+Side note: tests for normality
+
+24
+
+There are statistical tests, such as ``Shapiro-Wilks'' or
+``Kolmgorov-Smirnov'', for which the null hypothesis is that the data
+come from some specified distribution, like the normal.
+
+Rejecting this null means that the data ``significantly'' disagree with
+the assumption of normality.
+
+I do not recommend using this test. The problem is that, when the sample
+size is large enough, even small deviations from normality will be
+statistically significant. But small deviations from normality are OK.
+Only major deviations are concerning.
+
+STAT 331
+
+Outline of notes
+
+25
+
+Regression assumptions
+
+Linearity
+
+Normality of residuals
+
+Homogeneity of variance
+
+Influential observations
+
+(Multi)collinearity
+
+Homogeneity of variance
+
+~
+
+26
+
+Heterogeneity of variance
+
+To show heterogeneity of variance, I'll simulate data that is a function
+of an X variable, plus random values from a normal distribution with
+standard deviation equal to X.
+
+Thus, the standard deviation of residuals will get bigger as X gets
+bigger:
+
+27
+
+Diagnosing heterogeneity of variance
+
+Here is the regression plot and residual plot when this simulated
+variable (called ``W'' here) is the response and X is the predictor:
+
+Notice that the residuals are more spread out for larger X
+
+28
+
+Diagnosing heterogeneity of variance
+
+We also see ``heavy tails'' when plotting the residuals with a histogram
+and QQ plot:
+
+29
+
+Heavy tails refers to a distribution with outliers on both ends.
+
+This shows up on the QQ plot as the residuals being too flat in the
+middle and then curving out on both ends.
+
+STAT 331
+
+Outline of notes
+
+30
+
+Regression assumptions
+
+Linearity
+
+Normality of residuals
+
+Homogeneity of variance
+
+Influential observations
+
+(Multi)collinearity
+
+Influential observations (outliers)
+
+Outliers in regression can be seen on a residual plot, or on a QQ plot,
+or on just a regular plot of the data.
+
+Example: the Florida election data.
+
+31
+
+Outliers can ``pull'' on the regression line, especially if they are far
+away from the mean of the predictor(s).
+
+There are many statistics that assess influence. jamovi will calculate
+one of the most popular: a Cook's Distance
+
+Cook's Distances
+
+As we saw in the Florida election example, removing the outlier (Palm
+Beach County) had a substantial effect on the regression results.
+
+The logic behind Cook's Distance is to quantify what happens to the
+regression model when a single observation is removed. This is sometimes
+referred to as a ``leave one out'' method.
+
+Cook's Distances quantify how much the predicted values of the response
+variable change when an observation is removed.
+
+Recall that, in simple regression, the predicted values are the values
+on the regression line.
+
+32
+
+Cook's Distances
+
+33
+
+~
+
+Cook's Distances
+
+A Cook's Distance is calculated for every data point. The option to do
+this in jamovi is under ``Save'' in ``Linear Regression''. This creates
+a new column with a Cook's distance for each row.
+
+The saved Cook's Distances can then be plotted. Any possibly influential
+points will usually stand out clearly from the rest.
+
+34
+
+Cook's Distances
+
+35
+
+To quickly narrow in on the influential counties, we can filter out all
+the small Cook's distances.
+
+After implementing the filter, we can see that all rows which do not
+meet the criteria of the filter are excluded.
+
+Only rows 13 and 50 should be highlighted for Dade and Palmbeach county
+which have cook's distances of 1.983 and 3.786.
+
+STAT 331
+
+Outline of notes
+
+36
+
+Regression assumptions
+
+Linearity
+
+Normality of residuals
+
+Homogeneity of variance
+
+Influential observations
+
+(Multi)collinearity
+
+(Multi)collinearity
+
+In regression analysis, we want our predictor variables to be correlated
+with the response variable.
+
+But we don't want our predictor variables to be (highly) correlated with
+one another!
+
+When two predictor variables are highly correlated, we say our model has
+``collinearity''
+
+When more than two predictor variables are mutually highly correlated,
+we say our model as ``multicollinearity''.
+
+37
+
+Why don't we want correlated predictors?
+
+~
+
+38
+
+Why don't we want correlated predictors?
+
+~
+
+39
+
+Why don't we want correlated predictors?
+
+~
+
+40
+
+Why don't we want correlated predictors?
+
+~
+
+41
+
+Why don't we want correlated predictors?
+
+~
+
+42
+
+Here, X1 and X2 are perfectly correlated. jamovi cannot estimate a slope
+for X2.
+
+Collinearity example: Florida election data
+
+In the Florida election data, we used total votes for each county as our
+predictor variable.
+
+There is another variable called ``Total\_Reg''. This is the total
+number of registered voters in each county.
+
+43
+
+Unsurprisingly, Total\_Votes and Total\_Reg are highly correlated:
+
+Collinearity example: Florida election data
+
+If we run two separate simple regression models, we get very similar
+results:
+
+44
+
+~
+
+~
+
+Collinearity example: Florida election data
+
+But look what happens if we use Total\_Votes and Total\_Reg as
+predictors in the same model:
+
+45
+
+~
+
+~
+
+Collinearity example: Florida election data
+
+46
+
+Looking at the estimates and standard errors in all three models, we see
+that the standard errors are much larger in the multiple regression
+model. These estimates are ``unstable'' -- their values will change a
+lot if the data change a little.
+
+We know the association between Total\_Reg are Buchanan is actually
+positive. But with so high a standard error, the slope for Total\_Reg
+turned out negative!
+
+Diagnosing (multi)collinearity with VIF
+
+47
+
+~
+
+Diagnosing (multi)collinearity with VIF
+
+48
+
+~
+
+~
+
+~
+
+Diagnosing (multi)collinearity with VIF
+
+49
+
+Thankfully we don't have to do this by hand. In jamovi, under ``Linear
+Regression'' select ``Collinearity statistics'':
+
+~
+
+When we don't care about (multi)collinearity
+
+50
+
+(Multi)collinearity is a potentially huge problem if the goal of the
+regression model is to interpret the estimated slopes.
+
+This is because it increases the standard error of these slopes, making
+their values less reliable. Some people say it makes slopes
+``unstable''.
+
+It may also complicate the interpretation of slopes: you are trying to
+statistically ``hold constant'' a predictor variable that doesn't
+naturally stay constant when the other predictor varies. This isn't
+necessarily a problem, but it is something to be aware of.
+
+When we don't care about (multi)collinearity
+
+51
+
+~
+
+Next up\ldots{}
+
+52
+
+In these notes we looked mostly at problems that can occur in regression
+modeling.
+
+In the next set of notes, we will look at ways of dealing with these
+problems, and ways of trying to choose the best predictor variables for
+a model. And we'll do it using a data set from a popular published paper
+that turned out to have some major problems\ldots{}
+
+\hypertarget{part-2}{%
+\section{part 2}\label{part-2}}
+
+STAT 331
+
+Module 4:
+
+Assessing and improving model fit
+
+Part 4: Improving models
+
+Outline of notes
+
+Summary of part 1
+
+Log transformation
+
+Polynomial regression
+
+Model comparison statistics
+
+Back to basics: what do we want from our models?
+
+1
+
+Summary of part 1
+
+In the last set of notes, we looked at some things that can go wrong in
+regression modeling, including:
+
+Non-linear relationships between predictor(s) and response
+
+Non-normality of residuals
+
+Non-constant (heterogeneous) variance of residuals
+
+Influential outliers
+
+Multicollinearity
+
+In these notes, we'll look at some tools available for dealing with
+these problems.
+
+2
+
+STAT 331
+
+Quick review of logarithms
+
+Why log transform?
+
+Interpreted log transformed variables
+
+Applied example
+
+Outline of notes
+
+Summary of part 4
+
+Log transformation
+
+Polynomial regression
+
+Back to basics: creating sensible models
+
+3
+
+Transforming variables
+
+~
+
+4
+
+Log transformation
+
+~
+
+5
+
+Why log transform?
+
+~
+
+6
+
+Why log transform?
+
+~
+
+7
+
+Why log transform?
+
+~
+
+8
+
+Same again, with log base 2
+
+~
+
+9
+
+Why log transform?
+
+Skewed data can be bad for regression, in that it can lead to:
+
+Non-linear relationship between X and Y
+
+Influential outliers
+
+Non-normal residuals
+
+Non-constant variance in residuals
+
+So a simple log transformation can sometimes go a long way toward making
+the regression model fit the better!
+
+10
+
+Interpreting log transformed variables
+
+~
+
+11
+
+~
+
+12
+
+Interpreting log transformed variables
+
+~
+
+13
+
+Interpreting slope as a \% change in outcome
+
+~
+
+14
+
+Log transformation applied example
+
+~
+
+15
+
+Log transformation in Y vs.~in X
+
+STAT 331
+
+Non-linearity
+
+Polynomial review
+
+Regression example
+
+Warning: overfitting
+
+Outline of notes
+
+Summary of part 3
+
+Log transformation
+
+Polynomial regression
+
+Back to basics: creating sensible models
+
+16
+
+Non-linearity
+
+~
+
+17
+
+``Polynomial'' review
+
+~
+
+18
+
+2nd degree and 3rd degree polynomials
+
+2nd degree polynomials are often called ``quadratic''. 3rd degree
+polynomials are often called ``cubic''. Here are visual examples of
+simulated quadratic and cubic relationships between Y and X:
+
+19
+
+Curvature in residuals
+
+Here is regression output comparing a linear model to a quadratic model
+when the relationship between Y and X is quadratic:
+
+20
+
+Example: Florida election data
+
+~
+
+21
+
+Example: Florida election data
+
+~
+
+22
+
+To create this polynomial predictor in jamovi we first need to install
+the GAMLj module. Then, select ``Generalized Linear Models'' and last
+our ``Dependent Variable'' and ``Covariates''.
+
+Under the ``Model'' drop down menu, click on Total\_Votes in the
+``Components'' table.
+
+Example: Florida election data
+
+An up and down arrow will appear with the degree of Total\_Votes, click
+the up arrow so the 1 changes to 2. Then click the right arrow to add
+Total\_Votes2 to ``Model Terms''
+
+23
+
+Example: Florida election data
+
+~
+
+24
+
+Example: Florida election data
+
+25
+
+~
+
+Example: Florida election data
+
+26
+
+~
+
+Example: Florida election data: check note
+
+27
+
+~
+
+Example: Florida election data
+
+28
+
+It turns out that centering helps in polynomial models:
+
+Compare to:
+
+By default jamovi centers polynomials which makes their standard errors
+smaller than if they were not centered. But, these estimates are not
+interpretable; you cannot hold Total\_Votes2 constant while increasing
+Total\_Votes.
+
+Example: Florida election data
+
+29
+
+In this example, the two counties with the highest total votes are
+heavily pulling on the regression line.
+
+Over-fitting
+
+30
+
+This model might be ``over-fit''.
+
+Over-fitting is when a model fits the data so well that it ends up
+fitting random variation that is not of interest.
+
+Imagine if the two data points on the right had slightly higher vote
+counts for Buchanan. Or if the next two to their left had slightly lower
+vote counts. The curve would look very different.
+
+At this point, we might just be modelling noise.
+
+Over-fitting
+
+31
+
+Here is an extreme example of over-fitting: fitting a ``smoother'' curve
+to data and giving it permission to move dramatically up and down
+through the data.
+
+This line fits the data very well, but does it represent the general
+trend between total votes and votes for Buchanan? Definitely not!
+
+(Side note: ``smoothers'' are great tools for visualizing and
+summarizing data, but they can be extremely sensitive to degree of
+smoothing. We won't use them in STAT 331)
+
+Over-fitting
+
+32
+
+Compare the over-fit model to the linear model.
+
+The linear model may be missing out on some curvature. But it might also
+make better predictions.
+
+If we were to observe a new county with 450,000 total votes, would we be
+better guessing that votes for Buchanan fall on the highly curved line
+or on the straight line?
+
+STAT 331
+
+Making predictions
+
+Interpreting slopes
+
+Stuff that these notes left out
+
+Outline of notes
+
+Summary of part 3
+
+Log transformation
+
+Polynomial regression
+
+Back to basics: creating sensible models
+
+33
+
+Creating sensible models
+
+Back to basics: regression models are typically used for two purposes:
+
+Predicting values of the response variable, using the predictor
+variables. This is done by plugging values for the predictor variables
+into the estimated model.
+
+Estimating the association between each individual predictor variable
+and the outcome while statistically holding other predictor variables
+constant. This is done by interpreted estimated slope coefficients.
+
+34
+
+If you just want to make predictions\ldots{}
+
+~
+
+35
+
+If you want to interpret slopes\ldots{}
+
+Always remember that each slope is interpreted under the assumption that
+all other predictor variables are being held constant, i.e.~``controlled
+for''.
+
+The more predictor variables in the model, the less sense this will
+make.
+
+Example: wage vs.~height study:
+
+36
+
+If you want to interpret slopes\ldots{}
+
+In model 4, the estimated slope for youth height can be interpreted
+as:``The predicted difference in ln(wage) for two people one inch apart
+in youth height, but equal in adult height, whose mothers have the same
+\# of years of schooling and are both in either skilled fields or work
+or not, whose fathers have the same \# of years of schooling and are
+both in either skilled fields or work or not, and who have the same
+number of siblings.''
+
+37
+
+Maybe this is the best way to think about the association between youth
+height and wages. But it is fairly complicated.
+
+If you want to interpret slopes\ldots{}
+
+If you're going to try to make ``real world'' sense out of regression
+results, your model should be informed by theory.
+
+This is necessarily subjective! You have to choose which variables you
+think are important. You have to think about what makes sense.
+
+This might require:
+
+Log transforming a variable solely because you like the multiplicative
+interpretation better than the additive interpretation.
+
+Keeping a variable in a model even though it isn't statistically
+significant.
+
+Removing a variable you are interested in, because it doesn't make sense
+to ``hold it constant'' when estimating slopes for other variables.
+
+38
+
+Another example with the Florida data
+
+~
+
+39
+
+Another example with the Florida data
+
+~
+
+40
+
+Another example with the Florida data
+
+~
+
+41
+
+Another example with the Florida data
+
+Note also that total votes is not significant.
+
+But: the slope for Reg\_Reform has a nice interpretation:
+
+When comparing two counties with the same number of votes cast in the
+election, a county with an additional registered Reform Party member is
+estimated to have 2.24 additional votes, on average, for Pat Buchanan.
+
+Should total votes be taken out of the model? This is a subjective
+decision.
+
+42
+
+Caution: causality might matter!
+
+In regression analysis, we usually emphasize (correctly) that
+correlation does not imply causation. 
+
+However, if you have knowledge or beliefs about causal direction, you
+should take these into account when choosing your variables!
+
+Example: in the rheumatoid arthritis study, we were looking at the
+effect of drugs on inflammation level. In particular, we were comparing
+how effective they were at reducing inflammation. Suppose we also asked
+patients to rate their mobility level (RA tends to reduce mobility).
+
+43
+
+Caution: causality might matter!
+
+~
+
+44
+
+Beware the ``kitchen sink'' approach
+
+There's an old saying: ``taking everything but the kitchen sink''.
+
+It can be tempting to toss everything but the kitchen sink into a
+regression model, especially when you have loads of variables that all
+seem like they'd be associated with the response.
+
+But beware! Adding in one predictor can have a dramatic effect on the
+slopes of other predictors, as well as on their standard errors.
+
+It really really really matters that each slope is estimated as though
+all other predictors are held constant. This can reveal otherwise unseen
+effects, but it can also obscure otherwise obvious effects or induce
+apparent effects that aren't real. There is no substitute for scientific
+reasoning when choosing a model.
+
+45
+
+Big picture: models are simplifications
+
+Let's take a step back and ask: why are we fitting data to models?
+
+Well, we are interested in the real world. And the real world in
+incredibly complicated. Maybe incomprehensibly complicated.
+
+So, we simplify things using models. We hope that the model captures the
+essence of what we care about in the real world. But we know it is a
+simplification; perhaps an extreme simplification.
+
+``All models are wrong; some are useful'' -- George Box
+
+46
+
+Big picture: models are simplifications
+
+~
+
+47
+
+Next up\ldots{}
+
+In the next module, we'll look at ``ANOVA'' style models, which are
+regression models constructed for the purpose of analyzing experimental
+data.
+
+48
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-4-anova-based-methods}{%
+\chapter{Chapter 4: ANOVA-based
+methods}\label{chapter-4-anova-based-methods}}
+
+STAT 331
+
+Module 5:
+
+ANOVA and ANCOVA
+
+Outline of notes
+
+1
+
+ANOVA
+
+ANOVA stands for ``analysis of variance''
+
+ANOVA is regression with categorical predictors. That's it.
+
+2
+
+ANOVA
+
+OK, there's more to say about ANOVA than just ``regression with
+categorical predictors.''
+
+ANOVA is typically used to analyze data from experiments. In
+experiments, the categorical predictors are usually groups to which
+experimental units (aka subjects) are assigned.
+
+ANOVA tends to focus on comparing means of different groups to one
+another.
+
+Although ANOVA is ``just'' regression, there are conventions for
+reporting ANOVA results that are simpler and cleaner than what we've
+seen for regression.
+
+3
+
+Categorical predictors using indicators
+
+~
+
+4
+
+Categorical predictors using indicators
+
+~
+
+5
+
+One-Way ANOVA
+
+~
+
+6
+
+One-Way ANOVA vs.~regression
+
+~
+
+7
+
+Factorial ANOVA
+
+~
+
+8
+
+Factorial ANOVA example
+
+The subscripts start getting messy pretty fast.
+
+Here's an example of a ``5x2 factorial'' ANOVA, meaning that one
+variable has 5 groups and the other has 2.
+
+The study is on memory: how many words, on average, do people recall
+when given certain processing tasks?
+
+This example is where the graph on our Canvas home page comes from. It
+uses data simulated to mimic data from a 1974 Hans Eysenck study.
+
+9
+
+Factorial ANOVA example
+
+100 subjects were split into 5 recall groups:
+
+``Counting'': subjects counted how many letters were in each presented
+word
+
+``Rhyming'' subjects thought of words that rhymed with each presented
+word
+
+``Adjective'': subjects thought of an adjective that could be used to
+modify each presented word
+
+``Imagery'': subjects were told to form vivid images of each word
+
+``Intentional'': subjects were told to memorize the word for later
+recall
+
+Counting and rhyming are lower level processing tasks, so the hypothesis
+was that this group would recall fewer words than the others. Subjects
+were also classified as ``young'' or ``old''.
+
+10
+
+Factorial ANOVA example
+
+~
+
+11
+
+Factorial ANOVA example
+
+12
+
+First we'll use ANOVA, using items recalled as the response (dependent)
+variable, and recall condition and age as factors. Note that jamovi
+automatically includes their interaction.
+
+Factorial ANOVA example
+
+13
+
+~
+
+~
+
+14
+
+~
+
+Here, we see that recall condition explains the most variance by far,
+followed by age, followed by their interaction.
+
+15
+
+~
+
+~
+
+~
+
+Factorial ANOVA means / interaction plot
+
+16
+
+We can make a nice plot under ``estimated marginal means'':
+
+17
+
+This plot shows every combination of means across recall condition and
+age. It also has 95\% CIs around each mean, and raw data displayed.
+
+This is sometimes called a ``means plot'' or an ``interaction plot''.
+The interaction is represented by non-parallel lines, e.g.~a positive
+change going from ``Imagery'' to ``Intention'' for young people, but a
+negative change for old people.
+
+Factorial ANOVA means / interaction plot
+
+18
+
+The previous plot showed means for recall condition, with separate lines
+for age. If we flip the order of the variables, we get this:
+
+Here we see that mean items recalled for young people is substantially
+higher than for old people in the last three conditions, but differs
+only slightly in the first two conditions.
+
+~~~~~~~~
+
+Factorial ANOVA means / interaction plot
+
+Factorial ANOVA diagnostics
+
+19
+
+We can also run diagnostic tests, under ``Assumption checks'':
+
+The QQ plot looks pretty good.
+
+Factorial ANOVA diagnostics
+
+20
+
+These tests use null hypotheses of ``population variance is the same in
+all groups'', or ``the residuals were drawn from a normal
+distribution''. As I don't think these model assumptions could be
+literally true, I am not interested in whether they can be rejected by
+the data.
+
+A ``significant'' violation of modeling assumptions does not imply a
+consequential violation. In particular, if sample size is large, trivial
+violations of assumption will be ``significant''.
+
+I personally do not recommend paying attention to Levene's ``homogeneity
+of variances'' test, nor to the Shapiro-Wilk normality tests
+
+Doing all of this as regression
+
+21
+
+The predictor variables are entered as ``factors'' here, rather than as
+``covariates'', to ensure they are treated as categorical rather than as
+quantitative variables.
+
+The beginning of these slides claimed that ANOVA is just regression with
+categorical predictors. Let's see what our results look like if we use
+jamovi's ``linear regression'' function rather than ``ANOVA''.
+
+Finally, the interaction must be specified under ``model builder'';
+jamovi does not create regression interactions by default.
+
+Main regression results
+
+22
+
+There are five recall condition groups, giving four indicator variables,
+all compared against the baseline group ``counting'', whose mean is
+represented by the intercept.
+
+There are two ``age'' groups; ``young'' is the baseline group. 
+
+So the intercept of 6.500 is the mean words recalled for a young person
+in the ``counting'' condition.
+
+Main regression results
+
+23
+
+The first indicator under RecallCondition is ``Rhyming -- Counting''.
+Its slope of 1.1 is the difference in mean recall for these two groups,
+when Age = Young
+
+~
+
+Main regression results
+
+24
+
+However, the interaction slopes are all larger negative values.
+
+So, when RecallCondition = Counting, the mean items recalled for Age =
+Old is larger than for Age = Young. But for all other recall conditions,
+the interaction slopes turn this negative, and mean items recalled is
+larger for younger participants.
+
+Notice that the slope for Age (``Old -- Young'') is 0.5, suggesting
+greater recall for older participants.
+
+Main regression results
+
+25
+
+``Estimated Marginal Means'' under regression will produce a similar
+plot to the one made under ANOVA, just without the connecting lines and
+raw data:
+
+If you look carefully, you should be able to see how the regression
+results correspond to this plot. For instance, we see that the only
+condition where Old \textgreater{} Young is Counting.
+
+Main regression results
+
+26
+
+Residual plot
+
+27
+
+We can get a plot of residuals vs.~fitted values.
+
+Notice that the residuals are all vertically stacked? This is to be
+expected when predictor variables are categorical.
+
+In this case, there are 5x2 = 10 possible combinations of groups that
+participants could be assigned to. And so there are only 10 possible
+``fitted'' (i.e.~predicted) values that the model can produce.
+
+ANCOVA
+
+28
+
+ANCOVA (analysis of covariance) is ANOVA with an additional continuous
+predictor variable.
+
+Typically, this additional continuous predictor is not of primary
+interest; the primary interest is still comparing group means.
+
+The continuous predictor is often thought of as a ``covariate'' -- a
+variable that should be accounted for when drawing inference on the
+other variables.
+
+ANCOVA
+
+29
+
+A common use of ANCOVA is for modeling an outcome when ``baseline'' or
+``pre-study'' or ``pre-test'' scores are available.
+
+For instance, consider testing different educational models on different
+sections of a class. Some get traditional lecture, some are completely
+``flipped'', and some are a combination of the two.
+
+In this study, a preliminary quiz is given on the first day of class.
+Score on the preliminary quiz will be the covariate. Score on an end of
+semester quiz (``post'') will be the response variable.
+
+ANCOVA
+
+30
+
+~
+
+ANCOVA
+
+31
+
+~
+
+Looking at the data
+
+32
+
+The data file is called ``test\_pretest''. Here is the formatting:
+
+Looking at the data
+
+33
+
+This plot was made using Analyses / Exploration / Scatterplot. Density
+curves are there, just for fun:
+
+Looking at the data
+
+34
+
+The three lines look pretty close to parallel, so there either isn't an
+obvious interaction here, or it's small.
+
+Analysis using ANCOVA
+
+35
+
+Analysis using ANCOVA
+
+36
+
+~
+
+Analysis using regression w/ indicators
+
+37
+
+For the regression analysis, we'll use two indicator variables. We don't
+have to do it this way; if we just include ``type'', jamovi will create
+the indicators for us, using the first class type listed in the data.
+
+Analysis using regression w/indicators
+
+38
+
+Notice that the interaction estimates are small relative to their
+standard errors (thus producing large p-values).
+
+According to this regression model, there is not a ``significant''
+interaction.
+
+Analysis using regression w/factor
+
+39
+
+Here's what happens if we put in ``type'' as a factor variable rather
+than making our own indicators. The results are the same.
+
+Analysis using regression
+
+40
+
+The QQ plot and residual plot both look great
+
+Alternative method: analyze differences
+
+41
+
+Another approach we could take would be to compute the differences in
+the two scores for each person, then do a regular ANOVA or regression
+analysis on those.
+
+Alternative method: analyze differences
+
+42
+
+We see that there are significant differences in mean test score change
+between teaching types (F=8.94, p\textless0.001)
+
+Analyze differences, regression approach
+
+43
+
+~
+
+Alternative method: analyze differences
+
+44
+
+It turns out here that taking the post -- pre differences first and then
+comparing mean differences across teaching types produces similar
+results to predicting post-test scores using pre-test and teaching type
+as predictors.
+
+But, these methods are not answering the exact same question. Using
+pre-test as a covariate, we answer the question ``what difference do I
+expect in post-test scores when comparing two students with the same
+pre-test score but different teaching types''?
+
+When differencing first and then doing the analysis, we answer the
+question ``what differences in the mean post-pre score change do I
+expect when comparing class types''?
+
+Alternative method: analyze differences
+
+45
+
+These question sound similar, but they aren't the same! Whether to use
+ANCOVA or do the differencing first is a matter of subjective judgement,
+and the experts don't all agree (see ``Lord's Paradox'' for more fun on
+this).
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-5-analyzing-categorical-data}{%
+\chapter{Chapter 5: Analyzing categorical
+data}\label{chapter-5-analyzing-categorical-data}}
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+1
+
+Part 1: Basic inference for categorical data
+
+Categorical data analysis and GLMs
+
+These notes will focus on ``Generalized Linear Models'' or GLMs.
+
+GLMs are regression analysis tools that can be used for modeling the
+behavior of non-continuous or non-normal response variables.
+
+The two most popular GLMs are logistic regression and Poisson
+regression; we will cover these.
+
+GLMs are particularly useful for analyzing categorical variables. So, we
+will begin the module with an overview of non-regression analysis tools
+for categorical variables.
+
+2
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Part 1: Basic inference for categorical data
+
+Outline of notes
+
+Confidence intervals and hypothesis tests for proportions
+
+Relative Risk
+
+The chi-square test
+
+3
+
+CIs and hypothesis tests for proportions
+
+~
+
+4
+
+CIs and hypothesis tests for proportions
+
+~
+
+5
+
+Political polling example
+
+Here are results from a recent political poll:
+
+6
+
+Political polling example
+
+~
+
+7
+
+Political polling example
+
+In jamovi, enter a column of frequencies for each value of the response
+variable, then use Frequencies / N -- Outcomes or Frequencies / 2
+Outcomes:
+
+
+
+8
+
+Toy example: skin cream and rashes
+
+Here is an example from the 2013 paper ``Motivated Reasoning and
+Enlightened Self Government'', by Kahan et. al.:
+
+9
+
+Here is an example from the 2013 paper ``Motivated Reasoning and
+Enlightened Self Government'', by Kahan et. al.:
+
+10
+
+Toy example: skin cream and rashes
+
+Putting the data into jamovi:
+
+11
+
+Toy example: skin cream and rashes
+
+Analyzing the data using Frequencies / Independent Samples:
+
+12
+
+Toy example: skin cream and rashes
+
+Rash is the response variable
+
+Skin cream is the predictor variable
+
+Frequency tells how often each combination occurred. (note: if you had
+raw data where each row was a single response, you would not use Freq)
+
+Results! There's a lot in here\ldots{}
+
+13
+
+Toy example: skin cream and rashes
+
+Split bar plot: displays each cell in the contingency table as a bar:
+
+14
+
+Toy example: skin cream and rashes
+
+Here we can easily see that the largest number of people were those who
+got the skin cream and whose rash got better.
+
+But, we can also see that rashes got better at a higher rate for those
+who did not get the skin cream.
+
+We'll cover the chi-square results soon. Right now, let's have jamovi
+directly compare proportions, using Frequencies / Independent Samples:
+
+15
+
+Toy example: skin cream and rashes
+
+Here, jamovi quantifies what we saw in the split bar plot: that the
+proportion of those who got better without the skin cream is greater
+than the proportion of those who got better with the skin cream:
+
+16
+
+Toy example: skin cream and rashes
+
+~
+
+``Probability of Better, given Yes''
+
+``Probability of Better, given No''
+
+We also see a 95\% CI for this difference, which is fairly wide and just
+barely excludes zero
+
+And we see the p-value testing against:
+
+17
+
+Toy example: skin cream and rashes
+
+~
+
+The two-sided p-value is 0.047, so this result is just barely
+significant. Woohoo!
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Part 1: Basic inference for categorical data
+
+Outline of notes
+
+Confidence intervals and hypothesis tests for proportions
+
+Relative Risk
+
+The chi-square test
+
+18
+
+Instead of knowing the difference in proportions / probabilities, we may
+want to know their ratio. This would tell us how many times larger one
+is than the other.
+
+This is quantified by the ``relative risk'', a.k.a. ``risk ratio'' :
+
+The phrase ``risk'' is used because this method is popular for comparing
+the risk of a negative outcome under two conditions (e.g.~treatment and
+control, or drug A and drug B)
+
+19
+
+Relative Risk
+
+~
+
+``Relative Risk'' is an option under Comparative Measures. jamovi will
+give conditional probabilities based on the order of the data. Here,
+rash getting worse is Better is selected:
+
+20
+
+Relative Risk in jamovi
+
+~
+
+~
+
+~
+
+21
+
+We could also flip this ratio:
+
+~
+
+Relative Risk in JMP
+
+~
+
+~
+
+22
+
+For ``Worse'', RR is large but (just barely) not statistically
+significant, because the CI contains 1.
+
+There is another very popular kind of ratio called an ``odds ratio'',
+which we will consider more when we cover logistic regression.
+
+Relative Risk in JMP
+
+Notice that, for ``Better'', RR is small but (just barely) statistically
+significant, because the CI does not contain 1. 
+
+~
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Part 1: Basic inference for categorical data
+
+Outline of notes
+
+Confidence intervals and hypothesis tests for proportions
+
+Relative Risk
+
+The chi-square test
+
+23
+
+Chi-square test
+
+~
+
+24
+
+Chi-square test
+
+Staying with the skin cream example, here is the contingency table as
+jamovi initially reports it:
+
+25
+
+There is a lot being shown here. Top rows are observed frequencies, what
+jamovi calls ``observed''.
+
+The two middle rows are column \% and row \%.
+
+Notice that the column \%'s sum to 100\% down the columns, and the row
+\%'s sum to 100\% across the rows.
+
+Chi-square test
+
+We can have jamovi display the components of a chi-square test.
+
+The first of these are the expected counts under the null hypothesis of
+independence.
+
+26
+
+Chi-square test
+
+To see how these ``expected'' counts would suggest independence,
+consider the relative risk:
+
+27
+
+~
+
+Chi-square statistic
+
+The chi-square statistic compares the expected frequencies under the
+null (which we denote E) to the observed frequencies in the data (which
+we denote O).
+
+This is a general formula that can be used when you have one variable,
+two variable, three variables, etc.
+
+Most popular use is for two variables, as in this skin cream example.
+
+28
+
+~
+
+Chi-square statistic
+
+~
+
+29
+
+And here is the jamovi output showing the full chi-square test:
+
+(``Pearson'' chi-square is the classic chi-square test)
+
+Chi-square statistic
+
+~
+
+30
+
+Chi-square statistic
+
+~
+
+31
+
+This is in line with the other methods we used to analyze these data.
+
+Recall that the test for a difference in proportions was barely
+significant, and the risk ratios were just on either side of
+significance, depending on whether ``rash got worse'' or ``rash got
+better'' was used as the outcome variable.
+
+One variable chi-square test
+
+The chi-square test can be used when we have frequencies for a single
+variable. All we have to do is specify expected counts or probabilities.
+
+Going back to the polling data, we can select Frequencies / N -
+Outcomes, and then make Answer ``Variable'' and Frequency ``Counts''.
+
+32
+
+One variable chi-square test
+
+Suppose the null hypothesis is that equal numbers of voters feel the
+country is on the right vs.~wrong track. Enter 0.5 for hypothesized
+probability:
+
+Here we get a very large chi-square statistic and a very small p-value.
+
+No surprise; the frequencies were very different!
+
+33
+
+My opinion on these
+
+I personally dislike statistical tests, and I really dislike tests that
+don't incorporate an interpretable statistic.
+
+So, I am not a big fan of this chi-square test. To compare rates for
+categorical variables, I prefer a 95\% CI around either a relative risk
+or a difference in proportions, whichever seems more meaning for the
+question at hand.
+
+Note that a ``chi-square test'' is quite general; it refers to any test
+whose test statistic follows a chi-square distribution. So you may see
+``chi-square tests'' that are not being used to test against a null of
+independence for categorical variables.
+
+34
+
+Looking ahead
+
+The methods we've covered in these notes are useful for analyzing fairly
+simple categorical data.
+
+In the next set of notes, we will look at logistic regression, which is
+a way to use regression modeling to predict the outcome of a categorical
+variable.
+
+35
+
+\bookmarksetup{startatroot}
+
+\hypertarget{generalized-linear-models-glms}{%
+\chapter{Generalized Linear Models
+(GLMs)}\label{generalized-linear-models-glms}}
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+1
+
+Part 2: Logistic regression
+
+Regression with a binary response.
+
+The logistic regression model
+
+Odds
+
+Harassment data example
+
+Regression with a binary response
+
+All of the regression methods we've seen have involved models in which
+the response variable is normally distributed, given values for the
+predictor variables
+
+In other words, the residuals have been modeled as normal.
+
+What if we have a different kind of response variable? In particular,
+consider a binary response variable. Maybe the outcomes are ``yes'' and
+``no'', or ``success'' and ``failure'', or ``present'' and ``absent''.
+
+2
+
+Regression with a binary response
+
+Logistic regression is a type of ``generalized linear model'' (GLM) that
+works well for modeling binary outcome data.
+
+Before we get into logistic regression, though, let's see what happens
+if we use standard regression (sometimes called ``ordinary least
+squares'', or OLS regression) with a binary response.
+
+We'll use simulated data corresponding to a study of sexual harassment
+reporting at a university.(Brooks and Perot ``Reporting Sexual
+Harassment: Exploring a Predictive Model'' (1991)).
+
+3
+
+Regression with a binary response
+
+Here is data on whether or not sexual harassment at a university was
+reported, using the offensiveness of the behavior as a predictor
+variable:
+
+4
+
+Data points are ``jittered'' so that they don't fall right on top of one
+another.
+
+Suppose we want to predict the value of ``Report'', using ``OffensBeh''.
+
+Regression with a binary response
+
+Here is the linear regression line. In this picture, the response
+variable takes on the values 0 and 1, and the data are not jittered.
+
+5
+
+Note that this line can go below zero and above one. We don't want to
+predict probability greater than 1! A straight line is not great here.
+Logistic regression is an alternative to this straight line model.
+
+The predicted value of ``Report'' can be thought of as the predicted
+probability that Report=1 (for reported behavior)
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+6
+
+Part 2: Logistic regression
+
+Regression with a binary response.
+
+The logistic regression model
+
+Odds
+
+Harassment data example
+
+Another way of writing a linear regression model
+
+~
+
+7
+
+Writing a logistic regression model
+
+~
+
+8
+
+The theoretical logistic regression model
+
+~
+
+9
+
+The theoretical logistic regression model
+
+~
+
+10
+
+Logit: log odds
+
+~
+
+11
+
+~
+
+12
+
+Logit: log odds
+
+Logit vs.~probability, visually:
+
+13
+
+Logit: log odds
+
+Logit vs.~probability, visually:
+
+14
+
+Logit: log odds
+
+STAT 331
+
+Module 6:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+15
+
+Part 2: Logistic regression
+
+Regression with a binary response.
+
+The logistic regression model
+
+Odds
+
+Harassment data example
+
+Odds vs.~probability
+
+~
+
+16
+
+Odds vs.~probability
+
+~
+
+17
+
+Odds vs.~probability
+
+Some probabilities and their associated odds:
+
+Think of odds(A) as ``how many times will A occur for every time A does
+not occur?''
+
+Sometimes we add ``to 1'' to an odds statement, e.g.~``odds of 4 to 1''
+means ``this outcomes occurs 4 times for every 1 time it does not occur.
+
+18
+
+Back to the logistic regression model
+
+~
+
+19
+
+Back to the logistic regression model
+
+~
+
+20
+
+STAT 331
+
+Module 5:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+21
+
+Part 2: Logistic regression
+
+Regression with a binary response
+
+The logistic regression model
+
+Odds
+
+Harassment data example
+
+Harassment example
+
+Applying this to the harassment data, we use Linear Models / Generalized
+Linear Models in jamovi and select Logistic under Categorical dependent
+variable.
+
+22
+
+~
+
+Harassment example
+
+jamovi also produces a Loglikelihood ratio test, but we will just focus
+on ``Parameter Estimates'':
+
+23
+
+~
+
+Harassment example
+
+Plugging in large and small values for OffensBeh:
+
+24
+
+~
+
+Interpreting slope in logistic regression
+
+~
+
+25
+
+Interpreting slope in logistic regression
+
+~
+
+26
+
+Interpreting slope in logistic regression
+
+~
+
+27
+
+Interpreting slope in logistic regression
+
+Comparing estimated probabilities and odds from this model, and noting
+the \% increase from the previous value:
+
+28
+
+OffensBeh
+
+P(Report) / \% increase
+
+Odds(Report) / \% increase
+
+1
+
+0.212
+
+0.27
+
+2
+
+0.305 (44\% increase)
+
+0.44 (63\% increase)
+
+3
+
+0.417 (37\% increase)
+
+0.71 (63\% increase)
+
+4
+
+0.537 (29\% increase)
+
+1.16 (63\% increase)
+
+5
+
+0.654 (22\% increase)
+
+1.89 (63\% increase)
+
+6
+
+0.755 (15\% increase)
+
+3.08 (63\% increase)
+
+7
+
+0.834 (11\% increase)
+
+5.01 (63\% increase)
+
+8
+
+0.891 (6.8\% increase)
+
+8.15 (63\% increase)
+
+9
+
+0.930 (4.4\% increase)
+
+13.26 (63\% increase)
+
+10
+
+0.956 (2.8\% increase)
+
+21.57 (63\% increase)
+
+Slope as an ``odds ratio''
+
+~
+
+29
+
+Odds ratio vs.~relative risk
+
+Remember ``relative risk'' or ``risk ratio''? Here we show how RR and OR
+compare, using our previous table. Each value is the RR or OR comparing
+the current value to the previous value.
+
+RR never exceeds OR. The two are more similar when probability is
+smaller.
+
+30
+
+OffensBeh
+
+P(Report) / RR
+
+Odds(Report) / OR
+
+1
+
+0.212
+
+0.27
+
+2
+
+0.305 (RR= 1.44)
+
+0.44 (OR = 1.63)
+
+3
+
+0.417 (RR= 1.37)
+
+0.71 (OR = 1.63)
+
+4
+
+0.537 (RR= 1.29)
+
+1.16 (OR = 1.63)
+
+5
+
+0.654 (RR= 1.22)
+
+1.89 (OR = 1.63)
+
+6
+
+0.755 (RR= 1.15)
+
+3.08 (OR = 1.63)
+
+7
+
+0.834 (RR= 1.11)
+
+5.01 (OR = 1.63)
+
+8
+
+0.891 (RR= 1.068)
+
+8.15 (OR = 1.63)
+
+9
+
+0.930 (RR= 1.044)
+
+13.26 (OR = 1.63)
+
+10
+
+0.956 (RR= 1.028)
+
+21.57 (OR = 1.63)
+
+Next up
+
+These notes covered the basics of logistic regression, which is a type
+of ``generalized linear model'', or GLM.
+
+In the next set of notes look at the idea of a generalized linear model
+more broadly, and see how we can apply it to count data.
+
+31
+
+\hypertarget{part-2-1}{%
+\section{part 2}\label{part-2-1}}
+
+STAT 331
+
+Module 5:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+1
+
+Part 3: Poisson and Negative Binomial Regression
+
+Poisson and negative binomial regression
+
+In the last set of notes, we covered logistic regression, probably the
+most popular type of Generalized Linear Model (GLM).
+
+This final set of module 5 notes covers two more popular GLMs: Poisson
+(``pwa-sawn'' roughly) and negative binomial.
+
+These are used for modeling count data, which can be extended to how
+often a categorical variable takes on some value. Thus Poisson
+regression can be used to model contingency table data.
+
+2
+
+STAT 331
+
+Module 5:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+3
+
+The Poisson distribution
+
+The link function
+
+Poisson regression example
+
+Negative binomial regression
+
+Part 3: Poisson and Negative Binomial Regression
+
+The Poisson distribution
+
+~
+
+4
+
+Visualizing the Poisson distribution
+
+5
+
+~
+
+~
+
+~
+
+~
+
+STAT 331
+
+Module 5:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+6
+
+The Poisson distribution
+
+The link function
+
+Poisson regression example
+
+Negative binomial regression
+
+Part 3: Poisson and Negative Binomial Regression
+
+The link function
+
+~
+
+7
+
+The link function
+
+~
+
+8
+
+GLM examples
+
+~
+
+9
+
+Side note: ``Maximum Likelihood'' estimation
+
+~
+
+10
+
+Side note: ``Maximum Likelihood'' estimation
+
+~
+
+11
+
+STAT 331
+
+Module 5:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+12
+
+The Poisson distribution
+
+The link function
+
+Poisson regression example
+
+Negative binomial regression
+
+Part 3: Poisson and Negative Binomial Regression
+
+Poisson regression example
+
+We'll use some General Social Survey data for this example.
+
+Poisson is good for modeling count data, so we'll use a response
+variable that takes the form of counts.
+
+For this example, the goal will be to look at the relationship (if any)
+between the number of sibling a person has, and the number of children
+that person has.
+
+Our question will be: do people with more siblings tend to have more
+children? And if so, can we quantify the relationship?
+
+13
+
+Poisson regression example
+
+It would be wise to collect data on covariates that we expect will also
+be related to the number of children someone has.
+
+An obvious one is age. Older people will have more children than younger
+people.
+
+We might also want to control for ``culture''. If people from different
+cultural backgrounds tend to have more or fewer children, then this
+would definitely induce a relationship between \# of siblings and \# of
+children.
+
+There are lots of possible ways to try account for cultural background.
+I'm choosing rate of attending religious services.
+
+14
+
+Poisson regression example
+
+So, the variables will be:
+
+\# of children
+
+\# of siblings
+
+Age
+
+Frequency of attending religious services
+
+We'll just look at 2018 data. The GSS lets us choose any years we want,
+going back to 1972.
+
+This data set is on Canvas, as GSS\_Children\_Siblings.jmp
+
+15
+
+Poisson regression EDA
+
+First thing to do is plot our variables.
+
+16
+
+Yikes! There's some cleaning to do. The instances of 98 siblings are not
+real data points.
+
+GSS data explorer website lets us look in detail at each variable. Here
+is part of the coding for ``SIBS'':
+
+Poisson regression EDA
+
+17
+
+And here's the coding for the variable CHILDS.
+
+So, CHILDS = 9 is a value for missing data. These should also be
+excluded.
+
+This should feel familiar -- remember how messy the NLSY data was in the
+heights analysis?
+
+Keep in mind that data in public databases often have idiosyncrasies
+like this.
+
+Poisson regression EDA
+
+18
+
+Here are the row selection options that will select all rows with
+invalid responses.
+
+Once selected, they can be excluded.
+
+Poisson regression EDA
+
+19
+
+Here is the distribution of CHILDS. 
+
+This looks a lot like a Poisson distribution. Hooray!
+
+Poisson regression example
+
+20
+
+To run the regression, use Linear Models / Generalized Linear Models and
+choose Poisson(overdispersion) for Frequencies.
+
+Poisson regression example
+
+21
+
+~
+
+Interpreting the slope
+
+22
+
+~
+
+Interpreting the slope
+
+23
+
+We can see that this is statistically significant, but it is also small.
+
+It is also not obvious that \% change is the best way to quantify this.
+Maybe an OLS model would have been more interpretable.
+
+It might be more desirable to relate an additive change in siblings to
+an additive change in children.
+
+Downside is that \# of children is not normally distributed.
+
+As is often the case, we are trading some interpretability for a better
+fitting model.
+
+Interpreting overdispersion
+
+24
+
+The Poisson distribution makes a strong assumption: the mean should be
+equal to the variance.
+
+Often, we observe real data in which the variance is greater than the
+mean.
+
+This is referred to as ``overdispersion''.
+
+Interpreting overdispersion
+
+25
+
+The overdispersion statistic is the ratio of the Pearson chi-square
+statistic to its degrees of freedom..
+
+If mean = variance, this should be equal to 1. But it rarely is.
+
+If there is strong overdispersion, a negative binomial model will fit
+better.
+
+Fitting a larger model
+
+26
+
+For these data, it turns out that \# of siblings, age, frequency of
+attending religious services, and the interactions between age and the
+other two variables are all statistically significant and all improve
+model fit. Here are the parameter estimate results for this model:
+
+Fitting a larger model
+
+27
+
+The other predictor variables and the interactions can be interpreted in
+the usual ways.
+
+One thing to notice is that the estimate for SIBS has not changed much.
+So, while the other covariates and interactions matter, they don't
+substantially change our interpretation of the SIBS predictor.
+
+STAT 331
+
+Module 5:
+
+Categorical data analysis and GLMs
+
+Outline of notes
+
+28
+
+The Poisson distribution
+
+The link function
+
+Poisson regression example
+
+Negative binomial regression
+
+Part 3: Poisson and Negative Binomial Regression
+
+Negative binomial
+
+29
+
+There is also still some overdispersion, though less than there was
+before:
+
+Remember that the Poisson distribution only has one parameter. This
+limits its flexibility.
+
+The negative binomial distribution is similar to the Poisson
+distribution, but it is more flexible, and may be a better choice in the
+presence of overdispersion.
+
+Negative binomial
+
+30
+
+~
+
+Negative binomial
+
+31
+
+~
+
+~
+
+Negative binomial
+
+32
+
+For practical purposes, negative binomial regression will show better
+fit than Poisson regression in the presence of overdispersion.
+
+The tradeoff is that the interpretation is less generally applicable. It
+might not make sense to think of your count variable as \# of successes
+for a certain \# of failures.
+
+As with Poisson regression, negative binomial regression uses a GLM with
+a log link.
+
+Negative binomial example
+
+33
+
+Here is where you select negative binomial regression in jamovi:
+
+Under ``Generalized Linear Models'', under ``Frequencies'' choose
+``Negative Binomial''.
+
+Negative binomial results
+
+34
+
+These results are awfully similar to the Poisson results.
+
+It is often the case that different statistical methods designed for the
+same purpose will with similar results.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-7-mixed-effects-models}{%
+\chapter{Chapter 7: Mixed-effects
+models}\label{chapter-7-mixed-effects-models}}
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Outline of notes
+
+1
+
+Part 1: Repeated measures
+
+Repeated measures
+
+This module covers data analysis methods for ``repeated measures'' data.
+
+``Repeated measures'' refers to measuring the same subjects (people,
+trees, dogs, cities, cells, widgets, etc) more than once.
+
+Studies that use repeated measures are often referred to as ``within
+subjects'' studies. The idea is that multiple measurements within the
+same subject will be compared.
+
+2
+
+Repeated measures
+
+Mixed models are popular tools for analyzing repeated measures data.
+
+We will see these models formally in the next notes.
+
+These notes introduce the problems and opportunities that arise from the
+use of repeated measures data.
+
+3
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Outline of notes
+
+The independence assumption
+
+Cheating with repeated measures
+
+Cheating ourselves with repeated measures
+
+4
+
+The independence assumption
+
+~
+
+5
+
+The independence assumption
+
+~
+
+6
+
+The independence assumption
+
+~
+
+7
+
+The independence assumption
+
+But, if we take repeated measures on each subject, then our data will
+not be independent.
+
+For instance, suppose we have 10 observations on maze completion from 2
+people, where the first 5 come from one person and the last 5 come from
+the other.
+
+Then I would expect correlation (non-independence) between the first 5
+maze times, and between the last 5 times. Observation 5 should be closer
+to observations 1-4 than it is to observations 6-10.
+
+8
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Outline of notes
+
+The independence assumption
+
+Cheating with repeated measures
+
+Cheating ourselves with repeated measures
+
+9
+
+Cheating with repeated measures
+
+We will look at a fake data simulation of repeated measures data.
+
+In this simulation, suppose we have cows infected with the Staph
+bacteria.
+
+We are comparing two treatments for Staph. We have 6 cows, and each
+treatment is randomly assigned to 3 cows. We will do a t-test to compare
+mean infection levels (quantified on some arbitrary scale).
+
+We will also assume that the two treatments have an identical effect.
+Therefore the null hypothesis of no difference in means is true.
+
+10
+
+Cheating with repeated measures
+
+~
+
+11
+
+Cheating with repeated measures
+
+~
+
+12
+
+Cheating with repeated measures
+
+Now suppose we measure infection level for each cow seven times after
+receiving treatment.
+
+The file cows\_repeated\_ttest.csv contains data simulating this
+scenario.
+
+13
+
+Cheating with repeated measures
+
+For each cow, there are 7 observations. These all average out to the one
+observation per cow from the last data set.
+
+14
+
+Cheating with repeated measures
+
+But check out these t-test results!
+
+Notice where it says degrees of freedom = 29.2. If your degrees of
+freedom exceeds your sample size, something is wrong.
+
+15
+
+What happened?
+
+Comparing the two t-tests:
+
+The mean difference is nearly the same for both.
+
+The standard error for the repeated measures data is much smaller.
+
+16
+
+What happened?
+
+~
+
+17
+
+Effective sample size
+
+~
+
+18
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Outline of notes
+
+The independence assumption
+
+Cheating with repeated measures
+
+Cheating ourselves with repeated measures
+
+19
+
+Cheating ourselves with repeated measures
+
+Treating repeated measures as independent can fool us into thinking
+we've discovered an association when really there is none.
+
+It can also do the opposite: it can fool us into thinking we see no
+association when really there is one.
+
+This will be illustrated with another toy example. In this case, we will
+again consider collecting data on infection level in cows under two
+treatments. This time, we'll imagine collecting repeated observations
+over the course of a week.
+
+20
+
+Cheating ourselves with repeated measures
+
+Here are the data in ``wide form''. Treatment group B is highlighted to
+distinguish it from treatment group A.
+
+21
+
+Cheating ourselves with repeated measures
+
+Two things to note:
+
+There is a lot of variability across cows.
+
+Every cow's infection rating goes down over time
+
+22
+
+Cheating ourselves with repeated measures
+
+Here are the data in ``long form''.
+
+Long form is needed for most analyses.
+
+We can use jamovi's Rj-code editor to wide form to long form. (Though
+using Excel might be easier)
+
+23
+
+The following code will convert the data from wide to long form. Note
+you will need to open the data in a new session of jamovi and rename the
+Day and Infection\_level columns.
+
+Converting from wide to long form
+
+24
+
+We must now transform the Day column of the longform data. We want the
+variable Day to take on nominal integer values
+
+Double click the Day column and in the Data menu select Transform /
+Using Transform / Create New Transformation.
+
+Plotting the data
+
+25
+
+Here is a basic plot of infection rates across time.
+
+There appears to be a small downward trend, and lots of noise in the
+data.
+
+But we can account for this noise! It is due to different cows having
+different overall infection rates.
+
+Plotting the data
+
+26
+
+Here is a similar plot, with the Y axis grouped by treatment.
+
+This shows a small decrease for treatment B.
+
+But, we are still treating these observations as though they are
+independent.
+
+They are not independent; they are correlated within each cow.
+
+Plotting the data
+
+27
+
+Here is the same plot, but with ``cow\_ID'' as the overlay variable.
+
+Each cow now gets its own line. The downward trend for B is clear.
+
+Also, it is now clear that most of the variation in infection rate was
+due to differences between cows. Once this is accounted for, variability
+is low.
+
+Analyzing the data
+
+28
+
+These plots illustrate the idea behind accounting for repeated measures.
+
+In this module, we will learn how to incorporate repeated measures in
+statistical models.
+
+For now, let's look at some different way of analyzing the data that we
+just plotted.
+
+Analyzing the data, assuming independence
+
+29
+
+~
+
+Analyzing the data, assuming independence
+
+30
+
+~
+
+Analyzing the data, accounting for cows
+
+31
+
+Here are results from analyzing these data using a mixed model. This
+mixed model accounts for differences between cows, and the fact that
+repeated measures taken on each cow are correlated.
+
+~
+
+Side by side comparison
+
+32
+
+The mixed model (on the bottom) gives smaller standard errors for Day
+and the interaction.
+
+Note what didn't change: the parameter estimates!
+
+Challenges from repeated measures data
+
+Repeated measures data can be challenging to analyze, if the design gets
+complicated. We will see some study designs in which it isn't
+immediately obvious how to set up an appropriate model.
+
+Repeated measures data can also be analyzed incorrectly (assuming
+independence) to artificially increase apparent sample size and get
+strong looking results that are not valid.
+
+33
+
+Opportunities from repeated measures data
+
+Repeated measures data can also be very useful!
+
+``Within subject'' designs, in which subjects are measured repeatedly
+across time and / or conditions, can greatly enhance the precision and
+power of our inferences.
+
+This is because variability that would normally be accounted for by the
+error term can instead be attributed to overall differences between the
+subjects from whom repeated measurements were taken.
+
+We will get into the details of mixed modeling for repeated measures
+data in the next set of notes.
+
+34
+
+\hypertarget{part-2-2}{%
+\section{part 2}\label{part-2-2}}
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Outline of notes
+
+1
+
+Part 2: Random and fixed effects
+
+Random and fixed effects
+
+The ``mixed'' in ``mixed models'' refers to a mix of random effects and
+fixed effects.
+
+All of the predictor variables we've seen all semester have been ``fixed
+effects''. What this means will only make sense in comparison to a new
+kind of predictor: a ``random effect''.
+
+2
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Part 2
+
+Outline of notes
+
+Random effects
+
+The mixed effects model
+
+The (fake) cows example
+
+Real example: ``The liking gap''
+
+3
+
+Random effects
+
+Every predictor variable we've seen this semester has been one for which
+we estimate and interpret a slope coefficient.
+
+Sometimes, though, we want our model to account for a variable that is
+important for explaining variability in the response variable, but for
+which we are not interested in estimating coefficients.
+
+A random effect (or random factor) will accomplish this. Random factors
+take on values that are treated as having been drawn at random from a
+larger population of possible values that might be different if we take
+a new sample. These random factors have coefficients (aka slopes) that
+are also treated as taking on random values.
+
+4
+
+Random effects
+
+In the last set of notes, we imagined measuring the same cows over and
+over again. ``Cow'' should probably be treated as a random factor in
+these cases. The cows themselves were drawn from a larger population; we
+would not get the same cows again in a new study.
+
+Also, we wanted to account for differences in the mean infection levels
+for each individual cow, so that we could estimate standard errors
+appropriate to our study designs. And these mean infection levels should
+also be treated as random, in that they came from some population of
+possible mean infection levels.
+
+So, the cows are random, and their coefficients are random.
+
+5
+
+Random effects
+
+There are many interpretations of a ``random effect'', and they aren't
+always helpful. From a 2005 paper by Andrew Gelman:
+
+6
+
+Fixed effects are constant across individuals, and random effects vary.
+
+Effects are fixed if they are interesting in themselves or random if
+there is interest in the underlying population.
+
+When a sample exhausts the population, the corresponding variable is
+fixed; when the sample is a small (i.e., negligible) part of the
+population the corresponding variable is random''.
+
+``If an effect is assumed to be a realized value of a random variable,
+it is called a random effect''
+
+Random effects
+
+So, interpretations of what random vs.~fixed effects ``really mean''
+will vary.
+
+But, formally, it isn't so ambiguous. ``Fixed'' effects are treated as
+having ``fixed'' coefficients whose values we estimate and draw
+inference on (e.g.~with confidence intervals and hypothesis tests).
+
+``Random'' effects are treated as having ``random'' coefficients drawn
+from some distribution. We won't estimate individual coefficients, but
+we will estimate the variance of the distribution from which they came.
+
+7
+
+Subjects and Nesting
+
+Our main motivation right now is to have a method of accounting for
+repeated measurements on the same subjects.
+
+So, in this class, we will look at mixed models for which the random
+effect is ``subject''. In other words, we will make models that account
+for differences between subjects measured multiple times.
+
+In a study in which subjects are assigned to groups, each subject is
+assigned to one group.
+
+From a modeling perspective, subject is ``nested'' within group.
+
+8
+
+Nesting
+
+In general, one variable is nested within the other if values of the
+nested variable only occur in certain categories of the variable it is
+nested within.
+
+In this case, cows are nesting within treatments because each cow is
+measures only in one treatment.
+
+A non-nested design would have each cow measured under each value of the
+other predictors.
+
+In other words, each cow would be measured under both treatment.
+
+9
+
+Nesting
+
+~
+
+10
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Part 2
+
+Outline of notes
+
+Random effects
+
+The mixed effects model
+
+The (fake) cows example
+
+Real example: ``The liking gap''
+
+11
+
+The mixed effects model
+
+~
+
+12
+
+The mixed effects model
+
+~
+
+13
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Part 2
+
+Outline of notes
+
+Random effects
+
+The mixed effects model
+
+The (fake) cows example
+
+Real example: ``The liking gap''
+
+14
+
+The mixed effects model in jamovi
+
+To fit this model in jamovi, use ``Linear Models'', select ``Mixed
+Model'', and then add the fixed predictors as factors and covariates and
+random predictors as cluster variables:
+
+Note that Cow\_ID is the random effect. Treatment, Day, and their
+interaction are fixed effects.
+
+15
+
+The mixed effects model in jamovi
+
+Note also jamovi will also require you to specify the random effects.
+
+16
+
+The mixed effects model in JMP
+
+jamovi gives the usual parameter estimates output, as well as a residual
+plot:
+
+Notice that ``Cow\_ID'' is not listed under parameter estimates; only
+fixed coefficients are estimated.
+
+17
+
+Each cow has its own random coefficient, modeled as having been drawn
+from a normal distribution.
+
+Slope coding in ``Mixed Model''
+
+Notice the categorical predictor ``Treatment'' lists ``Effect'' as ``A
+-- (B, A)''. jamovi is coding this slope as the difference between
+Treatment A and the ``mean'' of Treatments A and B.
+
+So, if we were looking at Treatment B, we'd apply a slope of -0.513.
+
+18
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Part 2
+
+Outline of notes
+
+Random effects
+
+The mixed effects model
+
+The (fake) cows example
+
+Real example: ``The liking gap''
+
+19
+
+Another example: ``The Liking Gap''
+
+The journal Psychological Science published many studies in which data
+are publicly available.
+
+The remaining slides reproduce results from a recent study published in
+Psychological Science on the difference between how much individuals
+``like'' other people and how much they perceive others ``like'' them.
+
+The paper is available at:https://doi.org/10.1177\%2F0956797618783714
+
+20
+
+Another example: ``The Liking Gap''
+
+The basic setup is that volunteers were paired up (each pair is called a
+``dyad'') and directed to have a conversation for five minutes
+
+After this, participants rated their partners on some survey questions
+that the authors take as a measure of liking the other person.
+
+Participants also rated how much they thought they were liked.
+
+The study is looking for a ``gap'' (i.e.~difference) between volunteers'
+self-perception of how much their partners liked them, and how much
+their partners actually liked them.
+
+21
+
+The liking gap example
+
+From the results section of the paper:
+
+22
+
+Fitting the model in jamovi
+
+23
+
+Fitting the model in jamovi
+
+24
+
+~
+
+~
+
+Fitting the model in jamovi
+
+25
+
+~
+
+~
+
+Adding an interaction\ldots{}
+
+26
+
+The next section of the paper looks at personality variables as
+predictors:
+
+In jamovi
+
+27
+
+We'll stop here. The paper goes on through many additional studies, and
+the data are all available via the supplemental materials link.
+
+\hypertarget{part-3}{%
+\section{part 3}\label{part-3}}
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Outline of notes
+
+1
+
+Part 3:
+
+Worked example 
+
+Worked example
+
+This set of notes on mixed models covers the analysis from a 2017
+Psychological Science paper by Goudeau and Croizet, titled ``Hidden
+Advantages and Disadvantages of Social Class: How Classroom Settings
+Reproduce Social Inequality by Staging Unfair Comparison''
+
+This paper presents three studies on one topic. These notes cover
+studies 1 and 3; study 2 is reserved for a homework assignment.
+
+2
+
+Worked example overview
+
+This study was performed in France. The data are available at
+https://osf.io/rkj7y/ and the data file has a codebook sheet that
+defines the variables:
+
+3
+
+Worked example overview
+
+In each study, 6th grade students are given a challenging reading
+comprehension assignment.
+
+Performance on the assignment is the dependent variable.
+
+The researchers investigate whether students' performance is associated
+with their awareness of their classmates' performance, and whether this
+association can be moderated by students' awareness of the different
+levels of preparation given to different students.
+
+4
+
+Paper abstract
+
+5
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Part 3
+
+Outline of notes
+
+Study 1
+
+Study 3
+
+6
+
+Study 1
+
+7
+
+The variables used in this study are:
+
+Performance (response)
+
+Visibility condition (fixed effect)
+
+Social class (fixed effect)
+
+Visibility X Social class interaction (fixed effect)
+
+School (random effect)
+
+Classroom, nested within School (random effect)
+
+Study 1 model
+
+8
+
+~
+
+Study 1 in JMP
+
+9
+
+Note that the response variable, PERF, is score on a reading
+comprehension test, on a scale of 0 to 20 points.
+
+Notes on Study 1 random effects output
+
+``The random effects covariance parameter estimates'' table shows that
+there is much more residual (error) variance than there is variance
+across classrooms or across schools.
+
+One very odd result: the classroom variance estimate is negative! But
+variances cannot be negative.
+
+If we had deselected ``unbounded variance estimates'' under Fit Model,
+this would be zeroed out. It is a strange quirk of maximum likelihood
+variance estimation that negative estimates are possible. We can ignore
+this, and treat the classroom variance as just very small.
+
+10
+
+Notes on Study 1 fixed effects output
+
+We see strong ``main effects'' for visibility condition (X1), social
+class (PCS), and their interaction.
+
+A general principle for models with strong interactions is that our
+interpretation should focus on the interactions.
+
+11
+
+Notes on Study 1 fixed effects output
+
+Here, the interaction coefficient is -2.69, and the coefficient for X1
+is 1.12.
+
+For the Effect of X1''-1 - 1'' refers to the ``differences not visible''
+condition, in which students do not raise their hands when they have the
+answer.
+
+For the Effect of PCS ``3 - 1'' refers to change in score for upper
+class students vs.~working class students.
+
+So, the ``effect'' of visibility seems to apply to working class
+students but not to upper class students, since --2.69 and 1.12 nearly
+cancel each other out.
+
+12
+
+Plotting the fixed effects
+
+Here is the plot reported in the paper, and the same plot in JMP:
+
+13
+
+Plotting the fixed effects
+
+The practice of using a bar plot to show means is common, but flawed.
+The bars don't mean anything; all they do is go up to the means.
+
+14
+
+Here is what this looks like using boxplots instead.
+
+Notice that this plot shows variability in the data, where the bar plot
+does not.
+
+STAT 331
+
+Module 7:
+
+Mixed models
+
+Part 3
+
+Outline of notes
+
+Study 1
+
+Study 3
+
+15
+
+Study 3
+
+In Study 2, social class is not used. Rather, some students are given
+better preparation for the reading comprehension test than others.
+
+Similar results are found: those with worse preparation perform more
+poorly when students are told to raise their hands after determining the
+answer.
+
+In Study 3, the authors attempt to ``undo'' this effect by informing the
+class that some students were given better preparation than others. Half
+the classrooms are made aware of this; the other half are not.
+
+16
+
+Study 3
+
+The variables in this study are almost the same as in study 1, with
+these changes:
+
+X1 is ``context'': -1 = awareness of the disadvantage 1 = unawareness of
+the disadvantage
+
+X2 is ``level of familiarity'' with the reading material, based on
+intentional preparation given by the researchers:-1 = high level 1 = low
+level
+
+17
+
+Study 3 model
+
+18
+
+~
+
+Study 3 in jamovi
+
+19
+
+Study 3 in jamovi
+
+20
+
+As with before, the variance across classrooms is very small relative to
+the error variance.
+
+Study 3 in JMP
+
+21
+
+The largest overall effect is X2: level of familiarity with the
+material. Students who are better prepared score higher.
+
+The negative interaction shows that the difference in performance
+between those with higher vs.~low familiarity is lower when students are
+aware of the difference in familiarity.
+
+Study 3 in JMP
+
+22
+
+The interaction of -5.81 just about cancels out the estimated slope for
+X1{[}-1{]} of 4.24.
+
+This shows that there is very little difference in scores between
+students with high preparation who are and are not aware of the
+advantage.
+
+Study 3 in JMP
+
+23
+
+It helps to look at the data.
+
+The generic ``X1'' and X2'' have been replaced with more meaningful
+titles:
+
+Study 3 in JMP
+
+24
+
+And here are the bar plots shows in the paper.
+
+Again, the boxplots show more information.
+
+In this case, the boxplots reveal a potentially concerned ``ceiling
+effect'': many students earned the maximum possible score. This can't be
+seen from the bar plot.
+
+\bookmarksetup{startatroot}
+
+\hypertarget{chapter-8-minding-the-gap-between-science-and-statistics}{%
+\chapter{Chapter 8: Minding the gap between science and
+statistics}\label{chapter-8-minding-the-gap-between-science-and-statistics}}
+
+STAT 331
+
+The replication crisis
+
+Assessing bias using meta-analysis
+
+The significance debate
+
+Proposed reforms
+
+Module 2:
+
+Contemporary issues in applied data analysis
+
+Outline of notes
+
+Module 2 overview
+
+These notes cover some general problems that come up in applied data
+analysis. Many are issues that have come to light recently.
+
+I'm covering these topics now so that you're aware of them as we go
+through the rest of the course. They'll be relevant to much of what we
+see going forward, particularly how we interpret statistical results in
+published papers.
+
+STAT 331
+
+The replication crisis
+
+Assessing bias using meta-analysis
+
+The significance debate
+
+Proposed reforms
+
+The replication crisis
+
+Power
+
+Some history on ``NHST''
+
+Lots of ways to get a small p-value
+
+What kind of Type I error are you referring to?
+
+What do people think small p-values mean?
+
+Outline of notes
+
+The ``replication crisis''
+
+``The replication crisis'' refers to a recent realization in many areas
+of science that previously published results often fail to replicate.
+
+Arguably, this started with Daryl Bem's 2011 paper ``Feeling the
+Future'', published in the Journal of Personality and Social Psychology.
+
+This paper used standard statistical tools to show strong evidence for
+pre-cognition, a.k.a. ESP. Many scientists were bothered by this,
+because they did not believe in ESP but they did believe in the
+statistical methods used in this paper!
+
+The ``replication crisis''
+
+The ``replication crisis''
+
+2015's ``Reproducibility Project: Psychology'' by the Center for Open
+Science found that a large number of published experimental results in
+top Psychology journals failed to replicate.
+
+Similar studies in Cancer Biology, Medicine, Economics, Marketing, and
+Sports Science have found high rates of non-replication.
+
+Why do so many studies fail to replicate? There are many reasons, and
+statistical analysis plays a prominent role. These notes cover the role
+of statistics in the replication crisis.
+
+Power
+
+~
+
+Type I and Type II errors
+
+~
+
+Problem: power is unknown!
+
+The ``true'' power of a statistical test is almost never known. To
+calculate power, one must assume the ``true'' size of the effect being
+studied.
+
+For instance, power to reject the null hypothesis that a new drug is
+equally effective as a previous drug depends in part upon how different
+the two drugs are in effectiveness. But if we knew that, we wouldn't
+need to conduct a study!
+
+There has been research estimating average statistical power in various
+research fields, and reason to believe that low power studies are not
+uncommon. Which means that a lot of these replication failures might be
+``false negatives'', rather than the original studies being ``false
+positives''.
+
+Some history on ``NHST''
+
+The form of hypothesis testing used today is sometimes called Null
+Hypothesis Significance Testing (NHST). It combines what used to be two
+different methods created by two ``camps''. The camps disagreed with one
+another, and did not get along personally.
+
+Ronald Fisher
+
+Jerzy Neyman and Egon Pearson
+
+Ronald Fisher
+
+Introduced the null hypothesis and p-value
+
+On interpreting small p-values:
+
+``Either an exceptionally rare chance has occurred, or the theory of
+random distribution is not true''~
+
+On the use of p \textless{} 0.05 as a standard of evidence:
+
+``In order to assert that a natural phenomenon is experimentally
+demonstrable we need, not an isolated record, but a reliable method of
+procedure. In relation to the test of significance, we may say that a
+phenomenon is experimentally demonstrable when we know how to conduct an
+experiment which will rarely fail to give us a statistically significant
+result''
+
+Neyman and Pearson
+
+~
+
+NHST
+
+NHST is a mix between the two approaches.
+
+Hypothesis testing comes from Neyman and Pearson. They did not believe
+p-values should be interpreted directly as quantifying evidence. They
+saw their procedure as simply a method for making a decision.
+
+The direct interpretation of p-values as quantifying the probability of
+obtaining results at least as extreme, assuming the null hypothesis is
+true, comes from Fisher. He did not use an alternative hypothesis, and
+he did not accept formal power analysis.
+
+p \textless{} 0.05 isn't always meaningful
+
+~
+
+~
+
+The reason small p-values are considered ``evidence'' for a research
+hypothesis is that they are supposed to be unlikely to occur by chance
+alone.
+
+If there is flexibility in how to conduct an analysis, then it becomes
+more likely that small p-values will occur by chance.
+
+This has a derogatory name: ``P-hacking''. 
+
+Less derogatory alternatives: ``Researcher degrees of freedom'', ``The
+garden of forking paths''
+
+Examples of flexibility: 
+
+Trying out different combinations of independent and dependent variables
+
+Trying out different models and testing methods
+
+Redefining variables (e.g.~averaging over different combinations of
+survey responses, choosing different cut points for placing responses
+into categories)
+
+Discarding / retaining outliers
+
+Transforming variables
+
+Collecting more data than originally planned
+
+Ceasing data collection earlier than originally planned
+
+~
+
+Flexible practices are perfectly justifiable in many contexts
+
+But -- to interpret a p-value as ``the probability of obtaining results
+at least this extreme, assuming the null is true'', there can be no
+flexibility, unless accounted for using a correction (e.g.~Bonferroni).
+Flexibility renders the classical p-value interpretation invalid.
+
+Another way of putting it: if you report a p-value as ``the probability
+of obtaining results this extreme, assuming the null is true'', you are
+implicitly claiming you would have conducted the *identical* analysis,
+even if the data had been different in any way.
+
+~
+
+\begin{verbatim}
+The null could be false due to something you haven't thought of
+\end{verbatim}
+
+~
+
+~
+
+\begin{verbatim}
+The null could be false due to something you haven't thought of
+\end{verbatim}
+
+Do we even think the null could be true?
+
+``All we know about the world teaches us that the effects of A and B are
+always different -- in some decimal place -- for any A and B. Thus
+asking `Are the effects different?' is foolish''- John Tukey
+
+The null can be used as a ``Straw Man'' that no one really believes.
+Overturning a straw man null may not be that impressive.
+
+A good question to ask: ``would we expect this null to be true?''
+
+Do we even think the null could be true?
+
+If we are performing an experiment, the null is that the treatment does
+literally nothing. Is this common?
+
+If we are analyzing observational data and testing for ``significant
+correlation'', the null is that there is precisely zero correlation at
+the population level. Do we think this is possible?
+
+Psychology/Philosopher/Statistician Paul Meehl called this the ``crud
+factor'': the extent to which everything is correlated with everything,
+at least at some small level.
+
+Do we even think the null could be true?
+
+But, there are times when the null is plausible.
+
+In manufacturing quality control analysis, the null is that ``everything
+is being produced the normal way''. Defects show up as large deviations
+from this observed null distribution.
+
+In Ronald Fisher's ``The Lady Tasting Tea'', the subject of the story
+claimed she could tell whether milk or tea had been poured into a cup
+first, simply by tasting the result. The null is that she couldn't tell.
+Seems plausible.
+
+My personal rule is that I am only interested in p-values when I think
+the null is plausible.
+
+Is there a decision to be made?
+
+A significance test returns a binary outcome: the results are
+significant, or they are non-significant.
+
+Binary outcomes can produce binary thinking: the temptation to think
+``significant'' means ``real'' and ``non-significant'' means ``due to
+chance''.
+
+Is coming to a binary choice even necessary? Why not just report a point
+estimate and standard error or 95\% CI?
+
+Is there a decision to be made?
+
+If there is an actionable outcome, a binary choice might be necessary.
+
+Example: deciding whether to continue investing money into a research
+program.
+
+If the analysis is being done for the purpose of decision making, then a
+decision rule must be established, and ``significance'' can be such a
+rule. If the analysis is being done for the purpose of conveying
+information in data, I personally see no reason to add in a declaration
+of ``significant'' or ``not significant''.
+
+Big sample sizes give small p-values
+
+~
+
+
+
+``Women had a slightly higher percentage of transactions for which
+positive feedback had been given in the year preceding the current
+transaction (99.60\% for women and 99.58\% for men,~P~\textless{}
+0.05)''(http://advances.sciencemag.org/content/2/2/e1500599.full)
+
+eBay study example
+
+What kind of Type I error are you referring to?
+
+~
+
+What kind of Type I error are you referring to?
+
+~
+
+What do people think small p-values mean?
+
+Jacob Cohen:What's wrong with NHST? Well, among many other things, it
+does not tell us what we want to know, and we so much want to know what
+we want to know that, out of desperation, we nevertheless believe that
+it does! What we want to know is ``Given these data, what is the
+probability that H0 is true?'' But as most of us know, what it tells us
+is ``Given that H0 is true, what is the probability of these (or more
+extreme) data?'' - The Earth is Round (p\textless0.05) (1994)
+
+``Statistical tests, P values, confidence intervals, and power: a guide
+to misinterpretations'' (2016) lists a large number of popular
+misinterpretations. Some highlights\ldots{}
+
+What do people think small p-values mean?
+
+``The p-value is the probability that the test hypothesis is true; for
+example, if a test of the null hypothesis gave P~=~0.01, the null
+hypothesis has only a 1~\% chance of being true; if instead it gave
+P~=~0.40, the null hypothesis has a 40~\% chance of being true.''
+
+``The p-value for the null hypothesis is the probability that chance
+alone produced the observed association''
+
+What do people think small p-values mean?
+
+``A null-hypothesis p-value greater than 0.05 means that no effect was
+observed, or that absence of an effect was shown or demonstrated.''
+
+``Statistical significance is a property of the phenomenon being
+studied, and thus statistical tests detect significance.''
+
+``When the same hypothesis is tested in two different populations and
+the resulting p-values are on opposite sides of 0.05, the results are
+conflicting.''
+
+\begin{verbatim}
+        (note: all of these are wrong)
+\end{verbatim}
+
+STAT 331
+
+The replication crisis
+
+Assessing bias using meta-analysis
+
+The significance debate
+
+Proposed reforms
+
+The sampling distribution of the p-value
+
+What N is required for sufficient power to detect obvious effects?
+
+Type ``M'' errors
+
+Should we throw away non-significant results?
+
+Outline of notes
+
+The sampling distribution of the p-value
+
+~
+
+The sampling distribution of the p-value
+
+~
+
+The sampling distribution of the p-value
+
+~
+
+The sampling distribution of the p-value
+
+Upshot: we should never see lots of p-values just below 0.05, even under
+low power. 
+
+But -- there are papers in which many studies are performed, all of
+which produce p-values just below 0.05. There are bodies of published
+research in which p-values just below 0.05 occur too frequently.
+
+This suggests some combination of ``publication bias'' and ``p-hacking''
+
+Formal test: ``P-curve'' (www.p-curve.com)
+
+The sampling distribution of the p-value
+
+~
+
+What N is required for sufficient power to detect obvious effects?
+
+~
+
+More on publication bias
+
+``Publication bias'' is the phenomenon by which statistically
+significant results are more likely to be published in a journal than
+results that are not statistically significant.
+
+There are many tools for trying to diagnose this (including P-curve)
+
+Test of Insufficient Variance: convert p-values to z-statistics.
+Expected variance of z-statistics is 1. Variance less than 1 could
+suggest ``missing'' studies.
+
+Funnel plot
+
+Plot effect size vs.~standard error. Variance in effect sizes should
+decrease as standard error decreases, but effect size and standard error
+should not be correlated.
+
+Correlation could suggest ``missing'' studies.
+
+From https://doi.org/10.1016/j.ejca.2005.06.006
+
+Inter-ocular trauma test
+
+``Do the results hit you between the eyes?''
+
+(z = 1.96 is the threshold for statistical significance)
+
+Type ``M'' errors
+
+Despite the fact that large sample sizes are needed to detect what seem
+like ``medium'' effects, we see lots of studies will small sample sizes
+reporting significant effects.
+
+Also, significant effects from small sample sizes are always large.
+
+A likely culprit: the combination of publication bias and low power.
+
+Type ``M'' errors
+
+Low power: a typical consequence of\ldots{}
+
+Small sample sizes
+
+Small effects
+
+Noisy or imprecise measurements
+
+Noisy or imprecise manipulations
+
+A nasty consequence of publication bias combined with low power:
+published effect sizes are biased upward. The lower the power, the
+greater the bias.
+
+Type ``M'' errors
+
+Notice: ``the truth'' is NOT in the ``reject the null'' region. So when
+power is low, ``the truth'' is not statistically significant!
+
+A diagram of low power:
+
+Visually, using confidence intervals
+
+Low power =\textgreater{} wide CIs
+
+Here, wide CI centered on true effect =\textgreater{} not significant
+
+For CI to exclude zero, sample effect must greatly overestimate true
+effect
+
+Visually, using sampling distributions
+
+Left histogram: sampling distribution of the Cohen's d statistic
+(standardized diff. in means). Simulated so that power = 0.27 and
+population d = 0.5.
+
+Right histogram: same thing, but after removing all d statistics that do
+not achieve statistical significance.
+
+Upshot: conditioning an unbiased estimator on p \textless{} 0.05 creates
+a biased estimator. The lower the power, the greater the bias.
+
+The extreme example
+
+From Andrew Gelman:
+
+Can low power be assessed empirically?
+
+``Post-hoc'' power analysis describes performing a power analysis on a
+data set after having conducted a significance test.
+
+Sometimes researchers will get a non-significant result, and suspect low
+power is the reason. So, they do a power analysis using the effect size
+and standard error from the data, and find low power.
+
+THIS IS INVALID! If p \textgreater{} 0.05, then post-hoc power must be
+lower than 50\%.
+
+So, ``non-significant'' results will always be identified as ``low
+power'', post-hoc.
+
+Estimating power meta-analytically: R-Index
+
+R-Index: calculate observed power for each study. Compare average power
+to proportion of studies showing significance. Lower observed power
+could suggest missing studies.e.g.~observed power = 0.6, 10 / 10 results
+significant; 6 / 10 expected if power = 0.6.
+
+If a collection of studies all show significant results, then average
+observed power must be greater than 50\%. But, it might not be much
+greater.
+
+Should we throw away non-significant results?
+
+There are statistical problems that arise when only reporting
+significant results.
+
+There is also a scientific problem: are non-significant results really
+uninteresting?
+
+If the question is worth asking (``do I have evidence for this
+substantive hypothesis?''), isn't the answer worth knowing?
+
+Should we throw away non-significant results?
+
+The practice of throwing away non-significant results goes hand in hand
+with a false interpretation of NHST results: that non-significance
+implies ``no effect''.
+
+p-value \textless{} 0.05 is commonly interpreted as evidence for an
+effect.
+
+But, p-value \textgreater{} 0.05 should *not necessarily* be interpreted
+as evidence for no effect.
+
+``There was no effect (p \textgreater{} 0.05)''
+
+~
+
+``There was no effect (p \textgreater{} 0.05)''
+
+In this example, all CIs contain zero, so all p-values exceed 0.05. All
+three tests are consistent with ``no effect''.
+
+However, the first CI is also consistent with a very large effect, which
+could be positive or negative. The third CI is consistent with no effect
+or a very small effect.
+
+But - the p-values are the same! In all three cases, p = 0.51.
+
+Published example: knee surgery study
+
+The article ``Arthroscopic partial meniscectomy versus placebo surgery
+for a degenerative meniscus tear: a 2-year follow-up of the randomized
+controlled trial'' assesses the effectiveness of a surgical procedure
+for treating a degenerative knee tear relative to a sham ``placebo''
+surgery (!!!).https://ard.bmj.com/content/77/2/188
+
+The article finds a non-significant difference between treatment and
+placebo, and interprets this as the treatment being ``no better'' than
+placebo. Author conclude there is ``no evidence'' in favor of the
+treatment.
+
+Published example: knee surgery study
+
+Published example: knee surgery study
+
+However, later in the paper the authors make a much stronger argument:
+that the 95\% CI for the difference in means is fully below the minimum
+clinically meaningful difference, which they established a priori:
+
+Published example: knee surgery study
+
+Note the sharp difference between these arguments:
+
+``Surgery was not effective because the difference between surgery and
+placebo was not statistically significant.''
+
+``Surgery was not effective because the 95\% CI for the difference
+between surgery and placebo fell entirely below the minimum clinically
+significant difference.
+
+The first argument says ``the estimated difference is no bigger than
+what would be expected by chance.'' The second says ``the largest
+plausible value for the difference is still too small to be
+interesting.''
+
+STAT 331
+
+The replication crisis
+
+Assessing bias using meta-analysis
+
+The significance debate
+
+Proposed reforms
+
+Redefine statistical significance
+
+Justify your alpha
+
+Abandon significance
+
+Outline of notes
+
+The significance debate
+
+The use of statistical significance has always been controversial.
+
+Three recent high profile papers have argued for some different
+viewpoints on statistical significance.
+
+``Redefine statistical significance''
+
+``Redefine Statistical Significance'' (2017) calls for lowering the
+standard threshold for significance to p \textless{} 0.005
+
+The argument: p \textless{} 0.05 is too easy to obtain from noise.
+
+This paper proposes labeling p-values between 0.005 and 0.05 as
+``suggestive'', and p-values less than 0.005 as ``significant''.
+
+An exception: if the procedure is pre-registered, p \textless{} 0.05 can
+be labeled ``significant''. So a distinction is drawn between
+exploratory and confirmatory data analyses.
+
+``Justify your alpha''
+
+``Justify Your Alpha'' (2017), written in response, calls for allowing
+flexibility in alpha levels rather than defaulting to p \textless{}
+0.05.
+
+The argument: alpha (a.k.a. the significance level) sets a trade-off
+between Type I errors and Type II errors.
+
+Smaller values of alpha lower Type I error rates but increase Type II
+error rates, and vice versa.
+
+The optimal trade-off will be different for different research fields.
+FDA drug trials should not use the same trade-off as exploratory
+research in brand new research fields.
+
+``Abandon statistical significance''
+
+``Abandon Statistical Significance'' (2017) calls for the elimination of
+thresholds entirely.
+
+The argument: ``significance'' is just a way of taking continuous
+phenomena (e.g.~differences in means, probabilities, correlations) and
+forcing them into one of two categories.
+
+Instead, why not report the evidence on its own terms? No need to force
+it into an artificial and simplistic ``either / or'' distinction.
+
+STAT 331
+
+The replication crisis
+
+Assessing bias using meta-analysis
+
+The significance debate
+
+Proposed reforms
+
+Redefine statistical significance
+
+Justify your alpha
+
+Abandon significance
+
+Outline of notes
+
+Some proposals for doing things differently
+
+Pre-registration and registered reports: data analysis plans are stated
+ahead of time. This removes flexibility in analysis.
+
+With registered reports, data analysis plans are peer reviewed, and
+papers can be accepted for publication before results are known. This
+removes publication bias.
+
+Some proposals for doing things differently
+
+Rewarding ``open'' practices.
+
+The Association for Psychological Science now does this using badges:
+
+Some proposals for doing things differently
+
+``Equivalence testing'': an alternative to ``accepting'' a null that has
+not been rejected.
+
+Idea: establish a minimum effect size of interest (e.g.~``we're not
+interested in this drug if it doesn't reduce blood pressure by at
+least\ldots{}'')
+
+Make the null of the equivalence test be that the true effect is
+*smaller than* the minimum effect size of interest.
+
+If the null is rejected, then observed results are ``equivalent'' to the
+null insofar as they are too small to be interesting.
+
+Some proposals for doing things differently
+
+Visualization of equivalence testing, using confidence intervals:
+
+Note that results can be both ``not significantly different'' and ``not
+significantly equivalent''.
+
+They can also be both ``significantly equivalent'' and ``significantly
+different''!
+
+Some proposals for doing things differently
+
+``The New Statistics'' proposes that we emphasize confidence intervals
+over p-values, as they are easier to understand and less noisy
+(i.e.~they don't change as much across repeated samples)
+
+The Peer Reviewers' Openness Initiative calls on reviewers to require
+open data, open methods, and code that will reproduce analyses, so that
+reviewers can double check the analyses and results.
+
+The GRIM test, SPRITE test, and Statcheck are algorithms that check for
+internal consistency of reported results. They provide a ``sanity
+check'' that can detect potentially p-hacked data analyses.
+
+Some closing remarks
+
+As stated at the outset, there is great controversy over the appropriate
+use of statistical methods!
+
+Some wise words from participants in this controversy:
+
+``We often hear it's too easy to obtain small p-values, yet replication
+attempts find it difficult to get small p-values with preregistered
+results. This shows the problem isn't p-values but failing to adjust
+them for cherry picking, multiple testing, post-data subgroups and other
+biasing selection effects.''
+
+-Deborah Mayo, ``Don't throw out the error control baby with the
+
+bad statistics bathwater''
+
+Some closing remarks
+
+``It seems to me that statistics is often sold as a sort of alchemy that
+transmutes randomness into certainty, an''uncertainty laundering'' that
+begins with data and concludes with success as measured by statistical
+significance
+
+\ldots{}
+
+the solution is not to reform p-values or to replace them with some
+other statistical summary or threshold, but rather to move toward a
+greater acceptance of uncertainty and embracing of variation.
+
+- Andrew Gelman, ``The problems with p-values are not just p-values''
+
+\bookmarksetup{startatroot}
+
+\hypertarget{brief-looks-at-important-topics-we-didnt-cover}{%
+\chapter{Brief looks at important topics we didn't
+cover}\label{brief-looks-at-important-topics-we-didnt-cover}}
+
+\bookmarksetup{startatroot}
+
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
+
+\markboth{References}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+
+
+\end{document}

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 331 - 6&nbsp; Generalized Linear Models (GLMs)</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Ch7_Mixed.html" rel="next">
+<link href="./Ch5_Categorical.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Ch6_GLMs.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 331</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to STAT 331: Intermediate Applied Statistical Methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch1_Review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Review of classical inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch2_Model_Building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch3_Model_Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch4_ANOVA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch5_Categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch6_GLMs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch7_Mixed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch8_Mind_the_Gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch9_Other_Topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Brief looks at major topics we didn’t cover</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#part-1-logistic-regression" id="toc-part-1-logistic-regression" class="nav-link active" data-scroll-target="#part-1-logistic-regression"><span class="header-section-number">6.1</span> Part 1: Logistic regression</a>
+  <ul class="collapse">
+  <li><a href="#the-logistic-regression-model" id="toc-the-logistic-regression-model" class="nav-link" data-scroll-target="#the-logistic-regression-model"><span class="header-section-number">6.1.1</span> The logistic regression model</a></li>
+  <li><a href="#odds" id="toc-odds" class="nav-link" data-scroll-target="#odds"><span class="header-section-number">6.1.2</span> Odds</a></li>
+  <li><a href="#jamovi-example" id="toc-jamovi-example" class="nav-link" data-scroll-target="#jamovi-example"><span class="header-section-number">6.1.3</span> jamovi example</a></li>
+  </ul></li>
+  <li><a href="#part-2-poisson-and-negative-binomial-regression" id="toc-part-2-poisson-and-negative-binomial-regression" class="nav-link" data-scroll-target="#part-2-poisson-and-negative-binomial-regression"><span class="header-section-number">6.2</span> Part 2: Poisson and negative binomial regression</a>
+  <ul class="collapse">
+  <li><a href="#the-poisson-distribution" id="toc-the-poisson-distribution" class="nav-link" data-scroll-target="#the-poisson-distribution"><span class="header-section-number">6.2.1</span> The Poisson distribution</a></li>
+  <li><a href="#the-structure-of-a-glm" id="toc-the-structure-of-a-glm" class="nav-link" data-scroll-target="#the-structure-of-a-glm"><span class="header-section-number">6.2.2</span> The structure of a GLM</a></li>
+  <li><a href="#poisson-regression-example" id="toc-poisson-regression-example" class="nav-link" data-scroll-target="#poisson-regression-example"><span class="header-section-number">6.2.3</span> Poisson regression example</a></li>
+  <li><a href="#negative-binomial-regression" id="toc-negative-binomial-regression" class="nav-link" data-scroll-target="#negative-binomial-regression"><span class="header-section-number">6.2.4</span> Negative binomial regression</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="part-1-logistic-regression" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="part-1-logistic-regression"><span class="header-section-number">6.1</span> Part 1: Logistic regression</h2>
+<p>• All of the regression methods we’ve seen have involved models in which the response variable is normally distributed, given values for the predictor variables</p>
+<p>• In other words, the residuals have been modeled as normal.</p>
+<p>• What if we have a different kind of response variable? In particular, consider a binary response variable. Maybe the outcomes are “yes” and “no”, or “success” and “failure”, or “present” and “absent”.</p>
+<p>• Logistic regression is a type of “generalized linear model” (GLM) that works well for modeling binary outcome data.</p>
+<p>• Before we get into logistic regression, though, let’s see what happens if we use standard regression (sometimes called “ordinary least squares”, or OLS regression) with a binary response.</p>
+<p>• We’ll use simulated data corresponding to a study of sexual harassment reporting at a university. (Brooks and Perot “Reporting Sexual Harassment: Exploring a Predictive Model” (1991)).</p>
+<p>• Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable: • Data points are “jittered” so that they don’t fall right on top of one another.</p>
+<p>• Suppose we want to predict the value of “Report”, using “OffensBeh”.</p>
+<p>• Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered. • The predicted value of “Report” can be thought of as the predicted probability that Report=1 (for reported behavior)</p>
+<p>• Note that this line can go below zero and above one. We don’t want to predict probability greater than 1! A straight line is not great here. Logistic</p>
+<section id="the-logistic-regression-model" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="the-logistic-regression-model"><span class="header-section-number">6.1.1</span> The logistic regression model</h3>
+<p>Another way of writing a linear regression model</p>
+<p>• By now we are well familiar with the linear regression model:</p>
+<p>𝑦𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖, +𝜀𝑖 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)</p>
+<p>• Here is an equivalent way of writing it:</p>
+<p>𝑦𝑖~𝑁𝑜𝑟𝑚𝑎𝑙 𝜇𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖</p>
+<p>• In other words, the response variable is normally distributed with some mean 𝜇, and the value of 𝜇 is determined by the predictor (𝑋) variables.</p>
+<p>Writing a logistic regression model</p>
+<p>• We will take this approach to writing the logistic regression model.</p>
+<p>• What we want is a regression equation that looks like this:</p>
+<p>𝑦𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖</p>
+<p>But that will work when 𝑦𝑖 does not follow a normal distribution.</p>
+<p>• Response variable 𝑦 takes on the values 0 and 1.</p>
+<p>• Denote the probability that 𝑦 = 1 as 𝜋.</p>
+<p>• This can be written 𝑦~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖</p>
+<p>(The Bernoulli distribution is a distribution of 1’s and 0’s, where the probability of 1 is 𝜋 and the probability of 0 is 1 − 𝜋)</p>
+<p>• We will use regression to model 𝜋, the probability that 𝑦 = 1. This is often thought of as the probability of a “success”.</p>
+<p>• If we wanted, we could use this model:</p>
+<p>𝑦𝑖~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖 𝜋𝑖 𝜋𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖</p>
+<p>• The Bernoulli distribution is a distribution of 1’s and 0’s, where the probability of 1 is 𝜋 and the probability of 0 is 1 − 𝜋.</p>
+<p>• The standard deviation of a Bernoulli distribution is 𝜋(1 − 𝜋 ). So, 𝜋 is the only parameter for this distribution. This is different from the normal distribution, which has two parameters 𝜇 and 𝜎.</p>
+<p>• But, as we saw in the opening example, a linear model for probability can have serious deficiencies.</p>
+<p>• So, instead of a linear model for probability 𝜋, we’ll make a linear model for a function of 𝜋, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.</p>
+<p>• In logistic regression, we use the “logit” function, also known as “log odds”</p>
+<p>𝑙𝑜𝑔𝑖𝑡</p>
+<p>= ln</p>
+<p>= “𝑙𝑜𝑔 𝑜𝑑𝑑𝑠”</p>
+<p>• Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted 𝜋</p>
+<p>• Plugging this into the logit formula:</p>
+<p>𝑙𝑜𝑔𝑖𝑡</p>
+<p>= ln</p>
+<p>= “𝑙𝑜𝑔 𝑜𝑑𝑑𝑠” 𝑜𝑓 𝑟𝑒𝑝𝑜𝑟𝑡𝑖𝑛𝑔</p>
+<p>• This will be our response variable for logistic regression.</p>
+<p>• Logit vs.&nbsp;probability, visually:</p>
+</section>
+<section id="odds" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="odds"><span class="header-section-number">6.1.2</span> Odds</h3>
+<p>• To understand logistic regression, you’ll need to understand odds.</p>
+<p>• In casual English, “odds” and “probability” are often used interchangeably.</p>
+<p>• In statistics, they are not the same thing. Odds tell you how likely one outcome is compared to another.</p>
+<p>• For instance, you might hear that a football team has been given “3 to 2” odds of winning a game. This means that their probability of winning is 3Τ2 = 1.5 times as big as their probability of losing. Or, that they’d be expected to win 3 times for every 2 times they lost.</p>
+<p>• Formally, consider some outcome A, where the probability of A occurring is written as “𝑃(𝐴)”. In this case,</p>
+<p>𝑜𝑑𝑑𝑠</p>
+<p>𝑃(𝐴)</p>
+<p>1 − 𝑃(𝐴)</p>
+<p>𝑝𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝐴 𝑜𝑐𝑐𝑢𝑟𝑠</p>
+<p>𝑝𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝐴 𝑑𝑜𝑒𝑠 𝑛𝑜𝑡 𝑜𝑐𝑐𝑢𝑟</p>
+<p>• This is the ratio of the probability A occurs to the probability A does not occur.</p>
+<p>• Some probabilities and their associated odds:</p>
+<p>• Think of odds(A) as “how many times will A occur for every time A does not occur?”</p>
+<p>• Sometimes we add “to 1” to an odds statement, e.g.&nbsp;“odds of 4 to 1” means “this outcomes occurs 4 times for every 1 time</p>
+<p>Back to the logistic regression model</p>
+<p>• The response variable for logistic regression, again, is:</p>
+<p>𝑙𝑜𝑔𝑖𝑡</p>
+<p>= ln</p>
+<p>= “𝑙𝑜𝑔 𝑜𝑑𝑑𝑠”</p>
+<p>• So, the full logistic regression model is :</p>
+<p>𝑦𝑖~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖</p>
+<p>• We are not actually interested in log odds; we only make this conversion</p>
+<p>for mathematical convenience. So, once we have 𝑙𝑜𝑔𝑖𝑡 𝜋ො𝑖 back via the inverse logit function:</p>
+<p>, we can get</p>
+<p>𝑙𝑜𝑔𝑖𝑡−1</p>
+<p>• In the context of the logistic regression model:</p>
+</section>
+<section id="jamovi-example" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="jamovi-example"><span class="header-section-number">6.1.3</span> jamovi example</h3>
+<p>• Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.</p>
+<p>• Note that “Target Level” defaults to zero. Changing it to 1 makes sense in this case; we want to predict 𝑃(𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑).</p>
+<p>• jamovi also produces a Loglikelihood ratio test, but we will just focus on “Parameter Estimates”:</p>
+<p>• Here is our estimated model:</p>
+<p>𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 = −1.7976 + 0.4869 ∗ 𝑂𝑓𝑓𝑒𝑛𝑠𝐵𝑒ℎ</p>
+<p>• Plugging in large and small values for OffensBeh:</p>
+<p>𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑 = −1.7976 + 0.4869 ∗ 1 = −1.3107 𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑 = −1.7976 + 0.4869 ∗ 8 = 2.0976</p>
+<p>𝜋ො|𝑂𝑓𝑓𝑒𝑛𝐵𝑒ℎ = 1:</p>
+<p>𝑒−1.3107 1 + 𝑒−1.3107 =</p>
+<p>0.2696 = 0.21 1.2696</p>
+<p>𝜋ො|𝑂𝑓𝑓𝑒𝑛𝐵𝑒ℎ = 1:</p>
+<p>𝑒2.0976 1 + 𝑒2.0976 =</p>
+<p>8.1466 = 0.89 9.1466</p>
+<p>• The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. “Log odds” are not of direct interest.</p>
+<p>• Exponentiating both sides of the equation gives straight odds</p>
+<p>𝑜𝑑𝑑𝑠 =</p>
+<p>= 𝑒𝛽0+𝛽1𝑋1𝑖+𝛽2𝑋2𝑖+⋯+𝛽𝑝𝑋𝑝𝑖</p>
+<p>• This means that, for a one unit increase in 𝑋1, odds are multiplied by 𝑒𝛽1</p>
+<p>• For the harassment data:</p>
+<p>𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 = −1.7976 + 0.4869 ∗ 𝑂𝑓𝑓𝑒𝑛𝑠𝐵𝑒ℎ</p>
+<p>• 𝛽መ = 0.4869. So, for a one unit increase in OffensBeh, predicted odds of reporting are multiplied by 𝑒0.4869 = 1.627</p>
+<p>• In other words, there is about a 63% increase in odds of reporting when OffensBeh increases by one. NOTE: odds are not probabilities!</p>
+<p>• Comparing probabilities and odds from this model:</p>
+<p>OffensBeh P(Report) Odds(Report) 1 0.212 0.27 2 0.305 0.44 3 0.417 0.71 4 0.537 1.16 5 0.654 1.89 6 0.755 3.08 7 0.834 5.01 8 0.891 8.15 9 0.930 13.26 10 0.956 21.57</p>
+</section>
+</section>
+<section id="part-2-poisson-and-negative-binomial-regression" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="part-2-poisson-and-negative-binomial-regression"><span class="header-section-number">6.2</span> Part 2: Poisson and negative binomial regression</h2>
+<p>We’ll now look at two other popular GLMs: Poisson (“pwa-sawn” roughly) and negative binomial.</p>
+<p>• These are used for modeling count data, which can be extended to how often a categorical variable takes on some value. Thus Poisson regression can be used to model contingency table data.</p>
+<section id="the-poisson-distribution" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="the-poisson-distribution"><span class="header-section-number">6.2.1</span> The Poisson distribution</h3>
+<p>• The Poisson distribution is a discrete probability distribution. A Poisson distributed variable takes on only positive integer values. The integer is referred to as “count” or “# of events”.</p>
+<p>• The Poisson distribution has a single parameter, 𝜆 (“lambda”), which is sometimes called the “rate” parameter.</p>
+<p>• 𝜆 is both the mean and the variance of a Poisson distribution</p>
+<p>• The probability function for the Poisson is: 𝜆𝑘</p>
+<p>𝑃</p>
+<p>= 𝑒𝜆𝑘! 4</p>
+<p>Visualizing the Poisson distribution</p>
+<p>𝜆 = 1</p>
+<p>𝜆 = 2</p>
+<p>𝜆 = 5</p>
+<p>𝜆 = 10</p>
+</section>
+<section id="the-structure-of-a-glm" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="the-structure-of-a-glm"><span class="header-section-number">6.2.2</span> The structure of a GLM</h3>
+<p>• In logistic regression, the response variable was 𝑙𝑜𝑔𝑖𝑡(𝜋) = ln</p>
+<p>• In Poisson regression, the response variable is ln(𝜆)</p>
+<p>• The reasoning will be that the natural log allows the estimated rate to be modeled as a linear function of some predictor variables.</p>
+<p>• This is how GLMs work: they allow us to use non-normal response variables by expressing a function of their mean as a linear function of the predictors.</p>
+<p>• A GLM has three parts:</p>
+<ol type="1">
+<li><p>A response variable with some distribution</p></li>
+<li><p>A “link function”, 𝑔(∙), that is applied to the mean of the response variable.</p></li>
+<li><p>A linear expression of the predictor variables: 𝛽0 + 𝛽1𝑋2 + 𝛽2𝑋2 + ⋯</p></li>
+</ol>
+<p>GLM examples</p>
+<p>• Logistic regression uses 𝑦~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖(𝜋) as the response variable and</p>
+<p>𝑔</p>
+<p>= ln</p>
+<p>as the link function.</p>
+<p>• Poisson regression uses 𝑦~𝑃𝑜𝑖𝑠𝑠𝑜𝑛(𝜆) as the response variable and 𝑔 = ln(𝜆) as the link function.</p>
+<p>• Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses 𝑦~𝑁𝑜𝑟𝑚𝑎𝑙(𝜇, 𝜎) and the response variable and the identity function, 𝑔 = 𝜇 as the link.</p>
+<p>• It’s worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not “least squares”. So, we are not getting our 𝛽መ𝑠 by minimizing sums of squared residuals.</p>
+<p>• Instead, the estimation procedure we use is called “maximum likelihood”. This method finds the values of the parameter estimates that maximize (i.e.&nbsp;make as large as possible for a given set of data) something called “the likelihood function”.</p>
+<p>• The likelihood function takes a fixed set of data and an assumed distribution (e.g.&nbsp;normal), and gives the “probability of the data”, given</p>
+<p>• So, if we have:</p>
+<p>𝑌𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>• Then the likelihood function is:</p>
+<p>• Values of 𝛽መ , 𝛽መ , 𝜎ො are found that maximize this function, i.e.&nbsp;that maximize the probability of the data, given the parameter estimates.</p>
+</section>
+<section id="poisson-regression-example" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="poisson-regression-example"><span class="header-section-number">6.2.3</span> Poisson regression example</h3>
+<p>• We’ll use some General Social Survey data for this example.</p>
+<p>• Poisson is good for modeling count data, so we’ll use a response variable that takes the form of counts.</p>
+<p>• For this example, the goal will be to look at the relationship (if any) between the number of sibling a person has, and the number of children that person has.</p>
+<p>• Our question will be: do people with more siblings tend to have more children? And if so, can we quantify the relationship?</p>
+<p>• It would be wise to collect data on covariates that we expect will also be related to the number of children someone has.</p>
+<p>• An obvious one is age. Older people will have more children than younger people.</p>
+<p>• We might also want to control for “culture”. If people from different cultural backgrounds tend to have more or fewer children, then this would definitely induce a relationship between # of siblings and # of children.</p>
+<p>• There are lots of possible ways to try account for cultural background.</p>
+<p>• So, the variables will be:</p>
+<p>• # of children • # of siblings • Age • Frequency of attending religious services</p>
+<p>• We’ll just look at 2018 data. The GSS lets us choose any years we want, going back to 1972.</p>
+<p>• This data set is on Canvas, as GSS_Children_Siblings.jmp</p>
+<p>• First thing to do is plot our variables.</p>
+<p>• Yikes! There’s some cleaning to do. The instances of 98 siblings are not real data points.</p>
+<p>• GSS data explorer website lets us look in detail at each variable. Here is part of the coding for “SIBS”:</p>
+<p>• And here’s the coding for the variable CHILDS.</p>
+<p>• So, CHILDS = 9 is a value for missing data. These should also be excluded.</p>
+<p>• This should feel familiar – remember how messy the NLSY data was in the heights analysis?</p>
+<p>• Keep in mind that data in public databases often have idiosyncrasies like this.</p>
+<p>• Here are the row selection options that will select all rows with invalid responses.</p>
+<p>• Once selected, they can be excluded.</p>
+<p>• Here is the distribution of CHILDS. • This looks a lot like a Poisson distribution. Hooray!</p>
+<p>• To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.</p>
+<p>• Here are results for a simple model, where # of siblings is the sole predictor of # of children. We’ll just look at the parameter estimates and the overdispersion statistic:</p>
+<p>• Letting</p>
+<p>𝜆መ</p>
+<p>represent the predicted mean # of children, we have:</p>
+<p>ln = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)</p>
+<p>• You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable. 𝑒0.0627 = 1.065<br>
+• So, increasing # of siblings by one is associated with an 6.5% increase in # of children.</p>
+<p>• We can see that this is statistically significant, but it is also small.</p>
+<p>• It is also not obvious that % change is the best way to quantify this. Maybe an OLS model would have been more interpretable.</p>
+<p>• It might be more desirable to relate an additive change in siblings to an additive change in children.</p>
+<p>• Downside is that # of children is not normally distributed.</p>
+<p>• As is often the case, we are trading some interpretability for a better</p>
+<p>• The Poisson distribution makes a strong assumption: the mean should be equal to the variance.</p>
+<p>• Often, we observe real data in which the variance is greater than the mean.</p>
+<p>• This is referred to as “overdispersion”.</p>
+<p>• If mean = variance, this should be equal to 1. But it rarely is.</p>
+<p>• If there is strong overdispersion, a negative binomial model will fit better.</p>
+<p>• The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom..</p>
+<p>• For these data, it turns out that # of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:</p>
+<p>• The other predictor variables and the interactions can be interpreted in the usual ways.</p>
+<p>• One thing to notice is that the estimate for SIBS has not changed much. So, while the other covariates and interactions matter, they don’t substantially change our interpretation of the SIBS predictor.</p>
+</section>
+<section id="negative-binomial-regression" class="level3" data-number="6.2.4">
+<h3 data-number="6.2.4" class="anchored" data-anchor-id="negative-binomial-regression"><span class="header-section-number">6.2.4</span> Negative binomial regression</h3>
+<p>• There is also still some overdispersion, though less than there was before:</p>
+<p>• Remember that the Poisson distribution only has one parameter. This limits its flexibility.</p>
+<p>• The negative binomial distribution is similar to the Poisson distribution, but it is more flexible, and may be a better choice in the presence of overdispersion.</p>
+<p>• The negative binomial distribution is also a distribution for count data. It is interpreted as giving the number of “success” before a certain number of “failures” occur.</p>
+<p>• There are two parameters: 𝑝, the probability of success, and 𝑟, the number of failures at which counting stops.</p>
+<p>• The mean of the negative binomial distribution is 𝑟</p>
+<p>= 𝑟 ∗ 𝑜𝑑𝑑𝑠(𝑠𝑢𝑐𝑐𝑒𝑠𝑠)</p>
+<p>• Example: suppose 𝑝 = 0.8 and 𝑟 = 2. We expect 2∗0.8</p>
+<p>= 8 success before</p>
+<p>• If a variable 𝑦 is distributed negative binomial, we denote it:</p>
+<p>𝑦~𝑁𝐵(𝑟, 𝑝)</p>
+<p>• The mean of the negative binomial distribution is 𝑟</p>
+<p>= 𝑟 ∗ 𝑜𝑑𝑑𝑠(𝑠𝑢𝑐𝑐𝑒𝑠𝑠)</p>
+<p>• Example: suppose 𝑝 = 0.8 and 𝑟 = 2. We expect 2∗0.8</p>
+<p>= 8 success before</p>
+<p>we observe two failures.</p>
+<p>• Or suppose 𝑝 = 0.5 and 𝑟 = 1. We expect 1∗0.5</p>
+<p>= 1 success before we</p>
+<p>observe 1 failure.</p>
+<p>• For practical purposes, negative binomial regression will show better fit than Poisson regression in the presence of overdispersion.</p>
+<p>• The tradeoff is that the interpretation is less generally applicable. It might not make sense to think of your count variable as # of successes for a certain # of failures.</p>
+<p>• As with Poisson regression, negative binomial regression uses a GLM with a log link.</p>
+<p>Negative binomial example</p>
+<p>• Here is where you select negative binomial regression in jamovi:</p>
+<p>• Under “Generalized Linear Models”, under “Frequencies” choose “Negative Binomial”.</p>
+<p>Negative binomial results</p>
+<p>• These results are awfully similar to the Poisson results.</p>
+<p>• It is often the case that different statistical methods designed for the same purpose will with similar results.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Ch5_Categorical.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Ch7_Mixed.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

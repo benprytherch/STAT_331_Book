@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 331 - 3&nbsp; Chapter 3: Assessing and improving model fit</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Ch4_ANOVA.html" rel="next">
+<link href="./Ch2_Model_Building.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Ch3_Model_Fit.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 331</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to STAT 331: Intermediate Applied Statistical Methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch1_Review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Review of classical inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch2_Model_Building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch3_Model_Fit.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch4_ANOVA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch5_Categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch6_GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch7_Mixed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch8_Mind_the_Gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch9_Other_Topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Brief looks at major topics we didn’t cover</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#part-1-assumptions-and-assumption-violations" id="toc-part-1-assumptions-and-assumption-violations" class="nav-link active" data-scroll-target="#part-1-assumptions-and-assumption-violations"><span class="header-section-number">3.1</span> Part 1: assumptions and assumption violations</a>
+  <ul class="collapse">
+  <li><a href="#violating-model-assumptions" id="toc-violating-model-assumptions" class="nav-link" data-scroll-target="#violating-model-assumptions"><span class="header-section-number">3.1.1</span> Violating model assumptions</a></li>
+  <li><a href="#the-regression-model-and-what-it-assumes" id="toc-the-regression-model-and-what-it-assumes" class="nav-link" data-scroll-target="#the-regression-model-and-what-it-assumes"><span class="header-section-number">3.1.2</span> The regression model and what it assumes</a></li>
+  <li><a href="#what-to-look-for-in-a-residual-plot" id="toc-what-to-look-for-in-a-residual-plot" class="nav-link" data-scroll-target="#what-to-look-for-in-a-residual-plot"><span class="header-section-number">3.1.3</span> What to look for in a residual plot</a></li>
+  <li><a href="#the-normality-assumption" id="toc-the-normality-assumption" class="nav-link" data-scroll-target="#the-normality-assumption"><span class="header-section-number">3.1.4</span> The normality assumption</a></li>
+  <li><a href="#the-homogeneity-of-variance-assumption" id="toc-the-homogeneity-of-variance-assumption" class="nav-link" data-scroll-target="#the-homogeneity-of-variance-assumption"><span class="header-section-number">3.1.5</span> The homogeneity of variance assumption</a></li>
+  <li><a href="#influential-observations" id="toc-influential-observations" class="nav-link" data-scroll-target="#influential-observations"><span class="header-section-number">3.1.6</span> Influential observations</a></li>
+  <li><a href="#multicollinearity" id="toc-multicollinearity" class="nav-link" data-scroll-target="#multicollinearity"><span class="header-section-number">3.1.7</span> (Multi)collinearity</a></li>
+  </ul></li>
+  <li><a href="#part-2-improving-models" id="toc-part-2-improving-models" class="nav-link" data-scroll-target="#part-2-improving-models"><span class="header-section-number">3.2</span> Part 2: Improving models</a>
+  <ul class="collapse">
+  <li><a href="#summary-of-part-1" id="toc-summary-of-part-1" class="nav-link" data-scroll-target="#summary-of-part-1"><span class="header-section-number">3.2.1</span> Summary of part 1</a></li>
+  <li><a href="#transforming-variables" id="toc-transforming-variables" class="nav-link" data-scroll-target="#transforming-variables"><span class="header-section-number">3.2.2</span> Transforming variables</a></li>
+  <li><a href="#log-transformation" id="toc-log-transformation" class="nav-link" data-scroll-target="#log-transformation"><span class="header-section-number">3.2.3</span> Log transformation</a></li>
+  <li><a href="#non-linearity" id="toc-non-linearity" class="nav-link" data-scroll-target="#non-linearity"><span class="header-section-number">3.2.4</span> Non-linearity</a></li>
+  <li><a href="#over-fitting" id="toc-over-fitting" class="nav-link" data-scroll-target="#over-fitting"><span class="header-section-number">3.2.5</span> Over-fitting</a></li>
+  <li><a href="#back-to-basics-is-the-model-sensible" id="toc-back-to-basics-is-the-model-sensible" class="nav-link" data-scroll-target="#back-to-basics-is-the-model-sensible"><span class="header-section-number">3.2.6</span> Back to basics: is the model sensible?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="part-1-assumptions-and-assumption-violations" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="part-1-assumptions-and-assumption-violations"><span class="header-section-number">3.1</span> Part 1: assumptions and assumption violations</h2>
+<p>Outline of notes</p>
+<p>• Regression assumptions • Linearity • Normality of residuals • Homogeneity of variance • Influential observations • (Multi)collinearity</p>
+<section id="violating-model-assumptions" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="violating-model-assumptions"><span class="header-section-number">3.1.1</span> Violating model assumptions</h3>
+<p>• The previous notes outlined the fundamentals of specifying, fitting, and interpreting a linear regression model.</p>
+<p>• These notes focus on the assumptions that our models are based upon, and how we check to see if they are being violated.</p>
+<p>• If model assumptions are violated, DON’T PANIC! There is nearly always a remedy. In these notes we will look at how to spot violations of assumptions. In the next set of notes we will look at ways to remedy these violations, and how to decide if they pose a serious problem to the usefulness of the model.</p>
+</section>
+<section id="the-regression-model-and-what-it-assumes" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="the-regression-model-and-what-it-assumes"><span class="header-section-number">3.1.2</span> The regression model and what it assumes</h3>
+<p>• Once again, here is the regression model:</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥1𝑖 + 𝛽2𝑥2𝑖 + ⋯ + 𝛽𝑝𝑥𝑝𝑖 + 𝜀𝑖 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>• This assumes:</p>
+<p>• That the response variable is a linear (straight line) function of the predictor variables • That the residuals will be normally distributed • That the standard deviation of the residuals does not vary • That the residuals are independent</p>
+<p>• Remember the “simple” (i.e.&nbsp;single predictor) regression model:</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝜀𝑖 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>• This is linear in that it fits a straight line to the two-dimensional data.</p>
+<p>• A two-predictor model would fit a flat plane to the three-dimensional data, and so on</p>
+<p>• Here’s a bad idea: fitting a linear model to non-linear data!</p>
+<p>• When running “Linear Regression” in jamovi, a “residuals by predicted” plot can be created by selecting “Residual plots” under “Assumption Checks”</p>
+<p>• The residuals are the differences between each observed values of the response variable and the value that the model predicts:</p>
+<p>𝑟𝑒𝑠𝑖𝑑𝑢𝑎𝑙𝑖 = 𝑦𝑖 −</p>
+<p>𝑦ො𝑖 = 𝑦𝑖 − (𝛽መ</p>
+<ul>
+<li>𝛽መ</li>
+</ul>
+<p>𝑥1</p>
+<ul>
+<li>𝛽መ</li>
+</ul>
+<p>𝑥2</p>
+<ul>
+<li>⋯ )</li>
+</ul>
+<p>• For simple regression, this plot just looks like the regression plot with the line turned horizontally.</p>
+<p>• For multiple regression, there is no (two dimensional) “regression plot”, so the residual plot will be very useful!</p>
+<p>• In this example, there is clear curvature in the data. A straight line model is not appropriate.</p>
+<p>• Here’s an example of what a linear relationship might look like:</p>
+<p>• When there is non-linearity, you will see the residuals mostly on one side of zero, then on the other size of zero, then back again, and so on.</p>
+<p>• When there is linearity, the residuals should randomly fall on either side of zero.</p>
+</section>
+<section id="what-to-look-for-in-a-residual-plot" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="what-to-look-for-in-a-residual-plot"><span class="header-section-number">3.1.3</span> What to look for in a residual plot</h3>
+<p>• We will look at many more examples of residual plots in these notes.</p>
+<p>• We want a residual plot that appears to agree with the model assumptions:</p>
+<p>o Straight line relationship between the predictors and response</p>
+<p>o Normally distributed random residuals around this line</p>
+<p>o Equal variance in residuals across line</p>
+</section>
+<section id="the-normality-assumption" class="level3" data-number="3.1.4">
+<h3 data-number="3.1.4" class="anchored" data-anchor-id="the-normality-assumption"><span class="header-section-number">3.1.4</span> The normality assumption</h3>
+<p>• The “error term” in a regression model is that + 𝜀𝑖 on the end</p>
+<p>• When we write 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>, we are saying that the errors (aka</p>
+<p>residuals) are normally distributed, with mean zero and some standard deviation σ.</p>
+<p>• This can be assessed visually: run the regression plot the residuals to see if they appear roughly normally distributed.</p>
+<section id="the-qq-plot" class="level4" data-number="3.1.4.1">
+<h4 data-number="3.1.4.1" class="anchored" data-anchor-id="the-qq-plot"><span class="header-section-number">3.1.4.1</span> The QQ plot</h4>
+<p>• When fitting a model using “Linear Regression” in jamovi, there is an option to save residuals. This will create a new column with a residual for each row. • The option is under the last drop-down menu, under “Save”.</p>
+<p>• To create a plot of the residuals, select “Q-Q plot of residuals” under “Assumption Checks” in “Linear Regression”</p>
+<p>• The Normal Quantile plot is also known as the QQ plot, for “quantile quantile”.</p>
+<p>• It is easier to assess normality with a QQ plot than with a histogram.</p>
+<p>• On Canvas under Simulations there is a “QQ plot generator” app.</p>
+<p>• This app allows you to manipulate a distribution, sample from it, and then view a histogram next to a QQ plot. It is meant to give you an idea of how QQ plots work.</p>
+<p>• By default, it draws data from a normal distribution. But, you can add “skewedness” or “peakedness” (aka kurtosis) to make the distribution non-normal. You can also adjust sample size.</p>
+<p>• A QQ plot shows you how much the distribution of your data “agree” with a normal distribution.</p>
+<p>• The horizonal axis gives the distribution data would follow if it were perfectly normal. • The vertical axis gives the distribution your data actually follows.</p>
+<p>• The diagonal line shows perfect agreement between the two.</p>
+<p>• The big advantage of the QQ plot vs.&nbsp;the histogram is that very often data that come from a normal distribution don’t look normal, especially if the sample size is small. • In this case, the histogram isn’t clearly normal. But, on the QQ plot the data are close to the line.</p>
+<p>• Notice that the data still veer from the diagonal line to some extent, even though we know for a fact they came from a normal distribution.</p>
+</section>
+<section id="limitations-of-qq-plots" class="level4" data-number="3.1.4.2">
+<h4 data-number="3.1.4.2" class="anchored" data-anchor-id="limitations-of-qq-plots"><span class="header-section-number">3.1.4.2</span> Limitations of QQ plots</h4>
+<p>• As you can see from the app, sometimes data that come from a normal distribution don’t sit right on the line.</p>
+<p>• Sometimes data that come from a skewed distribution look similar to data that come from a normal distribution</p>
+<p>• It’s easier to assess normality when sample sizes are larger.</p>
+<p>• As it turns out, the assumption of normality is not vital to the validity of a regression model. If the QQ plot is vague, you’re probably fine. We only worry when we see extreme non-normality.</p>
+</section>
+<section id="tests-for-normality-not-recommended" class="level4" data-number="3.1.4.3">
+<h4 data-number="3.1.4.3" class="anchored" data-anchor-id="tests-for-normality-not-recommended"><span class="header-section-number">3.1.4.3</span> Tests for normality (not recommended)</h4>
+<p>• There are statistical tests, such as “Shapiro-Wilks” or “Kolmgorov-Smirnov”, for which the null hypothesis is that the data come from some specified distribution, like the normal.</p>
+<p>• Rejecting this null means that the data “significantly” disagree with the assumption of normality.</p>
+<p>• I do not recommend using this test. The problem is that, when the sample size is large enough, even small deviations from normality will be statistically significant. But small deviations from normality are OK. Only major deviations are concerning.</p>
+</section>
+</section>
+<section id="the-homogeneity-of-variance-assumption" class="level3" data-number="3.1.5">
+<h3 data-number="3.1.5" class="anchored" data-anchor-id="the-homogeneity-of-variance-assumption"><span class="header-section-number">3.1.5</span> The homogeneity of variance assumption</h3>
+<p>• Back to the error term:</p>
+<p>𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>• Notice that σ is just one number. This suggests that the standard deviation of the residuals should be the same across all values of predictor variables. In other words, there is homogeneity of variance.</p>
+<p>• Another name for this is “homoscedasticity”. If this assumption is violated, then we have “heteroscedasticity”.</p>
+<section id="heterogeneity-of-variance" class="level4" data-number="3.1.5.1">
+<h4 data-number="3.1.5.1" class="anchored" data-anchor-id="heterogeneity-of-variance"><span class="header-section-number">3.1.5.1</span> Heterogeneity of variance</h4>
+<p>• To show heterogeneity of variance, I’ll simulate data that is a function of an X variable, plus random values from a normal distribution with standard deviation equal to X.</p>
+<p>• Thus, the standard deviation of residuals will get bigger as X gets bigger:</p>
+</section>
+<section id="the-residuals-vs-fitted-plot" class="level4" data-number="3.1.5.2">
+<h4 data-number="3.1.5.2" class="anchored" data-anchor-id="the-residuals-vs-fitted-plot"><span class="header-section-number">3.1.5.2</span> The residuals vs fitted plot</h4>
+<p>• Here is the regression plot and residual plot when this simulated variable (called “W” here) is the response and X is the predictor: • Notice that the residuals are more spread out for larger X</p>
+<p>• We also see “heavy tails” when plotting the residuals with a histogram and QQ plot:</p>
+<p>• Heavy tails refers to a distribution with outliers on both ends.</p>
+<p>• This shows up on the QQ plot as the residuals being too flat in the middle and then curving out on both ends.</p>
+</section>
+</section>
+<section id="influential-observations" class="level3" data-number="3.1.6">
+<h3 data-number="3.1.6" class="anchored" data-anchor-id="influential-observations"><span class="header-section-number">3.1.6</span> Influential observations</h3>
+<p>• Outliers in regression can be seen on a residual plot, or on a QQ plot, or on just a regular plot of the data.</p>
+<p>• Example: the Florida election data.</p>
+<p>• Outliers can “pull” on the regression line, especially if they are far away from the mean of the predictor(s).</p>
+<p>• There are many statistics that assess influence. jamovi will calculate one of the most popular: a Cook’s Distance</p>
+<p>• As we saw in the Florida election example, removing the outlier (Palm Beach County) had a substantial effect on the regression results.</p>
+<p>• The logic behind Cook’s Distance is to quantify what happens to the regression model when a single observation is removed. This is sometimes referred to as a “leave one out” method.</p>
+<p>• Cook’s Distances quantify how much the predicted values of the response variable change when an observation is removed.</p>
+<p>• Recall that, in simple regression, the predicted values are the values on the</p>
+<p>• It is hard to interpret the actual values for Cook’s Distances. Values greater than 1 are often considered “influential”.</p>
+<p>• The formula shows that it is based on the sum of the differences in predicted values between a model with the data point included and a model with it removed:</p>
+<p>𝐶𝑜𝑜𝑘′𝑠 𝐷𝑖𝑠𝑡𝑎𝑛𝑐𝑒 𝑓𝑜𝑟 𝑑𝑎𝑡𝑎 𝑝𝑜𝑖𝑛𝑡 “𝑖” = 𝐷𝑖 =</p>
+<p>𝑛 2 𝑗=1</p>
+<p>𝑀𝑆𝐸 ∗ 𝑝</p>
+<p>• Where 𝑦ො𝑗 𝑖 is the predicted value of the response variable when the model is re- fit with the 𝑖𝑡ℎ data point removed, and p is the number of predictor variables in</p>
+<p>• A Cook’s Distance is calculated for every data point. The option to do this in jamovi is under “Save” in “Linear Regression”. This creates a new column with a Cook’s distance for each row.</p>
+<p>• The saved Cook’s Distances can then be plotted. Any possibly influential points will usually stand out clearly from the rest.</p>
+<p>• To quickly narrow in on the influential counties, we can filter out all the small Cook’s distances.</p>
+<p>• After implementing the filter, we can see that all rows which do not meet the criteria of the filter are excluded.</p>
+<p>• Only rows 13 and 50 should be highlighted for Dade and Palmbeach county which have cook’s distances of 1.983 and 3.786.</p>
+</section>
+<section id="multicollinearity" class="level3" data-number="3.1.7">
+<h3 data-number="3.1.7" class="anchored" data-anchor-id="multicollinearity"><span class="header-section-number">3.1.7</span> (Multi)collinearity</h3>
+<p>• In regression analysis, we want our predictor variables to be correlated with the response variable.</p>
+<p>• But we don’t want our predictor variables to be (highly) correlated with one another!</p>
+<p>• When two predictor variables are highly correlated, we say our model has “collinearity”</p>
+<p>• When more than two predictor variables are mutually highly correlated, we say our model as “multicollinearity”.</p>
+<p>• To understand why we don’t want correlated predictors, recall that multiple regression models estimate the association between each individual predictor variable and the response, while holding all other predictor variables constant.</p>
+<p>• This can be thought of as asking “what is the difference in the response variable when we observe data points that have different values of one predictor but the same values of the other predictors?</p>
+<p>• If 𝑌 is the response and 𝑥1 and 𝑥2 are predictors, we want to know how different 𝑌 is when 𝑥1 values differ but 𝑥2 values are the same, or vice</p>
+<p>• But, if 𝑥1 and 𝑥2 are highly correlated, then we don’t get to observe cases where values of one variable differ substantially while values of the other are the same! Consider instances of no correlation vs.&nbsp;heavy correlation:</p>
+<section id="why-dont-we-want-correlated-predictors" class="level4" data-number="3.1.7.1">
+<h4 data-number="3.1.7.1" class="anchored" data-anchor-id="why-dont-we-want-correlated-predictors"><span class="header-section-number">3.1.7.1</span> Why don’t we want correlated predictors?</h4>
+<p>• When 𝑥1 and 𝑥2 are uncorrelated, we see lots of instances of 𝑥1 values differing a lot when 𝑥2 values are equal.</p>
+<p>• When 𝑥1 and 𝑥2 are highly correlated, we never see instances where 𝑥2 values are equal but 𝑥1 values are highly correlated.</p>
+<p>• The upshot is that, when 𝑥1 and 𝑥2 are highly correlated, the regression procedure has a difficult time distinguishing between the “effect” of 𝑥1 on 𝑌 and the “effect” of 𝑥2 on 𝑌.</p>
+<p>• Extreme example: if we had degrees Celsius and degrees Fahrenheit as predictors in the same model, it would be impossible to tell their effects apart. You can’t change Celsius while holding Fahrenheit constant!</p>
+<p>• The practical consequence is that the standard errors for the slopes of (multi)collinear predictors are much larger than they would be if it were not for the (multi)collinearity.</p>
+<p>• If two or more predictors are perfectly correlated (𝑟 = 1), then the model cannot be fit and jamovi produces an error:</p>
+<p>• Here, X1 and X2 are perfectly correlated. jamovi cannot estimate a slope for X2.</p>
+<p>• In the Florida election data, we used total votes for each county as our predictor variable.</p>
+<p>• There is another variable called “Total_Reg”. This is the total number of registered voters in each county.</p>
+<p>• Unsurprisingly, Total_Votes and Total_Reg are highly correlated:</p>
+<p>• If we run two separate simple regression models, we get very similar results:</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙 _𝑉𝑜𝑡𝑒𝑠𝑖 + 𝜀𝑖 𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙 _𝑅𝑒𝑔𝑖 + 𝜀𝑖</p>
+<p>• But look what happens if we use Total_Votes and Total_Reg as predictors in the same model:</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝑇𝑜𝑡𝑎𝑙_𝑅𝑒𝑔𝑖 + 𝜀𝑖 • Two important things to note:</p>
+<p>• P-values on slopes are much larger than for the individual models</p>
+<p>• 𝑅2 is larger than on either individual model!</p>
+<p>• Looking at the estimates and standard errors in all three models, we see that the standard errors are much larger in the multiple regression model. These estimates are “unstable” – their values will change a lot if the data change a little.</p>
+<p>• We know the association between Total_Reg are Buchanan is actually positive. But with so high a standard error, the slope for Total_Reg turned out negative!</p>
+</section>
+<section id="variance-inflation-factor-vif" class="level4" data-number="3.1.7.2">
+<h4 data-number="3.1.7.2" class="anchored" data-anchor-id="variance-inflation-factor-vif"><span class="header-section-number">3.1.7.2</span> Variance inflation factor (VIF)</h4>
+<p>• (Multi)collinearity can be assessed using a “Variance Inflation Factor”, or VIF. A VIF is calculated for the 𝑗𝑡ℎ predictor variable as:</p>
+<p>𝑉𝐼𝐹𝑗 =</p>
+<p>1</p>
+<p>1 − 𝑅2</p>
+<p>• Where 𝑅2 is the 𝑅2 from a regression model with predictor j as the response variable and all other predictors still as predictors.</p>
+<p>• In the Florida election example, the VIF for Total_Votes can be found using the 𝑅2 for the model: 𝑇𝑜𝑡𝑎𝑙 _𝑉𝑜𝑡𝑒𝑠𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙 _𝑅𝑒𝑔𝑖 + 𝜀𝑖<br>
+• This 𝑅2 is huge! Plugging it into the formula:</p>
+<p>𝑉𝐼𝐹𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠 =</p>
+<p>1 = 333.33 1 − 0.997</p>
+<p>• Thankfully we don’t have to do this by hand. In jamovi, under “Linear Regression” select “Collinearity statistics”:</p>
+<p>• VIF &gt; 10 typically is considered large (note that this would imply 𝑅2 = 0.9 between predictor variables).</p>
+<p>• The most obvious thing to do in the presence of (multi)collinearity is to remove one or more correlated predictor variable. From a scientific standpoint, you also may not want highly correlated predictors in the same model.</p>
+</section>
+<section id="when-should-we-worry-about-multicollinearity" class="level4" data-number="3.1.7.3">
+<h4 data-number="3.1.7.3" class="anchored" data-anchor-id="when-should-we-worry-about-multicollinearity"><span class="header-section-number">3.1.7.3</span> When should we worry about (multi)collinearity?</h4>
+<p>• (Multi)collinearity is a potentially huge problem if the goal of the regression model is to interpret the estimated slopes.</p>
+<p>• This is because it increases the standard error of these slopes, making their values less reliable. Some people say it makes slopes “unstable”.</p>
+<p>• It may also complicate the interpretation of slopes: you are trying to statistically “hold constant” a predictor variable that doesn’t naturally stay constant when the other predictor varies. This isn’t necessarily a problem, but it is something to be aware of.</p>
+<p>• However, (multi)collinearity does not negatively impact the predicted values themselves. Remember that it didn’t hurt the 𝑅2 value in the Florida election example. 𝑅2 tells you how good your predictions are.</p>
+<p>• So, if the model is only for predicting, you probably don’t need to worry about using correlated predictor variables. Just beware when interpreting the slopes.</p>
+</section>
+</section>
+</section>
+<section id="part-2-improving-models" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="part-2-improving-models"><span class="header-section-number">3.2</span> Part 2: Improving models</h2>
+<section id="summary-of-part-1" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="summary-of-part-1"><span class="header-section-number">3.2.1</span> Summary of part 1</h3>
+<p>• In the last set of notes, we looked at some things that can go wrong in regression modeling, including:</p>
+<p>• Non-linear relationships between predictor(s) and response • Non-normality of residuals • Non-constant (heterogeneous) variance of residuals • Influential outliers • Multicollinearity</p>
+<p>• In these notes, we’ll look at some tools available for dealing with these problems.</p>
+</section>
+<section id="transforming-variables" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="transforming-variables"><span class="header-section-number">3.2.2</span> Transforming variables</h3>
+<p>• Recall the regression model:</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥1𝑖 + 𝛽2𝑥2𝑖 + ⋯ + 𝛽𝑝𝑥𝑝𝑖 + 𝜀𝑖 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>• Sometimes we can correct violations of model assumptions by applying a mathematical transformation to the response or predictor variables.</p>
+<p>• The most common transformation in Statistics is the log transformation:</p>
+<p>ln(𝑥) = log𝑒(𝑥)</p>
+</section>
+<section id="log-transformation" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="log-transformation"><span class="header-section-number">3.2.3</span> Log transformation</h3>
+<p>• ln(𝑥) is the inverse function of 𝑒𝑥, where 𝑒 = 2.718 …</p>
+<p>• In other words, ln</p>
+<p>= 𝑥</p>
+<p>• Example: 𝑒3 = 20.086; ln(20.086) = 3</p>
+<p>• So, the natural log of 𝑥 is the number you would have to raise 𝑒 to so that you’d get 𝑥.</p>
+<p>• Note: in statistics, when we say “log”, we usually mean “natural log”. It turns out that the distinction is not very important. I’ll say “log transform”</p>
+<section id="why-log-transform" class="level4" data-number="3.2.3.1">
+<h4 data-number="3.2.3.1" class="anchored" data-anchor-id="why-log-transform"><span class="header-section-number">3.2.3.1</span> Why log transform?</h4>
+<p>• There are two main reasons for log transforming a variable:</p>
+<p>• To correct for skew in data or residuals • To interpret increases in a variable as multiplicative rather than additive.</p>
+<p>• Both can be understood by recognizing an important property of logarithms; they “turn addition into multiplication”</p>
+<p>log(𝐴) + log(𝐵) = log(𝐴𝐵)</p>
+<p>• In this sense, logarithms turn addition into multiplication.</p>
+<p>• Example: suppose we have data for a skewed variable 𝑋1:</p>
+<p>• Now we define 𝑥2 = ln(𝑥1): • This is a toy “data set”. I chose 𝑥1 so that 𝑥2 = ln</p>
+<p>would just be the integers 1 through 10.</p>
+<p>• Note: there is no more skew.</p>
+<p>• Also note: increasing 𝑥2 by one unit results in multiplying 𝑥1 by 𝑒.</p>
+<p>Addition in 𝑥2 = ln</p>
+<p>is the same</p>
+<p>thing as multiplication in 𝑥1.</p>
+<p>Same again, with log base 2</p>
+<p>• Even simpler: define 𝑥2 as log base 2 of 𝑥1, i.e.&nbsp;log2(𝑥1)</p>
+<p>• Now increasing 𝑥2 by one unit is equivalent to multiplying 𝑥1 by 2.</p>
+<p>Addition in 𝑥2 = 𝑙𝑜𝑔2</p>
+<p>is the same</p>
+<p>thing as multiplication in 𝑥1.</p>
+</section>
+<section id="log-transforming-right-skewed-data" class="level4" data-number="3.2.3.2">
+<h4 data-number="3.2.3.2" class="anchored" data-anchor-id="log-transforming-right-skewed-data"><span class="header-section-number">3.2.3.2</span> Log transforming right-skewed data</h4>
+<p>• Skewed data can be bad for regression, in that it can lead to:</p>
+<p>• Non-linear relationship between X and Y • Influential outliers • Non-normal residuals • Non-constant variance in residuals</p>
+<p>• So a simple log transformation can sometimes go a long way toward making the regression model fit the better!</p>
+<p>• It is most common to log transform a response variable, because assumptions about residuals apply to Y, not X.</p>
+<p>• But if X is skewed, the model can benefit from a log transformation of X.</p>
+<p>• Bear in mind that log transformation will affect the interpretation of slope coefficients!</p>
+<p>• If X is log transformed, then a one unit increase in ln(𝑋) corresponds to multiplying X by 𝑒 ≈ 2.72. So the slope for ln(𝑋) tells you how much Y increases when X is multiplied by 2.72. Or, even better, use log base 2 and the</p>
+<p>• If Y is log transformed, then the interpretations of slopes get more complicated. Here’s the math, with the error term omitted for convenience:</p>
+<p>ln</p>
+<p>= 𝛽0 + 𝛽1𝑋𝑖</p>
+<p>• Increase X by 1…</p>
+<p>∴ 𝑦𝑖 = 𝑒𝛽0+𝛽1𝑋𝑖</p>
+<p>𝑦∗ = 𝑒𝛽0+𝛽1(𝑋𝑖+1) = 𝑒𝛽0+𝛽1(𝑋𝑖) ∙ 𝑒𝛽1</p>
+<p>• So, when Y is log transformed, a one unit increase in X multiplies predicted Y by</p>
+</section>
+<section id="interpreting-slope-as-a-change-in-outcome" class="level4" data-number="3.2.3.3">
+<h4 data-number="3.2.3.3" class="anchored" data-anchor-id="interpreting-slope-as-a-change-in-outcome"><span class="header-section-number">3.2.3.3</span> Interpreting slope as a % change in outcome</h4>
+<p>• Recall the heights vs.&nbsp;wages data from group project 1. The paper reported this estimated model:</p>
+<p>ln</p>
+<p>= 𝛽መ</p>
+<ul>
+<li><p>0.002</p></li>
+<li><p>0.027</p></li>
+<li><p>0.024(Age)</p></li>
+</ul>
+<p>• So, when comparing two adults 1 inch apart in height but with the same youth height and age predicted wage is multiplied by 𝑒0.027 = 1.027 for the taller adult.</p>
+<p>• Multiplying by 1.027 can be thought of as increasing by 2.7%</p>
+</section>
+<section id="log-transformation-applied-example" class="level4" data-number="3.2.3.4">
+<h4 data-number="3.2.3.4" class="anchored" data-anchor-id="log-transformation-applied-example"><span class="header-section-number">3.2.3.4</span> Log transformation applied example</h4>
+<p>• Here is the percent change formula:</p>
+<p>% 𝑐ℎ𝑎𝑛𝑔𝑒 (𝑓𝑟𝑜𝑚 𝐴 𝑡𝑜 𝐵) =</p>
+<p>• If B is 1.027*A, then</p>
+<p>𝐵 − 𝐴</p>
+<p>𝐴</p>
+<p>∗ 100%</p>
+<p>% 𝑐ℎ𝑎𝑛𝑔𝑒 =</p>
+<p>1.027𝐴 −</p>
+<p>𝐴</p>
+<p>∗ 100 =</p>
+<p>0.027𝐴</p>
+<p>𝐴</p>
+<p>∗ 100 = 2.7%</p>
+<p>• So, when comparing two adults 1 inch apart in height but with the same youth height and age, predicted wage is 2.7% higher for the taller adult.</p>
+</section>
+<section id="log-transformation-in-y-vs.-in-x" class="level4" data-number="3.2.3.5">
+<h4 data-number="3.2.3.5" class="anchored" data-anchor-id="log-transformation-in-y-vs.-in-x"><span class="header-section-number">3.2.3.5</span> Log transformation in Y vs.&nbsp;in X</h4>
+<p>• Remember that log transformation “turns addition into multiplication”. So, to keep track of how log transforming Y vs.&nbsp;log transforming X affects your model:</p>
+<p>log</p>
+<p>= 𝛽0 + 𝛽1𝑋𝑖 + 𝜀𝑖 vs.</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1log(𝑋𝑖) + 𝜀𝑖</p>
+<p>• If you log transform Y but not X, your model estimates the multiplicative change in predicted Y for an additive change in X.</p>
+<p>• If you log transform X but not Y, your model estimates the additive change</p>
+</section>
+</section>
+<section id="non-linearity" class="level3" data-number="3.2.4">
+<h3 data-number="3.2.4" class="anchored" data-anchor-id="non-linearity"><span class="header-section-number">3.2.4</span> Non-linearity</h3>
+<p>• Sometimes data show obvious curvature, in the sense that Y is clearly not a straight line function of X.</p>
+<p>• This will be visible on a plot of Y vs.&nbsp;X. It will also be visible on a residuals vs.&nbsp;predicted values plot after running a regression.</p>
+<p>• If there is curvature in the relationship between Y and X, then it might be sensible to add a polynomial X term:</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝛽2𝑥2 + 𝜀𝑖</p>
+<section id="polynomial-review" class="level4" data-number="3.2.4.1">
+<h4 data-number="3.2.4.1" class="anchored" data-anchor-id="polynomial-review"><span class="header-section-number">3.2.4.1</span> “Polynomial” review</h4>
+<p>• A “polynomial” expression is typically one in which variables are included at different powers. For example, a generic third degree polynomial equation might look like:</p>
+<p>𝑦 = 𝑎 + 𝑏𝑥 + 𝑐𝑥2 + 𝑑𝑥3</p>
+<p>• A “second degree” polynomial is one in which an 𝑥 and 𝑥2 term are both included. This is by far the most common type of polynomial seen in regression models.</p>
+<p>2nd degree and 3rd degree polynomials</p>
+<p>• 2nd degree polynomials are often called “quadratic”. 3rd degree polynomials are often called “cubic”. Here are visual examples of simulated quadratic and cubic relationships between Y and X:</p>
+</section>
+<section id="curvature-in-residuals" class="level4" data-number="3.2.4.2">
+<h4 data-number="3.2.4.2" class="anchored" data-anchor-id="curvature-in-residuals"><span class="header-section-number">3.2.4.2</span> Curvature in residuals</h4>
+<p>• Here is regression output comparing a linear model to a quadratic model when the relationship between Y and X is quadratic:</p>
+<p>• Here is what the Florida election data look like with the Palm Beach County outlier removed, along with regression results for the simple linear regression model: 𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝜀𝑖</p>
+<p>• Now we will fit a quadratic polynomial model to the same data:</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝜀𝑖</p>
+<p>• To create this polynomial predictor in jamovi we first need to install the GAMLj module. Then, select “Generalized Linear Models” and last our “Dependent Variable” and “Covariates”.</p>
+<p>• Under the “Model” drop down menu, click on Total_Votes in the “Components” table.</p>
+<p>• An up and down arrow will appear with the degree of Total_Votes, click the up arrow so the 1 changes to 2. Then click the right arrow to add Total_Votes2 to “Model Terms”</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝜀𝑖</p>
+<p>• This is better, but we still see curvature in the residual plot.</p>
+<p>• Let’s try a cubic model:</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝛽3𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠3 + 𝜀𝑖</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝛽3𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠3 + 𝜀𝑖</p>
+<p>• It’s debatable whether this is much better. For one, the 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 term is non-significant.</p>
+<p>• But think back to multicollinearity. Each polynomial term will be correlated with the other terms – after all, 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠, 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2, and 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠3 must all be correlated.</p>
+<p>• Note that jamovi will not produce VIFs in GLM. Intuitively we know these will be highly correlated with each other.</p>
+<p>• It turns out that centering helps in polynomial models: Compare to:</p>
+<p>• By default jamovi centers polynomials which makes their standard errors smaller than if they were not centered. But, these estimates are not interpretable; you cannot hold Total_Votes2 constant while increasing Total_Votes.</p>
+<p>• In this example, the two counties with the highest total votes are heavily pulling on the regression line.</p>
+</section>
+</section>
+<section id="over-fitting" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="over-fitting"><span class="header-section-number">3.2.5</span> Over-fitting</h3>
+<p>• This model might be “over-fit”.</p>
+<p>• Over-fitting is when a model fits the data so well that it ends up fitting random variation that is not of interest.</p>
+<p>• Imagine if the two data points on the right had slightly higher vote counts for Buchanan. Or if the next two to their left had slightly lower vote counts. The curve would look very different.</p>
+<p>• At this point, we might just be modelling noise.</p>
+<p>• Here is an extreme example of over-fitting: fitting a “smoother” curve to data and giving it permission to move dramatically up and down through the data.</p>
+<p>• This line fits the data very well, but does it represent the general trend between total votes and votes for Buchanan? Definitely not!</p>
+<p>• (Side note: “smoothers” are great tools for visualizing and summarizing data, but they can be extremely sensitive to degree of smoothing. We won’t use them in STAT 331)</p>
+<p>• Compare the over-fit model to the linear model.</p>
+<p>• The linear model may be missing out on some curvature. But it might also make better predictions.</p>
+<p>• If we were to observe a new county with 450,000 total votes, would we be better guessing that votes for Buchanan fall on the highly curved line or on the straight line?</p>
+</section>
+<section id="back-to-basics-is-the-model-sensible" class="level3" data-number="3.2.6">
+<h3 data-number="3.2.6" class="anchored" data-anchor-id="back-to-basics-is-the-model-sensible"><span class="header-section-number">3.2.6</span> Back to basics: is the model sensible?</h3>
+<p>• Back to basics: regression models are typically used for two purposes:</p>
+<p>o Predicting values of the response variable, using the predictor variables. This is done by plugging values for the predictor variables into the estimated model.</p>
+<p>o Estimating the association between each individual predictor variable and the outcome while statistically holding other predictor variables constant. This is done by interpreted estimated slope coefficients.</p>
+<section id="if-you-just-want-to-make-predictions" class="level4" data-number="3.2.6.1">
+<h4 data-number="3.2.6.1" class="anchored" data-anchor-id="if-you-just-want-to-make-predictions"><span class="header-section-number">3.2.6.1</span> If you just want to make predictions</h4>
+<p>• 𝑅2 is the easiest to understand statistic for assessing how well your model makes predictions. The closer to 1, the better.</p>
+<p>• Multicollinearity isn’t an issue. It doesn’t affect predicted values.</p>
+<p>• BUT – beware of overfitting! The more complex your model, the more risk you take of modeling noise instead of signal.</p>
+<p>• Also, be aware that 𝑅2 can never go down when adding predictors. You can add complete nonsense predictor variables, and the worst that will happen to 𝑅2 is that it stays the same.</p>
+</section>
+<section id="if-you-want-to-interpret-slopes" class="level4" data-number="3.2.6.2">
+<h4 data-number="3.2.6.2" class="anchored" data-anchor-id="if-you-want-to-interpret-slopes"><span class="header-section-number">3.2.6.2</span> If you want to interpret slopes</h4>
+<p>• Always remember that each slope is interpreted under the assumption that all other predictor variables are being held constant, i.e.&nbsp;“controlled for”.</p>
+<p>• The more predictor variables in the model, the less sense this will make.</p>
+<p>• Example: wage vs.&nbsp;height study:</p>
+<p>• In model 4, the estimated slope for youth height can be interpreted as:</p>
+<p>“The predicted difference in ln(wage) for two people one inch apart in youth height, but equal in adult height, whose mothers have the same # of years of schooling and are both in either skilled fields or work or not, whose fathers have the same # of years of schooling and are both in either skilled fields or work or not, and who have the same number of siblings.”</p>
+<p>• Maybe this is the best way to think about the association between youth height and wages. But it is fairly complicated.</p>
+<p>• If you’re going to try to make “real world” sense out of regression results, your model should be informed by theory.</p>
+<p>• This is necessarily subjective! You have to choose which variables you think are important. You have to think about what makes sense.</p>
+<p>• This might require:</p>
+<p>o Log transforming a variable solely because you like the multiplicative interpretation better than the additive interpretation. o Keeping a variable in a model even though it isn’t statistically significant. o Removing a variable you are interested in, because it doesn’t make sense to “hold it constant” when estimating slopes for other variables.</p>
+</section>
+<section id="is-the-model-missing-something-important" class="level4" data-number="3.2.6.3">
+<h4 data-number="3.2.6.3" class="anchored" data-anchor-id="is-the-model-missing-something-important"><span class="header-section-number">3.2.6.3</span> Is the model missing something important?</h4>
+<p>• There is another variable in the Florida election data set that could be worth including: “Reg_Reform”: the total number of voters registered with the Reform Party. Pat Buchanan was the Reform Party candidate. Let’s add it to the model:</p>
+<p>𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑅𝑒𝑔_𝑅𝑒𝑓𝑜𝑟𝑚𝑖 + 𝜀𝑖</p>
+<p>• This residual plot looks great!</p>
+<p>• It turns out that the curvature in the previous residual plots went away when adding an important variable to the model. No need to mess with polynomials after all!</p>
+<p>• Also, the 𝑅2 is roughly the same as in the cubic model using only total votes as a predictor.</p>
+<p>• So we have roughly equal fit, without having to worry about overfitting, and without having to give up interpretability of the slopes. 40</p>
+<p>• One downside: there is some collinearity. Look at the VIFs.</p>
+<p>• VIF of about 5 implies 1 1−𝑅</p>
+<p>≈ 5 when using the 𝑅2 from:</p>
+<p>𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 = 𝛽0 + 𝛽1𝑅𝑒𝑔_𝑅𝑒𝑓𝑜𝑟𝑚𝑖 + 𝜀𝑖 • 2 1</p>
+<p>So, this 𝑅</p>
+<p>is about 1 − 5</p>
+<p>= 0.8. And so 𝑟 =</p>
+<p>= 0.89. These predictors are</p>
+<p>strongly correlated.</p>
+<p>• Note also that total votes is not significant.</p>
+<p>• But: the slope for Reg_Reform has a nice interpretation:</p>
+<p>When comparing two counties with the same number of votes cast in the election, a county with an additional registered Reform Party member is estimated to have 2.24 additional votes, on average, for Pat Buchanan.</p>
+<p>• Should total votes be taken out of the model? This is a subjective decision.</p>
+</section>
+<section id="what-would-you-like-to-control-for" class="level4" data-number="3.2.6.4">
+<h4 data-number="3.2.6.4" class="anchored" data-anchor-id="what-would-you-like-to-control-for"><span class="header-section-number">3.2.6.4</span> What would you like to “control” for?</h4>
+<p>• In regression analysis, we usually emphasize (correctly) that correlation does not imply causation.</p>
+<p>• However, if you have knowledge or beliefs about causal direction, you should take these into account when choosing your variables!</p>
+<p>• Example: in the rheumatoid arthritis study, we were looking at the effect of drugs on inflammation level. In particular, we were comparing how effective they were at reducing inflammation. Suppose we also asked patients to rate their mobility level (RA tends to reduce mobility).</p>
+<p>• Our model might be:</p>
+<p>𝐷𝑖𝑓𝑓𝑒𝑟𝑒𝑛𝑐𝑒𝑖 = 𝛽0 + 𝛽1𝑎𝑔𝑒𝑖 + 𝛽2𝑑𝑟𝑢𝑔𝑖 + 𝛽3 𝑖 + 𝛽4𝑚𝑜𝑏𝑖𝑙𝑖𝑡𝑦𝑖 + 𝜀𝑖</p>
+<p>• Now, when interpreting the previous slopes, I am comparing average reduction in inflammation (“difference”, the response variable), between two people who have the same mobility level. But if they have the same mobility level, then they will have more similar inflammation levels than if we allowed mobility level to differ.</p>
+<p>• In other words, because the drug reduces inflammation <em>and</em> improves mobility, “controlling” for mobility will make it look like the drugs are less effective than they really are.</p>
+</section>
+<section id="beware-the-kitchen-sink-approach" class="level4" data-number="3.2.6.5">
+<h4 data-number="3.2.6.5" class="anchored" data-anchor-id="beware-the-kitchen-sink-approach"><span class="header-section-number">3.2.6.5</span> Beware the “kitchen sink” approach</h4>
+<p>• There’s an old saying: “taking everything but the kitchen sink”.</p>
+<p>• It can be tempting to toss everything but the kitchen sink into a regression model, especially when you have loads of variables that all seem like they’d be associated with the response.</p>
+<p>• But beware! Adding in one predictor can have a dramatic effect on the slopes of other predictors, as well as on their standard errors.</p>
+<p>• It really really really matters that each slope is estimated as though all other predictors are held constant. This can reveal otherwise unseen effects, but it can also obscure otherwise obvious effects or induce apparent effects that aren’t real. There</p>
+</section>
+<section id="the-model-is-simpler-than-whats-being-modeled" class="level4" data-number="3.2.6.6">
+<h4 data-number="3.2.6.6" class="anchored" data-anchor-id="the-model-is-simpler-than-whats-being-modeled"><span class="header-section-number">3.2.6.6</span> The model is simpler than what’s being modeled</h4>
+<p>• Let’s take a step back and ask: why are we fitting data to models?</p>
+<p>• Well, we are interested in the real world. And the real world in incredibly complicated. Maybe incomprehensibly complicated.</p>
+<p>• So, we simplify things using models. We hope that the model captures the essence of what we care about in the real world. But we know it is a simplification; perhaps an extreme simplification.</p>
+<p>• “All models are wrong; some are useful” – George Box</p>
+<p>• Consider how the regression model describes where data comes from:</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝜀𝑖 , 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)</p>
+<p>• This says that to get data, we pick a value for X, go to a line, then randomly draw a value from a normal distribution and add this to the value on the line. And that’s where data comes from!</p>
+<p>• Except, that’s not where data comes from. This is a model. It is a simplification of reality. We use these models because we think they will help us answer questions we care about (e.g.&nbsp;make predictions, identify associations between variables). Don’t forget that the model is not the thing itself.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Ch2_Model_Building.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Ch4_ANOVA.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

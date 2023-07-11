@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 331 - 8&nbsp; Chapter 8: Minding the gap between science and statistics</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Ch9_Other_Topics.html" rel="next">
+<link href="./Ch7_Mixed.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Ch8_Mind_the_Gap.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 331</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to STAT 331: Intermediate Applied Statistical Methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch1_Review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Review of classical inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch2_Model_Building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch3_Model_Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch4_ANOVA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch5_Categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch6_GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch7_Mixed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch8_Mind_the_Gap.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch9_Other_Topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Brief looks at major topics we didn’t cover</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-replication-crisis" id="toc-the-replication-crisis" class="nav-link active" data-scroll-target="#the-replication-crisis"><span class="header-section-number">8.1</span> The “replication crisis”</a></li>
+  <li><a href="#some-history-on-nhst" id="toc-some-history-on-nhst" class="nav-link" data-scroll-target="#some-history-on-nhst"><span class="header-section-number">8.2</span> Some history on “NHST”</a></li>
+  <li><a href="#when-p-0.05-isnt-that-meaningful" id="toc-when-p-0.05-isnt-that-meaningful" class="nav-link" data-scroll-target="#when-p-0.05-isnt-that-meaningful"><span class="header-section-number">8.3</span> When “p &lt; 0.05” isn’t that meaningful</a></li>
+  <li><a href="#the-sampling-distribution-of-the-p-value" id="toc-the-sampling-distribution-of-the-p-value" class="nav-link" data-scroll-target="#the-sampling-distribution-of-the-p-value"><span class="header-section-number">8.4</span> The sampling distribution of the p-value</a></li>
+  <li><a href="#debates-over-statistical-signficance" id="toc-debates-over-statistical-signficance" class="nav-link" data-scroll-target="#debates-over-statistical-signficance"><span class="header-section-number">8.5</span> Debates over statistical signficance</a>
+  <ul class="collapse">
+  <li><a href="#redefine-statistical-significance" id="toc-redefine-statistical-significance" class="nav-link" data-scroll-target="#redefine-statistical-significance"><span class="header-section-number">8.5.1</span> “Redefine statistical significance”</a></li>
+  <li><a href="#justify-your-alpha" id="toc-justify-your-alpha" class="nav-link" data-scroll-target="#justify-your-alpha"><span class="header-section-number">8.5.2</span> “Justify your alpha”</a></li>
+  <li><a href="#abandon-statistical-significance" id="toc-abandon-statistical-significance" class="nav-link" data-scroll-target="#abandon-statistical-significance"><span class="header-section-number">8.5.3</span> “Abandon statistical significance”</a></li>
+  </ul></li>
+  <li><a href="#proposed-reforms" id="toc-proposed-reforms" class="nav-link" data-scroll-target="#proposed-reforms"><span class="header-section-number">8.6</span> Proposed reforms</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>• These notes cover some general problems that come up in applied data analysis. Many are issues that have come to light recently.</p>
+<section id="the-replication-crisis" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="the-replication-crisis"><span class="header-section-number">8.1</span> The “replication crisis”</h2>
+<p>• “The replication crisis” refers to a recent realization in many areas of science that previously published results often fail to replicate.</p>
+<p>• Arguably, this started with Daryl Bem’s 2011 paper “Feeling the Future”, published in the Journal of Personality and Social Psychology.</p>
+<p>• This paper used standard statistical tools to show strong evidence for pre-cognition, a.k.a. ESP. Many scientists were bothered by this, because they did not believe in ESP but they did believe in the statistical methods used in this paper!</p>
+<p>• 2015’s “Reproducibility Project: Psychology” by the Center for Open Science found that a large number of published experimental results in top Psychology journals failed to replicate.</p>
+<p>• Similar studies in Cancer Biology, Medicine, Economics, Marketing, and Sports Science have found high rates of non-replication.</p>
+<p>• Why do so many studies fail to replicate? There are many reasons, and statistical analysis plays a prominent role. These notes cover the role of statistics in the replication crisis.</p>
+<p>• Many of the statistical issues surrounding the replication crisis concern “power”.</p>
+<p>• Statistical power is the probability of rejecting a null hypothesis (??0), in the case that ??0 is false.</p>
+<p>• In terms of real-world effects, if power is high, then there is a good chance of “detecting” an effect – i.e.&nbsp;of declaring statistical significance.</p>
+<p>• If power is low, then even if a real-world effect exists, the result of a hypothesis test will likely be “fail to reject” ??0; i.e.&nbsp;non-significance.</p>
+<p>• A “Type I” error occurs when a true ??0 is rejected. In other words, if we declare a result “statistically significant” even though no real-world effect exists, we are committing a Type I error. This is sometimes called a “false positive” outcome.</p>
+<p>• A “Type II” error occurs when a false ??0 is not rejected. In other words, if we declare a result “not significant” even though a real-world effect does exist, we are committing a Type II error. This is sometimes called a “false negative” outcome.</p>
+<p>• Low statistical power implies a high chance of a false negative.</p>
+<p>• The “true” power of a statistical test is almost never known. To calculate power, one must assume the “true” size of the effect being studied.</p>
+<p>• For instance, power to reject the null hypothesis that a new drug is equally effective as a previous drug depends in part upon how different the two drugs are in effectiveness. But if we knew that, we wouldn’t need to conduct a study!</p>
+<p>• There has been research estimating average statistical power in various research fields, and reason to believe that low power studies are not uncommon. Which means that a lot of these replication failures might be “false negatives”, rather than the original studies being “false positives”.</p>
+</section>
+<section id="some-history-on-nhst" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="some-history-on-nhst"><span class="header-section-number">8.2</span> Some history on “NHST”</h2>
+<p>• The form of hypothesis testing used today is sometimes called Null Hypothesis Significance Testing (NHST). It combines what used to be two different methods created by two “camps”. The camps disagreed with one another, and did not get along personally.</p>
+<p>Ronald Fisher Jerzy Neyman and</p>
+<p>• Introduced the null hypothesis and p-value</p>
+<p>• On interpreting small p-values: “Either an exceptionally rare chance has occurred, or the theory of random distribution is not true”</p>
+<p>• On the use of p &lt; 0.05 as a standard of evidence: “In order to assert that a natural phenomenon is experimentally demonstrable we need, not an isolated record, but a reliable method of procedure. In relation to the test of significance, we may say that a phenomenon is experimentally demonstrable when we know how to conduct an experiment which will rarely fail to give us a statistically significant result”</p>
+<p>• Introduced the alternative hypothesis, Type I and II errors, and power.</p>
+<p>• Reported only Type I and Type II error probabilities in testing; e.g.&nbsp;p-values of 0.001 and 0.04 would both be reported as falling under a pre-specified ?? = 0.05 Type I error rate. A Type II error rate should also be reported.</p>
+<p>“We are inclined to think that as far as a particular hypothesis is concerned, no test based upon a theory of probability can by itself provide any valuable evidence of the truth or falsehood of a hypothesis”</p>
+<p>• NHST is a mix between the two approaches.</p>
+<p>• Hypothesis testing comes from Neyman and Pearson. They did not believe p-values should be interpreted directly as quantifying evidence. They saw their procedure as simply a method for making a decision.</p>
+<p>• The direct interpretation of p-values as quantifying the probability of obtaining results at least as extreme, assuming the null hypothesis is true, comes from Fisher. He did not use an alternative hypothesis, and he did not accept formal power analysis.</p>
+</section>
+<section id="when-p-0.05-isnt-that-meaningful" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="when-p-0.05-isnt-that-meaningful"><span class="header-section-number">8.3</span> When “p &lt; 0.05” isn’t that meaningful</h2>
+<p>• We say results are “statistically significant” when we calculate a p-value less than the ?? level of significance, which is commonly 0.05.</p>
+<p>• So, “significant” results are the kind that would be unlikely to occur by chance, if the null hypothesis were true.</p>
+<p>• There are some issues here…</p>
+<p>• The reason small p-values are considered “evidence” for a research hypothesis is that they are supposed to be unlikely to occur by chance alone.</p>
+<p>• If there is flexibility in how to conduct an analysis, then it becomes more likely that small p-values will occur by chance.</p>
+<p>• This has a derogatory name: “P-hacking”.</p>
+<p>• Less derogatory alternatives: “Researcher degrees of freedom”, “The garden of forking paths”</p>
+<p>• Examples of flexibility:</p>
+<p>• Trying out different combinations of independent and dependent variables • Trying out different models and testing methods • Redefining variables (e.g.&nbsp;averaging over different combinations of survey responses, choosing different cut points for placing responses into categories)</p>
+<p>• Discarding / retaining outliers • Transforming variables • Collecting more data than originally planned • Ceasing data collection earlier than originally planned</p>
+<p>Capitalizing upon flexibility, so that ??(?? &lt; 0.05) &gt; 0.05</p>
+<p>• Flexible practices are perfectly justifiable in many contexts</p>
+<p>• But – to interpret a p-value as “the probability of obtaining results at least this extreme, assuming the null is true”, there can be no flexibility, unless accounted for using a correction (e.g.&nbsp;Bonferroni). Flexibility renders the classical p-value interpretation invalid.</p>
+<p>• Another way of putting it: if you report a p-value as “the probability of obtaining results this extreme, assuming the null is true”, you are implicitly claiming you would have conducted the identical analysis, even if the data had been different in any way.</p>
+<p>• Perhaps “??0 is false” does not imply that the version of “not ??0” you have in mind is true. • In observational studies, we must always think about possible confounders. Maybe there is a “significant association” between variables for some reason that isn’t being considered. • In experimental studies, we must consider all the possible effects of our interventions. Did the experiment produce “significant” results for a reason we didn’t consider, e.g.&nbsp;poor control, biased question wording?</p>
+<p>• Example: CSU has found that students who complete their Math and Composition AUCC requirements during their first year earn higher grades and have higher graduation rates than those who do not.</p>
+<p>• Does this suggest that completing these requirements in the first year results in higher grades and a higher chance of graduation?</p>
+<p>• Could this “statistically significant” effect be due to confounding factors? Is it even reasonable to suspect that students who complete these classes during their first year should have identical grades and graduation rates as those who don’t? This is what the rejected ??0 states. Are we impressed that it is rejected?</p>
+<p>• “All we know about the world teaches us that the effects of A and B are always different – in some decimal place – for any A and B. Thus asking ‘Are the effects different?’ is foolish” - John Tukey</p>
+<p>• The null can be used as a “Straw Man” that no one really believes. Overturning a straw man null may not be that impressive.</p>
+<p>• A good question to ask: “would we expect this null to be true?”</p>
+<p>• If we are performing an experiment, the null is that the treatment does literally nothing. Is this common?</p>
+<p>• If we are analyzing observational data and testing for “significant correlation”, the null is that there is precisely zero correlation at the population level. Do we think this is possible?</p>
+<p>• Psychology/Philosopher/Statistician Paul Meehl called this the “crud factor”: the extent to which everything is correlated with everything, at least at some small level.</p>
+<p>• But, there are times when the null is plausible. • In manufacturing quality control analysis, the null is that “everything is being produced the normal way”. Defects show up as large deviations from this observed null distribution. • In Ronald Fisher’s “The Lady Tasting Tea”, the subject of the story claimed she could tell whether milk or tea had been poured into a cup first, simply by tasting the result. The null is that she couldn’t tell. Seems plausible. • My personal rule is that I am only interested in p-values when I think the null is plausible.</p>
+<p>• A significance test returns a binary outcome: the results are significant, or they are non-significant.</p>
+<p>• Binary outcomes can produce binary thinking: the temptation to think “significant” means “real” and “non-significant” means “due to chance”.</p>
+<p>• Is coming to a binary choice even necessary? Why not just report a point estimate and standard error or 95% CI?</p>
+<p>• If there is an actionable outcome, a binary choice might be necessary.</p>
+<p>• Example: deciding whether to continue investing money into a research program.</p>
+<p>• If the analysis is being done for the purpose of decision making, then a decision rule must be established, and “significance” can be such a rule. If the analysis is being done for the purpose of conveying information in data, I personally see no reason to add in a declaration of “significant” or “not significant”.</p>
+<p>• Consider the t-test statistic:</p>
+<p>?? =</p>
+<p>???1 ? ??2?</p>
+<p>??????. ?????????? ????</p>
+<p>???1?</p>
+<p>???2</p>
+<p>• As sample size increases, standard error decreases, the t-test statistic increases, and the p-value decreases.</p>
+<p>• So, the bigger the sample size, the smaller the value of to achieve statistical significance.</p>
+<p>???1?</p>
+<p>???2 that is needed</p>
+<p>• Upshot: if ?? is larger, very small effects will be “significant”.</p>
+<p>“Women had a slightly higher percentage of transactions for which positive feedback had been given in the year preceding the current transaction (99.60% for women and 99.58% for men, P &lt; 0.05)”</p>
+<p>(http://advances.sciencemag.org/content/2/2/e1500599.full)</p>
+<p>• Going back to Type I errors, here is the “Type I error rate”:</p>
+<p>?? ??0 ???? ????????)</p>
+<p>• What if we’re actually interested in the reverse?</p>
+<p>?? ???????????? ??0)</p>
+<p>• Classical hypothesis testing controls the probability of rejecting ??0, given ??0 is false, typically at 5%.</p>
+<p>• It says nothing about the probability ??0 is false, given that ??0 has been rejected. ??(???????????? ??0 | ??0 ??????????) ? ??(??0 ?????????? | ???????????? ??0)</p>
+<p>• Upshot: don’t imagine that a Type I error rate of 0.05 implies that only 5% of significant results you see should be Type I errors!</p>
+<p>• Jacob Cohen:</p>
+<p>What’s wrong with NHST? Well, among many other things, it does not tell us what we want to know, and we so much want to know what we want to know that, out of desperation, we nevertheless believe that it does! What we want to know is “Given these data, what is the probability that H0 is true?” But as most of us know, what it tells us is “Given that H0 is true, what is the probability of these (or more extreme) data?” - The Earth is Round (p&lt;0.05) (1994)</p>
+<p>• “Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations” (2016) lists a large number of popular misinterpretations. Some highlights…</p>
+<p>• “The p-value is the probability that the test hypothesis is true; for example, if a test of the null hypothesis gave P = 0.01, the null hypothesis has only a 1 % chance of being true; if instead it gave P = 0.40, the null hypothesis has a 40 % chance of being true.”</p>
+<p>• “The p-value for the null hypothesis is the probability that chance alone produced the observed association”</p>
+<p>• “A null-hypothesis p-value greater than 0.05 means that no effect was observed, or that absence of an effect was shown or demonstrated.”</p>
+<p>• “Statistical significance is a property of the phenomenon being studied, and thus statistical tests detect significance.”</p>
+<p>• “When the same hypothesis is tested in two different populations and the resulting p-values are on opposite sides of 0.05, the results are conflicting.”</p>
+<p>(note: all of these are wrong)</p>
+</section>
+<section id="the-sampling-distribution-of-the-p-value" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="the-sampling-distribution-of-the-p-value"><span class="header-section-number">8.4</span> The sampling distribution of the p-value</h2>
+<p>• It is intuitive to think that larger p-values are more likely to occur than smaller p-values when the null is true. • This is intuitive, but it is false. In most testing scenarios, all p-values are equally likely when the null is true. The distribution of p under ??0 is uniform:</p>
+<p>• Simulation: https://csu-statistics.shinyapps.io/visualize_power/</p>
+<p>• When the null is false, the distribution of p is right skewed. The greater the statistical power, the greater the skew.</p>
+<p>• Here is the distribution of p for Cohen’s d = 0.5 and n = 30, implying power ? 75%</p>
+<p>• When null is false, smaller p-values are more likely than larger ones.</p>
+<p>• Some people have the intuition that for weaker effects or lower power, significant p-values should be close to 0.05.</p>
+<p>• This is false; even for low power, very small p-values are more likely than “marginally significant” p-values. Here is the distribution of p for Cohen’s d = 0.2 and n = 30, impying power ? 19%</p>
+<p>• Upshot: we should never see lots of p-values just below 0.05, even under low power.</p>
+<p>• But – there are papers in which many studies are performed, all of which produce p-values just below 0.05. There are bodies of published research in which p- values just below 0.05 occur too frequently.</p>
+<p>• This suggests some combination of “publication bias” and “p-hacking”</p>
+<p>• Formal test: “P-curve” (www.p-curve.com)</p>
+<p>• “P-curve” takes a collection of p-values less than 0.05 and compares them to the uniform distribution expected under ??0</p>
+<p>• If p-values close to 0.05 occur too frequently, the p-curve is consistent with a true ??0, despite all p-values being less than 0.05.</p>
+<p>obvious effects? • Simmons, Simonsohn, and Leif conducted an Amazon M-Turk study (n = 697) to estimate required sample size to detect a variety of “effects” at ?? = 0.05. Examples:</p>
+<p>• Men are taller than women (n = 12; i.e.&nbsp;n = 6 per group) • People who like spicy food eat more Indian food than people who don’t like spicy food (n = 52) • People who like eggs eat more egg salad than people who don’t like eggs (n = 96) • Smokers think smoking is less likely to kill someone than do non-smokers (n = 288) • Men weigh more than women (n = 92) (!!!!!!!!!!!)</p>
+<p>• “Publication bias” is the phenomenon by which statistically significant results are more likely to be published in a journal than results that are not statistically significant.</p>
+<p>• There are many tools for trying to diagnose this (including P-curve)</p>
+<p>• Test of Insufficient Variance: convert p-values to z-statistics. Expected variance of z-statistics is 1. Variance less than 1 could suggest “missing” studies.</p>
+<p>• Plot effect size vs.&nbsp;standard error. Variance in effect sizes should decrease as standard error decreases, but effect size and standard error should not be correlated.</p>
+<p>• Correlation could suggest “missing” studies.</p>
+<p>“Do the results hit you between the eyes?”</p>
+<p>(z = 1.96 is the threshold for statistical significance)</p>
+<p>• Despite the fact that large sample sizes are needed to detect what seem like “medium” effects, we see lots of studies will small sample sizes reporting significant effects.</p>
+<p>• Also, significant effects from small sample sizes are always large.</p>
+<p>• A likely culprit: the combination of publication bias and low power.</p>
+<p>• Low power: a typical consequence of…</p>
+<p>• Small sample sizes • Small effects • Noisy or imprecise measurements • Noisy or imprecise manipulations</p>
+<p>• A nasty consequence of publication bias combined with low power: published effect sizes are biased upward. The lower the power, the greater the bias.</p>
+<p>• A diagram of low power:</p>
+<p>• Notice: “the truth” is NOT in the “reject the null” region. So when power is low, “the truth” is not statistically significant!</p>
+<p>• Low power =&gt; wide CIs • Here, wide CI centered on true effect =&gt; not significant • For CI to exclude zero, sample effect must greatly overestimate true effect</p>
+<p>• Left histogram: sampling distribution of the Cohen’s d statistic (standardized diff. in means). Simulated so that power = 0.27 and population d = 0.5. • Right histogram: same thing, but after removing all d statistics that do not achieve statistical significance. • Upshot: conditioning an unbiased estimator on p &lt; 0.05 creates a biased estimator. The lower the power, the greater the bias.</p>
+<p>From Andrew Gelman:</p>
+<p>• “Post-hoc” power analysis describes performing a power analysis on a data set after having conducted a significance test.</p>
+<p>• Sometimes researchers will get a non-significant result, and suspect low power is the reason. So, they do a power analysis using the effect size and standard error from the data, and find low power.</p>
+<p>• THIS IS INVALID! If p &gt; 0.05, then post-hoc power must be lower than 50%.</p>
+<p>• So, “non-significant” results will always be identified as “low power”, post-hoc.</p>
+<p>• R-Index: calculate observed power for each study. Compare average power to proportion of studies showing significance. Lower observed power could suggest missing studies.</p>
+<p>e.g.&nbsp;observed power = 0.6, 10 / 10 results significant; 6 / 10 expected if power = 0.6.</p>
+<p>• If a collection of studies all show significant results, then average observed power must be greater than 50%. But, it might not be much greater.</p>
+<p>• There are statistical problems that arise when only reporting significant results.</p>
+<p>• There is also a scientific problem: are non-significant results really uninteresting?</p>
+<p>• If the question is worth asking (“do I have evidence for this substantive hypothesis?”), isn’t the answer worth knowing?</p>
+<p>• The practice of throwing away non-significant results goes hand in hand with a false interpretation of NHST results: that non-significance implies “no effect”.</p>
+<p>• p-value &lt; 0.05 is commonly interpreted as evidence for an effect.</p>
+<p>• But, p-value &gt; 0.05 should not necessarily be interpreted as evidence for no effect.</p>
+<p>• Example: suppose three studies (A, B, and C) all aimed to estimate a standardized difference in means in terms of Cohen’s d:</p>
+<p>?? =</p>
+<p>???1 ? ????</p>
+<p>???2</p>
+<p>• Suppose that for each study, a p-value is also computed, testing against the null of ??0: ??1 ? ??2 = 0</p>
+<p>• A 95% CI for d is also constructed.</p>
+<p>• In this example, all CIs contain zero, so all p-values exceed 0.05. All three tests are consistent with “no effect”.</p>
+<p>• However, the first CI is also consistent with a very large effect, which could be positive or negative. The third CI is consistent with no effect or a very small effect . • But - the p-values are the same! In all three cases, p = 0.51.</p>
+<p>• The article “Arthroscopic partial meniscectomy versus placebo surgery for a degenerative meniscus tear: a 2-year follow-up of the randomized controlled trial” assesses the effectiveness of a surgical procedure for treating a degenerative knee tear relative to a sham “placebo” surgery (!!!). https://ard.bmj.com/content/77/2/188</p>
+<p>• The article finds a non-significant difference between treatment and placebo, and interprets this as the treatment being “no better” than placebo. Author conclude there is “no evidence” in favor of the treatment.</p>
+<p>• However, later in the paper the authors make a much stronger argument: that the 95% CI for the difference in means is fully below the minimum clinically meaningful difference, which they established a priori:</p>
+<p>• Note the sharp difference between these arguments:</p>
+<p>o “Surgery was not effective because the difference between surgery and placebo was not statistically significant.”</p>
+<p>o “Surgery was not effective because the 95% CI for the difference between surgery and placebo fell entirely below the minimum clinically significant difference.</p>
+<p>• The first argument says “the estimated difference is no bigger than what would be expected by chance.” The second says “the largest plausible value for the difference is still too small to be interesting.”</p>
+</section>
+<section id="debates-over-statistical-signficance" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="debates-over-statistical-signficance"><span class="header-section-number">8.5</span> Debates over statistical signficance</h2>
+<p>• The use of statistical significance has always been controversial.</p>
+<p>• Three recent high profile papers have argued for some different viewpoints on statistical significance.</p>
+<section id="redefine-statistical-significance" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="redefine-statistical-significance"><span class="header-section-number">8.5.1</span> “Redefine statistical significance”</h3>
+<p>• “Redefine Statistical Significance” (2017) calls for lowering the standard threshold for significance to p &lt; 0.005</p>
+<p>• The argument: p &lt; 0.05 is too easy to obtain from noise.</p>
+<p>• This paper proposes labeling p-values between 0.005 and 0.05 as “suggestive”, and p-values less than 0.005 as “significant”.</p>
+<p>• An exception: if the procedure is pre-registered, p &lt; 0.05 can be labeled “significant”. So a distinction is drawn between exploratory and confirmatory data analyses.</p>
+</section>
+<section id="justify-your-alpha" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="justify-your-alpha"><span class="header-section-number">8.5.2</span> “Justify your alpha”</h3>
+<p>• “Justify Your Alpha” (2017), written in response, calls for allowing flexibility in alpha levels rather than defaulting to p &lt; 0.05.</p>
+<p>• The argument: alpha (a.k.a. the significance level) sets a trade-off between Type I errors and Type II errors.</p>
+<p>• Smaller values of alpha lower Type I error rates but increase Type II error rates, and vice versa.</p>
+<p>• The optimal trade-off will be different for different research fields. FDA drug trials should not use the same trade-off as exploratory research in brand new research fields.</p>
+</section>
+<section id="abandon-statistical-significance" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="abandon-statistical-significance"><span class="header-section-number">8.5.3</span> “Abandon statistical significance”</h3>
+<p>• “Abandon Statistical Significance” (2017) calls for the elimination of thresholds entirely.</p>
+<p>• The argument: “significance” is just a way of taking continuous phenomena (e.g.&nbsp;differences in means, probabilities, correlations) and forcing them into one of two categories.</p>
+<p>• Instead, why not report the evidence on its own terms? No need to force it into an artificial and simplistic “either / or” distinction.</p>
+</section>
+</section>
+<section id="proposed-reforms" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="proposed-reforms"><span class="header-section-number">8.6</span> Proposed reforms</h2>
+<p>• Pre-registration and registered reports: data analysis plans are stated ahead of time. This removes flexibility in analysis.</p>
+<p>• With registered reports, data analysis plans are peer reviewed, and papers can be accepted for publication before results are known. This removes publication bias.</p>
+<p>• Rewarding “open” practices.</p>
+<p>• The Association for Psychological Science now does this using badges:</p>
+<p>• “Equivalence testing”: an alternative to “accepting” a null that has not been rejected.</p>
+<p>• Idea: establish a minimum effect size of interest (e.g.&nbsp;“we’re not interested in this drug if it doesn’t reduce blood pressure by at least…”)</p>
+<p>• Make the null of the equivalence test be that the true effect is smaller than the minimum effect size of interest.</p>
+<p>• If the null is rejected, then observed results are “equivalent” to the null insofar as they are too small to be interesting.</p>
+<p>• Visualization of equivalence testing, using confidence intervals:</p>
+<p>• Note that results can be both “not significantly different” and “not significantly equivalent”.</p>
+<p>• They can also be both “significantly equivalent” and “significantly different”!</p>
+<p>• “The New Statistics” proposes that we emphasize confidence intervals over p-values, as they are easier to understand and less noisy (i.e.&nbsp;they don’t change as much across repeated samples)</p>
+<p>• The Peer Reviewers’ Openness Initiative calls on reviewers to require open data, open methods, and code that will reproduce analyses, so that reviewers can double check the analyses and results.</p>
+<p>• The GRIM test, SPRITE test, and Statcheck are algorithms that check for internal consistency of reported results. They provide a “sanity check” that can detect potentially p-hacked data analyses.</p>
+<p>• As stated at the outset, there is great controversy over the appropriate use of statistical methods!</p>
+<p>• Some wise words from participants in this controversy:</p>
+<blockquote class="blockquote">
+<p>“We often hear it’s too easy to obtain small p-values, yet replication attempts find it difficult to get small p-values with preregistered results. This shows the problem isn’t p-values but failing to adjust them for cherry picking, multiple testing, post- data subgroups and other biasing selection effects.”</p>
+</blockquote>
+<p>-Deborah Mayo, “Don’t throw out the error control baby with the bad statistics bathwater”</p>
+<blockquote class="blockquote">
+<p>“It seems to me that statistics is often sold as a sort of alchemy that transmutes randomness into certainty, an”uncertainty laundering” that begins with data and concludes with success as measured by statistical significance … the solution is not to reform p-values or to replace them with some other statistical summary or threshold, but rather to move toward a greater acceptance of uncertainty and embracing of variation.</p>
+</blockquote>
+<p>Andrew Gelman, “The problems with p-values are not just p-values”</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Ch7_Mixed.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Ch9_Other_Topics.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Brief looks at major topics we didn’t cover</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

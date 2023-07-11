@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "STAT 331"
+  author: "Ben Prytherch"
+  date: "7/4/2023"
+  chapters:
+    - index.qmd 
+    - Ch1_Review.qmd
+    - Ch2_Model_Building.qmd
+    - Ch3_Model_Fit.qmd
+    - Ch4_ANOVA.qmd
+    - Ch5_Categorical.qmd
+    - Ch6_GLMs.qmd
+    - Ch7_Mixed.qmd
+    - Ch8_Mind_the_Gap.qmd
+    - Ch9_Other_Topics.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: united
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+

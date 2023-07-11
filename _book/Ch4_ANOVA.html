@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 331 - 4&nbsp; Chapter 4: ANOVA-based methods</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Ch5_Categorical.html" rel="next">
+<link href="./Ch3_Model_Fit.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Ch4_ANOVA.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 331</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to STAT 331: Intermediate Applied Statistical Methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch1_Review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Review of classical inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch2_Model_Building.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch3_Model_Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch4_ANOVA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch5_Categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch6_GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch7_Mixed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch8_Mind_the_Gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch9_Other_Topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Brief looks at major topics we didn’t cover</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#what-is-anova" id="toc-what-is-anova" class="nav-link active" data-scroll-target="#what-is-anova"><span class="header-section-number">4.1</span> What is ANOVA?</a>
+  <ul class="collapse">
+  <li><a href="#anova-is-regression-presented-differently" id="toc-anova-is-regression-presented-differently" class="nav-link" data-scroll-target="#anova-is-regression-presented-differently"><span class="header-section-number">4.1.1</span> ANOVA is regression presented differently</a></li>
+  <li><a href="#indicator-variables" id="toc-indicator-variables" class="nav-link" data-scroll-target="#indicator-variables"><span class="header-section-number">4.1.2</span> Indicator variables</a></li>
+  </ul></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">4.2</span> One-Way ANOVA</a></li>
+  <li><a href="#factorial-anova" id="toc-factorial-anova" class="nav-link" data-scroll-target="#factorial-anova"><span class="header-section-number">4.3</span> Factorial ANOVA</a>
+  <ul class="collapse">
+  <li><a href="#factorial-anova-example" id="toc-factorial-anova-example" class="nav-link" data-scroll-target="#factorial-anova-example"><span class="header-section-number">4.3.1</span> Factorial ANOVA example</a></li>
+  <li><a href="#eta-squared-and-partial-eta-squared" id="toc-eta-squared-and-partial-eta-squared" class="nav-link" data-scroll-target="#eta-squared-and-partial-eta-squared"><span class="header-section-number">4.3.2</span> Eta-squared and partial eta-squared</a></li>
+  <li><a href="#the-means-interaction-plot" id="toc-the-means-interaction-plot" class="nav-link" data-scroll-target="#the-means-interaction-plot"><span class="header-section-number">4.3.3</span> The means / interaction plot</a></li>
+  <li><a href="#anova-diagnostics" id="toc-anova-diagnostics" class="nav-link" data-scroll-target="#anova-diagnostics"><span class="header-section-number">4.3.4</span> ANOVA diagnostics</a></li>
+  <li><a href="#doing-all-of-this-as-regression" id="toc-doing-all-of-this-as-regression" class="nav-link" data-scroll-target="#doing-all-of-this-as-regression"><span class="header-section-number">4.3.5</span> Doing all of this as regression</a></li>
+  </ul></li>
+  <li><a href="#ancova" id="toc-ancova" class="nav-link" data-scroll-target="#ancova"><span class="header-section-number">4.4</span> ANCOVA</a>
+  <ul class="collapse">
+  <li><a href="#analyzing-paired-data-ancova-vs-anova" id="toc-analyzing-paired-data-ancova-vs-anova" class="nav-link" data-scroll-target="#analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.1</span> Analyzing paired data: ANCOVA vs ANOVA</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="what-is-anova" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="what-is-anova"><span class="header-section-number">4.1</span> What is ANOVA?</h2>
+<p>• ANOVA stands for “analysis of variance”</p>
+<p>• ANOVA is regression with categorical predictors. That’s it.</p>
+<section id="anova-is-regression-presented-differently" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="anova-is-regression-presented-differently"><span class="header-section-number">4.1.1</span> ANOVA is regression presented differently</h3>
+<p>• OK, there’s more to say about ANOVA than just “regression with categorical predictors.”</p>
+<p>• ANOVA is typically used to analyze data from experiments. In experiments, the categorical predictors are usually groups to which experimental units (aka subjects) are assigned. • ANOVA tends to focus on comparing means of different groups to one another. • Although ANOVA is “just” regression, there are conventions for reporting ANOVA results that are simpler and cleaner than what we’ve seen for regression.</p>
+</section>
+<section id="indicator-variables" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="indicator-variables"><span class="header-section-number">4.1.2</span> Indicator variables</h3>
+<p>• We’ve seen how to incorporate a categorical predictor into a regression model when the predictor takes on two values. We create an “indicator” (aka “dummy” aka “binary”) variable that takes on the values 0 or 1. For example:</p>
+<p>Y𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝜀𝑖</p>
+<p>𝑥𝑖 = 1 if “treament”; 𝑥𝑖 = 0 if “control”</p>
+<p>• Here,</p>
+<p>𝑦ෝ𝑖 =</p>
+<p>𝛽መ</p>
+<p>for control, and</p>
+<p>𝑦ෝ𝑖</p>
+<p>= 𝛽መ</p>
+<ul>
+<li>𝛽መ</li>
+</ul>
+<p>for treatment.</p>
+<p>• What if our categorical predictor takes on more than two categories? Suppose we have three groups: treatment 1, treatment 2, and control. We can add another indicator:</p>
+<p>Y𝑖 = 𝛽0 + 𝛽1𝑥𝑖1 + 𝛽2𝑥𝑖2 + 𝜀𝑖</p>
+<p>𝑥1𝑖 = 1 if trtmt 1 and 0 otherwise; 𝑥2𝑖 = 1 if trtmt 2 and 0 otherwise</p>
+<p>• 𝑦ෝ𝑖 =</p>
+<p>𝛽መ</p>
+<p>for control,</p>
+<p>𝑦ෝ𝑖</p>
+<p>= 𝛽መ</p>
+<ul>
+<li>𝛽መ</li>
+</ul>
+<p>for trtmt 1,</p>
+<p>𝑦ෝ𝑖</p>
+<p>= 𝛽መ</p>
+<ul>
+<li>𝛽መ</li>
+</ul>
+<p>for trtmt 2.</p>
+<p>• Control is serving as the “baseline” category, represented by the intercept.</p>
+</section>
+</section>
+<section id="one-way-anova" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">4.2</span> One-Way ANOVA</h2>
+<p>• One-way ANOVA models have a single categorical predictor variable. They can be written as:</p>
+<p>𝑦𝑖𝑗 = 𝜇 + 𝛼𝑗 + 𝜀𝑖𝑗, 𝜀𝑖𝑗~𝑁𝑜𝑟𝑚𝑎𝑙 , i = 1 … nj, j = 1 … p</p>
+<p>• Where there are “p” groups (i.e.&nbsp;the categorical predictor takes on “p” values), “𝑛𝑗” is the sample size of the 𝑗𝑡ℎ group, and 𝑦𝑖𝑗 is the 𝑖𝑡ℎ observation in the 𝑗𝑡ℎ group.</p>
+<p>• Here, 𝜇 is the overall mean and 𝛼𝑗 is the deviation of the 𝑗𝑡ℎ group</p>
+<p>• Suppose we have 4 groups. The ANOVA model is:</p>
+<p>𝑦𝑖𝑗 = 𝜇 + 𝛼𝑗 + 𝜀𝑖𝑗, 𝜀𝑖𝑗~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>• Written as a regression model instead:</p>
+<p>, i = 1 … nj, j = 1 … 4</p>
+<p>𝑦𝑖 = 𝛽0 + 𝛽1𝐺𝑟𝑜𝑢𝑝1 + 𝛽2𝐺𝑟𝑜𝑢𝑝2 + 𝛽3𝐺𝑟𝑜𝑢𝑝3 + 𝜀𝑖,</p>
+<p>𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>, 𝑖 = 1 … 𝑛</p>
+<p>• Here, the “Group” predictors are 0 / 1 indicator variables. For</p>
+</section>
+<section id="factorial-anova" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="factorial-anova"><span class="header-section-number">4.3</span> Factorial ANOVA</h2>
+<p>• If we have more than one categorical predictor variable, and interactions between the predictors, we have a factorial ANOVA model. Generically:</p>
+<p>𝑦𝑖𝑗𝑘 = 𝜇 + 𝛼𝑗 + 𝛽𝑘 + 𝑗𝑘 + 𝜀𝑖𝑗𝑘, 𝜀𝑖𝑗𝑘~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>i = 1 … njk, j = 1 … p, k = 1 … q</p>
+<p>• Now predictor 1 is 𝛼 and predictor 2 is 𝛽 and they interact. There are “p” groups for predictor 1 and “q” groups for predictor 2.</p>
+<p>• The subscripts start getting messy pretty fast.</p>
+<section id="factorial-anova-example" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="factorial-anova-example"><span class="header-section-number">4.3.1</span> Factorial ANOVA example</h3>
+<p>• Here’s an example of a “5x2 factorial” ANOVA, meaning that one variable has 5 groups and the other has 2.</p>
+<p>• The study is on memory: how many words, on average, do people recall when given certain processing tasks?</p>
+<p>• This example is where the graph on our Canvas home page comes from. It uses data simulated to mimic data from a 1974 Hans Eysenck study.</p>
+<p>• 100 subjects were split into 5 recall groups:</p>
+<p>• “Counting”: subjects counted how many letters were in each presented word • “Rhyming” subjects thought of words that rhymed with each presented word • “Adjective”: subjects thought of an adjective that could be used to modify each presented word • “Imagery”: subjects were told to form vivid images of each word • “Intentional”: subjects were told to memorize the word for later recall</p>
+<p>• Counting and rhyming are lower level processing tasks, so the hypothesis was that this group would recall fewer words than the others. Subjects were also classified as “young” or “old”.</p>
+<p>• Here’s the ANOVA model:</p>
+<p>𝑅𝑒𝑐𝑎𝑙𝑙𝑖𝑗𝑘 = 𝜇 + 𝐺𝑟𝑜𝑢𝑝𝑗 + 𝐴𝑔𝑒𝑘 + (𝐺𝑟𝑜𝑢𝑝 ∙ 𝐴𝑔𝑒)𝑗𝑘 + 𝜀𝑖𝑗𝑘</p>
+<p>𝜀𝑖𝑗𝑘~𝑁𝑜𝑟𝑚𝑎𝑙</p>
+<p>, 𝑗 = 1 … 5, 𝑘 = 1,2</p>
+<p>• Jamovi has an “ANOVA” function and a “regression” function. We’ll use both the analyze these data.</p>
+<p>• First we’ll use ANOVA, using items recalled as the response (dependent) variable, and recall condition and age as factors. Note that jamovi automatically includes their interaction.</p>
+<p>• I am usually not interested in the sums of squares or mean squares in the ANOVA table, as these are not interpretable. We do have p-values for each “main effect” along with the interaction. More importantly, we have effect size statistics: eta-squared (𝜂2) and partial eta-squared (𝜂2𝑝)</p>
+</section>
+<section id="eta-squared-and-partial-eta-squared" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="eta-squared-and-partial-eta-squared"><span class="header-section-number">4.3.2</span> Eta-squared and partial eta-squared</h3>
+<p>• 𝜂2 is akin to 𝑅2 for one factor (main effect or interaction). It gives the proportion of variance in the response attributable to the factor in question:</p>
+<p>𝜂2 = 𝑆𝑆𝑓𝑎𝑐𝑡𝑜𝑟 𝑆𝑆𝑡𝑜𝑡𝑎𝑙</p>
+<p>• Here, we see that recall condition explains the most variance by far, followed by age, followed by their interaction.</p>
+<p>ANOVA effect sizes: 𝜂2 and partial-𝜂2</p>
+<p>• 𝜂2𝑝 (partial eta-squared) is like 𝜂2, but with the variance accounted for by the other factors removed from the denominator:</p>
+<p>𝜂2𝑝 = 𝑆𝑆𝑓𝑎𝑐𝑡𝑜𝑟 𝑆𝑆𝑓𝑎𝑐𝑡𝑜𝑟+𝑆𝑆𝑟𝑒𝑠𝑖𝑑𝑢𝑎𝑙𝑠 • Example: for recall condition,</p>
+<p>𝜂2𝑝 = 1515 1515+722</p>
+<p>= 0.677, 𝜂2 = 1515 1515+240+190+722</p>
+<p>= 0.568</p>
+<p>• I personally prefer 𝜂2, as their sum cannot exceed 1. Some prefer 𝜂2𝑝, because it quantifies the “effect” of a factor relative to remaining unexplained variance,</p>
+</section>
+<section id="the-means-interaction-plot" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="the-means-interaction-plot"><span class="header-section-number">4.3.3</span> The means / interaction plot</h3>
+<p>• We can make a nice plot under “estimated marginal means”:</p>
+<p>• This plot shows every combination of means across recall condition and age. It also has 95% CIs around each mean, and raw data displayed.</p>
+<p>• This is sometimes called a “means plot” or an “interaction plot”. The interaction is represented by non-parallel lines, e.g.&nbsp;a positive change going from “Imagery” to “Intention” for young people, but a negative change for old people.</p>
+<p>• The previous plot showed means for recall condition, with separate lines for age. If we flip the order of the variables, we get this:</p>
+<p>• Here we see that mean items recalled for young people is substantially higher than for old people in the last three conditions, but differs only slightly in the first two conditions.</p>
+</section>
+<section id="anova-diagnostics" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="anova-diagnostics"><span class="header-section-number">4.3.4</span> ANOVA diagnostics</h3>
+<p>• We can also run diagnostic tests, under “Assumption checks”: • The QQ plot looks pretty good.</p>
+<p>• I personally do not recommend paying attention to Levene’s “homogeneity of variances” test, nor to the Shapiro-Wilk normality tests • These tests use null hypotheses of “population variance is the same in all groups”, or “the residuals were drawn from a normal distribution”. As I don’t think these model assumptions could be literally true, I am not interested in whether they can be rejected by the data.</p>
+<p>• A “significant” violation of modeling assumptions does not imply a consequential violation. In particular, if sample size is large, trivial violations of assumption</p>
+</section>
+<section id="doing-all-of-this-as-regression" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="doing-all-of-this-as-regression"><span class="header-section-number">4.3.5</span> Doing all of this as regression</h3>
+<p>• The beginning of these slides claimed that ANOVA is just regression with categorical predictors. Let’s see what our results look like if we use jamovi’s “linear regression” function rather than “ANOVA”. • The predictor variables are entered as “factors” here, rather than as “covariates”, to ensure they are treated as categorical rather than as quantitative variables. • Finally, the interaction must be specified under “model builder”; jamovi does not create regression interactions by default.</p>
+<p>• There are five recall condition groups, giving four indicator variables, all compared against the baseline group “counting”, whose mean is represented by the intercept.</p>
+<p>• There are two “age” groups; “young” is the baseline group.</p>
+<p>• So the intercept of 6.500 is the mean words recalled for a young person in the “counting” condition.</p>
+<p>• The first indicator under RecallCondition is “Rhyming – Counting”. Its slope of 1.1 is the difference in mean recall for these two groups, when Age = Young</p>
+<p>• The interaction slope for “Rhyming – Counting” is -1.2.</p>
+<p>• So, for Age = Old, the difference in</p>
+<p>mean recall is 1.1 +</p>
+<p>= −0.1</p>
+<p>• The interaction terms are all indicators, that “turn on” when Age = Old, and “turn off” when Age = Young.</p>
+<p>• Notice that the slope for Age (“Old – Young”) is 0.5, suggesting greater recall for older participants. • However, the interaction slopes are all larger negative values.</p>
+<p>• So, when RecallCondition = Counting, the mean items recalled for Age = Old is larger than for Age = Young. But for all other recall conditions, the interaction slopes turn this negative, and mean items recalled is larger for younger participants.</p>
+<p>• “Estimated Marginal Means” under regression will produce a similar plot to the one made under ANOVA, just without the connecting lines and raw data:</p>
+<p>• If you look carefully, you should be able to see how the regression results correspond to this plot. For instance, we see that the only condition where Old &gt; Young is Counting.</p>
+<p>• We can get a plot of residuals vs.&nbsp;fitted values.</p>
+<p>• Notice that the residuals are all vertically stacked? This is to be expected when predictor variables are categorical.</p>
+<p>• In this case, there are 5x2 = 10 possible combinations of groups that participants could be assigned to. And so there are only 10 possible “fitted” (i.e.&nbsp;predicted) values that the model can produce.</p>
+</section>
+</section>
+<section id="ancova" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="ancova"><span class="header-section-number">4.4</span> ANCOVA</h2>
+<p>• ANCOVA (analysis of covariance) is ANOVA with an additional continuous predictor variable.</p>
+<p>• Typically, this additional continuous predictor is not of primary interest; the primary interest is still comparing group means.</p>
+<p>• The continuous predictor is often thought of as a “covariate” – a variable that should be accounted for when drawing inference on the other variables.</p>
+<p>• A common use of ANCOVA is for modeling an outcome when “baseline” or “pre-study” or “pre-test” scores are available.</p>
+<p>• For instance, consider testing different educational models on different sections of a class. Some get traditional lecture, some are completely “flipped”, and some are a combination of the two.</p>
+<p>• In this study, a preliminary quiz is given on the first day of class. Score on the preliminary quiz will be the covariate. Score on an end of semester quiz (“post”) will be the response variable.</p>
+<p>𝑃𝑜𝑠𝑡𝑖𝑗 = 𝜇 + 𝑡𝑦𝑝𝑒𝑗 + 𝛽 + 𝜀𝑖𝑗</p>
+<p>• Here, j goes from 1 to 3, for the three teaching types being compared.</p>
+<p>• The pre-test predictor is centered (note that 𝑝𝑟𝑒 is mean for pretests).</p>
+<p>• Imagine we believe that the mean differences between teaching types will be larger for students with lower pretest scores. To account for this possibility, let type and (centered) pretest interact:</p>
+<p>𝐶𝑜𝑢𝑟𝑠𝑒_𝑎𝑣𝑔𝑖𝑗 = 𝜇 + 𝑡𝑦𝑝𝑒𝑗 + 𝛽 𝑝𝑟𝑒𝑖𝑗 − 𝑝𝑟𝑒 +𝛾𝑗(𝑡𝑦𝑝𝑒𝑗)(𝑝𝑟𝑒𝑖𝑗 − 𝑝𝑟𝑒) + 𝜀𝑖𝑗</p>
+<p>• The data file is called “test_pretest”. Here is the formatting:</p>
+<p>• This plot was made using Analyses / Exploration / Scatterplot. Density curves are there, just for fun:</p>
+<p>• The three lines look pretty close to parallel, so there either isn’t an obvious interaction here, or it’s small.</p>
+<p>• Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.</p>
+<p>• Type is still significant; it’s 𝜂2𝑝 value is much larger than its 𝜂2 value.</p>
+<p>• Careful interpreting the “Estimated marginal means” plot – it takes into account only “post” scores!</p>
+<p>• For the regression analysis, we’ll use two indicator variables. We don’t have to do it this way; if we just include “type”, jamovi will create the indicators for us, using the first class type listed in the data.</p>
+<p>• Notice that the interaction estimates are small relative to their standard errors (thus producing large p- values).</p>
+<p>• According to this regression model, there is not a “significant” interaction.</p>
+<p>Analysis using regression w/factor</p>
+<p>• Here’s what happens if we put in “type” as a factor variable rather than making our own indicators. The results are the same.</p>
+<p>• The QQ plot and residual plot both look great</p>
+<section id="analyzing-paired-data-ancova-vs-anova" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.1</span> Analyzing paired data: ANCOVA vs ANOVA</h3>
+<p>• Another approach we could take would be to compute the differences in the two scores for each person, then do a regular ANOVA or regression analysis on those.</p>
+<p>• We see that there are significant differences in mean test score change between teaching types (F=8.94, p&lt;0.001)</p>
+<p>Analyze differences, regression approach</p>
+<p>• This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post – pre) when comparing “combo” to “flipped” or “traditional”. And 𝑅2 = 𝜂2!</p>
+<p>• It turns out here that taking the post – pre differences first and then comparing mean differences across teaching types produces similar results to predicting post-test scores using pre-test and teaching type as predictors.</p>
+<p>• But, these methods are not answering the exact same question. Using pre-test as a covariate, we answer the question “what difference do I expect in post-test scores when comparing two students with the same pre- test score but different teaching types”?</p>
+<p>• When differencing first and then doing the analysis, we answer the question “what differences in the mean post-pre score change do I expect when comparing class types”?</p>
+<p>• These question sound similar, but they aren’t the same! Whether to use ANCOVA or do the differencing first is a matter of subjective judgement, and the experts don’t all agree (see “Lord’s Paradox” for more fun on this).</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Ch3_Model_Fit.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Ch5_Categorical.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

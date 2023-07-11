@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>STAT 331 - 2&nbsp; Chapter 2: Model building with linear regression</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Ch3_Model_Fit.html" rel="next">
+<link href="./Ch1_Review.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Ch2_Model_Building.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 331</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to STAT 331: Intermediate Applied Statistical Methods</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch1_Review.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Review of classical inference</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch2_Model_Building.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch3_Model_Fit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch4_ANOVA.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Chapter 4: ANOVA-based methods</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch5_Categorical.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Chapter 5: Analyzing categorical data</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch6_GLMs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Generalized Linear Models (GLMs)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch7_Mixed.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Chapter 7: Mixed-effects models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch8_Mind_the_Gap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Chapter 8: Minding the gap between science and statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Ch9_Other_Topics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Brief looks at major topics we didn’t cover</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link active" data-scroll-target="#outline-of-notes"><span class="header-section-number">2.1</span> Outline of notes:</a></li>
+  <li><a href="#the-linear-regression-equation" id="toc-the-linear-regression-equation" class="nav-link" data-scroll-target="#the-linear-regression-equation"><span class="header-section-number">2.2</span> The linear regression equation</a>
+  <ul class="collapse">
+  <li><a href="#the-linear-regression-equation-as-a-statistical-model" id="toc-the-linear-regression-equation-as-a-statistical-model" class="nav-link" data-scroll-target="#the-linear-regression-equation-as-a-statistical-model"><span class="header-section-number">2.2.1</span> The linear regression equation as a statistical model</a></li>
+  <li><a href="#assumptions-of-the-regression-model" id="toc-assumptions-of-the-regression-model" class="nav-link" data-scroll-target="#assumptions-of-the-regression-model"><span class="header-section-number">2.2.2</span> Assumptions of the regression model</a></li>
+  </ul></li>
+  <li><a href="#regression-analysis-in-jamovi" id="toc-regression-analysis-in-jamovi" class="nav-link" data-scroll-target="#regression-analysis-in-jamovi"><span class="header-section-number">2.3</span> Regression analysis in jamovi</a>
+  <ul class="collapse">
+  <li><a href="#simulating-the-regression-model-in-jamovi" id="toc-simulating-the-regression-model-in-jamovi" class="nav-link" data-scroll-target="#simulating-the-regression-model-in-jamovi"><span class="header-section-number">2.3.1</span> Simulating the regression model in jamovi</a></li>
+  </ul></li>
+  <li><a href="#fitting-a-regression-model-in-jamovi" id="toc-fitting-a-regression-model-in-jamovi" class="nav-link" data-scroll-target="#fitting-a-regression-model-in-jamovi"><span class="header-section-number">2.4</span> Fitting a regression model in jamovi</a></li>
+  <li><a href="#the-r2-statistic" id="toc-the-r2-statistic" class="nav-link" data-scroll-target="#the-r2-statistic"><span class="header-section-number">2.5</span> The <span class="math inline">\(R^2\)</span> statistic</a>
+  <ul class="collapse">
+  <li><a href="#there-is-no-good-or-bad-value-for-r2" id="toc-there-is-no-good-or-bad-value-for-r2" class="nav-link" data-scroll-target="#there-is-no-good-or-bad-value-for-r2"><span class="header-section-number">2.5.1</span> There is no “good” or “bad” value for <span class="math inline">\(R^2\)</span></a></li>
+  </ul></li>
+  <li><a href="#sums-of-squares-and-mean-squares" id="toc-sums-of-squares-and-mean-squares" class="nav-link" data-scroll-target="#sums-of-squares-and-mean-squares"><span class="header-section-number">2.6</span> Sums of squares and mean squares</a>
+  <ul class="collapse">
+  <li><a href="#total-sum-of-squares" id="toc-total-sum-of-squares" class="nav-link" data-scroll-target="#total-sum-of-squares"><span class="header-section-number">2.6.1</span> Total sum of squares</a></li>
+  <li><a href="#residual-error-sum-of-squares" id="toc-residual-error-sum-of-squares" class="nav-link" data-scroll-target="#residual-error-sum-of-squares"><span class="header-section-number">2.6.2</span> Residual / Error sum of squares</a></li>
+  <li><a href="#mean-square-error" id="toc-mean-square-error" class="nav-link" data-scroll-target="#mean-square-error"><span class="header-section-number">2.6.3</span> Mean square error</a></li>
+  <li><a href="#model-sum-of-squares" id="toc-model-sum-of-squares" class="nav-link" data-scroll-target="#model-sum-of-squares"><span class="header-section-number">2.6.4</span> Model sum of squares</a></li>
+  </ul></li>
+  <li><a href="#interpreting-regression-results" id="toc-interpreting-regression-results" class="nav-link" data-scroll-target="#interpreting-regression-results"><span class="header-section-number">2.7</span> Interpreting regression results</a></li>
+  <li><a href="#applied-example-the-binary-bias" id="toc-applied-example-the-binary-bias" class="nav-link" data-scroll-target="#applied-example-the-binary-bias"><span class="header-section-number">2.8</span> Applied example: “The binary bias”</a></li>
+  <li><a href="#interaction" id="toc-interaction" class="nav-link" data-scroll-target="#interaction"><span class="header-section-number">2.9</span> Interaction</a>
+  <ul class="collapse">
+  <li><a href="#interaction-example" id="toc-interaction-example" class="nav-link" data-scroll-target="#interaction-example"><span class="header-section-number">2.9.1</span> Interaction example</a></li>
+  <li><a href="#interaction-in-the-regression-model" id="toc-interaction-in-the-regression-model" class="nav-link" data-scroll-target="#interaction-in-the-regression-model"><span class="header-section-number">2.9.2</span> Interaction, in the regression model</a></li>
+  </ul></li>
+  <li><a href="#jamovi-example-arthritis-data" id="toc-jamovi-example-arthritis-data" class="nav-link" data-scroll-target="#jamovi-example-arthritis-data"><span class="header-section-number">2.10</span> jamovi Example: Arthritis data</a></li>
+  <li><a href="#centering-predictor-variables" id="toc-centering-predictor-variables" class="nav-link" data-scroll-target="#centering-predictor-variables"><span class="header-section-number">2.11</span> Centering predictor variables</a>
+  <ul class="collapse">
+  <li><a href="#centered-interaction-in-jamovi" id="toc-centered-interaction-in-jamovi" class="nav-link" data-scroll-target="#centered-interaction-in-jamovi"><span class="header-section-number">2.11.1</span> Centered interaction in jamovi</a></li>
+  </ul></li>
+  <li><a href="#standardizing-predictor-variables" id="toc-standardizing-predictor-variables" class="nav-link" data-scroll-target="#standardizing-predictor-variables"><span class="header-section-number">2.12</span> Standardizing predictor variables</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Chapter 2: Model building with linear regression</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Module 2 covers linear regression models. Parts 1 through 4 will be mostly review for students whose introductory statistics course covered regression. Parts 5 through 8 introduce topics not usually covered in introductory courses.</p>
+<p>For more details on regression, see <a href="https://crumplab.com/statistics/03-Correlation.html#regression-a-mini-intro">section 3.5 of Answering questions with data</a> and <a href="https://davidfoxcroft.github.io/lsj-book/12-Correlation-and-linear-regression.html">chapter 12 of Learning statistics with jamovi</a></p>
+<section id="outline-of-notes" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="outline-of-notes"><span class="header-section-number">2.1</span> Outline of notes:</h2>
+<ol type="1">
+<li>The linear regression equation</li>
+<li>Regression analysis in jamovi</li>
+<li>Interpreting regression results</li>
+<li>Applied example (“The Binary Bias”)</li>
+<li>Interaction between variables, conceptually</li>
+<li>Interaction between variables in a regression model</li>
+<li>Applied example: arthritis treatment data</li>
+<li>Centering predictor variables</li>
+<li>Standardizing predictor variables</li>
+</ol>
+</section>
+<section id="the-linear-regression-equation" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="the-linear-regression-equation"><span class="header-section-number">2.2</span> The linear regression equation</h2>
+<p>Linear regression, in its simplest form, is a method for finding the “best fitting” line through a set of bivariate (two variable) data:</p>
+<p><img src="images/mod2_pt1 (1).png" class="img-fluid" alt="Imagine of two-dimensional graph with data as points, and a straight line going through the points"></p>
+<p>What is meant by “best fitting” will be addressed shortly. For now, think of the line as showing the underlying linear trend through a set of data.</p>
+<p>The vertical distance between each data point and the line is called a “residual”. On the plot above, the red lines represent residuals. They quantify the amount by which a data point deviates from the underlying linear trend. Every point has a residual; the plot above only shows a few of them.</p>
+<section id="the-linear-regression-equation-as-a-statistical-model" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="the-linear-regression-equation-as-a-statistical-model"><span class="header-section-number">2.2.1</span> The linear regression equation as a statistical model</h3>
+<p>The line that is drawn through data comes from a <strong>statistical model</strong>. A statistical model is a mathematical expression describing how data are generated. It has a <em>fixed</em> component and a <em>random</em> component. Think of the fixed component as describing the underlying relationship between variables, and the random component as describing any additional variability in data beyond what the fixed component describes.</p>
+<p>Below is the standard linear regression model. The random component is represented by <span class="math inline">\(``\varepsilon_i"\)</span>. Everything from “<span class="math inline">\(\beta_0\)</span>” up until “<span class="math inline">\(\varepsilon_i\)</span>” is the fixed component.</p>
+<p><span class="math display">\[
+Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_kx_{ki} + \varepsilon_i \\
+\varepsilon_i \sim \text{Normal}(0,\sigma^2)
+\]</span></p>
+<p>Here’s what each term represents:</p>
+<ul>
+<li><p><span class="math inline">\(i\)</span> is the index term. It counts through the data, starting at <span class="math inline">\(i = 1\)</span> and going through <span class="math inline">\(i=n\)</span>, where <span class="math inline">\(n\)</span> is the sample size.</p></li>
+<li><p><span class="math inline">\(Y_i\)</span> is the <span class="math inline">\(i^{th}\)</span> value of the outcome variable. When written in upper-case, <span class="math inline">\(Y_i\)</span> is treated as a random variable whose value has not been observed. When written lower-case, <span class="math inline">\(y_i\)</span> represents an observed data value.</p>
+<p><span class="math inline">\(Y_i\)</span> is often referred to as the “response” variable, or the “dependent” variable. These notes will use the term “outcome” variable. I prefer this term on the grounds that the others seem to imply causality: if <span class="math inline">\(Y\)</span> is “responding” to $x$, or “dependent” on <span class="math inline">\(x\)</span>, then it sounds like changing the value of <span class="math inline">\(x\)</span> will induce a change in the value of <span class="math inline">\(Y\)</span>.</p></li>
+<li><p><span class="math inline">\(x_{1i}\)</span> is the <span class="math inline">\(i^{th}\)</span> value of the first predictor (i.e.&nbsp;independent) variable. <span class="math inline">\(x_{2i}\)</span> is the <span class="math inline">\(i^{th}\)</span> value of the second predictor, etc. The <span class="math inline">\(x's\)</span> are always written lower-case, and technically are assumed to be fixed values, either set prior to data collection or measured without error.</p></li>
+<li><p><span class="math inline">\(\beta_1\)</span> is the slope (i.e.&nbsp;regression coefficient) for the first predictor variable. <span class="math inline">\(\beta_2\)</span> is the slope of the second predictor, etc. The <span class="math inline">\(\beta's\)</span> are <em>parameters</em>, meaning their values are treated as fixed (existing at the “population” level) but unknown.</p>
+<p>We use data to calculate estimated values for the <span class="math inline">\(\beta's\)</span>, and these estimates are written using hat notation. For example, <span class="math inline">\(\hat{\beta_1}\)</span> is the estimated value for <span class="math inline">\(\beta_1\)</span>.</p></li>
+<li><p><span class="math inline">\(\varepsilon_i\)</span> is the <span class="math inline">\(i^{th}\)</span> random error value. This is the amount by which <span class="math inline">\(Y_i\)</span> differs from <span class="math inline">\(\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_kx_{ki}\)</span>, i.e.&nbsp;the fixed component of the model.</p>
+<p>The amount by which <span class="math inline">\(y_i\)</span> (the <span class="math inline">\(i^{th}\)</span> <em>observed</em> value of <span class="math inline">\(y\)</span>) differs from <span class="math inline">\(\hat{\beta_0}+\hat{\beta_1}x_{1i} + \hat{\beta_2}x_{2i} + \dots + \hat{\beta_k}x_{ki}\)</span> is called the <span class="math inline">\(i^{th}\)</span> residual, which we can denote <span class="math inline">\(e_i\)</span>.</p>
+<p>The errors are modeled as random values that are drawn from a normal distribution with mean zero and variance <span class="math inline">\(\sigma^2\)</span>.</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The errors in a regression model do not have to come from a normal distribution. This assumption is made in order to justify inferences about the coefficients; more on this soon.</p>
+</div>
+</div>
+<p>When a regression model has only one predictor variable, it is called a “simple” regression model. If it has more than one predictor variable, it is called a “multiple regression” model.</p>
+</section>
+<section id="assumptions-of-the-regression-model" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="assumptions-of-the-regression-model"><span class="header-section-number">2.2.2</span> Assumptions of the regression model</h3>
+<p>This model implies some assumptions:</p>
+<ul>
+<li><p>The response variable <span class="math inline">\(Y\)</span> is an additive, linear function of the predictors (the <span class="math inline">\(x\)</span> variables)</p></li>
+<li><p>If we fix the value(s) of the <span class="math inline">\(x\)</span> variable(s), all values of <span class="math inline">\(Y\)</span> will be normally distributed. In other words, the <strong>errors</strong> are normally distributed.</p></li>
+<li><p>The errors have the same variance regardless of the values of the <span class="math inline">\(x's\)</span>. This variance is denoted <span class="math inline">\(\sigma^2\)</span></p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The square root of the variance is the <em>standard deviation</em>, denoted <span class="math inline">\(\sigma\)</span>. Standard deviation is expressed in the same units of the original variable, whereas variance is expressed in squared units.</p>
+<p>For this reason, standard deviation is typically referred to when interpreting statistical results. Variance has desirable mathematical properties, and so is more often referred to in statistical theory</p>
+</div>
+</div>
+<p>Visually, this model treats values of Y as being generated randomly from normal distributions centered on the line:</p>
+<p><img src="images/mod2_pt1 (6).png" class="img-fluid"></p>
+<p><em>(figure derived from <a href="https://openstax.org/books/introductory-business-statistics/pages/13-4-the-regression-equation">OpenStax Introductory Business Statistics, section 13.4</a>)</em></p>
+<p>The “errors” are the distances between the line and the values generated from the normal distributions.</p>
+<p>The errors are treated as random and uncorrelated: knowing the value of one error tells you nothing about the likely value of the next.</p>
+</section>
+</section>
+<section id="regression-analysis-in-jamovi" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="regression-analysis-in-jamovi"><span class="header-section-number">2.3</span> Regression analysis in jamovi</h2>
+<section id="simulating-the-regression-model-in-jamovi" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="simulating-the-regression-model-in-jamovi"><span class="header-section-number">2.3.1</span> Simulating the regression model in jamovi</h3>
+<p>We noted earlier that a statistical model is <em>data generating</em>. It describes, mathematically, how values of the outcome variable <span class="math inline">\(Y\)</span> can be created. Consider the “simple” (single <span class="math inline">\(x\)</span> ) regression model:</p>
+<p><span class="math display">\[
+Y_i=\beta_0+\beta_1x_{i} + \varepsilon_i \\
+\varepsilon_i \sim \text{Normal}(0,\sigma^2)
+\]</span></p>
+<p>If we have values for <span class="math inline">\(\beta_0\)</span>, <span class="math inline">\(\beta_1\)</span>, and <span class="math inline">\(\sigma^2\)</span>, when we can plug in values for <span class="math inline">\(x_i\)</span> to generate values for <span class="math inline">\(Y_i\)</span>. Let’s do this using jamovi.</p>
+<p>In jamovi, we first create X values by double-clicking an empty column, choosing “New Computed Variable” then the <span class="math inline">\(f_x\)</span> drop down menu and double click UNIF.</p>
+<p><img src="images/mod2_pt1 (7).png" class="img-fluid" alt="Jamovi dialog box for creating a new variable.  Title is &quot;predictor_variable&quot;.  Formula is &quot;UNIF(0,100)&quot;"></p>
+<p>Here, we are generating 100 random values from a <span class="math inline">\(Uniform(0,100)\)</span> distribution. The uniform distribution is a distribution where all values are equally likely, so we should get an even spread of values between 0 and 100.</p>
+<p>To simulate values of the response variable, we’ll need to make up values for each parameter in the model. Say we want to generate values from this model:</p>
+<p><span class="math inline">\(Y_i=10+0.7x_i+\varepsilon_i \quad \varepsilon_i \sim Normal(0,8^2)\)</span></p>
+<p>This means we’ve decided that <span class="math inline">\(\beta_0=10\)</span>, <span class="math inline">\(\beta_1=0.7\)</span>, and <span class="math inline">\(\sigma=8\)</span>. And since we’ve generated 100 values for <span class="math inline">\(x_i\)</span>, we’ve also decided that <span class="math inline">\(i=1\dots 100\)</span></p>
+<p>Double click an empty column and choose “New Computed Variable”:</p>
+<p><img src="images/mod2_pt1 (10).png" class="img-fluid" alt="Image of three buttons in jamovi.  Top button says &quot;new data variable&quot;, second says &quot;new computed variable&quot;, third says &quot;new transformed variable&quot;"></p>
+<p>Now make the formula look like the right side of the regression equation from the previous slide:</p>
+<p><img src="images/mod2_pt1 (9).png" class="img-fluid"></p>
+<p>Now we can take a look using Scatterplot, a downloadable jamovi module. Click the icon of the plus sign labeled “Modules” to bring up a list of available modules you can install. We will use many modules in STAT 331.</p>
+<p><img src="images/mod2_pt1 (11).png" class="img-fluid"></p>
+<p>After installation, Scatterplot is available under Exploration in the Analyses tab. You can assign the X and Y axis variables, and get a plot that looks something like this:</p>
+<p><img src="images/mod2_pt1 (12).png" class="img-fluid"></p>
+<p>These are random data, so yours will look a little bit different. But the scales of the axes and vertical spread of the data should be similar.</p>
+<p>Next, we’ll fit a regression model to this data. In practice, we do not know the values of the parameters in our model, so we estimate them using data. This is known as “fitting” the model to the data. The point of this simulation is to look at what kind of results we get when fiting a regression model to fake data that was produced by a mechanism we fully understand.</p>
+</section>
+</section>
+<section id="fitting-a-regression-model-in-jamovi" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="fitting-a-regression-model-in-jamovi"><span class="header-section-number">2.4</span> Fitting a regression model in jamovi</h2>
+<p>We can use Regression / Linear Regression to fit a “simple” regression model, which is a regression model with just one predictor.</p>
+<p><img src="images/mod2_pt1 (13)-01.png" class="img-fluid" alt="The &quot;Analyses&quot; tab is selected; &quot;linear regression&quot; is the third option."></p>
+<p>The response variable is “Dependent Variable”.</p>
+<p>The predictor variable goes under “Covariates”.</p>
+<p><img src="images/mod2_pt1 (14).png" class="img-fluid" alt="Jamovi linear regression dialog box"></p>
+<p>After selecting variables, model will automatically be fit, and output will be generated to the right under “Results”.</p>
+<p><img src="images/mod2_pt1 (17).png" class="img-fluid"></p>
+<p>Based on these results, here is the estimated regression model:</p>
+<p><span class="math display">\[
+\hat{y_i}=\hat{\beta_0}+\hat{\beta_1}x_i=9.1+0.71x_i
+\]</span></p>
+<p><span class="math display">\[
+\hat{\sigma}=\sqrt{MSE}=\sqrt{64.8}=7.93
+\]</span></p>
+<p>Note that it is standard to denote estimated values using “hats”. The “estimate” column is where we find the values for the estimated regression coefficients <span class="math inline">\(\hat{\beta_0}\)</span> and <span class="math inline">\(\hat{\beta_1}\)</span>. “RMSE” (“root mean square error”) is the estimated standard deviation of the errors, assumed to have come from a normal distribution. Compare these results to the values used to generate our fake data:</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;\beta_0=10 &amp;\beta_1=0.7 \quad &amp;\sigma=8 \\
+&amp;\hat{\beta_0}=9.099 &amp;\hat{\beta_1}=0.712 \quad &amp;\hat{\sigma}=7.93 \\
+&amp;s_{\hat{\beta_0}}=1.776 &amp;s_{\hat{\beta_1}}=0.034
+\end{align}
+\]</span></p>
+</section>
+<section id="the-r2-statistic" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="the-r2-statistic"><span class="header-section-number">2.5</span> The <span class="math inline">\(R^2\)</span> statistic</h2>
+<p>Note that the output tells us <span class="math inline">\(R^2=0.874\)</span>. This is a statistic quantifying how well this model can “predict” the data used to fit it. It is found from the “sum of squares” values in the ANOVA table, Generically:</p>
+<p><span class="math display">\[
+R^2=\frac{\text{model sum of squares}}{\text{total sum of squares}}=\frac{\text{model sum of squares}}{\text{model sum of squares + residual sum of squares}}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>“Sums of squares” are used to quantify variance. You can think of this as being short for “sum of the squared distances between some values and their mean”. For example, the variance statistic is</p>
+<p><span class="math display">\[
+s^2=\frac{\sum_{i=1}^n (y_i-\bar{y})}{n-1}\
+\]</span> The numerator, <span class="math inline">\(\sum_{i=1}^n (y_i-\bar{y})\)</span>, is a “sum of squares” - the sum of the squared deviations between all the values of <span class="math inline">\(y_i\)</span> and their mean, <span class="math inline">\(\bar{y}\)</span>.</p>
+</div>
+</div>
+<p>In this example:</p>
+<p><span class="math display">\[
+R^2=\frac{29162}{29162+4211}=0.874
+\]</span></p>
+<p>So, in this case, <span class="math inline">\(87.4\%\)</span> of the total variance in <span class="math inline">\(Y\)</span> can be accounted for using the values of <span class="math inline">\(x\)</span>. Here’s the data again, with the estimated regression line added:</p>
+<p><img src="images/mod2_pt1 (29).png" class="img-fluid"></p>
+<ul>
+<li><p>The total variance in <span class="math inline">\(Y\)</span> quantifies how much the data vary vertically around the horizontal red line, which is the mean of <span class="math inline">\(Y\)</span>.</p></li>
+<li><p>The residual (or “error”) variance quantifies how much the data vary vertically around the regression line.</p></li>
+</ul>
+<p>Here, the data are relatively much closer to the regression line than to the the horizontal mean line, and so residual sum of squares is only a small portion of the total sum of squares, making <span class="math inline">\(R^2\)</span> fairly large.</p>
+<p>An alternative interpretation of <span class="math inline">\(R^2\)</span> is that is quantifies the <em>proportional decrease in residual variance when using the regression line rather than using only the mean of</em> <span class="math inline">\(Y\)</span><em>.</em></p>
+<p>Looking at the plot above, you can imagine drawing vertical lines from each data point to the horizontal red line representing the mean of <span class="math inline">\(Y\)</span>. If you squared these lines and added them up, you’d have the total sum of squares, which would also be the residual sum of squares if you were using only the mean of <span class="math inline">\(Y\)</span> to calculate residuals. In this case, using the regression line instead of just the mean to calculate residuals would represent an <span class="math inline">\(87.4\%\)</span> decrease in residual sum of squares.</p>
+<p>Said differently, <span class="math inline">\(R^2\)</span> tells you how much better your predictions for <span class="math inline">\(Y\)</span> would be if you use the regression line rather than only the mean.</p>
+<section id="there-is-no-good-or-bad-value-for-r2" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="there-is-no-good-or-bad-value-for-r2"><span class="header-section-number">2.5.1</span> There is no “good” or “bad” value for <span class="math inline">\(R^2\)</span></h3>
+<p>When residual variance in <span class="math inline">\(Y\)</span> is larger, <span class="math inline">\(R^2\)</span> is smaller. Visually, when the data are more spread out around the regression line, <span class="math inline">\(R^2\)</span> is smaller. Is this “bad”? I want you to resist such an interpretation. A small <span class="math inline">\(R^2\)</span> tells you that <span class="math inline">\(Y\)</span> is being influenced by a lot more than just what is in your model. And this is often to be expected.</p>
+<p>For instance, if I’m trying to predict how many tomatoes are produced per tomato plant in different parts of the country and my only predictor variable is average daily outdoor temperature, I should not expect a large <span class="math inline">\(R^2\)</span>. This is because there are many many more variables that influence how many tomatoes will grow (e.g.&nbsp;properties of soil, watering schedule, fertilizer, pests…). But, a small <span class="math inline">\(R^2\)</span> should not be interpreted as “average daily outdoor temperature doesn’t matter when growing tomatoes”. It should be interpreted as “there are way more other things that matter when growing tomatoes, and their combined influence is much greater than average daily outdoor temperature alone”.</p>
+</section>
+</section>
+<section id="sums-of-squares-and-mean-squares" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="sums-of-squares-and-mean-squares"><span class="header-section-number">2.6</span> Sums of squares and mean squares</h2>
+<p>• We will look at some formulas in this section. Some are based on sums of squares, which are reported in the ANOVA table. • Total sum of squares quantifies total variability in 𝑦: 𝑛</p>
+<p>𝑆𝑆𝑇𝑜𝑡𝑎𝑙 = ෍ 2 𝑖=1</p>
+<p>• Note that this has nothing to do with the regression line, or the predictor variable. It quantifies variability in the response variable alone.</p>
+<section id="total-sum-of-squares" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="total-sum-of-squares"><span class="header-section-number">2.6.1</span> Total sum of squares</h3>
+<p>• Visually, 𝑆𝑆𝑇𝑜𝑡𝑎𝑙 is the sum of the squared vertical deviations between each data point and the mean of 𝑦, shown here as a horizontal line. • The two blue lines drawn are two such instances of these deviations. If we drew these for every data point, squared them, and added them up, we’d have 𝑆𝑆𝑇𝑜𝑡𝑎𝑙 • Again, note that this quantity has nothing to do with the regression</p>
+</section>
+<section id="residual-error-sum-of-squares" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="residual-error-sum-of-squares"><span class="header-section-number">2.6.2</span> Residual / Error sum of squares</h3>
+<p>• Error sum of squares quantifies total variability in 𝑦 around the regression line:</p>
+<p>𝑆𝑆𝐸𝑟𝑟𝑜𝑟</p>
+<p>𝑛 = ෍ 𝑖=1</p>
+<p>𝑛 2 = ෍ 𝑖=1</p>
+<p>𝑦𝑖</p>
+<p>2 −</p>
+<p>• This is also known as the “sum of the squared residuals”, where a residual is the vertical distance between a data point and the regression line. The</p>
+<p>values of</p>
+<p>𝛽መ</p>
+<p>and</p>
+<p>𝛽መ</p>
+<p>are chosen so as to minimize 𝑆𝑆𝐸𝑟𝑟𝑜𝑟</p>
+<p>• In other words, the regression line drawn through the data produced a smaller 𝑆𝑆𝐸𝑟𝑟𝑜𝑟 than any other line we could possibly draw.</p>
+<p>• Visually, 𝑆𝑆𝐸𝑟𝑟𝑜𝑟 is the sum of the squared vertical deviations between each data point and the regression line. • Here, the blue lines are two instances of these deviations • 𝑆𝑆𝐸𝑟𝑟𝑜𝑟 will be larger when the data are more spread out around the line, and vice versa.</p>
+</section>
+<section id="mean-square-error" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="mean-square-error"><span class="header-section-number">2.6.3</span> Mean square error</h3>
+<p>• Error mean square (aka mean square error) is given by</p>
+<p>𝑀𝑆𝐸 = 𝑀𝑆𝐸𝑟𝑟𝑜𝑟</p>
+<p>= 𝑆𝑆𝐸𝑟𝑟𝑜𝑟 𝑛 − 𝑘 + 1</p>
+<p>• 𝑘 is the number of predictor variables. Example: for simple regression, 𝑘 = 1, so 𝑀𝑆𝐸 = 𝑆𝑆𝐸𝑟𝑟𝑜𝑟 𝑁−2</p>
+<p>• As seen earlier,</p>
+<p>is the estimate for the standard deviation of the</p>
+<p>residuals around the line: 𝜎ො =</p>
+</section>
+<section id="model-sum-of-squares" class="level3" data-number="2.6.4">
+<h3 data-number="2.6.4" class="anchored" data-anchor-id="model-sum-of-squares"><span class="header-section-number">2.6.4</span> Model sum of squares</h3>
+<p>• Model sum of squares (aka “regression sum of squares”) is given by:</p>
+<p>𝑛 𝑆𝑆𝑀𝑜𝑑𝑒𝑙 = ෍ 2 𝑖=1</p>
+<p>• This can be thought of as quantifying how much better the model is than alone at accounting for variation in the values of 𝑦.</p>
+<p>𝑦ത</p>
+<p>• Visually, 𝑆𝑆𝑀𝑜𝑑𝑒𝑙 is the sum of the squared vertical deviations between the regression line and the horizontal line, at each value of the predictor variable. • Here, the blue lines are two instances of these deviations, associated with the circled blue data points.</p>
+<p>𝑆𝑆𝑇𝑜𝑡𝑎𝑙 = 𝑆𝑆𝐸𝑟𝑟𝑜𝑟 + 𝑆𝑆𝑀𝑜𝑑𝑒𝑙</p>
+<p>• Total sum of squares are equal to the sum of error sum of squares and model sum of squares. • Note that this also implies:</p>
+<p>𝑆𝑆𝑀𝑜𝑑𝑒𝑙 = 𝑆𝑆𝑇𝑜𝑡𝑎𝑙 − 𝑆𝑆𝐸𝑟𝑟𝑜𝑟</p>
+<p>𝑆𝑆𝐸𝑟𝑟𝑜𝑟 = 𝑆𝑆𝑇𝑜𝑡𝑎𝑙 − 𝑆𝑆𝑀𝑜𝑑𝑒𝑙</p>
+</section>
+</section>
+<section id="interpreting-regression-results" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="interpreting-regression-results"><span class="header-section-number">2.7</span> Interpreting regression results</h2>
+<p>• Here again is the estimated model from the previous example: 𝑦ො𝑖 = 9.1 + 0.71𝑥𝑖</p>
+<p>• The intercept, 𝛽መ0 = 9.1, gives the predicted value of the response variable (𝑦) when the predictor variable (𝑥) equals zero. This is not typically of practical interest.</p>
+<p>• The slope, in 𝑥.</p>
+<p>𝛽መ</p>
+<p>= 0.71, gives the predicted change in 𝑦 for a one unit increase</p>
+<p>• The slope is often of practical interest. It tells us how much the response variable changes, on average, when the predictor variable increases by one unit. • This interpretation is very common. It is also dangerous, because it is phrased in a way that suggests changes in 𝑥 cause changes in 𝑦. • Here is an alternate, non-causal sounding interpretation:</p>
+<p>If we observe two values of 𝑥 that are one unit apart, we estimate</p>
+<p>that their corresponding average 𝑦 values will be</p>
+<p>𝛽መ</p>
+<p>units apart.</p>
+<p>• Visually, we can choose two values of 𝑥, go up to the line, and record the values of 𝑦. The slope tells us how much these 𝑦 values are expected to differ.</p>
+<p>• Here, when we compare 𝑥 = 20 and 𝑥 = 80, we expect their corresponding y values to differ by:</p>
+<p>(80 − 20) ∗ 0.725 = 43.5</p>
+<p>• For each estimated coefficient (𝛽መ</p>
+<p>and</p>
+<p>𝛽መ</p>
+<p>), jamovi reports a standard error,</p>
+<p>along with a t-test statistic and p-value testing the null that the parameter being estimated equals zero.</p>
+<p>• Example: the above output shows the test of 𝐻0: 𝛽1 = 0</p>
+<p>𝑡 =</p>
+<p>𝛽መ 𝑠𝛽෡1</p>
+<p>0.712</p>
+<p>0.034</p>
+<p>= 21. 22 𝑝 − 𝑣𝑎𝑙𝑢𝑒 &lt; 0.001 “𝑟𝑒𝑗𝑒𝑐𝑡 𝐻0”</p>
+<p>• We can use these results to create an approximate 95% confidence for 𝛽1:</p>
+<p>95% 𝐶𝐼 𝑓𝑜𝑟 𝛽1 ≈</p>
+<p>𝛽መ</p>
+<p>± 2 ∗ 𝑠𝛽෡1</p>
+<p>= 0.712 ± 2 ∗ 0.034 = (0.645, 0.779)</p>
+<p>• This is a very narrow interval, suggesting a “precise” estimate of 𝛽1 • For both the hypothesis test and 95% CI, the results depend on how large the estimate of 𝛽1 is, relative to its standard error.</p>
+<p>• In this case,</p>
+<p>𝛽መ</p>
+<p>is very large relative to 𝑠𝛽෡1</p>
+<p>, so the result is “highly significant”</p>
+<p>Formulas for</p>
+<p>𝛽መ</p>
+<p>and 𝑠𝛽෡1</p>
+<p>• Now that you’ve seen how</p>
+<p>𝛽መ</p>
+<p>and 𝑠𝛽෡1</p>
+<p>are used, here are their formulas:</p>
+<p>𝛽መ = 𝑟 ∗</p>
+<p>𝑠𝑦 𝑠𝑥</p>
+<p>𝑠𝛽෡1 =</p>
+<p>=</p>
+<p>𝑠𝑦 ∗ 𝑠𝑥</p>
+<p>• 𝛽መ</p>
+<p>is larger when the correlation between 𝑥 and 𝑦 is stronger, and when the</p>
+<p>variability in 𝑦 is larger relative to the variability in 𝑥. • 𝑠𝛽෡1 is smaller when 𝑅2 is larger, when n is larger, and when the variability in 𝑥 is larger relative to the variability in 𝑦.</p>
+</section>
+<section id="applied-example-the-binary-bias" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="applied-example-the-binary-bias"><span class="header-section-number">2.8</span> Applied example: “The binary bias”</h2>
+<p>• There is a paper up on Canvas, titled “The Binary Bias: A Systematic Distortion in the Integration of Information”. This is a 2018 paper published in Psychological Science with open data.</p>
+<p>• The overall hypothesis is that people tend to assess continuous information using binary thinking. The experiments all involve testing to see if participants will give higher or lower assessments of where an average lies, based on the “imbalance” of the data: i.e.&nbsp;the comparative frequency with which very low or very high values turn up.</p>
+<p>• Here is the section of the paper describing the results of Study 1a:</p>
+<p>• The data:</p>
+<p>• Telling jamovi to fit the model:</p>
+<p>• The model, before being fit to the data:</p>
+<p>𝑅𝑒𝑐𝑜𝑟𝑑𝑒𝑑𝑖 = 𝛽0 + 𝛽1𝐼𝑚𝑏𝑎𝑙𝑎𝑛𝑐𝑒𝑖 + 𝛽2𝑀𝑜𝑑𝑒𝑖 + 𝛽3𝐹𝑖𝑟𝑠𝑡𝑖 + 𝛽4𝐿𝑎𝑠𝑡𝑖 + 𝜀𝑖</p>
+<p>• The results in jamovi:</p>
+<p>• Note that the estimated slope is being denoted as 𝑏 rather than as 𝛽መ . 𝜎ො = 𝑀𝑆𝐸. Note also how the 95% CI was created: ≈ 4.62 ± 2 ∗ 0.63</p>
+<p>• The paper does not mention 𝑅2. We can see it in the jamovi output, and calculate it from the ANOVA table:</p>
+<p>• 𝑅2 = 0.12. So, about 12% of the total variance in “Recorded” is being “explained” or “accounted for” in the model.</p>
+<p>• In multiple regression, each predictor is interpreted under the assumption that the values of all other predictors are held constant (i.e.&nbsp;“controlled for”).</p>
+<p>• So, if we were to observe two participants who were equal in terms of “First”, “Last”, and “Mode”, but were one unit apart in terms of “Imbalance”, we would expect their values for the response variable (“Recorded”) to differ by 4.62 units on average.</p>
+<p>• Or: The predicted (or average) difference in Recorded associated with a one unit difference in Imbalance is 4.62 units, if all other predictors are held constant.</p>
+</section>
+<section id="interaction" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="interaction"><span class="header-section-number">2.9</span> Interaction</h2>
+<p>• “Interaction” is the phenomenon by which the association between a predictor variable and a response variable is itself dependent on the value of another predictor.</p>
+<p>• Say we have response 𝑦, one predictor 𝑥1, and another predictor 𝑥2. We say that 𝑥1 and 𝑥2 interact if the amount of change in 𝑦 associated with a change in 𝑥1 is different for different values of 𝑥2, or vice versa.</p>
+<p>• You can think of this as saying that the “slope” of 𝑥1 depends upon the value of 𝑥2.</p>
+<p>• Another way of saying it: if the answer to the question:</p>
+<p>“How much does our estimate for 𝑦 change when 𝑥1 changes?”</p>
+<p>is:</p>
+<p>“It depends on the value of 𝑥2”,</p>
+<p>then 𝑥1 and 𝑥2 interact.</p>
+<section id="interaction-example" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="interaction-example"><span class="header-section-number">2.9.1</span> Interaction example</h3>
+<p>• Suppose a drug for treating rheumatoid arthritis is more effective at reducing inflammation for younger patients than it is for older patients.</p>
+<p>• If we conduct an experiment in which inflammation is the response variable and the predictors are treatment group (drug vs.&nbsp;control) and age, then we expect treatment group and age to interact.</p>
+<p>• This is different from saying that age and treatment both affect inflammation. It means that the extent to which treatment affects inflammation is different for patients of different age.</p>
+<p>• Sometimes interaction is referred to as “moderation”. This is common in the social and behavioral sciences, particularly Psychology.</p>
+<p>• So, a “moderator” variable is one that changes how the primary predictor of interest relates to the response.</p>
+<p>• Example: suppose an experiment shows that subjects holding a pen with their teeth rate cartoons as funnier vs.&nbsp;subjects holding a pen with their lips.</p>
+<p>• Suppose also that this “pen in teeth” effect disappears if subjects see a video camera in the room.</p>
+<p>• In this case, the presence of the video camera “moderates” the effect of the pen on cartoon ratings. In the language of interaction, the presence of the pen and the presence of the video camera “interact”.</p>
+<p>This is based on a real study that has generated controversy, see: <a href="https://statmodeling.stat.columbia.edu/2018/11/01/facial-feedback-findings-suggest-minute-differences-"></a></p>
+</section>
+<section id="interaction-in-the-regression-model" class="level3" data-number="2.9.2">
+<h3 data-number="2.9.2" class="anchored" data-anchor-id="interaction-in-the-regression-model"><span class="header-section-number">2.9.2</span> Interaction, in the regression model</h3>
+<p>• Mathematically, we create an interaction variable by multiplying predictor variables by one another.</p>
+<p>• So, if we want to allow 𝑥1 and 𝑥2 to interact, we simply make a new variable defined as 𝑥1 ∗ 𝑥2.</p>
+<p>• This interaction variable will be used as an additional predictor variable in the regression model:</p>
+<p>𝑌𝑖= 𝛽0 + 𝛽1𝑥1𝑖 + 𝛽2𝑥2𝑖 + 𝛽3 𝑥1𝑥2 𝑖 + 𝜀𝑖, 𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)</p>
+<p>• The interaction coefficient is 𝛽3 in this model:</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥1𝑖 + 𝛽2𝑥2𝑖 + 𝛽3 𝑥1𝑥2 𝑖 + 𝜀𝑖</p>
+<p>𝜀𝑖~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)</p>
+<p>• To interpret this, let’s look at how it affects the coefficients (aka slopes) for 𝑥1 and 𝑥2.</p>
+<p>• We can think of the “slope” of a predictor as everything it is being multiplied by.</p>
+<p>𝑌𝑖 = 𝛽0 + 𝛽1𝑥1𝑖 + 𝛽2𝑥2𝑖 + 𝛽3 𝑖 + 𝜀𝑖</p>
+<p>• Factoring out 𝑥1 from the above regression equation gives:</p>
+<p>𝑌𝑖 = 𝛽0 + (𝛽1+𝛽3𝑥2𝑖)𝑥1𝑖 + 𝛽2𝑥2𝑖 + 𝜀𝑖</p>
+<p>• Similarly, factoring out 𝑥2 gives:</p>
+<p>𝑌𝑖 = 𝛽0 + (𝛽2+𝛽3𝑥1𝑖)𝑥2𝑖 + 𝛽1𝑥1𝑖 + 𝜀𝑖</p>
+<p>• So, for this model, the “slope” of 𝑥1 is 𝛽1 + 𝛽3𝑥2, and the “slope” of 𝑥2 is 𝛽2 + 𝛽3𝑥1</p>
+<p>• In other words, the slope of 𝑥1 depends on the value of 𝑥2, and vice versa. For different values of 𝑥2, the “predicted change in 𝑦 for a one unit increase in 𝑥1” (i.e.&nbsp;the slope of 𝑥1) will be different.</p>
+<p>• A simpler way of saying this is that, if two predictors interact, then the effect of one predictor on the response depends on the value of the other predictor.</p>
+<p>(This is a simpler interpretation, but also potentially misleading in that the term “effect” sounds causal. Nonetheless it is commonly used language when interpreting slopes.)</p>
+</section>
+</section>
+<section id="jamovi-example-arthritis-data" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="jamovi-example-arthritis-data"><span class="header-section-number">2.10</span> jamovi Example: Arthritis data</h2>
+<p>• The data set “arthritis_data.csv” contains simulated data from a (fictional) Randomized Control Trial comparing treatments for inflammation from rheumatoid arthritis: a disease-modifying anti-rheumatic drug (DMARD) vs.&nbsp;a non-steroidal anti-inflammatory drug (NSAID)</p>
+<p>• The variables are:</p>
+<p>• Drug: indicator (0 / 1) variable; 1 = DMARD, 0 = NSAID • Before: Inflammation scan score prior to treatment (scale: 0 to 50) • After: Inflammation scan score six months after treatment • Difference: Difference in scores, before minus after. (Note that larger values</p>
+<p>Before vs.&nbsp;after scatterplot</p>
+<p>• We will fit some regression models using this data, but first let’s take a look at our data using the Scatterplot module.</p>
+<p>• Here is “after” vs.&nbsp;“before”, with a linear regression line superimposed. Note that most patients had greater inflammation before than after treatment.</p>
+<p>Differences by treatment type</p>
+<p>• Note that the differences tend to be larger for the DMARD group: this corresponds to a greater reduction in inflammation.</p>
+<p>• Use Descriptives to create the boxplot. Select difference as a Variable and Split by drug. Then select under Plots – Box plot and Data Jittered to superimpose data.</p>
+<p>Before vs.&nbsp;age scatterplot</p>
+<p>• Here we see that age is positively correlated with inflammation before the drug trial.</p>
+<p>• jamovi gives options to superimpose regression output on a scatterplot.</p>
+<p>• jamovi can also plot “standard error” bands around the line. These show the standard error for the average value of y (“before”), given x (“age”).</p>
+<p>Difference vs.&nbsp;before</p>
+<p>We don’t see an association between amount of inflammation before treatment and reduction in inflammation…</p>
+<p>… but maybe we do if we add in drug! Do “drug” and “before” interact here?</p>
+<p>Difference vs.&nbsp;age</p>
+<p>We see a small negative correlation between difference and age…</p>
+<p>… but when we add drug, we see no correlation for the NSAID and clear negative correlation for the DMARD. Definite interaction!</p>
+<p>Now with model output…</p>
+<p>• The following slides show the plots again, plus the regression output JMP produces. First up, Difference vs.&nbsp;Drug, using t-test:</p>
+<p>• And using regression:</p>
+<p>OMG! The estimated slope for “drug” is the same as the difference in means between the drugs!</p>
+<p>Before vs.&nbsp;age</p>
+<p>Difference vs.&nbsp;age, with interaction</p>
+<p>• Here, we are fitting the model:</p>
+<p>𝐷𝑖𝑓𝑓𝑒𝑟𝑒𝑛𝑐𝑒𝑖 = 𝛽0 + 𝛽1𝑎𝑔𝑒𝑖 + 𝛽2𝑑𝑟𝑢𝑔𝑖 + 𝛽3 𝑖 + 𝜀𝑖</p>
+<p>• To do this, create a new column in jamovi, defined as age<em>drug. May as well label it “age</em>drug”.</p>
+<p>Difference vs.&nbsp;age, with drug interaction</p>
+<p>• Notice that the slope of “age” by itself is for when drug = 0. The age*treatment interaction shows how much the slope of “age” changes when treatment = 1.</p>
+<p>𝑑𝑖𝑓𝑓෣𝑒𝑟𝑒𝑛𝑐𝑒 = 2.0114 + 0.0125 + 15.1586 𝑑𝑟𝑢𝑔 −0.2493(𝑎𝑔𝑒 ∗ 𝑑𝑟𝑢𝑔)</p>
+<p>• Slope of “age” when drug = 1 is: 0.0125 − 0.2493 = −0.2368</p>
+<p>Difference vs.&nbsp;age, with drug interaction</p>
+<p>• Notice also that the slope of “age” by itself is nowhere close to being statistically significant (the estimate is less than half the standard error), but the slope of the interaction is highly significant (the estimate is 6 times as large as the standard error)</p>
+<p>• Now take a look at the plot. There is a clear negative correlation between age and difference when drug = 1. There is essentially none when drug = 0.</p>
+<p>Difference vs.&nbsp;age, with drug interaction</p>
+<p>• Another way of thinking about this interaction:</p>
+<p>• If we ask the question: “how does inflammation reduction differ by age?”, the answer is “it depends on which drug the patient took.”</p>
+<p>• Similarly, if we ask the question: “how does inflammation reduction differ by drug?”, the answer is “it depends on the</p>
+<p>• In this example, we see a clear interaction between drug and age: the slope for age is negative for DMARD and flat for NSAID.</p>
+<p>• Another way of thinking about this: DMARD appears to be more effective for younger patients than for older patients. NSAID appears to be equally effective regardless of age.</p>
+<p>• HOWEVER – this does NOT mean that treatment and age are correlated!</p>
+<p>• This should make sense, after all patients were randomly assigned to one of the two drugs. If drug were correlated with age, there would be bias in this study. The whole point of randomization is to remove correlations!</p>
+<p>• Just to confirm, here is the distribution of age, split by drug:</p>
+<p>• Again, age and drug “interact” when it comes to their associations with the differences in inflammation scores: the association between “age” and “difference” is different for the two different drugs.</p>
+<p>• Similarly, the association between “drug” and “difference” is different for patients of different ages.</p>
+</section>
+<section id="centering-predictor-variables" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="centering-predictor-variables"><span class="header-section-number">2.11</span> Centering predictor variables</h2>
+<p>𝑑𝑖𝑓𝑓෣𝑒𝑟𝑒𝑛𝑐𝑒 = 2.0114 + 0.0125</p>
+<ul>
+<li>15.1586</li>
+</ul>
+<p>− 0.2493(𝑎𝑔𝑒 ∗ 𝑑𝑟𝑢𝑔)</p>
+<p>• There is a serious challenge when interpreting the slope for “drug”: this slope is only 15.1586 if 𝑎𝑔𝑒 = 0. But 𝑎𝑔𝑒 = 0 is not of interest.</p>
+<p>• Plug in mean age (52.096) and see what happens to the slope for drug:</p>
+<p>15.1586 − 0.2493 = 15.1586 − 0.2493 ∗ 52.096 = 2.171(𝑑𝑟𝑢𝑔) • So, for patients at mean age, the predicted difference in inflammation is 2.171 units greater under the DMARD than under the NSAID</p>
+<p>• This process of estimating slopes at the average value of predictors can be done via “centering”</p>
+<p>• Centering means subtracting the mean from a variable’s distribution.</p>
+<p>• In this example, 𝑐𝑒𝑛𝑡𝑒𝑟𝑒𝑑 𝑎𝑔𝑒 = 𝑎𝑔𝑒 − 𝑎𝑔𝑒 = 𝑎𝑔𝑒 – 52.096</p>
+<p>• This is very useful when using interaction terms in a regression model.</p>
+<p>• To center age, create a new columns called “centered age”, defined as age – VMEAN(age).</p>
+<p>• Create another new column for “centered drug”, defined as drug – VMEAN(drug). Now create a final column defined as centered drug * centered age, call it “centered age*drug”</p>
+<p>• We can’t use MEAN() to center variables in jamovi since it works across variables, one row at a time. What we want is to take the overall mean of a variable and subtract it from each measurement.</p>
+<p>• So, use VMEAN() to center variables in jamovi.</p>
+<p>• Compare the new results (on the left) to the results we saw when using the interaction term we created manually (on the right)</p>
+<section id="centered-interaction-in-jamovi" class="level3" data-number="2.11.1">
+<h3 data-number="2.11.1" class="anchored" data-anchor-id="centered-interaction-in-jamovi"><span class="header-section-number">2.11.1</span> Centered interaction in jamovi</h3>
+<p>• The “Model Fit Measures” are identical. Centering has no effect on 𝑅2 or any sums of squares.</p>
+<p>• Centering also had no effect on the slope for the interaction, or on its standard error. But, look at the individual “age” and “drug” predictors.</p>
+<p>• These slopes are different, because they are being calculated at the mean value of the other.</p>
+<p>• Centering also reduces the standard</p>
+<p>• Look at the slope for drug when using a centered interaction: it’s the same value we calculated by plugging the mean of age into the interaction term in the non-centered model!</p>
+<p>• The slope for age in the centered model is harder to interpret. It is calculated at the “average” for drug, which doesn’t make real world sense.</p>
+<p>Only centering one predictor in jamovi</p>
+<p>• It would be best if we could center “age” but not drug.</p>
+<p>• But we already created centered age when we created the centered interaction.</p>
+<p>• Now we need to create the new interaction where only age is centered. Create a new column and define it as “drug * centered age”.</p>
+<p>Only centering one predictor in JMP</p>
+<p>• Here are the results. Compare them to the previous two versions:</p>
+<p>• Only age centered:</p>
+<p>• Age and drug centered in the interaction:</p>
+<p>• Nothing centered:</p>
+<p>• First, the slope for the interaction is the same in all three models.</p>
+<p>• Second, the slope for drug is the same in both centered models, but different in the non-centered model. It is the centering of age in the interaction that changed the slope for drug.</p>
+<p>• Third, the slope for age is the same in both models for which drug is not centered. This allows us to interpret it as before: slope for age is 0.0125 for the NSAID and is 0.0125 − 0.2493 = −0.2368 for the DMARD</p>
+<p>• Fourth, the standard error for drug is substantially smaller when age is centered in the interaction. This is typically the case when centering a continuous variable in an interaction.</p>
+<p>• Finally, the intercept is different in all three models.</p>
+<p>• Normally we don’t care about the intercept, but centering allows the intercept to be meaningfully interpreted.</p>
+<p>• Since</p>
+<p>𝐶𝑒𝑛𝑡𝑒𝑟</p>
+<p>𝑎𝑔𝑒 = 𝑎𝑔𝑒 – 𝑎𝑔𝑒, [𝐶𝑒𝑛𝑡𝑒𝑟]𝑎𝑔𝑒 = 0 when 𝑎𝑔𝑒 = 𝑎𝑔𝑒</p>
+<p>• Remember that the intercept is interpreted as the “predicted value of the response when the predictors equal zero”.</p>
+<p>• So, when centering, the intercept is the predicted value of the response when the centered predictors equal their mean.</p>
+<p>• Going back to our example, the predicted reduction in inflammation (before minus after) for a patient at the average age in our data set who got the NSAID is 2.665.</p>
+<p>• The predicted reduction in inflammation for a patient at the average age who got the DMARD is 2.665 + 2.171 = 4.836</p>
+</section>
+</section>
+<section id="standardizing-predictor-variables" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="standardizing-predictor-variables"><span class="header-section-number">2.12</span> Standardizing predictor variables</h2>
+<p>• We will briefly consider an extension on centering: standardizing.</p>
+<p>• Recall from your introductory statistics course the standardization “z” formula:</p>
+<p>𝑧 = 𝑥−𝜇, or in words: 𝑧 = 𝑣𝑎𝑙𝑢𝑒 −𝑚𝑒𝑎𝑛 𝜎 𝑠𝑡𝑎𝑛𝑑𝑎𝑟𝑑 𝑑𝑒𝑣𝑖𝑎𝑡𝑖𝑜𝑛</p>
+<p>• To center a variable, we subtract the mean. To standardize, we subtract the mean and then divide by the standard deviation.</p>
+<p>Why standardize?</p>
+<p>• Just like with a centered variable, the mean of a standardized variable is zero. So, standardizing has all the same benefits as centering when it comes to interpretation of interactions.</p>
+<p>• Standardizing has an additional potential benefit: the slope can be interpreted as the predicted change in Y for a one standard deviation increase in X (while holding all other predictors constant).</p>
+<p>• Z values are interpreted as “number of standard deviations from the mean”. And so increasing Z by 1 implies increasing X by 1 standard deviation.</p>
+<p>• To standardize in jamovi we will need to create a new column defined by (age – VMEAN(age)) / VSTDEV(age). • We will also need to create a column for the new interaction and define it as drug * Standardized age</p>
+<p>• Here are the results when age is standardized:</p>
+<p>• Compare to the results when age is centered:</p>
+<p>• Note that the intercepts are the same. In both cases, the predicted reduction in inflammation for a patient at average age getting NSAID is 2.665. Likewise, in both cases this prediction is 4.836 for DMARD.</p>
+<p>• What has changed is the slope for terms involving age. Now, a one unit increase in standardized age is a one standard deviation increase in age.</p>
+<p>• So, for NSAID, the predicted difference in inflammation reduction for two people whose ages are one standard deviation apart is 0.14. For DMARD, it is 0.14 – 2.79 = -2.64.</p>
+<p>• How much is a standard deviation? We can look it up…</p>
+<p>Interaction and centering / standardizing summary</p>
+<p>• This has been a long example. I encourage you to load up the data yourself and play around with it in jamovi. At the minimum, make sure you can re-create the results in these notes.</p>
+<p>• The most important take-aways:</p>
+<p>• Interaction terms allow the slope of predictor to change for different values of another predictor.</p>
+<p>• Centering helps make regression coefficients (slopes and intercepts) more interpretable. Standardizing allows you to interpret them in terms of one standard deviation changes, rather than “one unit” changes.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Ch1_Review.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Chapter 1: Review of classical inference</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Ch3_Model_Fit.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Chapter 3: Assessing and improving model fit</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

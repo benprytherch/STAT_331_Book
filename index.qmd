@@ -1,0 +1,42 @@
+# Introduction to STAT 331: Intermediate Applied Statistical Methods {.unnumbered}
+
+## Purpose and intended audience
+
+STAT 331, as the title states, is an "applied" statistics course.  It is intended for anyone who has taken at least one introductory level statistics course, and who wants to learn more about the use of statistical methods in quantitative research.
+
+It covers many statistical tools that are usually considered too advanced for an introductory level class, but are nonetheless very popular. It also provides guidance on making data analysis decisions.
+
+Most assignments will involve looking up a published scientific paper for which the data are available and reproducing the main results. There are many worked examples that go through the statistical analyses in used in specific published papers.  
+
+STAT 331 doesn't require any coding; the software we use is jamovi, a GUI-based (meaning "graphical user interface", aka "point-and-click") statistical analysis package.  Jamovi is built on to of R, and for those interested in using R it has the ability to display the R code it creates under the hood.
+
+STAT 331 is not mathematically heavy in the traditional sense, but it isn't math-free either.  My approach is to present mathematical formulas and expressions when they are necessary or at least helpful for understanding the statistical it's being covered.  There are no mathematical character-building exercises or examples, and we won't be computing things by hand - the software does all the computational work.  Our job is to make sense of the results. And that usually requires looking at formulas and figuring out what they do.  We will be constantly answering the question "what does this number mean?"
+
+
+## Structure of these notes
+
+These notes are broken up into 9 chapters (or "modules"):
+
+- Chapter 1: Review of classical inference
+- Chapter 2: Model building with linear regression
+- Chapter 3: Assessing and improving model fit
+- Chapter 4: ANOVA-based methods
+- Chapter 5: Analyzing categorical data
+- Chapter 6: Generalized Linear Models (GLMs)
+- Chapter 7: Mixed-effects models
+- Chapter 8: Minding the gap between science and statistics
+- Chapter 9: Brief looks at major topics we didn’t cover
+
+You can access chapters and subsections directly through the table of contents.
+
+## Really good online books
+
+These notes will frequently reference some other freely available online statistics books:
+
+[Learning statistics with jamovi](https://www.learnstatswithjamovi.com/), by Danielle Navarro and David Foxcroft
+
+[Introduction to Regression Analysis in R](https://www.kellerbiostat.com/introregression/), by Kayleigh Keller
+
+[Answering questions with data](https://crumplab.com/statistics/), by Matthew J. C. Crump, Danielle J. Navarro, and Jeffrey Suzuki
+
+[Statistical Analysis with The General Linear Model](https://drive.google.com/file/d/0B1fyuTuvj3YoaFdUR3FZaXNuNXc/view?resourcekey=0-plOmKmQ0TIyMjlfBY3OiyQ), by Jeff Miller and Patricia Haden

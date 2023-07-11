@@ -1,0 +1,418 @@
+# Generalized Linear Models (GLMs)
+
+## Part 1: Logistic regression
+
+• All of the regression methods we've seen have involved models in which the response variable is normally distributed, given values for the predictor variables
+
+• In other words, the residuals have been modeled as normal.
+
+• What if we have a different kind of response variable? In particular, consider a binary response variable. Maybe the outcomes are "yes" and "no", or "success" and "failure", or "present" and "absent".
+
+• Logistic regression is a type of "generalized linear model" (GLM) that works well for modeling binary outcome data.
+
+• Before we get into logistic regression, though, let's see what happens if we use standard regression (sometimes called "ordinary least squares", or OLS regression) with a binary response.
+
+• We'll use simulated data corresponding to a study of sexual harassment reporting at a university. (Brooks and Perot "Reporting Sexual Harassment: Exploring a Predictive Model" (1991)).
+
+• Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable: • Data points are "jittered" so that they don't fall right on top of one another.
+
+• Suppose we want to predict the value of "Report", using "OffensBeh".
+
+• Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered. • The predicted value of "Report" can be thought of as the predicted probability that Report=1 (for reported behavior)
+
+• Note that this line can go below zero and above one. We don't want to predict probability greater than 1! A straight line is not great here. Logistic
+
+### The logistic regression model
+
+Another way of writing a linear regression model
+
+• By now we are well familiar with the linear regression model:
+
+𝑦𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖, +𝜀𝑖 𝜀𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+
+• Here is an equivalent way of writing it:
+
+𝑦𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙 𝜇𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖
+
+• In other words, the response variable is normally distributed with some mean 𝜇, and the value of 𝜇 is determined by the predictor (𝑋) variables.
+
+Writing a logistic regression model
+
+• We will take this approach to writing the logistic regression model.
+
+• What we want is a regression equation that looks like this:
+
+𝑦𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖
+
+But that will work when 𝑦𝑖 does not follow a normal distribution.
+
+• Response variable 𝑦 takes on the values 0 and 1.
+
+• Denote the probability that 𝑦 = 1 as 𝜋.
+
+• This can be written 𝑦\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖
+
+(The Bernoulli distribution is a distribution of 1's and 0's, where the probability of 1 is 𝜋 and the probability of 0 is 1 − 𝜋)
+
+• We will use regression to model 𝜋, the probability that 𝑦 = 1. This is often thought of as the probability of a "success".
+
+• If we wanted, we could use this model:
+
+𝑦𝑖\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖 𝜋𝑖 𝜋𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖
+
+• The Bernoulli distribution is a distribution of 1's and 0's, where the probability of 1 is 𝜋 and the probability of 0 is 1 − 𝜋.
+
+• The standard deviation of a Bernoulli distribution is 𝜋(1 − 𝜋 ). So, 𝜋 is the only parameter for this distribution. This is different from the normal distribution, which has two parameters 𝜇 and 𝜎.
+
+• But, as we saw in the opening example, a linear model for probability can have serious deficiencies.
+
+• So, instead of a linear model for probability 𝜋, we'll make a linear model for a function of 𝜋, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.
+
+• In logistic regression, we use the "logit" function, also known as "log odds"
+
+𝑙𝑜𝑔𝑖𝑡
+
+= ln
+
+= "𝑙𝑜𝑔 𝑜𝑑𝑑𝑠"
+
+• Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted 𝜋
+
+• Plugging this into the logit formula:
+
+𝑙𝑜𝑔𝑖𝑡
+
+= ln
+
+= "𝑙𝑜𝑔 𝑜𝑑𝑑𝑠" 𝑜𝑓 𝑟𝑒𝑝𝑜𝑟𝑡𝑖𝑛𝑔
+
+• This will be our response variable for logistic regression.
+
+• Logit vs. probability, visually:
+
+### Odds
+
+• To understand logistic regression, you'll need to understand odds.
+
+• In casual English, "odds" and "probability" are often used interchangeably.
+
+• In statistics, they are not the same thing. Odds tell you how likely one outcome is compared to another.
+
+• For instance, you might hear that a football team has been given "3 to 2" odds of winning a game. This means that their probability of winning is 3Τ2 = 1.5 times as big as their probability of losing. Or, that they'd be expected to win 3 times for every 2 times they lost.
+
+• Formally, consider some outcome A, where the probability of A occurring is written as "𝑃(𝐴)". In this case,
+
+𝑜𝑑𝑑𝑠
+
+𝑃(𝐴)
+
+1 − 𝑃(𝐴)
+
+𝑝𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝐴 𝑜𝑐𝑐𝑢𝑟𝑠
+
+𝑝𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝐴 𝑑𝑜𝑒𝑠 𝑛𝑜𝑡 𝑜𝑐𝑐𝑢𝑟
+
+• This is the ratio of the probability A occurs to the probability A does not occur.
+
+• Some probabilities and their associated odds:
+
+• Think of odds(A) as "how many times will A occur for every time A does not occur?"
+
+• Sometimes we add "to 1" to an odds statement, e.g. "odds of 4 to 1" means "this outcomes occurs 4 times for every 1 time
+
+Back to the logistic regression model
+
+• The response variable for logistic regression, again, is:
+
+𝑙𝑜𝑔𝑖𝑡
+
+= ln
+
+= "𝑙𝑜𝑔 𝑜𝑑𝑑𝑠"
+
+• So, the full logistic regression model is :
+
+𝑦𝑖\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖
+
+• We are not actually interested in log odds; we only make this conversion
+
+for mathematical convenience. So, once we have 𝑙𝑜𝑔𝑖𝑡 𝜋ො𝑖 back via the inverse logit function:
+
+, we can get
+
+𝑙𝑜𝑔𝑖𝑡−1
+
+• In the context of the logistic regression model:
+
+### jamovi example
+
+• Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.
+
+• Note that "Target Level" defaults to zero. Changing it to 1 makes sense in this case; we want to predict 𝑃(𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑).
+
+• jamovi also produces a Loglikelihood ratio test, but we will just focus on "Parameter Estimates":
+
+• Here is our estimated model:
+
+𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 = −1.7976 + 0.4869 ∗ 𝑂𝑓𝑓𝑒𝑛𝑠𝐵𝑒ℎ
+
+• Plugging in large and small values for OffensBeh:
+
+𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑 = −1.7976 + 0.4869 ∗ 1 = −1.3107 𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑 = −1.7976 + 0.4869 ∗ 8 = 2.0976
+
+𝜋ො\|𝑂𝑓𝑓𝑒𝑛𝐵𝑒ℎ = 1:
+
+𝑒−1.3107 1 + 𝑒−1.3107 =
+
+0.2696 = 0.21 1.2696
+
+𝜋ො\|𝑂𝑓𝑓𝑒𝑛𝐵𝑒ℎ = 1:
+
+𝑒2.0976 1 + 𝑒2.0976 =
+
+8.1466 = 0.89 9.1466
+
+• The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. "Log odds" are not of direct interest.
+
+• Exponentiating both sides of the equation gives straight odds
+
+𝑜𝑑𝑑𝑠 =
+
+= 𝑒𝛽0+𝛽1𝑋1𝑖+𝛽2𝑋2𝑖+⋯+𝛽𝑝𝑋𝑝𝑖
+
+• This means that, for a one unit increase in 𝑋1, odds are multiplied by 𝑒𝛽1
+
+• For the harassment data:
+
+𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 = −1.7976 + 0.4869 ∗ 𝑂𝑓𝑓𝑒𝑛𝑠𝐵𝑒ℎ
+
+• 𝛽መ = 0.4869. So, for a one unit increase in OffensBeh, predicted odds of reporting are multiplied by 𝑒0.4869 = 1.627
+
+• In other words, there is about a 63% increase in odds of reporting when OffensBeh increases by one. NOTE: odds are not probabilities!
+
+• Comparing probabilities and odds from this model:
+
+OffensBeh P(Report) Odds(Report) 1 0.212 0.27 2 0.305 0.44 3 0.417 0.71 4 0.537 1.16 5 0.654 1.89 6 0.755 3.08 7 0.834 5.01 8 0.891 8.15 9 0.930 13.26 10 0.956 21.57
+
+## Part 2: Poisson and negative binomial regression
+
+We'll now look at two other popular GLMs: Poisson ("pwa-sawn" roughly) and negative binomial.
+
+• These are used for modeling count data, which can be extended to how often a categorical variable takes on some value. Thus Poisson regression can be used to model contingency table data.
+
+### The Poisson distribution
+
+• The Poisson distribution is a discrete probability distribution. A Poisson distributed variable takes on only positive integer values. The integer is referred to as "count" or "\# of events".
+
+• The Poisson distribution has a single parameter, 𝜆 ("lambda"), which is sometimes called the "rate" parameter.
+
+• 𝜆 is both the mean and the variance of a Poisson distribution
+
+• The probability function for the Poisson is: 𝜆𝑘
+
+𝑃
+
+= 𝑒𝜆𝑘! 4
+
+Visualizing the Poisson distribution
+
+𝜆 = 1
+
+𝜆 = 2
+
+𝜆 = 5
+
+𝜆 = 10
+
+### The structure of a GLM
+
+• In logistic regression, the response variable was 𝑙𝑜𝑔𝑖𝑡(𝜋) = ln
+
+• In Poisson regression, the response variable is ln(𝜆)
+
+• The reasoning will be that the natural log allows the estimated rate to be modeled as a linear function of some predictor variables.
+
+• This is how GLMs work: they allow us to use non-normal response variables by expressing a function of their mean as a linear function of the predictors.
+
+• A GLM has three parts:
+
+1.  A response variable with some distribution
+
+2.  A "link function", 𝑔(∙), that is applied to the mean of the response variable.
+
+3.  A linear expression of the predictor variables: 𝛽0 + 𝛽1𝑋2 + 𝛽2𝑋2 + ⋯
+
+GLM examples
+
+• Logistic regression uses 𝑦\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖(𝜋) as the response variable and
+
+𝑔
+
+= ln
+
+as the link function.
+
+• Poisson regression uses 𝑦\~𝑃𝑜𝑖𝑠𝑠𝑜𝑛(𝜆) as the response variable and 𝑔 = ln(𝜆) as the link function.
+
+• Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses 𝑦\~𝑁𝑜𝑟𝑚𝑎𝑙(𝜇, 𝜎) and the response variable and the identity function, 𝑔 = 𝜇 as the link.
+
+• It's worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not "least squares". So, we are not getting our 𝛽መ𝑠 by minimizing sums of squared residuals.
+
+• Instead, the estimation procedure we use is called "maximum likelihood". This method finds the values of the parameter estimates that maximize (i.e. make as large as possible for a given set of data) something called "the likelihood function".
+
+• The likelihood function takes a fixed set of data and an assumed distribution (e.g. normal), and gives the "probability of the data", given
+
+• So, if we have:
+
+𝑌𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙
+
+• Then the likelihood function is:
+
+• Values of 𝛽መ , 𝛽መ , 𝜎ො are found that maximize this function, i.e. that maximize the probability of the data, given the parameter estimates.
+
+### Poisson regression example
+
+• We'll use some General Social Survey data for this example.
+
+• Poisson is good for modeling count data, so we'll use a response variable that takes the form of counts.
+
+• For this example, the goal will be to look at the relationship (if any) between the number of sibling a person has, and the number of children that person has.
+
+• Our question will be: do people with more siblings tend to have more children? And if so, can we quantify the relationship?
+
+• It would be wise to collect data on covariates that we expect will also be related to the number of children someone has.
+
+• An obvious one is age. Older people will have more children than younger people.
+
+• We might also want to control for "culture". If people from different cultural backgrounds tend to have more or fewer children, then this would definitely induce a relationship between \# of siblings and \# of children.
+
+• There are lots of possible ways to try account for cultural background.
+
+• So, the variables will be:
+
+• \# of children • \# of siblings • Age • Frequency of attending religious services
+
+• We'll just look at 2018 data. The GSS lets us choose any years we want, going back to 1972.
+
+• This data set is on Canvas, as GSS_Children_Siblings.jmp
+
+• First thing to do is plot our variables.
+
+• Yikes! There's some cleaning to do. The instances of 98 siblings are not real data points.
+
+• GSS data explorer website lets us look in detail at each variable. Here is part of the coding for "SIBS":
+
+• And here's the coding for the variable CHILDS.
+
+• So, CHILDS = 9 is a value for missing data. These should also be excluded.
+
+• This should feel familiar -- remember how messy the NLSY data was in the heights analysis?
+
+• Keep in mind that data in public databases often have idiosyncrasies like this.
+
+• Here are the row selection options that will select all rows with invalid responses.
+
+• Once selected, they can be excluded.
+
+• Here is the distribution of CHILDS. • This looks a lot like a Poisson distribution. Hooray!
+
+• To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.
+
+• Here are results for a simple model, where \# of siblings is the sole predictor of \# of children. We'll just look at the parameter estimates and the overdispersion statistic:
+
+• Letting
+
+𝜆መ
+
+represent the predicted mean \# of children, we have:
+
+ln = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
+
+• You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable. 𝑒0.0627 = 1.065\
+• So, increasing \# of siblings by one is associated with an 6.5% increase in \# of children.
+
+• We can see that this is statistically significant, but it is also small.
+
+• It is also not obvious that % change is the best way to quantify this. Maybe an OLS model would have been more interpretable.
+
+• It might be more desirable to relate an additive change in siblings to an additive change in children.
+
+• Downside is that \# of children is not normally distributed.
+
+• As is often the case, we are trading some interpretability for a better
+
+• The Poisson distribution makes a strong assumption: the mean should be equal to the variance.
+
+• Often, we observe real data in which the variance is greater than the mean.
+
+• This is referred to as "overdispersion".
+
+• If mean = variance, this should be equal to 1. But it rarely is.
+
+• If there is strong overdispersion, a negative binomial model will fit better.
+
+• The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom..
+
+• For these data, it turns out that \# of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:
+
+• The other predictor variables and the interactions can be interpreted in the usual ways.
+
+• One thing to notice is that the estimate for SIBS has not changed much. So, while the other covariates and interactions matter, they don't substantially change our interpretation of the SIBS predictor.
+
+### Negative binomial regression
+
+• There is also still some overdispersion, though less than there was before:
+
+• Remember that the Poisson distribution only has one parameter. This limits its flexibility.
+
+• The negative binomial distribution is similar to the Poisson distribution, but it is more flexible, and may be a better choice in the presence of overdispersion.
+
+• The negative binomial distribution is also a distribution for count data. It is interpreted as giving the number of "success" before a certain number of "failures" occur.
+
+• There are two parameters: 𝑝, the probability of success, and 𝑟, the number of failures at which counting stops.
+
+• The mean of the negative binomial distribution is 𝑟
+
+= 𝑟 ∗ 𝑜𝑑𝑑𝑠(𝑠𝑢𝑐𝑐𝑒𝑠𝑠)
+
+• Example: suppose 𝑝 = 0.8 and 𝑟 = 2. We expect 2∗0.8
+
+= 8 success before
+
+• If a variable 𝑦 is distributed negative binomial, we denote it:
+
+𝑦\~𝑁𝐵(𝑟, 𝑝)
+
+• The mean of the negative binomial distribution is 𝑟
+
+= 𝑟 ∗ 𝑜𝑑𝑑𝑠(𝑠𝑢𝑐𝑐𝑒𝑠𝑠)
+
+• Example: suppose 𝑝 = 0.8 and 𝑟 = 2. We expect 2∗0.8
+
+= 8 success before
+
+we observe two failures.
+
+• Or suppose 𝑝 = 0.5 and 𝑟 = 1. We expect 1∗0.5
+
+= 1 success before we
+
+observe 1 failure.
+
+• For practical purposes, negative binomial regression will show better fit than Poisson regression in the presence of overdispersion.
+
+• The tradeoff is that the interpretation is less generally applicable. It might not make sense to think of your count variable as \# of successes for a certain \# of failures.
+
+• As with Poisson regression, negative binomial regression uses a GLM with a log link.
+
+Negative binomial example
+
+• Here is where you select negative binomial regression in jamovi:
+
+• Under "Generalized Linear Models", under "Frequencies" choose "Negative Binomial".
+
+Negative binomial results
+
+• These results are awfully similar to the Poisson results.
+
+• It is often the case that different statistical methods designed for the same purpose will with similar results.

@@ -1,0 +1,37 @@
+# Brief looks at major topics we didn't cover
+
+These are topics that we didn't have time to cover in STAT 331, but which come up often in applied statistical research.  Brief descriptions are provided, along with links if you want to learn more.
+
+## Formal model selection tools
+
+### AIC / BIC
+
+### Backwards and forwards selection
+
+### Penalized regression (LASSO and Ridge)
+
+
+## Bayesian statistics
+
+### Probability as rational degree of belief
+
+### Priors
+
+### Things Bayes permits that classical methods don't
+
+## Non-parametric methods
+
+### Alternatives for t-tests and ANOVA
+
+### Alternatives for regression
+
+## Meta-analysis
+
+### Combining lots of studies
+
+### Heterogeneity
+
+### Interpretability
+
+## Regression to the mean
+
