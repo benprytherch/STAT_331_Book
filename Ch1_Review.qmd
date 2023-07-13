@@ -379,6 +379,36 @@ $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 
     -   Scroll until you see \"Rj -- Editor to run R code\", click install
 
-    -   You should now see an R logo under the Analyses tab\
+    -   You should now see an R logo under the Analyses tab
 
-\
+## Wide form to long form in jamovi
+
+-   To switch from wide to long form, we will write a simple line of R-code using the Rj -- Editor module: 
+
+-   Click on Rj, it will open an empty window where we can enter R - code
+
+*INSERT IMAGE*
+
+-   The code below transforms the data into long form by stacking the data within Var1 and Var2 into a new column Data and creates a new column Labels to identify if data is from Var1 or Var2.
+
+-   The data will output a csv file which we can import from a new session of jamovi
+
+*INSERT IMAGE*
+
+-   Importing the transformed csv file to a new jamovi window shows our transformed long form data table. Note: column names will need to be updated
+
+-   Compare the two:
+
+*"Long form"*
+
+*INSERT IMAGE*
+
+*"Wide form"*
+
+*INSERT IMAGE*
+
+-   Now Independent Samples T-test can be used to compare means:
+
+*INSERT IMAGE*
+
+*INSERT IMAGE*
