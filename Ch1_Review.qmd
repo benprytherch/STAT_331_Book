@@ -20,17 +20,13 @@
 
 • Mean and median identify the center of a data set or distribution.
 
-• The mean of a variable 𝑋 is denoted 𝑋ത.
+• The mean of a variable $X$ is denoted $\bar{X}$.
 
 • To calculate the mean of a data set, add up all the values of a variable and divide by how many there are.
 
-σ𝑛 𝑥𝑖
-
-𝑋ത =
-
-𝑖=1
-
-𝑛
+$$
+\bar{X} = \frac{\sum^n_{i=1}x_i}{n}
+$$
 
 ### Median
 
@@ -38,7 +34,7 @@
 
 • If there are an even number of data points, the median is the average of the middle two numbers:
 
-4 5 5 6 10 10 15 19 20
+*INSERT IMAGE*
 
 ### Mean vs. Median
 
@@ -54,53 +50,53 @@
 
 • The mean is affected by outliers. The median is not. This is why we often hear about "median household income" rather than "mean household income".
 
-• Try creating a skewed data set in jamovi, then analyzing it by selecting for mean and median in the Statistics drop down menu in Descriptives, found under Exploration in the Analysis tab • To create a new dataset, enter data into the blank data table jamovi creates by default
+### jamovi example: mean vs. median
 
-• The center of a distribution is quantified by the mean or the median.
+• Try creating a skewed data set in jamovi, then analyzing it by selecting for mean and median in the Statistics drop down menu in Descriptives, found under Exploration in the Analysis tab
+
+• To create a new dataset, enter data into the blank data table jamovi creates by default
+
+*INSERT IMAGE*
+
+*INSERT LOTS OF IMAGES WITH ARROWS*
 
 ### Variance and standard deviation
 
+• The center of a distribution is quantified by the mean or the median.
+
 • The variability (i.e. spread) of a distribution is quantified by the standard deviation, which is closely related to the variance.
 
-• The variance of a distribution or data set is denoted 𝑠2:
+• The variance of a distribution or data set is denoted $s^2$:
 
-𝑠2 =
-
-𝑛 2 𝑖=1
-
-𝑛 − 1
+$$
+s^2 = \frac{\sum^n_{i=1}(x_i - \bar{x})^2}{n-1}
+$$
 
 • The standard deviation is simply the square root of the variance
 
-s = • Think of this as the "standard" amount by which values deviate from their mean.
+$$
+s = \sqrt{\frac{\sum^n_{i=1}(x_i - \bar{x})^2}{n-1}}
+$$
+
+• Think of this as the "standard" amount by which values deviate from their mean.
 
 • We will most often look at standard deviation, because it is the more interpretable of the two statistics. It is in the same units as the original variable.
 
-### Correlation coefficient
+### The correlation coefficient
 
 • The correlation coefficient, 𝑟, quantifies the extent to which two variables (call them X and Y) move together:
 
-𝑟 =
-
-𝑛 ෍ (𝑥𝑖 − 𝑖=1
-
-𝑥ҧ)(𝑦𝑖 − 𝑠𝑥𝑠𝑦
-
-𝑦ത)
-
-=
-
-𝑛 ෍ 𝑧𝑥 𝑖=1
-
-𝑧𝑦𝑖
+$$
+r = (\frac{1}{n-1})\sum^n_{i=1}\frac{(x_i - \bar{x})(y_i-\bar{y})}{s_xs_y} = (\frac{1}{n-1})\sum^n_{i=1}z_{x_i}z_{y_i}
+$$
 
 • Don't worry too much about the formula. The most important things to know are:
 
-• When two variables move in the opposite direction (i.e. when one gets bigger, the other gets smaller), 𝑟 is negative.
+• When two variables move in the opposite direction (i.e. when one gets bigger, the other gets smaller), $r$ is negative.
 
-• When they move in the same direction, 𝑟 is positive.
+• When they move in the same direction, $r$ is positive.
 
-• 𝑟 = 0 means no correlation. 𝑟 = 1 means perfect positive correlation. 𝑟 = −1 means perfect negative correlation.
+• $r = 0$ means no correlation. $r =1$ means perfect positive correlation. $r = -1$ means perfect negative correlation.
 
 ## Statistics and parameters
 
@@ -110,7 +106,7 @@ s = • Think of this as the "standard" amount by which values deviate from thei
 
 • The values of unknown parameters are "estimated" using statistics.
 
-• Example: a sample mean can be used to estimate a population mean. i.e. 𝑋ത estimates 𝜇.
+• Example: a sample mean can be used to estimate a population mean. i.e. $\bar{X}$ estimates $\mu$.
 
 ## Sampling distributions
 
