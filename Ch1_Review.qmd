@@ -54,11 +54,11 @@ $$
 
 • Try creating a skewed data set in jamovi, then analyzing it by selecting for mean and median in the Statistics drop down menu in Descriptives, found under Exploration in the Analysis tab
 
-• To create a new dataset, enter data into the blank data table jamovi creates by default
+• To create a new dataset, enter data into the blank data table jamovi creates by default:
 
-*INSERT IMAGE*
+![](images/mod1_2.png){fig-align="left" width="171"}
 
-*INSERT LOTS OF IMAGES WITH ARROWS*
+![](images/mod1_3.png){fig-align="center"}
 
 ### Variance and standard deviation
 
@@ -136,9 +136,9 @@ $$
 
 • When the sample size is small, the standard error is large.
 
-*INSERT IMAGE*
+![](images/mod1_4.png){fig-align="center"}
 
-*INSERT IMAGE*
+![](images/mod1_5.png){fig-align="center"}
 
 ## Confidence intervals
 
@@ -192,9 +192,13 @@ $$
 
 • This app also super-imposes the standard error in pink.
 
-*INSERT IMAGE*
+![](images/mod1_6.png){fig-align="left" width="220"}
 
-*INSERT IMAGE*
+![](images/mod1_7.png){width="339"}
+
+![](images/mod1_8.png){fig-align="left" width="223"}
+
+![](images/mod1_9.png){width="339"}
 
 ## Confidence intervals in jamovi
 
@@ -202,7 +206,7 @@ $$
 
 • For example, when producing summary statistics for a variable using the Statistics drop down menu in Descriptives, you will need to select Confidence Interval for Mean found under Mean Dispersion. Jamovi will report "95% CI mean lower bound" and "95% CI mean upper bound". These are the endpoints for the 95% CI for $\bar{X}$.
 
-*INSERT IMAGE*
+![](images/mod1_10.png){fig-align="right" width="200"}
 
 ## Hypothesis testing
 
