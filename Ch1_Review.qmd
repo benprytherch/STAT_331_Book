@@ -34,7 +34,7 @@ $$
 
 • If there are an even number of data points, the median is the average of the middle two numbers:
 
-*INSERT IMAGE*
+![](images/Mod1_1.png){fig-align="center" width="338"}
 
 ### Mean vs. Median
 
