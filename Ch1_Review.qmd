@@ -242,19 +242,13 @@ $$
 
 • Visually, the p-value is the area in the tail of the sampling distribution of the test statistic under $H_0$
 
-*INSERT IMAGE*
-
-Here, $t=1.2$ and p−value = 0.2578
+![](images/mod1_11.png){fig-align="center"}
 
 • If the p-value is less than the "level of significance" ($\alpha$), then $H_0$ is rejected.
 
 • By far the most typical level of significance is $\alpha = 0.05$
 
-*INSERT IMAGE*
-
-Here, $t=3$ and p−value = 0.0133
-
-$p< 0.05$, so reject $H_0$ and conclude that the sample means are "significantly different".
+![](images/mod1_12.png){fig-align="center"}
 
 ### Interpreting "statistical significance"
 
@@ -276,13 +270,13 @@ $p< 0.05$, so reject $H_0$ and conclude that the sample means are "significantly
 
 • Example: this is a statistically significant correlation:
 
-*INSERT IMAGE*
+![](images/mod1_13.png){fig-align="left" width="260"}
 
 ($r = 0.22$, p-value = 0.011)
 
 • Example: this is a statistically significant difference in means:
 
-*INSERT IMAGE*
+![](images/mod1_14.png){fig-align="left" width="261"}
 
 ($\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013)
 
@@ -302,13 +296,13 @@ $p< 0.05$, so reject $H_0$ and conclude that the sample means are "significantly
 
 ### Confidence intervals vs. p-values example
 
-*INSERT IMAGE*
+![](images/mod1_14.png){fig-align="left" width="261"}
 
 $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 
 95% CI for $\mu_1 - \mu_2: (-4.72,-1.19)$
 
-*INSERT IMAGE*
+![](images/mod1_15.png){fig-align="left" width="260"}
 
 • Here we see 95% CIs for differences in means, along with their corresponding p-values.
 
@@ -328,17 +322,17 @@ $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 
 • Here is an example using the Vaccine data set. This example uses sheet 3 of the Excel file, titled "H3N2_Clinical_Max": Data will need to be prepared for test by swapping the rows so that Vaccine occurs first.
 
-*INSERT IMAGE*
+![](images/mod1_16.png){fig-align="center"}
 
-*INSERT IMAGE*
+![](images/mod1_17.png){fig-align="center"}
 
-*INSERT IMAGE*
+![](images/mod1_18.png){fig-align="center"}
 
-*INSERT IMAGE*
+![](images/mod1_19.png){fig-align="center"}
 
 ## CIs and p-values in JMP 
 
-*INSERT IMAGE*
+![](images/mod1_20.png){fig-align="center"}
 
 • Here, the p-value is $0.002$
 
@@ -362,12 +356,11 @@ $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 ```
 -   Example: here\'s some fake data in wide form:
 
-    \
-    *INSERT IMAGE*
+![](images/mod1_21.png){fig-align="center" width="213"}
 
 -   Fit Independent Samples T-test cannot be used to compare these means.  jamovi thinks there are 4 observations, each with a measurement on Var1 and Var 2. 
 
-*INSERT IMAGE*
+![](images/mod1_22.png){fig-align="center"}
 
 -   This isn\'t what we want!
 
@@ -391,13 +384,13 @@ $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 
 -   Click on Rj, it will open an empty window where we can enter R - code
 
-*INSERT IMAGE*
+![](images/mod1_23.png){fig-align="center"}
 
 -   The code below transforms the data into long form by stacking the data within Var1 and Var2 into a new column Data and creates a new column Labels to identify if data is from Var1 or Var2.
 
 -   The data will output a csv file which we can import from a new session of jamovi
 
-*INSERT IMAGE*
+![](images/mod1_24.png)
 
 -   Importing the transformed csv file to a new jamovi window shows our transformed long form data table. Note: column names will need to be updated
 
@@ -405,14 +398,14 @@ $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 
 *"Long form"*
 
-*INSERT IMAGE*
+![](images/mod1_25.png){fig-align="left" width="155"}
 
 *"Wide form"*
 
-*INSERT IMAGE*
+![](images/mod1_26.png){fig-align="left" width="157"}
 
 -   Now Independent Samples T-test can be used to compare means:
 
-*INSERT IMAGE*
+![](images/mod1_27.png){fig-align="left" width="250"}
 
-*INSERT IMAGE*
+![](images/mod1_28.png){fig-align="right" width="250"}
