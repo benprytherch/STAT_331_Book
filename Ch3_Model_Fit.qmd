@@ -428,177 +428,195 @@ $$
 
 • $ln(𝑥)$ is the inverse function of $e^𝑥$, where $𝑒 = 2.718 \dots$
 
-• In other words, $ln = x$
+• In other words, $ln(e^x) = x$
 
-• Example: 𝑒3 = 20.086; ln(20.086) = 3
+• Example: $𝑒^3 = 20.086; ln(20.086) = 3$
 
-• So, the natural log of 𝑥 is the number you would have to raise 𝑒 to so that you'd get 𝑥.
+• So, the natural log of $x$ is the number you would have to raise $e$ to so that you'd get $x$.
 
 • Note: in statistics, when we say "log", we usually mean "natural log". It turns out that the distinction is not very important. I'll say "log transform"
 
 #### Why log transform?
 
-• There are two main reasons for log transforming a variable:
+-   There are two main reasons for log transforming a variable:
 
-• To correct for skew in data or residuals • To interpret increases in a variable as multiplicative rather than additive.
+    -   To correct for skew in data or residuals
+
+    -   To interpret increases in a variable as multiplicative rather than additive.
 
 • Both can be understood by recognizing an important property of logarithms; they "turn addition into multiplication"
 
+$$
 log(𝐴) + log(𝐵) = log(𝐴𝐵)
+$$
 
 • In this sense, logarithms turn addition into multiplication.
 
-• Example: suppose we have data for a skewed variable 𝑋1:
+• Example: suppose we have data for a skewed variable $X_1$:
 
-• Now we define 𝑥2 = ln(𝑥1): • This is a toy "data set". I chose 𝑥1 so that 𝑥2 = ln
+*INSERT IMAGE* x2
 
-would just be the integers 1 through 10.
+• Now we define $x_2 = ln(x_1)$:
+
+*INSERT IMAGE*
+
+• This is a toy "data set". I chose $x_1$ so that $x_2 = ln(x_1)$ would just be the integers $1$ through $10$.
 
 • Note: there is no more skew.
 
-• Also note: increasing 𝑥2 by one unit results in multiplying 𝑥1 by 𝑒.
+*INSERT IMAGE*
 
-Addition in 𝑥2 = ln
+• Also note: increasing $x_2$ by one unit results in multiplying $x_1$ by $e$. Addition in $x_2 = ln(x_1)$ is the same thing as multiplication in $x_1$.
 
-is the same
+#### Same again, with log base 2
 
-thing as multiplication in 𝑥1.
+• Even simpler: define $x_2$ as log base $2$ of $x_1$, i.e. $log_2(x_1)$
 
-Same again, with log base 2
+*INSERT IMAGE*
 
-• Even simpler: define 𝑥2 as log base 2 of 𝑥1, i.e. log2(𝑥1)
+• Now increasing $x_2$ by one unit is equivalent to multiplying $x_1$ by $2$.
 
-• Now increasing 𝑥2 by one unit is equivalent to multiplying 𝑥1 by 2.
-
-Addition in 𝑥2 = 𝑙𝑜𝑔2
-
-is the same
-
-thing as multiplication in 𝑥1.
+Addition in $x_2 = log_2(x_1)$ is the same thing as multiplication in $x_1$.
 
 #### Log transforming right-skewed data
 
-• Skewed data can be bad for regression, in that it can lead to:
+-    Skewed data can be bad for regression, in that it can lead to:
 
-• Non-linear relationship between X and Y • Influential outliers • Non-normal residuals • Non-constant variance in residuals
+    -   Non-linear relationship between X and Y
+
+    -   Influential outliers
+
+    -   Non-normal residuals
+
+    -   Non-constant variance in residuals
 
 • So a simple log transformation can sometimes go a long way toward making the regression model fit the better!
 
-• It is most common to log transform a response variable, because assumptions about residuals apply to Y, not X.
+• It is most common to log transform a response variable, because assumptions about residuals apply to $Y$, not $X$.
 
-• But if X is skewed, the model can benefit from a log transformation of X.
+• But if $X$ is skewed, the model can benefit from a log transformation of $X$.
 
 • Bear in mind that log transformation will affect the interpretation of slope coefficients!
 
-• If X is log transformed, then a one unit increase in ln(𝑋) corresponds to multiplying X by 𝑒 ≈ 2.72. So the slope for ln(𝑋) tells you how much Y increases when X is multiplied by 2.72. Or, even better, use log base 2 and the
+• If $X$ is log transformed, then a one unit increase in $ln(𝑋)$ corresponds to multiplying $X$ by $e \approx 2.72$. So the slope for $ln(𝑋)$ tells you how much $Y$ increases when $X$ is multiplied by $2.72$. Or, even better, use log base $2$ and the slope will give how much $Y$ changes when $X$ is doubled.
 
-• If Y is log transformed, then the interpretations of slopes get more complicated. Here's the math, with the error term omitted for convenience:
+• If $Y$ is log transformed, then the interpretations of slopes get more complicated. Here's the math, with the error term omitted for convenience:
 
-ln
+$$
+ln(y_i) = \beta_0 + \beta_1X_i
+$$
 
-= 𝛽0 + 𝛽1𝑋𝑖
+$$
+\therefore y_i = e^{\beta_0 + \beta_1X_i}
+$$
 
-• Increase X by 1...
+• Increase $X$ by $1 \dots$
 
-∴ 𝑦𝑖 = 𝑒𝛽0+𝛽1𝑋𝑖
+$$
+y_i^* = e^{\beta_0 + \beta_1(X_i + 1)} = e^{\beta_0 + \beta_1X_i} \cdot e^{\beta_1}
+$$
 
-𝑦∗ = 𝑒𝛽0+𝛽1(𝑋𝑖+1) = 𝑒𝛽0+𝛽1(𝑋𝑖) ∙ 𝑒𝛽1
-
-• So, when Y is log transformed, a one unit increase in X multiplies predicted Y by
+• So, when $Y$ is log transformed, a one unit increase in $X$ multiplies predicted $Y$ by $e^{\beta_1}$
 
 #### Interpreting slope as a % change in outcome
 
 • Recall the heights vs. wages data from group project 1. The paper reported this estimated model:
 
-ln
+$$
+ln(\text{wage}) = \hat{\beta}_0 + 0.002\text{(Adult Height)} + 0.027\text{(Youth Height)} + 0.024\text{(Age)}
+$$
 
-= 𝛽መ
+• So, when comparing two adults $1$ inch apart in height but with the same youth height and age predicted wage is multiplied by $e^{0.027} = 1.027$ for the taller adult.
 
--   0.002
-
--   0.027
-
--   0.024(Age)
-
-• So, when comparing two adults 1 inch apart in height but with the same youth height and age predicted wage is multiplied by 𝑒0.027 = 1.027 for the taller adult.
-
-• Multiplying by 1.027 can be thought of as increasing by 2.7%
+• Multiplying by $1.027$ can be thought of as increasing by $2.7\%$
 
 #### Log transformation applied example
 
 • Here is the percent change formula:
 
+$$
+\%\text{ change (from A to B)} = \frac{B-A}{A}*100\%
+$$
+
 \% 𝑐ℎ𝑎𝑛𝑔𝑒 (𝑓𝑟𝑜𝑚 𝐴 𝑡𝑜 𝐵) =
 
-• If B is 1.027\*A, then
+• If B is $1.027*$A, then
 
-𝐵 − 𝐴
+$$
+\%\text{ change} = \frac{1.027*A - A}{A}*100 = \frac{0.027A}{A}*100 = 2.7\%
+$$
 
-𝐴
+• So, when comparing two adults 1 inch apart in height but with the same youth height and age, predicted wage is $2.7\%$ higher for the taller adult.
 
-∗ 100%
+#### Log transformation in $Y$ vs. in $X$
 
-\% 𝑐ℎ𝑎𝑛𝑔𝑒 =
+• Remember that log transformation "turns addition into multiplication". So, to keep track of how log transforming $Y$ vs. log transforming $X$ affects your model:
 
-1.027𝐴 −
+$$
+\text{log}(Y_i) = \beta_0 + \beta_1X_i + \epsilon_i
+$$
 
-𝐴
+$$
+\text{vs.}
+$$
 
-∗ 100 =
+$$
+Y_i = \beta_0 + \beta_1\text{log}(X_i) + \epsilon_i
+$$
 
-0.027𝐴
+• If you log transform $Y$ but not $X$, your model estimates the multiplicative change in predicted $Y$ for an additive change in $X$.
 
-𝐴
-
-∗ 100 = 2.7%
-
-• So, when comparing two adults 1 inch apart in height but with the same youth height and age, predicted wage is 2.7% higher for the taller adult.
-
-#### Log transformation in Y vs. in X
-
-• Remember that log transformation "turns addition into multiplication". So, to keep track of how log transforming Y vs. log transforming X affects your model:
-
-log
-
-= 𝛽0 + 𝛽1𝑋𝑖 + 𝜀𝑖 vs.
-
-𝑌𝑖 = 𝛽0 + 𝛽1log(𝑋𝑖) + 𝜀𝑖
-
-• If you log transform Y but not X, your model estimates the multiplicative change in predicted Y for an additive change in X.
-
-• If you log transform X but not Y, your model estimates the additive change
+• If you log transform $X$ but not $Y$, your model estimates the additive change in predicted $Y$ for a multiplicative change in $X$.
 
 ### Non-linearity
 
-• Sometimes data show obvious curvature, in the sense that Y is clearly not a straight line function of X.
+• Sometimes data show obvious curvature, in the sense that $Y$ is clearly not a straight line function of $X$.
 
-• This will be visible on a plot of Y vs. X. It will also be visible on a residuals vs. predicted values plot after running a regression.
+• This will be visible on a plot of $Y$ vs. $X$. It will also be visible on a residuals vs. predicted values plot after running a regression.
 
-• If there is curvature in the relationship between Y and X, then it might be sensible to add a polynomial X term:
+• If there is curvature in the relationship between $Y$ and $X$, then it might be sensible to add a polynomial $X$ term:
 
-𝑌𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝛽2𝑥2 + 𝜀𝑖
+$$
+Y_i = \beta_0 + \beta_1x_i + \beta_2x_i^2 + \epsilon_i
+$$
 
 #### "Polynomial" review
 
 • A "polynomial" expression is typically one in which variables are included at different powers. For example, a generic third degree polynomial equation might look like:
 
-𝑦 = 𝑎 + 𝑏𝑥 + 𝑐𝑥2 + 𝑑𝑥3
+$$
+y = a + bx + cx^2 + dx^3
+$$
 
-• A "second degree" polynomial is one in which an 𝑥 and 𝑥2 term are both included. This is by far the most common type of polynomial seen in regression models.
+• A "second degree" polynomial is one in which an $x$ and $x^2$ term are both included. This is by far the most common type of polynomial seen in regression models.
 
-2nd degree and 3rd degree polynomials
+#### $2^{nd}$ degree and $3^{rd}$ degree polynomials
 
-• 2nd degree polynomials are often called "quadratic". 3rd degree polynomials are often called "cubic". Here are visual examples of simulated quadratic and cubic relationships between Y and X:
+• $2^{nd}$ degree polynomials are often called "quadratic". $3^{rd}$ degree polynomials are often called "cubic". Here are visual examples of simulated quadratic and cubic relationships between $Y$ and $X$:
+
+*INSERT IMAGE*
 
 #### Curvature in residuals
 
-• Here is regression output comparing a linear model to a quadratic model when the relationship between Y and X is quadratic:
+• Here is regression output comparing a linear model to a quadratic model when the relationship between $Y$ and $X$ is quadratic:
 
-• Here is what the Florida election data look like with the Palm Beach County outlier removed, along with regression results for the simple linear regression model: 𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝜀𝑖
+*INSERT IMAGE*
+
+#### Example: Florida election data
+
+• Here is what the Florida election data look like with the Palm Beach County outlier removed, along with regression results for the simple linear regression model:
+
+$$
+Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \epsilon_i
+$$
+
+*INSERT IMAGE*
 
 • Now we will fit a quadratic polynomial model to the same data:
 
-𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝜀𝑖
+$$
+Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i + \epsilon_i
+$$
 
 • To create this polynomial predictor in jamovi we first need to install the GAMLj module. Then, select "Generalized Linear Models" and last our "Dependent Variable" and "Covariates".
 
@@ -606,27 +624,51 @@ log
 
 • An up and down arrow will appear with the degree of Total_Votes, click the up arrow so the 1 changes to 2. Then click the right arrow to add Total_Votes2 to "Model Terms"
 
-𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝜀𝑖
+*INSERT IMAGE*
+
+$$
+Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i + \epsilon_i
+$$
+
+*INSERT IMAGE*
 
 • This is better, but we still see curvature in the residual plot.
 
 • Let's try a cubic model:
 
-𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝛽3𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠3 + 𝜀𝑖
+$$
+Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3Total\_Votes_i^3 + \epsilon_i
+$$
 
-𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 + 𝛽3𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠3 + 𝜀𝑖
+*INSERT IMAGE*
 
-• It's debatable whether this is much better. For one, the 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2 term is non-significant.
+$$
+Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3Total\_Votes_i^3 + \epsilon_i
+$$
 
-• But think back to multicollinearity. Each polynomial term will be correlated with the other terms -- after all, 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠, 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠2, and 𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠3 must all be correlated.
+*INSERT IMAGE*
+
+#### Example: Florida election data: check note
+
+• It's debatable whether this is much better. For one, the $Total\_Votes^2$ term is non-significant.
+
+• But think back to multicollinearity. Each polynomial term will be correlated with the other terms -- after all, $Total\_Votes$, $Total\_Votes^2$, and $Total\_Votes^3$ must all be correlated.
 
 • Note that jamovi will not produce VIFs in GLM. Intuitively we know these will be highly correlated with each other.
 
-• It turns out that centering helps in polynomial models: Compare to:
+• It turns out that centering helps in polynomial models:
 
-• By default jamovi centers polynomials which makes their standard errors smaller than if they were not centered. But, these estimates are not interpretable; you cannot hold Total_Votes2 constant while increasing Total_Votes.
+*INSERT IMAGE*
+
+-   Compare to:
+
+*INSERT IMAGE*
+
+• By default jamovi centers polynomials which makes their standard errors smaller than if they were not centered. But, these estimates are not interpretable; you cannot hold $Total\_Votes^2$ constant while increasing $Total\_Votes$.
 
 • In this example, the two counties with the highest total votes are heavily pulling on the regression line.
+
+*INSERT IMAGE*
 
 ### Over-fitting
 
@@ -634,11 +676,15 @@ log
 
 • Over-fitting is when a model fits the data so well that it ends up fitting random variation that is not of interest.
 
+*INSERT IMAGE*
+
 • Imagine if the two data points on the right had slightly higher vote counts for Buchanan. Or if the next two to their left had slightly lower vote counts. The curve would look very different.
 
 • At this point, we might just be modelling noise.
 
 • Here is an extreme example of over-fitting: fitting a "smoother" curve to data and giving it permission to move dramatically up and down through the data.
+
+*INSERT IMAGE*
 
 • This line fits the data very well, but does it represent the general trend between total votes and votes for Buchanan? Definitely not!
 
@@ -646,27 +692,29 @@ log
 
 • Compare the over-fit model to the linear model.
 
+*INSERT IMAGE x2*
+
 • The linear model may be missing out on some curvature. But it might also make better predictions.
 
-• If we were to observe a new county with 450,000 total votes, would we be better guessing that votes for Buchanan fall on the highly curved line or on the straight line?
+• If we were to observe a new county with $450,000$ total votes, would we be better guessing that votes for Buchanan fall on the highly curved line or on the straight line?
 
 ### Back to basics: is the model sensible?
 
-• Back to basics: regression models are typically used for two purposes:
+-   Back to basics: regression models are typically used for two purposes:
 
-o Predicting values of the response variable, using the predictor variables. This is done by plugging values for the predictor variables into the estimated model.
+    -   Predicting values of the response variable, using the predictor variables. This is done by plugging values for the predictor variables into the estimated model.
 
-o Estimating the association between each individual predictor variable and the outcome while statistically holding other predictor variables constant. This is done by interpreted estimated slope coefficients.
+    -   Estimating the association between each individual predictor variable and the outcome while statistically holding other predictor variables constant. This is done by interpreted estimated slope coefficients.
 
 #### If you just want to make predictions
 
-• 𝑅2 is the easiest to understand statistic for assessing how well your model makes predictions. The closer to 1, the better.
+• $R^2$ is the easiest to understand statistic for assessing how well your model makes predictions. The closer to $1$, the better.
 
 • Multicollinearity isn't an issue. It doesn't affect predicted values.
 
 • BUT -- beware of overfitting! The more complex your model, the more risk you take of modeling noise instead of signal.
 
-• Also, be aware that 𝑅2 can never go down when adding predictors. You can add complete nonsense predictor variables, and the worst that will happen to 𝑅2 is that it stays the same.
+• Also, be aware that $R^2$ can never go down when adding predictors. You can add complete nonsense predictor variables, and the worst that will happen to $R^2$ is that it stays the same.
 
 #### If you want to interpret slopes
 
@@ -676,9 +724,13 @@ o Estimating the association between each individual predictor variable and the 
 
 • Example: wage vs. height study:
 
+*INSERT IMAGE*
+
 • In model 4, the estimated slope for youth height can be interpreted as:
 
 "The predicted difference in ln(wage) for two people one inch apart in youth height, but equal in adult height, whose mothers have the same \# of years of schooling and are both in either skilled fields or work or not, whose fathers have the same \# of years of schooling and are both in either skilled fields or work or not, and who have the same number of siblings."
+
+*INSERT IMAGE*
 
 • Maybe this is the best way to think about the association between youth height and wages. But it is fairly complicated.
 
@@ -686,47 +738,55 @@ o Estimating the association between each individual predictor variable and the 
 
 • This is necessarily subjective! You have to choose which variables you think are important. You have to think about what makes sense.
 
-• This might require:
+-   This might require:
 
-o Log transforming a variable solely because you like the multiplicative interpretation better than the additive interpretation. o Keeping a variable in a model even though it isn't statistically significant. o Removing a variable you are interested in, because it doesn't make sense to "hold it constant" when estimating slopes for other variables.
+    -   Log transforming a variable solely because you like the multiplicative interpretation better than the additive interpretation.
+
+    -   Keeping a variable in a model even though it isn't statistically significant.
+
+    -   Removing a variable you are interested in, because it doesn't make sense to "hold it constant" when estimating slopes for other variables.
 
 #### Is the model missing something important?
 
 • There is another variable in the Florida election data set that could be worth including: "Reg_Reform": the total number of voters registered with the Reform Party. Pat Buchanan was the Reform Party candidate. Let's add it to the model:
 
-𝐵𝑢𝑐ℎ𝑎𝑛𝑎𝑛𝑖 = 𝛽0 + 𝛽1𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 + 𝛽2𝑅𝑒𝑔_𝑅𝑒𝑓𝑜𝑟𝑚𝑖 + 𝜀𝑖
+$$
+Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Reg\_Reform_i + \epsilon_i
+$$
+
+*INSERT IMAGE*
 
 • This residual plot looks great!
 
+*INSERT IMAGE*
+
 • It turns out that the curvature in the previous residual plots went away when adding an important variable to the model. No need to mess with polynomials after all!
 
-• Also, the 𝑅2 is roughly the same as in the cubic model using only total votes as a predictor.
+*INSERT IMAGE*
 
-• So we have roughly equal fit, without having to worry about overfitting, and without having to give up interpretability of the slopes. 40
+• Also, the $R^2$ is roughly the same as in the cubic model using only total votes as a predictor.
+
+• So we have roughly equal fit, without having to worry about overfitting, and without having to give up interpretability of the slopes.
 
 • One downside: there is some collinearity. Look at the VIFs.
 
-• VIF of about 5 implies 1 1−𝑅
+*INSERT IMAGE*
 
-≈ 5 when using the 𝑅2 from:
+• VIF of about $5$ implies $\frac{1}{1-R^2}\approx 5$ when using the $R^2$ from:
 
-𝑇𝑜𝑡𝑎𝑙_𝑉𝑜𝑡𝑒𝑠𝑖 = 𝛽0 + 𝛽1𝑅𝑒𝑔_𝑅𝑒𝑓𝑜𝑟𝑚𝑖 + 𝜀𝑖 • 2 1
+$$
+Total\_Votes_i = \beta_0 + \beta_1Reg\_Reform_i + \epsilon_i
+$$
 
-So, this 𝑅
+• So, this $R^2$ is about $1 − \frac{1}{5} = 0.8$. And so $r = \sqrt{0.8} =0.89$ . These predictors are strongly correlated.
 
-is about 1 − 5
-
-= 0.8. And so 𝑟 =
-
-= 0.89. These predictors are
-
-strongly correlated.
+*INSERT IMAGE*
 
 • Note also that total votes is not significant.
 
-• But: the slope for Reg_Reform has a nice interpretation:
+• But: the slope for $Reg\_Reform$ has a nice interpretation:
 
-When comparing two counties with the same number of votes cast in the election, a county with an additional registered Reform Party member is estimated to have 2.24 additional votes, on average, for Pat Buchanan.
+When comparing two counties with the same number of votes cast in the election, a county with an additional registered Reform Party member is estimated to have $2.24$ additional votes, on average, for Pat Buchanan.
 
 • Should total votes be taken out of the model? This is a subjective decision.
 
@@ -740,7 +800,9 @@ When comparing two counties with the same number of votes cast in the election, 
 
 • Our model might be:
 
-𝐷𝑖𝑓𝑓𝑒𝑟𝑒𝑛𝑐𝑒𝑖 = 𝛽0 + 𝛽1𝑎𝑔𝑒𝑖 + 𝛽2𝑑𝑟𝑢𝑔𝑖 + 𝛽3 𝑖 + 𝛽4𝑚𝑜𝑏𝑖𝑙𝑖𝑡𝑦𝑖 + 𝜀𝑖
+$$
+Difference_i = \beta_0 + \beta_1age_i + \beta_2drug_i + \beta_3(age*drug)_i + \beta_4mobility_i + \epsilon_i
+$$
 
 • Now, when interpreting the previous slopes, I am comparing average reduction in inflammation ("difference", the response variable), between two people who have the same mobility level. But if they have the same mobility level, then they will have more similar inflammation levels than if we allowed mobility level to differ.
 
@@ -754,7 +816,7 @@ When comparing two counties with the same number of votes cast in the election, 
 
 • But beware! Adding in one predictor can have a dramatic effect on the slopes of other predictors, as well as on their standard errors.
 
-• It really really really matters that each slope is estimated as though all other predictors are held constant. This can reveal otherwise unseen effects, but it can also obscure otherwise obvious effects or induce apparent effects that aren't real. There
+• It really really *really* matters that each slope is estimated as though all other predictors are held constant. This can reveal otherwise unseen effects, but it can also obscure otherwise obvious effects or induce apparent effects that aren't real. There is no substitute for scientific reasoning when choosing a model.
 
 #### The model is simpler than what's being modeled
 
@@ -768,7 +830,9 @@ When comparing two counties with the same number of votes cast in the election, 
 
 • Consider how the regression model describes where data comes from:
 
-𝑌𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝜀𝑖 , 𝜀𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+$$
+Y_i = \beta_0 + \beta_1x_{i} + \epsilon_i, \text{ where } \epsilon_i \sim Normal(0,\sigma)
+$$
 
 • This says that to get data, we pick a value for X, go to a line, then randomly draw a value from a normal distribution and add this to the value on the line. And that's where data comes from!
 
