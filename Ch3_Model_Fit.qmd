@@ -448,17 +448,15 @@ $$
 
 • Example: suppose we have data for a skewed variable $X_1$:
 
-*INSERT IMAGE* x2
+![](images/mod4_pt2_1.png){fig-align="center"}
 
 • Now we define $x_2 = ln(x_1)$:
 
-*INSERT IMAGE*
+![](images/mod4_pt2_2.png){fig-align="left" width="216"}
 
 • This is a toy "data set". I chose $x_1$ so that $x_2 = ln(x_1)$ would just be the integers $1$ through $10$.
 
 • Note: there is no more skew.
-
-*INSERT IMAGE*
 
 • Also note: increasing $x_2$ by one unit results in multiplying $x_1$ by $e$. Addition in $x_2 = ln(x_1)$ is the same thing as multiplication in $x_1$.
 
@@ -466,11 +464,9 @@ $$
 
 • Even simpler: define $x_2$ as log base $2$ of $x_1$, i.e. $log_2(x_1)$
 
-*INSERT IMAGE*
+![](images/mod4_pt2_3.png){fig-align="left" width="162"}
 
-• Now increasing $x_2$ by one unit is equivalent to multiplying $x_1$ by $2$.
-
-Addition in $x_2 = log_2(x_1)$ is the same thing as multiplication in $x_1$.
+• Now increasing $x_2$ by one unit is equivalent to multiplying $x_1$ by $2$. Addition in $x_2 = log_2(x_1)$ is the same thing as multiplication in $x_1$.
 
 #### Log transforming right-skewed data
 
@@ -532,8 +528,6 @@ $$
 \%\text{ change (from A to B)} = \frac{B-A}{A}*100\%
 $$
 
-\% 𝑐ℎ𝑎𝑛𝑔𝑒 (𝑓𝑟𝑜𝑚 𝐴 𝑡𝑜 𝐵) =
-
 • If B is $1.027*$A, then
 
 $$
@@ -588,13 +582,13 @@ $$
 
 • $2^{nd}$ degree polynomials are often called "quadratic". $3^{rd}$ degree polynomials are often called "cubic". Here are visual examples of simulated quadratic and cubic relationships between $Y$ and $X$:
 
-*INSERT IMAGE*
+![](images/mod4_pt2_4.png){fig-align="center"}
 
 #### Curvature in residuals
 
 • Here is regression output comparing a linear model to a quadratic model when the relationship between $Y$ and $X$ is quadratic:
 
-*INSERT IMAGE*
+![](images/mod4_pt2_5.png){fig-align="center"}
 
 #### Example: Florida election data
 
@@ -604,7 +598,7 @@ $$
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt2_6.png){fig-align="center"}
 
 • Now we will fit a quadratic polynomial model to the same data:
 
@@ -618,13 +612,13 @@ $$
 
 • An up and down arrow will appear with the degree of Total_Votes, click the up arrow so the 1 changes to 2. Then click the right arrow to add Total_Votes2 to "Model Terms"
 
-*INSERT IMAGE*
+![](images/mod4_pt2_7.png){fig-align="center" width="463"}
 
 $$
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt2_8.png){fig-align="center"}
 
 • This is better, but we still see curvature in the residual plot.
 
@@ -634,13 +628,13 @@ $$
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3Total\_Votes_i^3 + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt2_9.png){fig-align="center" width="417"}
 
 $$
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3Total\_Votes_i^3 + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt2_10.png){fig-align="center"}
 
 #### Example: Florida election data: check note
 
@@ -652,17 +646,13 @@ $$
 
 • It turns out that centering helps in polynomial models:
 
-*INSERT IMAGE*
-
--   Compare to:
-
-*INSERT IMAGE*
+![](images/mod4_pt2_11.png){fig-align="center"}
 
 • By default jamovi centers polynomials which makes their standard errors smaller than if they were not centered. But, these estimates are not interpretable; you cannot hold $Total\_Votes^2$ constant while increasing $Total\_Votes$.
 
 • In this example, the two counties with the highest total votes are heavily pulling on the regression line.
 
-*INSERT IMAGE*
+![](images/mod4_pt2_12.png){fig-align="center" width="382"}
 
 ### Over-fitting
 
@@ -670,7 +660,7 @@ $$
 
 • Over-fitting is when a model fits the data so well that it ends up fitting random variation that is not of interest.
 
-*INSERT IMAGE*
+![](images/mod4_pt2_13.png){fig-align="center" width="343"}
 
 • Imagine if the two data points on the right had slightly higher vote counts for Buchanan. Or if the next two to their left had slightly lower vote counts. The curve would look very different.
 
@@ -678,7 +668,7 @@ $$
 
 • Here is an extreme example of over-fitting: fitting a "smoother" curve to data and giving it permission to move dramatically up and down through the data.
 
-*INSERT IMAGE*
+![](images/mod4_pt2_14.png){fig-align="center" width="357"}
 
 • This line fits the data very well, but does it represent the general trend between total votes and votes for Buchanan? Definitely not!
 
@@ -686,7 +676,7 @@ $$
 
 • Compare the over-fit model to the linear model.
 
-*INSERT IMAGE x2*
+![](images/mod4_pt2_15.png){fig-align="center" width="354"}
 
 • The linear model may be missing out on some curvature. But it might also make better predictions.
 
@@ -718,13 +708,13 @@ $$
 
 • Example: wage vs. height study:
 
-*INSERT IMAGE*
+![](images/mod4_pt2_16.png){fig-align="center" width="502"}
 
 • In model 4, the estimated slope for youth height can be interpreted as:
 
 "The predicted difference in ln(wage) for two people one inch apart in youth height, but equal in adult height, whose mothers have the same \# of years of schooling and are both in either skilled fields or work or not, whose fathers have the same \# of years of schooling and are both in either skilled fields or work or not, and who have the same number of siblings."
 
-*INSERT IMAGE*
+![](images/mod4_pt2_17.png){fig-align="left" width="216"}
 
 • Maybe this is the best way to think about the association between youth height and wages. But it is fairly complicated.
 
@@ -748,15 +738,13 @@ $$
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Reg\_Reform_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt2_18.png){fig-align="center"}
 
 • This residual plot looks great!
 
-*INSERT IMAGE*
+![](images/mod4_pt2_19.png){fig-align="center" width="275"}
 
 • It turns out that the curvature in the previous residual plots went away when adding an important variable to the model. No need to mess with polynomials after all!
-
-*INSERT IMAGE*
 
 • Also, the $R^2$ is roughly the same as in the cubic model using only total votes as a predictor.
 
@@ -764,7 +752,7 @@ $$
 
 • One downside: there is some collinearity. Look at the VIFs.
 
-*INSERT IMAGE*
+![](images/mod4_pt2_20.png){fig-align="center"}
 
 • VIF of about $5$ implies $\frac{1}{1-R^2}\approx 5$ when using the $R^2$ from:
 
@@ -774,7 +762,7 @@ $$
 
 • So, this $R^2$ is about $1 − \frac{1}{5} = 0.8$. And so $r = \sqrt{0.8} =0.89$ . These predictors are strongly correlated.
 
-*INSERT IMAGE*
+![](images/mod4_pt2_21.png)
 
 • Note also that total votes is not significant.
 
