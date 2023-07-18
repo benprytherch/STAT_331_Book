@@ -16,53 +16,28 @@
 
 • We've seen how to incorporate a categorical predictor into a regression model when the predictor takes on two values. We create an "indicator" (aka "dummy" aka "binary") variable that takes on the values 0 or 1. For example:
 
-Y𝑖 = 𝛽0 + 𝛽1𝑥𝑖 + 𝜀𝑖
+$$
+Y_i=\beta_0+\beta_1x_{1i} + \epsilon_i
+$$
 
-𝑥𝑖 = 1 if "treament"; 𝑥𝑖 = 0 if "control"
+$$
+x_i = 1 \text{ if "treatment;"} x_i = 0 \text{ if "control"}
+$$
 
-• Here,
-
-𝑦ෝ𝑖 =
-
-𝛽መ
-
-for control, and
-
-𝑦ෝ𝑖
-
-= 𝛽መ
-
--   𝛽መ
-
-for treatment.
+• Here, $\hat{y}_i = \hat{\beta}_0$ for control, and $\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1$ for treatment.
 
 • What if our categorical predictor takes on more than two categories? Suppose we have three groups: treatment 1, treatment 2, and control. We can add another indicator:
 
-Y𝑖 = 𝛽0 + 𝛽1𝑥𝑖1 + 𝛽2𝑥𝑖2 + 𝜀𝑖
+$$
+Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \epsilon_i
+$$
 
-𝑥1𝑖 = 1 if trtmt 1 and 0 otherwise; 𝑥2𝑖 = 1 if trtmt 2 and 0 otherwise
+$$
+x_{1i} = 1 \text{ if treatment }1; x_{1i} = 0 \text{ otherwise} \\
+x_{2i} = 1 \text{ if treatment }2; x_{1i} = 0 \text{ otherwise} 
+$$
 
-• 𝑦ෝ𝑖 =
-
-𝛽መ
-
-for control,
-
-𝑦ෝ𝑖
-
-= 𝛽መ
-
--   𝛽መ
-
-for trtmt 1,
-
-𝑦ෝ𝑖
-
-= 𝛽መ
-
--   𝛽መ
-
-for trtmt 2.
+• $\hat{y}_i = \hat{\beta}_0$ for control, $\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1$ for treatment 1, and $\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 + \hat{\beta}_2$ for treatment 2.
 
 • Control is serving as the "baseline" category, represented by the intercept.
 
@@ -70,37 +45,38 @@ for trtmt 2.
 
 • One-way ANOVA models have a single categorical predictor variable. They can be written as:
 
-𝑦𝑖𝑗 = 𝜇 + 𝛼𝑗 + 𝜀𝑖𝑗, 𝜀𝑖𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙 , i = 1 ... nj, j = 1 ... p
+$$
+Y_i = \mu + \alpha_j + \epsilon_{ij}, \text{ where } \epsilon_{ij} \sim Normal(0,\sigma^2) \text{ and } i = 1, \dots ,n_j, j = 1, \dots, p
+$$
 
-• Where there are "p" groups (i.e. the categorical predictor takes on "p" values), "𝑛𝑗" is the sample size of the 𝑗𝑡ℎ group, and 𝑦𝑖𝑗 is the 𝑖𝑡ℎ observation in the 𝑗𝑡ℎ group.
+• Where there are "$p$" groups (i.e. the categorical predictor takes on "$p$" values), "\$n_j\$" is the sample size of the $j^{th}$ group, and $y_{ij}$ is the $i^{th}$ observation in the $j^{th}$ group.
 
-• Here, 𝜇 is the overall mean and 𝛼𝑗 is the deviation of the 𝑗𝑡ℎ group
+• Here, $\mu$ is the overall mean and $\alpha_j$ is the deviation of the $j^{th}$ group mean from the overall mean.
 
 • Suppose we have 4 groups. The ANOVA model is:
 
-𝑦𝑖𝑗 = 𝜇 + 𝛼𝑗 + 𝜀𝑖𝑗, 𝜀𝑖𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙
+$$
+Y_i = \mu + \alpha_j + \epsilon_{ij}, \text{ where } \epsilon_{ij} \sim Normal(0,\sigma^2) \text{ and } i = 1, \dots ,n_j, j = 1, \dots, 4
+$$
 
 • Written as a regression model instead:
 
-, i = 1 ... nj, j = 1 ... 4
+$$
+Y_i = \beta_0 +\beta_1Group1 + \beta_2Group2 + \beta_3Group3 + \epsilon_{i}, \text{ where } \epsilon_{i} \sim Normal(0,\sigma^2) \text{ and } i = 1, \dots ,n
+$$
 
-𝑦𝑖 = 𝛽0 + 𝛽1𝐺𝑟𝑜𝑢𝑝1 + 𝛽2𝐺𝑟𝑜𝑢𝑝2 + 𝛽3𝐺𝑟𝑜𝑢𝑝3 + 𝜀𝑖,
-
-𝜀𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙
-
-, 𝑖 = 1 ... 𝑛
-
-• Here, the "Group" predictors are 0 / 1 indicator variables. For
+• Here, the "Group" predictors are $0$ / $1$ indicator variables. For group $4$, the mean of $y$ is the intercept, $\beta_0$.
 
 ## Factorial ANOVA
 
 • If we have more than one categorical predictor variable, and interactions between the predictors, we have a factorial ANOVA model. Generically:
 
-𝑦𝑖𝑗𝑘 = 𝜇 + 𝛼𝑗 + 𝛽𝑘 + 𝑗𝑘 + 𝜀𝑖𝑗𝑘, 𝜀𝑖𝑗𝑘\~𝑁𝑜𝑟𝑚𝑎𝑙
+$$
+Y_{ijk} = \mu + \alpha_j + \beta_k + (\alpha\beta)_{jk} + \epsilon_{ijk}, \text{ where } \epsilon_{ijk} \sim Normal(0,\sigma^2) \\
+\text{ and } i = 1, \dots ,n_{jk}, j = 1, \dots, p, k = 1, \dots,q
+$$
 
-i = 1 ... njk, j = 1 ... p, k = 1 ... q
-
-• Now predictor 1 is 𝛼 and predictor 2 is 𝛽 and they interact. There are "p" groups for predictor 1 and "q" groups for predictor 2.
+• Now predictor $1$ is $\alpha$ and predictor $2$ is $\beta$ and they interact. There are "\$p\$" groups for predictor $1$ and "\$q\$" groups for predictor $2$.
 
 • The subscripts start getting messy pretty fast.
 
@@ -112,102 +88,150 @@ i = 1 ... njk, j = 1 ... p, k = 1 ... q
 
 • This example is where the graph on our Canvas home page comes from. It uses data simulated to mimic data from a 1974 Hans Eysenck study.
 
-• 100 subjects were split into 5 recall groups:
+-   100 subjects were split into 5 recall groups:
 
-• "Counting": subjects counted how many letters were in each presented word • "Rhyming" subjects thought of words that rhymed with each presented word • "Adjective": subjects thought of an adjective that could be used to modify each presented word • "Imagery": subjects were told to form vivid images of each word • "Intentional": subjects were told to memorize the word for later recall
+    -   "Counting": subjects counted how many letters were in each presented word
+
+    -   "Rhyming" subjects thought of words that rhymed with each presented word
+
+    -   "Adjective": subjects thought of an adjective that could be used to modify each presented word
+
+    -   "Imagery": subjects were told to form vivid images of each word
+
+    -   "Intentional": subjects were told to memorize the word for later recall
 
 • Counting and rhyming are lower level processing tasks, so the hypothesis was that this group would recall fewer words than the others. Subjects were also classified as "young" or "old".
 
 • Here's the ANOVA model:
 
-𝑅𝑒𝑐𝑎𝑙𝑙𝑖𝑗𝑘 = 𝜇 + 𝐺𝑟𝑜𝑢𝑝𝑗 + 𝐴𝑔𝑒𝑘 + (𝐺𝑟𝑜𝑢𝑝 ∙ 𝐴𝑔𝑒)𝑗𝑘 + 𝜀𝑖𝑗𝑘
-
-𝜀𝑖𝑗𝑘\~𝑁𝑜𝑟𝑚𝑎𝑙
-
-, 𝑗 = 1 ... 5, 𝑘 = 1,2
+$$
+Recall_{ijk} = \mu + Group_j + Age_k + (Group \cdot Age)_{jk} + \epsilon_{ijk}, \text{ where } \epsilon_{ijk} \sim Normal(0,\sigma^2) \\
+\text{ and } j = 1, \dots ,5, k = 1, 2
+$$
 
 • Jamovi has an "ANOVA" function and a "regression" function. We'll use both the analyze these data.
 
+*INSERT IMAGE*
+
 • First we'll use ANOVA, using items recalled as the response (dependent) variable, and recall condition and age as factors. Note that jamovi automatically includes their interaction.
 
-• I am usually not interested in the sums of squares or mean squares in the ANOVA table, as these are not interpretable. We do have p-values for each "main effect" along with the interaction. More importantly, we have effect size statistics: eta-squared (𝜂2) and partial eta-squared (𝜂2𝑝)
+*INSERT IMAGE*
+
+• I am usually not interested in the sums of squares or mean squares in the ANOVA table, as these are not interpretable. We do have p-values for each "main effect" along with the interaction. More importantly, we have effect size statistics: eta-squared ($\eta^2$) and partial eta-squared ($\eta^2p$)
 
 ### Eta-squared and partial eta-squared
 
-• 𝜂2 is akin to 𝑅2 for one factor (main effect or interaction). It gives the proportion of variance in the response attributable to the factor in question:
+• $\eta^2$ is akin to $R^2$ for one factor (main effect or interaction). It gives the proportion of variance in the response attributable to the factor in question:
 
-𝜂2 = 𝑆𝑆𝑓𝑎𝑐𝑡𝑜𝑟 𝑆𝑆𝑡𝑜𝑡𝑎𝑙
+$$
+\eta^2 = \frac{SS_{factor}}{SS_{total}}
+$$
+
+*INSERT IMAGE*
 
 • Here, we see that recall condition explains the most variance by far, followed by age, followed by their interaction.
 
-ANOVA effect sizes: 𝜂2 and partial-𝜂2
+#### ANOVA effect sizes: $\eta^2$ and partial-$\eta^2$
 
-• 𝜂2𝑝 (partial eta-squared) is like 𝜂2, but with the variance accounted for by the other factors removed from the denominator:
+• $\eta^2p$ (partial eta-squared) is like $\eta^2$, but with the variance accounted for by the other factors removed from the denominator:
 
-𝜂2𝑝 = 𝑆𝑆𝑓𝑎𝑐𝑡𝑜𝑟 𝑆𝑆𝑓𝑎𝑐𝑡𝑜𝑟+𝑆𝑆𝑟𝑒𝑠𝑖𝑑𝑢𝑎𝑙𝑠 • Example: for recall condition,
+$$
+\eta^2p = \frac{SS_{factor}}{SS_{factor} + SS_{residuals}}
+$$ *INSERT IMAGE*
 
-𝜂2𝑝 = 1515 1515+722
+• Example: for recall condition,
 
-= 0.677, 𝜂2 = 1515 1515+240+190+722
+$$
+\eta^2p = \frac{1515}{1515 + 722} = 0.677, \text{ and } \eta^2 = \frac{1515}{1515 + 240 + 190 + 722} = 0.568
+$$
 
-= 0.568
-
-• I personally prefer 𝜂2, as their sum cannot exceed 1. Some prefer 𝜂2𝑝, because it quantifies the "effect" of a factor relative to remaining unexplained variance,
+• I personally prefer $\eta^2$, as their sum cannot exceed $1$. Some prefer $\eta^2p$, because it quantifies the "effect" of a factor relative to remaining unexplained variance,
 
 ### The means / interaction plot
 
 • We can make a nice plot under "estimated marginal means":
 
- 
+*INSERT IMAGE*
+
 • This plot shows every combination of means across recall condition and age. It also has 95% CIs around each mean, and raw data displayed.
+
+*INSERT IMAGE*
 
 • This is sometimes called a "means plot" or an "interaction plot". The interaction is represented by non-parallel lines, e.g. a positive change going from "Imagery" to "Intention" for young people, but a negative change for old people.
 
- 
 • The previous plot showed means for recall condition, with separate lines for age. If we flip the order of the variables, we get this:
+
+*INSERT IMAGE*
 
 • Here we see that mean items recalled for young people is substantially higher than for old people in the last three conditions, but differs only slightly in the first two conditions.
 
 ### ANOVA diagnostics
 
-• We can also run diagnostic tests, under "Assumption checks": • The QQ plot looks pretty good.
+• We can also run diagnostic tests, under "Assumption checks":
 
+*INSERT IMAGE*
 
-• I personally do not recommend paying attention to Levene's "homogeneity of variances" test, nor to the Shapiro-Wilk normality tests • These tests use null hypotheses of "population variance is the same in all groups", or "the residuals were drawn from a normal distribution". As I don't think these model assumptions could be literally true, I am not interested in whether they can be rejected by the data.
+• The QQ plot looks pretty good.
+
+*INSERT IMAGE*
+
+• I personally do not recommend paying attention to Levene's "homogeneity of variances" test, nor to the Shapiro-Wilk normality tests
+
+*INSERT IMAGE*
+
+• These tests use null hypotheses of "population variance is the same in all groups", or "the residuals were drawn from a normal distribution". As I don't think these model assumptions could be literally true, I am not interested in whether they can be rejected by the data.
 
 • A "significant" violation of modeling assumptions does not imply a consequential violation. In particular, if sample size is large, trivial violations of assumption
 
 ### Doing all of this as regression
 
-• The beginning of these slides claimed that ANOVA is just regression with categorical predictors. Let's see what our results look like if we use jamovi's "linear regression" function rather than "ANOVA". • The predictor variables are entered as "factors" here, rather than as "covariates", to ensure they are treated as categorical rather than as quantitative variables. • Finally, the interaction must be specified under "model builder"; jamovi does not create regression interactions by default.
+• The beginning of these slides claimed that ANOVA is just regression with categorical predictors. Let's see what our results look like if we use jamovi's "linear regression" function rather than "ANOVA".
+
+*INSERT IMAGE*
+
+• The predictor variables are entered as "factors" here, rather than as "covariates", to ensure they are treated as categorical rather than as quantitative variables.
+
+*INSERT IMAGE*
+
+• Finally, the interaction must be specified under "model builder"; jamovi does not create regression interactions by default.
 
 • There are five recall condition groups, giving four indicator variables, all compared against the baseline group "counting", whose mean is represented by the intercept.
 
 • There are two "age" groups; "young" is the baseline group.
 
-• So the intercept of 6.500 is the mean words recalled for a young person in the "counting" condition.
+*INSERT IMAGE*
 
-• The first indicator under RecallCondition is "Rhyming -- Counting". Its slope of 1.1 is the difference in mean recall for these two groups, when Age = Young
+• So the intercept of $6.500$ is the mean words recalled for a young person in the "counting" condition.
 
-• The interaction slope for "Rhyming -- Counting" is -1.2.
+• The first indicator under RecallCondition is "Rhyming -- Counting". Its slope of $1.1$ is the difference in mean recall for these two groups, when Age = Young
 
-• So, for Age = Old, the difference in
+• The interaction slope for "Rhyming -- Counting" is $-1.2$.
 
-mean recall is 1.1 +
-
-= −0.1
+• So, for Age = Old, the difference in mean recall is $1.1 +(-1.2) = −0.1$
 
 • The interaction terms are all indicators, that "turn on" when Age = Old, and "turn off" when Age = Young.
 
-• Notice that the slope for Age ("Old -- Young") is 0.5, suggesting greater recall for older participants. • However, the interaction slopes are all larger negative values.
+*INSERT IMAGE*
+
+• Notice that the slope for Age ("Old -- Young") is 0.5, suggesting greater recall for older participants.
+
+• However, the interaction slopes are all larger negative values.
 
 • So, when RecallCondition = Counting, the mean items recalled for Age = Old is larger than for Age = Young. But for all other recall conditions, the interaction slopes turn this negative, and mean items recalled is larger for younger participants.
 
+#### Main regression results
+
 • "Estimated Marginal Means" under regression will produce a similar plot to the one made under ANOVA, just without the connecting lines and raw data:
+
+*INSERT IMAGE*
 
 • If you look carefully, you should be able to see how the regression results correspond to this plot. For instance, we see that the only condition where Old \> Young is Counting.
 
+*INSERT IMAGE*
+
 • We can get a plot of residuals vs. fitted values.
+
+*INSERT IMAGE*
 
 • Notice that the residuals are all vertically stacked? This is to be expected when predictor variables are categorical.
 
@@ -227,50 +251,77 @@ mean recall is 1.1 +
 
 • In this study, a preliminary quiz is given on the first day of class. Score on the preliminary quiz will be the covariate. Score on an end of semester quiz ("post") will be the response variable.
 
-𝑃𝑜𝑠𝑡𝑖𝑗 = 𝜇 + 𝑡𝑦𝑝𝑒𝑗 + 𝛽 + 𝜀𝑖𝑗
+$$
+Post_{ij} = \mu + type_j + \beta(pre_{ij} - \overline{pre}) + \epsilon_{ij}
+$$
 
-• Here, j goes from 1 to 3, for the three teaching types being compared.
+• Here, $j$ goes from $1$ to $3$, for the three teaching types being compared.
 
-• The pre-test predictor is centered (note that 𝑝𝑟𝑒 is mean for pretests).
+• The pre-test predictor is centered (note that $\overline{pre}$ is mean for pretests).
 
 • Imagine we believe that the mean differences between teaching types will be larger for students with lower pretest scores. To account for this possibility, let type and (centered) pretest interact:
 
-𝐶𝑜𝑢𝑟𝑠𝑒_𝑎𝑣𝑔𝑖𝑗 = 𝜇 + 𝑡𝑦𝑝𝑒𝑗 + 𝛽 𝑝𝑟𝑒𝑖𝑗 − 𝑝𝑟𝑒 +𝛾𝑗(𝑡𝑦𝑝𝑒𝑗)(𝑝𝑟𝑒𝑖𝑗 − 𝑝𝑟𝑒) + 𝜀𝑖𝑗
+$$
+Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)(pre_j - \overline{pre}) + \epsilon_{ij}
+$$
 
 • The data file is called "test_pretest". Here is the formatting:
 
+*INSERT IMAGE*
+
 • This plot was made using Analyses / Exploration / Scatterplot. Density curves are there, just for fun:
+
+*INSERT IMAGE x2*
 
 • The three lines look pretty close to parallel, so there either isn't an obvious interaction here, or it's small.
 
+*INSERT IMAGE*
+
 • Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.
 
-• Type is still significant; it's 𝜂2𝑝 value is much larger than its 𝜂2 value.
+*INSERT IMAGE*
+
+• Type is still significant; it's $\eta^2p$ value is much larger than its $\eta^2$ value.
 
 • Careful interpreting the "Estimated marginal means" plot -- it takes into account only "post" scores!
 
+#### Analysis using regression w/ indicators
+
 • For the regression analysis, we'll use two indicator variables. We don't have to do it this way; if we just include "type", jamovi will create the indicators for us, using the first class type listed in the data.
+
+*INSERT IMAGE*
 
 • Notice that the interaction estimates are small relative to their standard errors (thus producing large p- values).
 
+*INSERT IMAGE*
+
 • According to this regression model, there is not a "significant" interaction.
 
-Analysis using regression w/factor
+#### Analysis using regression w/factor
 
 • Here's what happens if we put in "type" as a factor variable rather than making our own indicators. The results are the same.
 
+*INSERT IMAGE*
 
 • The QQ plot and residual plot both look great
 
-### Analyzing paired data: ANCOVA vs ANOVA 
+*INSERT IMAGE*
+
+### Analyzing paired data: ANCOVA vs ANOVA
 
 • Another approach we could take would be to compute the differences in the two scores for each person, then do a regular ANOVA or regression analysis on those.
 
-• We see that there are significant differences in mean test score change between teaching types (F=8.94, p\<0.001)
+*INSERT IMAGE*
 
-Analyze differences, regression approach
+• We see that there are significant differences in mean test score change between teaching types (\$F=8.94, p\<0.001\$)
 
-• This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post -- pre) when comparing "combo" to "flipped" or "traditional". And 𝑅2 = 𝜂2!
+*INSERT IMAGE x2*
+
+#### Analyze differences, regression approach
+
+• This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post -- pre) when comparing "combo" to "flipped" or "traditional". And $R^2 = \eta^2$!
+
+*INSERT IMAGE*
 
 • It turns out here that taking the post -- pre differences first and then comparing mean differences across teaching types produces similar results to predicting post-test scores using pre-test and teaching type as predictors.
 
