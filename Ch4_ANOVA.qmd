@@ -111,15 +111,15 @@ $$
 
 • Jamovi has an "ANOVA" function and a "regression" function. We'll use both the analyze these data.
 
-*INSERT IMAGE*
+![](images/mod5_1.png){fig-align="left" width="136"}
 
 • First we'll use ANOVA, using items recalled as the response (dependent) variable, and recall condition and age as factors. Note that jamovi automatically includes their interaction.
 
-*INSERT IMAGE*
+![](images/Mod5_2.png){fig-align="center"}
 
 • I am usually not interested in the sums of squares or mean squares in the ANOVA table, as these are not interpretable. We do have p-values for each "main effect" along with the interaction. More importantly, we have effect size statistics: eta-squared ($\eta^2$) and partial eta-squared ($\eta^2p$)
 
-### Eta-squared and partial eta-squared
+### ANOVA effect sizes: $\eta^2$ and partial-$\eta^2$
 
 • $\eta^2$ is akin to $R^2$ for one factor (main effect or interaction). It gives the proportion of variance in the response attributable to the factor in question:
 
@@ -127,17 +127,15 @@ $$
 \eta^2 = \frac{SS_{factor}}{SS_{total}}
 $$
 
-*INSERT IMAGE*
+![](images/Mod5_3.png){fig-align="center" width="464"}
 
 • Here, we see that recall condition explains the most variance by far, followed by age, followed by their interaction.
-
-#### ANOVA effect sizes: $\eta^2$ and partial-$\eta^2$
 
 • $\eta^2p$ (partial eta-squared) is like $\eta^2$, but with the variance accounted for by the other factors removed from the denominator:
 
 $$
 \eta^2p = \frac{SS_{factor}}{SS_{factor} + SS_{residuals}}
-$$ *INSERT IMAGE*
+$$ ![](images/Mod5_4.png)
 
 • Example: for recall condition,
 
@@ -151,17 +149,17 @@ $$
 
 • We can make a nice plot under "estimated marginal means":
 
-*INSERT IMAGE*
+![](images/Mod5_5.png){fig-align="center"}
 
 • This plot shows every combination of means across recall condition and age. It also has 95% CIs around each mean, and raw data displayed.
 
-*INSERT IMAGE*
+![](images/Mod5_6.png){fig-align="center" width="447"}
 
 • This is sometimes called a "means plot" or an "interaction plot". The interaction is represented by non-parallel lines, e.g. a positive change going from "Imagery" to "Intention" for young people, but a negative change for old people.
 
 • The previous plot showed means for recall condition, with separate lines for age. If we flip the order of the variables, we get this:
 
-*INSERT IMAGE*
+![](images/Mod5_7.png){fig-align="center" width="483"}
 
 • Here we see that mean items recalled for young people is substantially higher than for old people in the last three conditions, but differs only slightly in the first two conditions.
 
@@ -169,15 +167,15 @@ $$
 
 • We can also run diagnostic tests, under "Assumption checks":
 
-*INSERT IMAGE*
+![](images/Mod5_8.png){fig-align="left" width="146"}
 
 • The QQ plot looks pretty good.
 
-*INSERT IMAGE*
+![](images/Mod5_9.png){fig-align="center"}
 
 • I personally do not recommend paying attention to Levene's "homogeneity of variances" test, nor to the Shapiro-Wilk normality tests
 
-*INSERT IMAGE*
+![](images/Mod5_10.png){fig-align="center" width="293"}
 
 • These tests use null hypotheses of "population variance is the same in all groups", or "the residuals were drawn from a normal distribution". As I don't think these model assumptions could be literally true, I am not interested in whether they can be rejected by the data.
 
@@ -187,11 +185,11 @@ $$
 
 • The beginning of these slides claimed that ANOVA is just regression with categorical predictors. Let's see what our results look like if we use jamovi's "linear regression" function rather than "ANOVA".
 
-*INSERT IMAGE*
+![](images/Mod5_11.png){fig-align="center" width="242"}
 
 • The predictor variables are entered as "factors" here, rather than as "covariates", to ensure they are treated as categorical rather than as quantitative variables.
 
-*INSERT IMAGE*
+![](images/Mod5_12.png){fig-align="center" width="480"}
 
 • Finally, the interaction must be specified under "model builder"; jamovi does not create regression interactions by default.
 
@@ -199,7 +197,7 @@ $$
 
 • There are two "age" groups; "young" is the baseline group.
 
-*INSERT IMAGE*
+![](images/Mod5_13.png){fig-align="left" width="510"}
 
 • So the intercept of $6.500$ is the mean words recalled for a young person in the "counting" condition.
 
@@ -211,8 +209,6 @@ $$
 
 • The interaction terms are all indicators, that "turn on" when Age = Old, and "turn off" when Age = Young.
 
-*INSERT IMAGE*
-
 • Notice that the slope for Age ("Old -- Young") is 0.5, suggesting greater recall for older participants.
 
 • However, the interaction slopes are all larger negative values.
@@ -223,15 +219,17 @@ $$
 
 • "Estimated Marginal Means" under regression will produce a similar plot to the one made under ANOVA, just without the connecting lines and raw data:
 
-*INSERT IMAGE*
+![](images/Mod5_15.png){fig-align="center" width="395"}
 
 • If you look carefully, you should be able to see how the regression results correspond to this plot. For instance, we see that the only condition where Old \> Young is Counting.
 
-*INSERT IMAGE*
+![](images/Mod5_16.png)
+
+#### Residual plot
 
 • We can get a plot of residuals vs. fitted values.
 
-*INSERT IMAGE*
+![](images/Mod5_17.png){fig-align="center"}
 
 • Notice that the residuals are all vertically stacked? This is to be expected when predictor variables are categorical.
 
@@ -265,21 +263,27 @@ $$
 Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)(pre_j - \overline{pre}) + \epsilon_{ij}
 $$
 
+#### Looking at the data
+
 • The data file is called "test_pretest". Here is the formatting:
 
-*INSERT IMAGE*
+![](images/Mod5_18.png){fig-align="center"}
 
 • This plot was made using Analyses / Exploration / Scatterplot. Density curves are there, just for fun:
 
-*INSERT IMAGE x2*
+![](images/Mod5_19.png){fig-align="left" width="428"}
+
+![](images/Mod5_20.png){fig-align="right" width="478"}
 
 • The three lines look pretty close to parallel, so there either isn't an obvious interaction here, or it's small.
 
-*INSERT IMAGE*
+![](images/Mod5_21.png){fig-align="center" width="333"}
+
+#### Analysis using ANCOVA
 
 • Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.
 
-*INSERT IMAGE*
+![](images/Mod5_22.png){fig-align="center" width="626"}
 
 • Type is still significant; it's $\eta^2p$ value is much larger than its $\eta^2$ value.
 
@@ -289,11 +293,11 @@ $$
 
 • For the regression analysis, we'll use two indicator variables. We don't have to do it this way; if we just include "type", jamovi will create the indicators for us, using the first class type listed in the data.
 
-*INSERT IMAGE*
+![](images/Mod5_23.png){fig-align="center" width="389"}
 
 • Notice that the interaction estimates are small relative to their standard errors (thus producing large p- values).
 
-*INSERT IMAGE*
+![](images/Mod5_24.png){fig-align="center" width="509"}
 
 • According to this regression model, there is not a "significant" interaction.
 
@@ -301,27 +305,29 @@ $$
 
 • Here's what happens if we put in "type" as a factor variable rather than making our own indicators. The results are the same.
 
-*INSERT IMAGE*
+![](images/Mod5_25.png){fig-align="center" width="510"}
 
 • The QQ plot and residual plot both look great
 
-*INSERT IMAGE*
+![](images/Mod5_26.png){fig-align="center"}
 
 ### Analyzing paired data: ANCOVA vs ANOVA
 
 • Another approach we could take would be to compute the differences in the two scores for each person, then do a regular ANOVA or regression analysis on those.
 
-*INSERT IMAGE*
+![](images/Mod5_27.png){fig-align="center" width="397"}
 
 • We see that there are significant differences in mean test score change between teaching types (\$F=8.94, p\<0.001\$)
 
-*INSERT IMAGE x2*
+![](images/Mod5_28.png){fig-align="center" width="438"}
+
+![](images/Mod5_29.png){fig-align="center" width="333"}
 
 #### Analyze differences, regression approach
 
 • This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post -- pre) when comparing "combo" to "flipped" or "traditional". And $R^2 = \eta^2$!
 
-*INSERT IMAGE*
+![](images/Mod5_30.png){fig-align="center"}
 
 • It turns out here that taking the post -- pre differences first and then comparing mean differences across teaching types produces similar results to predicting post-test scores using pre-test and teaching type as predictors.
 
