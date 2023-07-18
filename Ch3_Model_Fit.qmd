@@ -51,7 +51,7 @@ $$
 
 • Here's a bad idea: fitting a linear model to non-linear data!
 
-*INSERT IMAGE*
+![](images/mod4_pt1_1.png){fig-align="center" width="400"}
 
 ### Diagnosing non-linearity
 
@@ -63,25 +63,25 @@ $$
 residual_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \dots)
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt1_2.png){fig-align="center" width="383"}
 
 • For simple regression, this plot just looks like the regression plot with the line turned horizontally.
 
 • For multiple regression, there is no (two dimensional) "regression plot", so the residual plot will be very useful!
 
-*INSERT IMAGE*
+![](images/mod4_pt1_3.png){fig-align="center"}
 
 • In this example, there is clear curvature in the data. A straight line model is not appropriate.
 
 • Here's an example of what a linear relationship might look like:
 
-*INSERT IMAGE*
+![](images/mod4_pt1_4.png){fig-align="center"}
 
 • When there is non-linearity, you will see the residuals mostly on one side of zero, then on the other size of zero, then back again, and so on.
 
 • When there is linearity, the residuals should randomly fall on either side of zero.
 
-*INSERT IMAGE*
+![](images/mod4_pt1_5.png){fig-align="center"}
 
 ### What to look for in a residual plot
 
@@ -109,7 +109,7 @@ $$
 
 • The option is under the last drop-down menu, under "Save".
 
-*INSERT IMAGE*
+![](images/mod4_pt1_6.png){fig-align="center" width="278"}
 
 • To create a plot of the residuals, select "Q-Q plot of residuals" under "Assumption Checks" in "Linear Regression"
 
@@ -117,7 +117,7 @@ $$
 
 • It is easier to assess normality with a QQ plot than with a histogram.
 
-*INSERT IMAGE*
+![](images/mod4_pt1_7.png){fig-align="center" width="274"}
 
 #### Assessing normality with a QQ plot
 
@@ -127,11 +127,11 @@ $$
 
 • By default, it draws data from a normal distribution. But, you can add "skewedness" or "peakedness" (aka kurtosis) to make the distribution non-normal. You can also adjust sample size.
 
-I*NSERT IMAGE*
-
-I*NSERT IMAGE*
+![](images/mod4_pt1_8.png)
 
 • A QQ plot shows you how much the distribution of your data "agree" with a normal distribution.
+
+![](images/mod4_pt1_9.png){fig-align="center" width="323"}
 
 • The horizonal axis gives the distribution data would follow if it were perfectly normal.
 
@@ -139,19 +139,19 @@ I*NSERT IMAGE*
 
 • The diagonal line shows perfect agreement between the two.
 
-I*NSERT IMAGE*
+![](images/mod4_pt1_10.png){fig-align="left" width="312"}
 
-*NSERT IMAGE*
+![](images/mod4_pt1_11.png){fig-align="right" width="356"}
 
 • The big advantage of the QQ plot vs. the histogram is that very often data that come from a normal distribution don't look normal, especially if the sample size is small.
 
 • In this case, the histogram isn't clearly normal. But, on the QQ plot the data are close to the line.
 
-*NSERT IMAGE*
+![](images/mod4_pt1_12.png){fig-align="center"}
 
-*NSERT IMAGE*
+![](images/mod4_pt1_13.png){fig-align="center"}
 
-*NSERT IMAGE*
+![](images/mod4_pt1_14.png){fig-align="center"}
 
 • Notice that the data still veer from the diagonal line to some extent, even though we know for a fact they came from a normal distribution.
 
@@ -189,19 +189,19 @@ $\epsilon_i \sim Normal(0, \sigma)$
 
 • Thus, the standard deviation of residuals will get bigger as X gets bigger:
 
-*INSERT IMAGE*
+![](images/mod4_pt1_15.png){fig-align="center" width="256"}
 
 #### The residuals vs fitted plot
 
 • Here is the regression plot and residual plot when this simulated variable (called "W" here) is the response and X is the predictor:
 
-*INSERT IMAGE*
+![](images/mod4_pt1_16.png)
 
 • Notice that the residuals are more spread out for larger X
 
 • We also see "heavy tails" when plotting the residuals with a histogram and QQ plot:
 
-*INSERT IMAGE*
+![](images/mod4_pt1_17.png){fig-align="center" width="332"}
 
 • Heavy tails refers to a distribution with outliers on both ends.
 
@@ -213,7 +213,7 @@ $\epsilon_i \sim Normal(0, \sigma)$
 
 • Example: the Florida election data.
 
-*INSERT IMAGE*
+![](images/mod4_pt1_18.png){fig-align="center" width="411"}
 
 • Outliers can "pull" on the regression line, especially if they are far away from the mean of the predictor(s).
 
@@ -243,17 +243,13 @@ $$
 
 • The saved Cook's Distances can then be plotted. Any possibly influential points will usually stand out clearly from the rest.
 
-*INSERT IMAGE*
+![](images/mod4_pt1_19.png){fig-align="center" width="393"}
 
 • To quickly narrow in on the influential counties, we can filter out all the small Cook's distances.
 
-*INSERT IMAGE*
-
 • After implementing the filter, we can see that all rows which do not meet the criteria of the filter are excluded.
 
-*INSERT IMAGE*
-
-*INSERT IMAGE*
+![](images/mod4_pt1_20.png){fig-align="center" width="363"}
 
 • Only rows 13 and 50 should be highlighted for Dade and Palmbeach county which have cook's distances of 1.983 and 3.786.
 
@@ -277,17 +273,15 @@ $$
 
 • But, if $x_1$ and $x_2$ are highly correlated, then we don't get to observe cases where values of one variable differ substantially while values of the other are the same! Consider instances of no correlation vs. heavy correlation:
 
-*INSERT IMAGE*
-
-*INSERT IMAGE*
+![](images/mod4_pt1_21.png){fig-align="center"}
 
 • When $x_1$ and $x_2$ are uncorrelated, we see lots of instances of $x_1$ values differing a lot when $x_2$ values are equal.
 
-*INSERT IMAGE*
+![](images/mod4_pt1_22.0.png){fig-align="center" width="369"}
 
 • When $x_1$ and $x_2$ are highly correlated, we never see instances where $x_2$ values are equal but $x_1$ values are highly correlated.
 
-*INSERT IMAGE*
+![](images/mod4_pt1_22.5.png){fig-align="center" width="337"}
 
 • The upshot is that, when $x_1$ and $x_2$ are highly correlated, the regression procedure has a difficult time distinguishing between the "effect" of $x_1$ on $Y$ and the "effect" of $x_2$ on $Y$.
 
@@ -297,7 +291,7 @@ $$
 
 • If two or more predictors are perfectly correlated ($r=1$), then the model cannot be fit and jamovi produces an error:
 
-*INSERT IMAGE*
+![](images/mod4_pt1_23.png){fig-align="center" width="314"}
 
 • Here, $X1$ and $X2$ are perfectly correlated. jamovi cannot estimate a slope for $X2$.
 
@@ -309,7 +303,7 @@ $$
 
 • Unsurprisingly, Total_Votes and Total_Reg are highly correlated:
 
-*INSERT IMAGE*
+![](images/mod4_pt1_24.png){fig-align="center" width="355"}
 
 • If we run two separate simple regression models, we get very similar results:
 
@@ -317,13 +311,13 @@ $$
 Buchanin_i = \beta_0 + \beta_1Total\_Votes_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt1_25.png){fig-align="left" width="328"}
 
 $$
 Buchanin_i = \beta_0 + \beta_1Total\_Reg_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt1_27.png){fig-align="left" width="315"}
 
 • But look what happens if we use Total_Votes and Total_Reg as predictors in the same model:
 
@@ -331,7 +325,7 @@ $$
 Buchanin_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Reg_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt1_27-01.png){fig-align="left" width="312"}
 
 • Two important things to note:
 
@@ -341,7 +335,7 @@ $$
 
 • Looking at the estimates and standard errors in all three models, we see that the standard errors are much larger in the multiple regression model. These estimates are "unstable" -- their values will change a lot if the data change a little.
 
-*INSERT IMAGE* x3
+![](images/mod4_pt1_28.png){fig-align="left" width="341"}
 
 • We know the association between Total_Reg are Buchanan is actually positive. But with so high a standard error, the slope for Total_Reg turned out negative!
 
@@ -361,7 +355,7 @@ $$
 Total\_Votes_i = \beta_0 + \beta_1Total\_Reg_i + \epsilon_i
 $$
 
-*INSERT IMAGE*
+![](images/mod4_pt1_29.png){fig-align="left" width="268"}
 
 \
 • This $R^2$ is huge! Plugging it into the formula:
@@ -372,7 +366,7 @@ $$
 
 • Thankfully we don't have to do this by hand. In jamovi, under "Linear Regression" select "Collinearity statistics":
 
-*INSERT IMAGE x2*
+![](images/mod4_pt1_30.png){fig-align="left" width="330"}
 
 • VIF \> 10 typically is considered large (note that this would imply $R^2 = 0.9$ between predictor variables).
 
