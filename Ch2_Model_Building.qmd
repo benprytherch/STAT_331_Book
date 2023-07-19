@@ -387,15 +387,25 @@ $$
 
 • The model, before being fit to the data:
 
-𝑅𝑒𝑐𝑜𝑟𝑑𝑒𝑑𝑖 = 𝛽0 + 𝛽1𝐼𝑚𝑏𝑎𝑙𝑎𝑛𝑐𝑒𝑖 + 𝛽2𝑀𝑜𝑑𝑒𝑖 + 𝛽3𝐹𝑖𝑟𝑠𝑡𝑖 + 𝛽4𝐿𝑎𝑠𝑡𝑖 + 𝜀𝑖
+$$
+Recorded_i = \beta_0 + \beta_1Imbalance_i + \beta_2Mode_i + \beta_3First_i + \beta_4Last_i + \epsilon_i
+$$
 
 • The results in jamovi:
 
-• Note that the estimated slope is being denoted as 𝑏 rather than as 𝛽መ . 𝜎ො = 𝑀𝑆𝐸. Note also how the 95% CI was created: ≈ 4.62 ± 2 ∗ 0.63
+*INSERT IMAGE*
 
-• The paper does not mention 𝑅2. We can see it in the jamovi output, and calculate it from the ANOVA table:
+*INSERT IMAGE*
 
-• 𝑅2 = 0.12. So, about 12% of the total variance in "Recorded" is being "explained" or "accounted for" in the model.
+• Note that the estimated slope is being denoted as $b$ rather than as $\hat{\beta}_1$. $\hat{\sigma} = MSE$. Note also how the 95% CI was created: $\approx 4.62 ± 2 ∗ 0.63$
+
+• The paper does not mention $R^2$. We can see it in the jamovi output, and calculate it from the ANOVA table:
+
+*INSERT IMAGE*
+
+• $R^2 = 0.12$. So, about 12% of the total variance in "Recorded" is being "explained" or "accounted for" in the model.
+
+*INSERT IMAGE*
 
 • In multiple regression, each predictor is interpreted under the assumption that the values of all other predictors are held constant (i.e. "controlled for").
 
