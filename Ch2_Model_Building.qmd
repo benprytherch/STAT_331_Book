@@ -231,7 +231,7 @@ $$
 
 • Visually, $SS_{Total}$ is the sum of the squared vertical deviations between each data point and the mean of 𝑦, shown here as a horizontal line.
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_1.png){fig-align="center" width="400"}
 
 • The two blue lines drawn are two such instances of these deviations. If we drew these for every data point, squared them, and added them up, we'd have $SS_{Total}$
 
@@ -251,7 +251,7 @@ $$
 
 • Visually, $SS_{Error}$ is the sum of the squared vertical deviations between each data point and the regression line.
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_2.png){fig-align="center" width="400"}
 
 • Here, the blue lines are two instances of these deviations
 
@@ -281,7 +281,7 @@ $$
 
 • Visually, $SS_{Model}$ is the sum of the squared vertical deviations between the regression line and the horizontal line, at each value of the predictor variable.
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_3.png){fig-align="center" width="399"}
 
 • Here, the blue lines are two instances of these deviations, associated with the circled blue data points.
 
@@ -320,7 +320,7 @@ $$
 
 • Visually, we can choose two values of $x$, go up to the line, and record the values of $y$. The slope tells us how much these $y$ values are expected to differ.
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_4.png){fig-align="center" width="400"}
 
 • Here, when we compare $x = 20$ and $x = 80$, we expect their corresponding $y$ values to differ by:
 
@@ -332,7 +332,7 @@ $$
 
 • For each estimated coefficient ($\hat{\beta}_0$ and $\hat{\beta}_0$), jamovi reports a standard error, along with a t-test statistic and p-value testing the null that the parameter being estimated equals zero.
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_5.png){fig-align="center" width="400"}
 
 • Example: the above output shows the test of $H_0: \beta_1 = 0$
 
@@ -375,15 +375,15 @@ $$
 
 • Here is the section of the paper describing the results of Study 1a:
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_6.png){fig-align="center"}
 
 • The data:
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_7.png){fig-align="center"}
 
 • Telling jamovi to fit the model:
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_8.png){fig-align="center" width="400"}
 
 • The model, before being fit to the data:
 
@@ -393,15 +393,15 @@ $$
 
 • The results in jamovi:
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_9.png){fig-align="center"}
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_10.png){fig-align="center" width="400"}
 
 • Note that the estimated slope is being denoted as $b$ rather than as $\hat{\beta}_1$. $\hat{\sigma} = MSE$. Note also how the 95% CI was created: $\approx 4.62 ± 2 ∗ 0.63$
 
 • The paper does not mention $R^2$. We can see it in the jamovi output, and calculate it from the ANOVA table:
 
-*INSERT IMAGE*
+![](images/Mod2_pt1_11.png){fig-align="center" width="400"}
 
 • $R^2 = 0.12$. So, about 12% of the total variance in "Recorded" is being "explained" or "accounted for" in the model.
 
