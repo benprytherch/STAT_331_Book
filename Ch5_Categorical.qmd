@@ -24,11 +24,11 @@ $$
 
 • Here are results from a recent political poll:
 
-*INSERT IMAGE*
+![](images/Mod6_1.png){fig-align="center"}
 
 • Say we want to make a confidence interval for the proportion of registered voters who say that "things in the country are going in the right direction". Denote this population proportion $\pi$.
 
-*INSERT IMAGE*
+![](images/Mod6_2.png){fig-align="center"}
 
 $$
 95\% \text{ CI for }\pi:
@@ -40,23 +40,23 @@ $$
 
 • In jamovi, enter a column of frequencies for each value of the response variable, then use Frequencies / N -- Outcomes or Frequencies / 2 Outcomes:
 
-*INSERT IMAGE*
+![](images/Mod6_4.png){fig-align="center"}
 
 ### Toy example: skin cream and rashes
 
 • Here is an example from the 2013 paper "Motivated Reasoning and Enlightened Self Government", by Kahan et. al.:
 
-*INSERT IMAGE*
+![](images/Mod6_5.png){fig-align="center"}
 
-*INSERT IMAGE*
+![](images/Mod6_6.png){fig-align="center"}
 
 • Putting the data into jamovi:
 
-*INSERT IMAGE*
+![](images/Mod6_7.png){fig-align="center" width="400"}
 
 • Analyzing the data using Frequencies / Independent Samples:
 
-*INSERT IMAGE*
+![](images/Mod6_8.png){fig-align="center" width="440"}
 
 • Rash is the response variable
 
@@ -66,13 +66,13 @@ $$
 
 • Results! There's a lot in here...
 
-*INSERT IMAGE*
+![](images/Mod6_9.png){fig-align="center" width="505"}
 
-*INSERT IMAGE*
+![](images/Mod6_10.png){fig-align="center" width="499"}
 
 • Split bar plot: displays each cell in the contingency table as a bar:
 
-*INSERT IMAGE*
+![](images/Mod6_11.png){fig-align="center" width="383"}
 
 • Here we can easily see that the largest number of people were those who got the skin cream and whose rash got better.
 
@@ -80,11 +80,11 @@ $$
 
 • We'll cover the chi-square results soon. Right now, let's have jamovi directly compare proportions, using Frequencies / Independent Samples:
 
-*INSERT IMAGE*
+![](images/Mod6_12.png){fig-align="center"}
 
 • Here, jamovi quantifies what we saw in the split bar plot: that the proportion of those who got better without the skin cream is greater than the proportion of those who got better with the skin cream:
 
-*INSERT IMAGE*
+![](images/Mod6_13.png){fig-align="center" width="426"}
 
 $$
 \text{"Probability of Better, given Yes" - "Probability of Better, given No" } =-0.0876 \\
@@ -93,7 +93,7 @@ $$
 
 • We also see a 95% CI for this difference, which is fairly wide and just barely excludes zero
 
-*INSERT IMAGE*
+![](images/Mod6_14.png){fig-align="center"}
 
 • And we see the p-value testing against:
 
@@ -119,13 +119,13 @@ $$
 
 • "Relative Risk" is an option under Comparative Measures. jamovi will give conditional probabilities based on the order of the data. Here, rash getting worse is Better is selected:
 
-*INSERT IMAGE*
+![](images/Mod6_15.png){fig-align="center"}
 
 #### Relative risk in JMP
 
 • We see here that 𝑅𝑅 = 0.895.
 
-*INSERT IMAGE*
+![](images/Mod6_13-01.png){fig-align="center"}
 
 -   Notice the 95% CI is not very wide.
 
@@ -157,7 +157,7 @@ $$
 
 • Staying with the skin cream example, here is the contingency table as jamovi initially reports it:
 
-*INSERT IMAGE*
+![](images/Mod6_16.png){fig-align="center" width="511"}
 
 • There is a lot being shown here. Top rows are observed frequencies, what jamovi calls "observed".
 
@@ -169,11 +169,9 @@ $$
 
 • The first of these are the expected counts under the null hypothesis of independence.
 
-*INSERT IMAGE*
+![](images/Mod6_17.png){fig-align="center"}
 
 • To see how these "expected" counts would suggest independence, consider the relative risk:
-
-*INSERT IMAGE*
 
 $$
 RR = \frac{P(Worse|No)}{P(Worse|Yes)} \\
@@ -203,7 +201,7 @@ $$
 
 • And here is the jamovi output showing the full chi-square test:
 
-*INSERT IMAGE*
+![](images/Mod6_18.png){fig-align="center" width="373"}
 
 ("Pearson" chi-square is the classic chi-square test)
 
@@ -215,8 +213,6 @@ $$
 
 • The p-value is found using the appropriate degrees of freedom for the chi-square distribution. We won't cover this part.
 
-*INSERT IMAGE*
-
 • In this case, we see that the chi-square test just barely meets the standard for statistical significance ($p = 0.0472$).
 
 • This is in line with the other methods we used to analyze these data.
@@ -227,15 +223,13 @@ $$
 
 • Going back to the polling data, we can select Frequencies / N - Outcomes, and then make Answer "Variable" and Frequency "Counts".
 
-*INSERT IMAGE*
+![](images/Mod6_19-01.png){fig-align="center" width="478"}
 
 • Suppose the null hypothesis is that equal numbers of voters feel the country is on the right vs. wrong track. Enter 0.5 for hypothesized probability:
 
-*INSERT IMAGE*
-
 • Here we get a very large chi-square statistic and a very small p-value.
 
-*INSERT IMAGE*
+![](images/Mod6_20.png){fig-align="center" width="385"}
 
 • No surprise; the frequencies were very different!
 
