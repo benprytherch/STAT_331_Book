@@ -517,7 +517,7 @@ $$
 
 • We will fit some regression models using this data, but first let's take a look at our data using the Scatterplot module.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_1.png){fig-align="center" width="400"}
 
 • Here is "after" vs. "before", with a linear regression line superimposed. Note that most patients had greater inflammation before than after treatment.
 
@@ -525,61 +525,61 @@ $$
 
 • Note that the differences tend to be larger for the DMARD group: this corresponds to a greater reduction in inflammation.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_2.png){fig-align="center" width="400"}
 
 • Use Descriptives to create the boxplot. Select difference as a Variable and Split by drug. Then select under Plots -- Box plot and Data Jittered to superimpose data.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_3.png){fig-align="center" width="249"}
 
 #### Before vs. age scatterplot
 
 • Here we see that age is positively correlated with inflammation before the drug trial.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_4.png){fig-align="center" width="400"}
 
 • jamovi gives options to superimpose regression output on a scatterplot.
 
 • jamovi can also plot "standard error" bands around the line. These show the standard error for the average value of y ("before"), given x ("age").
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_5.png){fig-align="center" width="326"}
 
 #### Difference vs. before
 
 We don't see an association between amount of inflammation before treatment and reduction in inflammation...
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_6.png){fig-align="center" width="400"}
 
 ... but maybe we do if we add in drug! Do "drug" and "before" interact here?
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_7.png){fig-align="center" width="400"}
 
 #### Difference vs. age
 
 We see a small negative correlation between difference and age...
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_8.png){fig-align="center" width="400"}
 
 ... but when we add drug, we see no correlation for the NSAID and clear negative correlation for the DMARD. Definite interaction!
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_9.png){fig-align="center" width="400"}
 
 #### Now with model output...
 
 • The following slides show the plots again, plus the regression output JMP produces. First up, Difference vs. Drug, using t-test:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_10.png){fig-align="center"}
 
 • And using regression:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_11.png){fig-align="center" width="386"}
 
 OMG! The estimated slope for "drug" is the same as the difference in means between the drugs!
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_12.png){fig-align="center" width="400"}
 
 #### Before vs. age
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_13.png)
 
 #### Difference vs. age, with drug interaction
 
@@ -591,9 +591,9 @@ $$
 
 • To do this, create a new column in jamovi, defined as $age*drug$*.* May as well label it *"*$age*drug$".
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_14.png){fig-align="left" width="299"}
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_15.png){fig-align="right" width="400"}
 
 • Notice that the slope of "age" by itself is for when drug = 0. The age\*treatment interaction shows how much the slope of "age" changes when treatment = 1.
 
@@ -601,17 +601,13 @@ $$
 \widehat{difference} = 2.0114 + 0.0125(age) + 15.1586(drug) -0.2493(age*drug)
 $$
 
-*INSERT IMAGE*
-
 • Slope of "age" when drug = 1 is: $0.0125 − 0.2493 = −0.2368$
-
-*INSERT IMAGE*
 
 • Notice also that the slope of "age" by itself is nowhere close to being statistically significant (the estimate is less than half the standard error), but the slope of the interaction is highly significant (the estimate is 6 times as large as the standard error)
 
 • Now take a look at the plot. There is a clear negative correlation between age and difference when drug = 1. There is essentially none when drug = 0.
 
-*INSERT IMAGE(plot)*
+![](images/Mod2_pt2_16.png){fig-align="center" width="385"}
 
 -   Another way of thinking about this interaction:
 
@@ -631,7 +627,7 @@ $$
 
 • Just to confirm, here is the distribution of age, split by drug:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_17.png){fig-align="center" width="400"}
 
 • Again, age and drug "interact" when it comes to their associations with the differences in inflammation scores: the association between "age" and "difference" is different for the two different drugs.
 
@@ -677,7 +673,7 @@ $$
 
 • Compare the new results (on the left) to the results we saw when using the interaction term we created manually (on the right)
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_18.png){fig-align="center"}
 
 #### Centered interaction in JMP
 
@@ -685,7 +681,7 @@ $$
 
 • Centering also had no effect on the slope for the interaction, or on its standard error. But, look at the individual "age" and "drug" predictors.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_19.png){fig-align="center" width="347"}
 
 • These slopes are different, because they are being calculated at the mean value of the other.
 
@@ -695,7 +691,7 @@ $$
 
 • Look at the slope for drug when using a centered interaction: it's the same value we calculated by plugging the mean of age into the interaction term in the non-centered model!
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_20.png){fig-align="center" width="325"}
 
 • The slope for age in the centered model is harder to interpret. It is calculated at the "average" for drug, which doesn't make real world sense.
 
@@ -707,7 +703,7 @@ $$
 
 • Now we need to create the new interaction where only age is centered. Create a new column and define it as "drug \* centered age".
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_21.png){fig-align="center" width="183"}
 
 #### Only centering one predictor in JMP
 
@@ -715,15 +711,15 @@ $$
 
 • Only age centered:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_22.png){fig-align="center" width="400"}
 
 • Age and drug centered in the interaction:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_23.png){fig-align="center" width="400"}
 
 • Nothing centered:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_24.png){fig-align="center" width="400"}
 
 #### Only centering one predictor in jamovi
 
@@ -731,7 +727,7 @@ $$
 
 • Second, the slope for drug is the same in both centered models, but different in the non-centered model. It is the centering of age in the interaction that changed the slope for drug.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_25.png){fig-align="center"}
 
 • Third, the slope for age is the same in both models for which drug is not centered. This allows us to interpret it as before: slope for age is 0.0125 for the NSAID and is 0.0125 − 0.2493 = −0.2368 for the DMARD
 
@@ -751,7 +747,7 @@ $$
 
 • Going back to our example, the predicted reduction in inflammation (before minus after) for a patient at the average age in our data set who got the NSAID is 2.665.
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_26.png){fig-align="center" width="400"}
 
 • The predicted reduction in inflammation for a patient at the average age who got the DMARD is 2.665 + 2.171 = 4.836
 
@@ -781,15 +777,15 @@ $$
 
 • We will also need to create a column for the new interaction and define it as drug\*Standardized age
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_27.png){fig-align="center"}
 
 • Here are the results when age is standardized:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_28.png){fig-align="center" width="400"}
 
 • Compare to the results when age is centered:
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_29.png){fig-align="center" width="400"}
 
 • Note that the intercepts are the same. In both cases, the predicted reduction in inflammation for a patient at average age getting NSAID is $2.665$. Likewise, in both cases this prediction is $4.836$ for DMARD.
 
@@ -799,7 +795,7 @@ $$
 
 • How much is a standard deviation? We can look it up...
 
-*INSERT IMAGE*
+![](images/Mod2_pt2_30.png){fig-align="center" width="203"}
 
 #### Interaction and centering / standardizing summary
 
