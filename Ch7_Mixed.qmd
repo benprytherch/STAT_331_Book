@@ -92,9 +92,7 @@ STAT 331
 </body>
 </html>
 ```
-
 ## Part 1: Repeated measures
-
 
 • This module covers data analysis methods for "repeated measures" data.
 
@@ -108,26 +106,23 @@ STAT 331
 
 • These notes introduce the problems and opportunities that arise from the use of repeated measures data.
 
-
 ### The independence assumption
 
 • We have looked at model assumptions in this class, e.g.
 
-𝜀𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+$$
+\epsilon_i \sim Normal(0, \sigma)
+$$
 
 • There is one that has been left out. The complete way to write this statement is:
 
-iid 𝜀𝑖 \~
-
-𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+$$
+\epsilon_i \overset{iid}\sim Normal(0, \sigma)
+$$
 
 • The "iid" means "independent and identically distributed.
 
-iid 𝜀𝑖 \~
-
-𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎) says that 𝜀𝑖 takes on values that are independently
-
-sampled from the same normal distribution.
+•$\epsilon_i \overset{iid}\sim Normal(0, \sigma)$ says that $\epsilon_i$ takes on values that are independently sampled from the same normal distribution.
 
 • "independently sampled" means that the value of the next data point is not dependent upon the value of the previous data point.
 
@@ -135,15 +130,15 @@ sampled from the same normal distribution.
 
 • But, if the same subjects are measured multiple times, then the multiple observations on each subject will not be independent.
 
-• Example: suppose we take a random sample of 10 people, have each solve a maze, and record how much time it takes each person to solve it. Call this time 𝑇.
+• Example: suppose we take a random sample of 10 people, have each solve a maze, and record how much time it takes each person to solve it. Call this time $T$.
 
 • We might model the times as i.i.d. normal:
 
-𝑖𝑖𝑑 𝑇𝑖 \~
+$$
+T_i \overset{iid}\sim Normal( \mu, \sigma)
+$$
 
-𝑁𝑜𝑟𝑚𝑎𝑙(𝜇, 𝜎)
-
-• This means that, given a mean and standard deviation, each observed time 𝑇𝑖 is uncorrelated with any previous times. This should make sense: there is no reason that the 3rd person's maze time should depend upon the 2nd person's maze time.
+• This means that, given a mean and standard deviation, each observed time $T_i$ is uncorrelated with any previous times. This should make sense: there is no reason that the $3^{rd}$ person's maze time should depend upon the $2^{nd}$ person's maze time.
 
 • But, if we take repeated measures on each subject, then our data will not be independent.
 
@@ -161,25 +156,39 @@ sampled from the same normal distribution.
 
 • We will also assume that the two treatments have an identical effect. Therefore the null hypothesis of no difference in means is true.
 
-• The file cows_ttest.jmp has some fake data, simulated as 𝑦𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(12,4) for both groups:
+• The file cows_ttest.jmp has some fake data, simulated as $y_i \sim Normal(12,4)$ for both groups:
+
+*INSERT IMAGE* X2
 
 • Not surprisingly, the t-test gives no significant difference in means:
 
-95% 𝐶𝐼 𝑓𝑜𝑟 𝜇1 − 𝜇2 =
+$$
+95\% \textit{ CI for } \mu_1 - \mu_2 = (-18.00, 8.07), \text{ p-value} = 0.321
+$$
 
-, p−value = 0.321
+*INSERT IMAGE*
 
 • Now suppose we measure infection level for each cow seven times after receiving treatment.
 
 • The file cows_repeated_ttest.csv contains data simulating this scenario.
 
+*INSERT IMAGE*
+
 • For each cow, there are 7 observations. These all average out to the one observation per cow from the last data set.
+
+*INSERT IMAGE*
 
 • But check out these t-test results!
 
+*INSERT IMAGE*
+
 • Notice where it says degrees of freedom = 29.2. If your degrees of freedom exceeds your sample size, something is wrong.
 
+#### What happened?
+
 • Comparing the two t-tests:
+
+*INSERT IMAGE* x2
 
 • The mean difference is nearly the same for both.
 
@@ -187,19 +196,19 @@ sampled from the same normal distribution.
 
 • Remember that the t-test is just a simple regression model:
 
-𝑖𝑖𝑑 𝑦𝑖 = 𝛽0 + 𝛽1𝐺𝑟𝑜𝑢𝑝𝑖 + 𝜀𝑖, 𝜀𝑖 \~
+$$
+y_i = \beta_0 + \beta_1Group_i + \epsilon_i \text{ where } \epsilon_i \overset{iid}\sim Normal(0, \sigma)
+$$
 
-𝑁𝑜𝑟𝑚𝑎𝑙
-
-• In this case, 𝛽መ is the estimated mean difference in infection levels between the two groups.
+• In this case, $\hat{\beta}_1$ is the estimated mean difference in infection levels between the two groups.
 
 • There's nothing wrong with this estimate on its own. However its standard error is computing using an incorrect assumption: that all of the observations within each group are independent.
 
-Effective sample size
+#### Effective sample size
 
-• In this case, the apparent sample size is 𝑛 = 42, or 𝑛 = 21 per group.
+• In this case, the apparent sample size is $n = 42$, or $n = 21$ per group.
 
-• But the "effective" sample size is 𝑛 = 6, or 𝑛 = 3 per group.
+• But the "effective" sample size is $n = 6$, or $n = 3$ per group.
 
 • Taking lots of observations from each animal and doing a t-test on all the data amounts to falsely inflating the sample size without having to actually collect more data.
 
@@ -215,23 +224,41 @@ Effective sample size
 
 • Here are the data in "wide form". Treatment group B is highlighted to distinguish it from treatment group A.
 
-• Two things to note:
+*INSERT IMAGE*
 
-o There is a lot of variability across cows. o Every cow's infection rating goes down over time
+-   Two things to note:
 
-• Here are the data in "long form".
+    -   There is a lot of variability across cows.
+
+    -   Every cow's infection rating goes down over time
+
+*INSERT IMAGE*
+
+• Here are the data in "long form."
+
+*INSERT IMAGE*
 
 • Long form is needed for most analyses.
 
-• We can use jamovi's Rj-code editor to wide form to long form. (Though using Excel might be easier) • The following code will convert the data from wide to long form. Note you will need to open the data in a new session of jamovi and rename the Day and Infection_level columns. 23
+• We can use jamovi's Rj-code editor to wide form to long form. (Though using Excel might be easier)
 
-Converting from wide to long form
+• The following code will convert the data from wide to long form. Note you will need to open the data in a new session of jamovi and rename the Day and Infection_level columns.
+
+*INSERT IMAGE*
+
+#### Converting from wide to long form
 
 • We must now transform the Day column of the longform data. We want the variable Day to take on nominal integer values
 
 • Double click the Day column and in the Data menu select Transform / Using Transform / Create New Transformation.
 
+*INSERT IMAGE*
+
+#### Plotting the data
+
 • Here is a basic plot of infection rates across time.
+
+*INSERT IMAGE*
 
 • There appears to be a small downward trend, and lots of noise in the data.
 
@@ -239,19 +266,25 @@ Converting from wide to long form
 
 • Here is a similar plot, with the Y axis grouped by treatment.
 
+*INSERT IMAGE*
+
 • This shows a small decrease for treatment B.
 
 • But, we are still treating these observations as though they are independent.
 
-• They are not independent; they are
+• They are not independent; they are correlated within each cow.
 
 • Here is the same plot, but with "cow_ID" as the overlay variable.
+
+*INSERT IMAGE*
 
 • Each cow now gets its own line. The downward trend for B is clear.
 
 • Also, it is now clear that most of the variation in infection rate was due to differences between cows. Once this is accounted for, variability is low.
 
-Analyzing the data
+*INSERT IMAGE*
+
+#### Analyzing the data
 
 • These plots illustrate the idea behind accounting for repeated measures.
 
@@ -259,43 +292,54 @@ Analyzing the data
 
 • For now, let's look at some different way of analyzing the data that we just plotted.
 
+#### Analyzing the data, assuming independence
+
 • We can run regression models where infection rate is the response variable and some combination of treatment and day are the predictors.
 
 • We know both variables matter, and that they interact -- the "effect" of day on infection level depends on treatment, and the "effect" of treatment on infection level depends on day.
 
 • The next slide shows output for fitting this model:
 
-𝐼𝑛𝑓𝑒𝑐𝑡𝑖𝑜𝑛 𝑙𝑒𝑣𝑒𝑙𝑖 = 𝛽0 + 𝛽1𝑇𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 + 𝛽2𝐷𝑎𝑦 + 𝛽3𝑇𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 ∗ 𝐷𝑎𝑦 + 𝜀𝑖
+$$
+\textit{Infection level}_i = \beta_0 + \beta_1Treatment + \beta_2Day + \beta_3Treatment*Day + \epsilon_i \\
+\text{ where } \epsilon_i \overset{iid}\sim Normal(0, \sigma)
+$$
 
-𝑖𝑖𝑑 𝜀𝑖 \~
+• $R^2$ is small, suggesting this model does not explain much variability in infection rates.
 
-𝑁𝑜𝑟𝑚𝑎𝑙 29
-
-• 𝑅2 is small, suggesting this model does not explain much variability in infection rates.
+*INSERT IMAGE*
 
 • Remember, we know that a lot of variability is due to differences between cows. This is all getting "absorbed" by the error term.
 
-• Large error variance gives small 𝑅2 and large standard errors for slopes
+*INSERT IMAGE*
 
-Analyzing the data, accounting for cows
+• Large error variance gives small $R^2$ and large standard errors for slopes
+
+*INSERT IMAGE*
+
+#### Analyzing the data, accounting for cows
 
 • Here are results from analyzing these data using a mixed model. This mixed model accounts for differences between cows, and the fact that repeated measures taken on each cow are correlated.
 
-• We will cover the details of how mixed models work in the next set of notes. For now, note the much larger 𝑅2 = 0.83
+*INSERT IMAGE x2*
 
-Side by side comparison
+• We will cover the details of how mixed models work in the next set of notes. For now, note the much larger $R^2 = 0.83$
+
+#### Side by side comparison
 
 • The mixed model (on the bottom) gives smaller standard errors for Day and the interaction.
 
+*INSERT IMAGE* X2
+
 • Note what didn't change: the parameter estimates!
 
-Challenges from repeated measures data
+#### Challenges from repeated measures data
 
 • Repeated measures data can be challenging to analyze, if the design gets complicated. We will see some study designs in which it isn't immediately obvious how to set up an appropriate model.
 
 • Repeated measures data can also be analyzed incorrectly (assuming independence) to artificially increase apparent sample size and get strong looking results that are not valid.
 
-Opportunities from repeated measures data
+#### Opportunities from repeated measures data
 
 • Repeated measures data can also be very useful!
 
@@ -303,11 +347,9 @@ Opportunities from repeated measures data
 
 • This is because variability that would normally be accounted for by the error term can instead be attributed to overall differences between the subjects from whom repeated measurements were taken.
 
-• We will get into the details of mixed modeling for repeated measures data
+• We will get into the details of mixed modeling for repeated measures data in the next set of notes.
 
 ## Part 2: Random and fixed effects
-
-
 
 • The "mixed" in "mixed models" refers to a mix of random effects and fixed effects.
 
@@ -395,7 +437,7 @@ Subjects and Nesting
 
 • To fit this model in jamovi, use "Linear Models", select "Mixed Model", and then add the fixed predictors as factors and covariates and random predictors as cluster variables:
 
-• Note that Cow_ID is the random effect. Treatment, Day, and their interaction are fixed effects. 
+• Note that Cow_ID is the random effect. Treatment, Day, and their interaction are fixed effects.
 
 • Note also jamovi will also require you to specify the random effects.
 
@@ -469,8 +511,7 @@ In jamovi
 
 • We'll stop here. The paper goes on through many additional studies, and the data are all available via the supplemental materials link.
 
-## Part 3: Worked example 
-
+## Part 3: Worked example
 
 • This set of notes on mixed models covers the analysis from a 2017 Psychological Science paper by Goudeau and Croizet, titled
 
@@ -487,8 +528,6 @@ In jamovi
 • The researchers investigate whether students' performance is associated with their awareness of their classmates' performance, and whether this association can be moderated by students' awareness of the different levels of preparation given to different students.
 
 Paper abstract
-
-
 
 ### Study 1
 
@@ -585,7 +624,3 @@ Study 3 model
 • Again, the boxplots show more information.
 
 • In this case, the boxplots reveal a potentially concerned "ceiling effect": many students earned the maximum possible score. This can't be seen from the bar plot. 24
-
-
-
-
