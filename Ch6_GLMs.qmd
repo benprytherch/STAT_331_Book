@@ -14,83 +14,105 @@
 
 • We'll use simulated data corresponding to a study of sexual harassment reporting at a university. (Brooks and Perot "Reporting Sexual Harassment: Exploring a Predictive Model" (1991)).
 
-• Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable: • Data points are "jittered" so that they don't fall right on top of one another.
+• Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable:
+
+*INSERT IMAGE*
+
+• Data points are "jittered" so that they don't fall right on top of one another.
 
 • Suppose we want to predict the value of "Report", using "OffensBeh".
 
-• Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered. • The predicted value of "Report" can be thought of as the predicted probability that Report=1 (for reported behavior)
+• Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered.
 
-• Note that this line can go below zero and above one. We don't want to predict probability greater than 1! A straight line is not great here. Logistic
+*INSERT IMAGE*
 
-### The logistic regression model
+• The predicted value of "Report" can be thought of as the predicted probability that Report=1 (for reported behavior)
 
-Another way of writing a linear regression model
+• Note that this line can go below zero and above one. We don't want to predict probability greater than 1! A straight line is not great here. Logistic regression is an alternative to this straight line model.
+
+## The logistic regression model
+
+#### Another way of writing a linear regression model
 
 • By now we are well familiar with the linear regression model:
 
-𝑦𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖, +𝜀𝑖 𝜀𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+$$
+Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi} + \varepsilon_i \\
+\varepsilon_i \sim \text{Normal}(0,\sigma^2) 
+$$
 
 • Here is an equivalent way of writing it:
 
-𝑦𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙 𝜇𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖
+$$
+Y_i \sim Normal(\mu_i, \sigma^2) \\
+\mu_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
+$$
 
-• In other words, the response variable is normally distributed with some mean 𝜇, and the value of 𝜇 is determined by the predictor (𝑋) variables.
+• In other words, the response variable is normally distributed with some mean $\mu$, and the value of $\mu$ is determined by the predictor ($x$) variables.
 
-Writing a logistic regression model
+#### Writing a logistic regression model
 
 • We will take this approach to writing the logistic regression model.
 
 • What we want is a regression equation that looks like this:
 
-𝑦𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖
+$$
+Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
+$$
 
-But that will work when 𝑦𝑖 does not follow a normal distribution.
+But that will work when $Y_i$ does not follow a normal distribution.
 
-• Response variable 𝑦 takes on the values 0 and 1.
+#### The theoretical logistic regression model
 
-• Denote the probability that 𝑦 = 1 as 𝜋.
+• Response variable $Y$ takes on the values 0 and 1.
 
-• This can be written 𝑦\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖
+• Denote the probability that $Y = 1$ as $\pi$.
 
-(The Bernoulli distribution is a distribution of 1's and 0's, where the probability of 1 is 𝜋 and the probability of 0 is 1 − 𝜋)
+• This can be written $Y\sim Bernoulli (\pi)$
 
-• We will use regression to model 𝜋, the probability that 𝑦 = 1. This is often thought of as the probability of a "success".
+(The Bernoulli distribution is a distribution of 1's and 0's, where the probability of 1 is $\pi$ and the probability of 0 is $1 − \pi$)
+
+• We will use regression to model $\pi$, the probability that $Y = 1$. This is often thought of as the probability of a "success".
 
 • If we wanted, we could use this model:
 
-𝑦𝑖\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖 𝜋𝑖 𝜋𝑖 = 𝛽0 + 𝛽1𝑋1𝑖 + 𝛽2𝑋2𝑖 + ⋯ + 𝛽𝑝𝑋𝑝𝑖
+$$
+Y_i\sim Bernoulli (\pi_i)
+\\
+\pi_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
+$$
 
-• The Bernoulli distribution is a distribution of 1's and 0's, where the probability of 1 is 𝜋 and the probability of 0 is 1 − 𝜋.
+• The standard deviation of a Bernoulli distribution is $\pi(1 − \pi )$. So, $\pi$ is the only parameter for this distribution. This is different from the normal distribution, which has two parameters $\mu$ and $\sigma$.
 
-• The standard deviation of a Bernoulli distribution is 𝜋(1 − 𝜋 ). So, 𝜋 is the only parameter for this distribution. This is different from the normal distribution, which has two parameters 𝜇 and 𝜎.
+#### Logit: log odds
 
 • But, as we saw in the opening example, a linear model for probability can have serious deficiencies.
 
-• So, instead of a linear model for probability 𝜋, we'll make a linear model for a function of 𝜋, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.
+• So, instead of a linear model for probability $\pi$, we'll make a linear model for a function of $\pi$, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.
 
 • In logistic regression, we use the "logit" function, also known as "log odds"
 
-𝑙𝑜𝑔𝑖𝑡
+$$
+logit(\pi) = ln(\frac{\pi}{1-\pi}) = \textit{"log odds"}
+$$
 
-= ln
-
-= "𝑙𝑜𝑔 𝑜𝑑𝑑𝑠"
-
-• Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted 𝜋
+• Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted $\pi$
 
 • Plugging this into the logit formula:
 
-𝑙𝑜𝑔𝑖𝑡
-
-= ln
-
-= "𝑙𝑜𝑔 𝑜𝑑𝑑𝑠" 𝑜𝑓 𝑟𝑒𝑝𝑜𝑟𝑡𝑖𝑛𝑔
+$$
+logit(P(reported)) = ln(\frac{P(reported}{1-P(reported)}) = \textit{"log odds" of reporting}
+$$
 
 • This will be our response variable for logistic regression.
 
 • Logit vs. probability, visually:
 
-### Odds
+*INSERT IMAGE* x2
+
+## Odds
+
+#### Odds vs. probability
 
 • To understand logistic regression, you'll need to understand odds.
 
@@ -98,101 +120,118 @@ But that will work when 𝑦𝑖 does not follow a normal distribution.
 
 • In statistics, they are not the same thing. Odds tell you how likely one outcome is compared to another.
 
-• For instance, you might hear that a football team has been given "3 to 2" odds of winning a game. This means that their probability of winning is 3Τ2 = 1.5 times as big as their probability of losing. Or, that they'd be expected to win 3 times for every 2 times they lost.
+• For instance, you might hear that a football team has been given "3 to 2" odds of winning a game. This means that their probability of winning is $\frac{3}{2}= 1.5$ times as big as their probability of losing. Or, that they'd be expected to win 3 times for every 2 times they lost.
 
-• Formally, consider some outcome A, where the probability of A occurring is written as "𝑃(𝐴)". In this case,
+• Formally, consider some outcome A, where the probability of A occurring is written as "$P(A)$". In this case,
 
-𝑜𝑑𝑑𝑠
+$$
+odds(A) = \frac{P(A)}{1-P(A)} = \frac{\textit{probability A occurs}}{\textit{probability A does not occur}}
+$$
 
-𝑃(𝐴)
+• This is the ratio of the probability A occurs to the probability A does not occur. To convert odds into probability, we use:
 
-1 − 𝑃(𝐴)
-
-𝑝𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝐴 𝑜𝑐𝑐𝑢𝑟𝑠
-
-𝑝𝑟𝑜𝑏𝑎𝑏𝑖𝑙𝑖𝑡𝑦 𝐴 𝑑𝑜𝑒𝑠 𝑛𝑜𝑡 𝑜𝑐𝑐𝑢𝑟
-
-• This is the ratio of the probability A occurs to the probability A does not occur.
+$$
+P(A) = \frac{odds(A)}{odds(A) + 1}
+$$
 
 • Some probabilities and their associated odds:
 
+*INSERT IMAGE*
+
 • Think of odds(A) as "how many times will A occur for every time A does not occur?"
 
-• Sometimes we add "to 1" to an odds statement, e.g. "odds of 4 to 1" means "this outcomes occurs 4 times for every 1 time
+• Sometimes we add "to 1" to an odds statement, e.g. "odds of 4 to 1" means "this outcomes occurs 4 times for every 1 time it does not occur."
 
-Back to the logistic regression model
+#### Back to the logistic regression model
 
 • The response variable for logistic regression, again, is:
 
-𝑙𝑜𝑔𝑖𝑡
-
-= ln
-
-= "𝑙𝑜𝑔 𝑜𝑑𝑑𝑠"
+$$
+logit(\pi) = ln(\frac{\pi}{1-\pi}) = \textit{"log odds"}
+$$
 
 • So, the full logistic regression model is :
 
-𝑦𝑖\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖
+$$
+Y_i\sim Bernoulli (\pi_i)
+\\
+ln(\frac{\pi_i}{1-\pi_i})=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
+$$
 
-• We are not actually interested in log odds; we only make this conversion
+• We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have $logit(\hat{\pi}_i)$, we can $\hat{\pi}_i$ back via the inverse logit function:
 
-for mathematical convenience. So, once we have 𝑙𝑜𝑔𝑖𝑡 𝜋ො𝑖 back via the inverse logit function:
-
-, we can get
-
-𝑙𝑜𝑔𝑖𝑡−1
+$$
+logit^{-1}(logit(\pi)) \\
+= \frac{e^{logit(\pi)}}{1 + e^{logit(\pi)}} \\
+= \frac{odds}{1 + odds} \\
+= \frac{\frac{\pi}{1-\pi}}{\frac{1-\pi}{1 - \pi} + \frac{\pi}{1-\pi}} \\
+= \frac{\frac{\pi}{1-\pi}}{\frac{1}{1-\pi}} \\
+= \pi
+$$
 
 • In the context of the logistic regression model:
+
+$$
+\hat{\pi}_i  \\
+=\frac{e^{\text{log odds}}}{1 + e^{\text{log odds}}} \\
+=\frac{e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}
+$$
 
 ### jamovi example
 
 • Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.
 
+*INSERT IMAGE*
+
 • Note that "Target Level" defaults to zero. Changing it to 1 makes sense in this case; we want to predict 𝑃(𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑).
 
 • jamovi also produces a Loglikelihood ratio test, but we will just focus on "Parameter Estimates":
 
+*INSERT IMAGE*
+
 • Here is our estimated model:
 
-𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 = −1.7976 + 0.4869 ∗ 𝑂𝑓𝑓𝑒𝑛𝑠𝐵𝑒ℎ
+$$
+\textit{log odds (Reported)} = -1.7976 + 0.4869*OffensBeh
+$$
 
 • Plugging in large and small values for OffensBeh:
 
-𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑 = −1.7976 + 0.4869 ∗ 1 = −1.3107 𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑 = −1.7976 + 0.4869 ∗ 8 = 2.0976
+$$
+\textit{log odds (Reported)} = -1.7976 + 0.4869*1 = -1.3107 \\
+\textit{log odds (Reported)} = -1.7976 + 0.4869*8 = 2.0976
+$$
 
-𝜋ො\|𝑂𝑓𝑓𝑒𝑛𝐵𝑒ℎ = 1:
+$$
+\hat{\pi}|OffensBeh = 1: \frac{e^{-1.3107}}{1 + e^{-1.3107}} = \frac{0.2696}{1.2696} = 0.21 \\
+\hat{\pi}|OffensBeh = 8: \frac{e^{-2.0976}}{1 + e^{-2.0976}} = \frac{8.1466}{9.1466} = 0.89
+$$
 
-𝑒−1.3107 1 + 𝑒−1.3107 =
-
-0.2696 = 0.21 1.2696
-
-𝜋ො\|𝑂𝑓𝑓𝑒𝑛𝐵𝑒ℎ = 1:
-
-𝑒2.0976 1 + 𝑒2.0976 =
-
-8.1466 = 0.89 9.1466
+#### Interpreting slope in logistic regression 
 
 • The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. "Log odds" are not of direct interest.
 
 • Exponentiating both sides of the equation gives straight odds
 
-𝑜𝑑𝑑𝑠 =
+$$
+odds = (\frac{\pi_i}{1-\pi_i})=e^{\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}}
+$$
 
-= 𝑒𝛽0+𝛽1𝑋1𝑖+𝛽2𝑋2𝑖+⋯+𝛽𝑝𝑋𝑝𝑖
-
-• This means that, for a one unit increase in 𝑋1, odds are multiplied by 𝑒𝛽1
+• This means that, for a one unit increase in $X_1$, odds are multiplied by $e^\beta_1$
 
 • For the harassment data:
 
-𝑙𝑜𝑔 𝑜𝑑𝑑𝑠 = −1.7976 + 0.4869 ∗ 𝑂𝑓𝑓𝑒𝑛𝑠𝐵𝑒ℎ
+$$
+\textit{log odds (Reported)} = -1.7976 + 0.4869*OffensBeh
+$$
 
-• 𝛽መ = 0.4869. So, for a one unit increase in OffensBeh, predicted odds of reporting are multiplied by 𝑒0.4869 = 1.627
+• $\hat{\beta}_1 = 0.4869$. So, for a one unit increase in OffensBeh, predicted odds of reporting are multiplied by $e^{0.4869} = 1.627$
 
 • In other words, there is about a 63% increase in odds of reporting when OffensBeh increases by one. NOTE: odds are not probabilities!
 
 • Comparing probabilities and odds from this model:
 
-OffensBeh P(Report) Odds(Report) 1 0.212 0.27 2 0.305 0.44 3 0.417 0.71 4 0.537 1.16 5 0.654 1.89 6 0.755 3.08 7 0.834 5.01 8 0.891 8.15 9 0.930 13.26 10 0.956 21.57
+*INSERT IMAGE*
 
 ## Part 2: Poisson and negative binomial regression
 
@@ -226,7 +265,7 @@ Visualizing the Poisson distribution
 
 ### The structure of a GLM
 
-• In logistic regression, the response variable was 𝑙𝑜𝑔𝑖𝑡(𝜋) = ln
+• In logistic regression, the response variable was 𝑙𝑜𝑔𝑖𝑡(\$\\pi\$) = ln
 
 • In Poisson regression, the response variable is ln(𝜆)
 
@@ -244,7 +283,7 @@ Visualizing the Poisson distribution
 
 GLM examples
 
-• Logistic regression uses 𝑦\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖(𝜋) as the response variable and
+• Logistic regression uses 𝑦\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖(\$\\pi\$) as the response variable and
 
 𝑔
 
