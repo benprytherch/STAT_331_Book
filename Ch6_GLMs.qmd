@@ -243,31 +243,27 @@ We'll now look at two other popular GLMs: Poisson ("pwa-sawn" roughly) and negat
 
 • The Poisson distribution is a discrete probability distribution. A Poisson distributed variable takes on only positive integer values. The integer is referred to as "count" or "\# of events".
 
-• The Poisson distribution has a single parameter, 𝜆 ("lambda"), which is sometimes called the "rate" parameter.
+• The Poisson distribution has a single parameter, $\lambda$ ("lambda"), which is sometimes called the "rate" parameter.
 
-• 𝜆 is both the mean and the variance of a Poisson distribution
+• $\lambda$ is both the mean and the variance of a Poisson distribution
 
-• The probability function for the Poisson is: 𝜆𝑘
+• The probability function for the Poisson is:
 
-𝑃
+$$
+P(count = k) = \frac{\lambda^k}{e^\lambda k!}
+$$
 
-= 𝑒𝜆𝑘! 4
+#### Visualizing the Poisson distribution
 
-Visualizing the Poisson distribution
-
-𝜆 = 1
-
-𝜆 = 2
-
-𝜆 = 5
-
-𝜆 = 10
+*INSERT IMAGE* X 4
 
 ### The structure of a GLM
 
-• In logistic regression, the response variable was 𝑙𝑜𝑔𝑖𝑡(\$\\pi\$) = ln
+#### The link function
 
-• In Poisson regression, the response variable is ln(𝜆)
+• In logistic regression, the response variable was $logit(\pi) = ln(\frac{\pi}{1-\pi})$
+
+• In Poisson regression, the response variable is $ln(\lambda)$
 
 • The reasoning will be that the natural log allows the estimated rate to be modeled as a linear function of some predictor variables.
 
@@ -277,33 +273,27 @@ Visualizing the Poisson distribution
 
 1.  A response variable with some distribution
 
-2.  A "link function", 𝑔(∙), that is applied to the mean of the response variable.
+2.  A "link function", $g(\cdot)$, that is applied to the mean of the response variable.
 
-3.  A linear expression of the predictor variables: 𝛽0 + 𝛽1𝑋2 + 𝛽2𝑋2 + ⋯
+3.  A linear expression of the predictor variables: $\beta_0 + \beta_1X_1 + \beta_2X_2 \dots$
 
 GLM examples
 
-• Logistic regression uses 𝑦\~𝐵𝑒𝑟𝑛𝑜𝑢𝑙𝑙𝑖(\$\\pi\$) as the response variable and
+• Logistic regression uses $Y\sim Bernoulli (\pi)$ as the response variable and $g(\pi) = ln(\frac{\pi}{1-\pi})$ as the link function.
 
-𝑔
+• Poisson regression uses $Y\sim Poisson(\lambda)$ as the response variable and $g(\lambda) = ln(\lambda)$ as the link function.
 
-= ln
+• Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses $Y\sim Normal (\mu, \sigma^2)$ and the response variable and the identity function, $g(\mu) = \mu$ as the link.
 
-as the link function.
+*UNABLE TO FIND IN NOTES*
 
-• Poisson regression uses 𝑦\~𝑃𝑜𝑖𝑠𝑠𝑜𝑛(𝜆) as the response variable and 𝑔 = ln(𝜆) as the link function.
-
-• Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses 𝑦\~𝑁𝑜𝑟𝑚𝑎𝑙(𝜇, 𝜎) and the response variable and the identity function, 𝑔 = 𝜇 as the link.
-
-• It's worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not "least squares". So, we are not getting our 𝛽መ𝑠 by minimizing sums of squared residuals.
+• It's worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not "least squares". So, we are not getting our $\beta$'s by minimizing sums of squared residuals.
 
 • Instead, the estimation procedure we use is called "maximum likelihood". This method finds the values of the parameter estimates that maximize (i.e. make as large as possible for a given set of data) something called "the likelihood function".
 
 • The likelihood function takes a fixed set of data and an assumed distribution (e.g. normal), and gives the "probability of the data", given
 
 • So, if we have:
-
-𝑌𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙
 
 • Then the likelihood function is:
 
@@ -325,23 +315,37 @@ as the link function.
 
 • We might also want to control for "culture". If people from different cultural backgrounds tend to have more or fewer children, then this would definitely induce a relationship between \# of siblings and \# of children.
 
-• There are lots of possible ways to try account for cultural background.
+• There are lots of possible ways to try account for cultural background. I'm choosing rate of attending religious services.
 
-• So, the variables will be:
+-   So, the variables will be:
 
-• \# of children • \# of siblings • Age • Frequency of attending religious services
+    -   \# of children
+
+    -   \# of siblings
+
+    -   Age
+
+    -   Frequency of attending religious services
 
 • We'll just look at 2018 data. The GSS lets us choose any years we want, going back to 1972.
 
 • This data set is on Canvas, as GSS_Children_Siblings.jmp
 
+#### Poisson regression EDA
+
 • First thing to do is plot our variables.
+
+*INSERT IMAGE*
 
 • Yikes! There's some cleaning to do. The instances of 98 siblings are not real data points.
 
 • GSS data explorer website lets us look in detail at each variable. Here is part of the coding for "SIBS":
 
+*INSERT IMAGE*
+
 • And here's the coding for the variable CHILDS.
+
+*INSERT IAMGE*
 
 • So, CHILDS = 9 is a value for missing data. These should also be excluded.
 
@@ -351,23 +355,41 @@ as the link function.
 
 • Here are the row selection options that will select all rows with invalid responses.
 
+*INSERT IAMGE*
+
 • Once selected, they can be excluded.
 
-• Here is the distribution of CHILDS. • This looks a lot like a Poisson distribution. Hooray!
+• Here is the distribution of CHILDS.
+
+*INSERT IMAGE*
+
+• This looks a lot like a Poisson distribution. Hooray!
 
 • To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.
 
+*INSERT IMAGE*
+
+• JMP will automatically choose the log link
+
+• Select the "Overdispersion tests and intervals" box
+
 • Here are results for a simple model, where \# of siblings is the sole predictor of \# of children. We'll just look at the parameter estimates and the overdispersion statistic:
 
-• Letting
+*INSERT IMAGE*
 
-𝜆መ
+• Letting $\hat{\lambda}$ represent the predicted mean \# of children, we have:
 
-represent the predicted mean \# of children, we have:
+$$
+ln(\hat{\lambda}) = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
+$$
 
-ln = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
+#### Interpreting the slope
 
-• You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable. 𝑒0.0627 = 1.065\
+• You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable: $e^{0.0627} = 1.065$
+
+*INSERT IMAGE*
+
+\
 • So, increasing \# of siblings by one is associated with an 6.5% increase in \# of children.
 
 • We can see that this is statistically significant, but it is also small.
@@ -378,7 +400,9 @@ ln = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
 
 • Downside is that \# of children is not normally distributed.
 
-• As is often the case, we are trading some interpretability for a better
+• As is often the case, we are trading some interpretability for a better fitting model.
+
+#### Interpreting the slope
 
 • The Poisson distribution makes a strong assumption: the mean should be equal to the variance.
 
@@ -386,13 +410,19 @@ ln = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
 
 • This is referred to as "overdispersion".
 
-• If mean = variance, this should be equal to 1. But it rarely is.
+• JMP reports an overdispersion estimate:
 
-• If there is strong overdispersion, a negative binomial model will fit better.
+*INSERT IMAGE*
 
-• The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom..
+• The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom.
+
+• If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model will fit better.
+
+#### Fitting a larger model
 
 • For these data, it turns out that \# of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:
+
+*INSERT IMAGE*
 
 • The other predictor variables and the interactions can be interpreted in the usual ways.
 
@@ -402,41 +432,27 @@ ln = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
 
 • There is also still some overdispersion, though less than there was before:
 
+*INSERT IMAGE*
+
 • Remember that the Poisson distribution only has one parameter. This limits its flexibility.
 
 • The negative binomial distribution is similar to the Poisson distribution, but it is more flexible, and may be a better choice in the presence of overdispersion.
 
 • The negative binomial distribution is also a distribution for count data. It is interpreted as giving the number of "success" before a certain number of "failures" occur.
 
-• There are two parameters: 𝑝, the probability of success, and 𝑟, the number of failures at which counting stops.
+• There are two parameters: $p$, the probability of success, and $r$, the number of failures at which counting stops.
 
-• The mean of the negative binomial distribution is 𝑟
+• If a variable $Y$ is distributed negative binomial, we denote it:
 
-= 𝑟 ∗ 𝑜𝑑𝑑𝑠(𝑠𝑢𝑐𝑐𝑒𝑠𝑠)
+$$
+Y\sim NB(r,p)
+$$
 
-• Example: suppose 𝑝 = 0.8 and 𝑟 = 2. We expect 2∗0.8
+• The mean of the negative binomial distribution is $\frac{rp}{1-p} = r*odds(success)$
 
-= 8 success before
+• Example: suppose $p = 0.8$ and $r = 2$. We expect $\frac{2∗0.8}{0.2} = 8$ success before we observe two failures.
 
-• If a variable 𝑦 is distributed negative binomial, we denote it:
-
-𝑦\~𝑁𝐵(𝑟, 𝑝)
-
-• The mean of the negative binomial distribution is 𝑟
-
-= 𝑟 ∗ 𝑜𝑑𝑑𝑠(𝑠𝑢𝑐𝑐𝑒𝑠𝑠)
-
-• Example: suppose 𝑝 = 0.8 and 𝑟 = 2. We expect 2∗0.8
-
-= 8 success before
-
-we observe two failures.
-
-• Or suppose 𝑝 = 0.5 and 𝑟 = 1. We expect 1∗0.5
-
-= 1 success before we
-
-observe 1 failure.
+• Or suppose $p= 0.5$ and $r= 1$. We expect $\frac{1∗0.5}{0.5} = 1$ success before we observe 1 failure.
 
 • For practical purposes, negative binomial regression will show better fit than Poisson regression in the presence of overdispersion.
 
@@ -444,13 +460,19 @@ observe 1 failure.
 
 • As with Poisson regression, negative binomial regression uses a GLM with a log link.
 
-Negative binomial example
+#### Negative binomial example
 
 • Here is where you select negative binomial regression in jamovi:
 
+*INSERT IMAGE*
+
 • Under "Generalized Linear Models", under "Frequencies" choose "Negative Binomial".
 
-Negative binomial results
+*INSERT IMAGE*
+
+#### Negative binomial results
+
+*INSERT IMAGE*
 
 • These results are awfully similar to the Poisson results.
 
