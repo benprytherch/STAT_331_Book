@@ -16,7 +16,7 @@
 
 • Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_1.png){fig-align="center" width="400"}
 
 • Data points are "jittered" so that they don't fall right on top of one another.
 
@@ -24,7 +24,7 @@
 
 • Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered.
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_2.png){fig-align="center" width="400"}
 
 • The predicted value of "Report" can be thought of as the predicted probability that Report=1 (for reported behavior)
 
@@ -108,7 +108,9 @@ $$
 
 • Logit vs. probability, visually:
 
-*INSERT IMAGE* x2
+![](images/Mod6_pt2_3.png){fig-align="center"}
+
+![](images/Mod6_pt2_4.png){fig-align="center"}
 
 ## Odds
 
@@ -136,7 +138,7 @@ $$
 
 • Some probabilities and their associated odds:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_5.png){fig-align="center" width="400"}
 
 • Think of odds(A) as "how many times will A occur for every time A does not occur?"
 
@@ -181,13 +183,13 @@ $$
 
 • Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_6.png){fig-align="center" width="398"}
 
 • Note that "Target Level" defaults to zero. Changing it to 1 makes sense in this case; we want to predict 𝑃(𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑).
 
 • jamovi also produces a Loglikelihood ratio test, but we will just focus on "Parameter Estimates":
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_7.png){fig-align="center"}
 
 • Here is our estimated model:
 
@@ -231,7 +233,7 @@ $$
 
 • Comparing probabilities and odds from this model:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_8.png){fig-align="center"}
 
 ## Part 2: Poisson and negative binomial regression
 
@@ -255,7 +257,7 @@ $$
 
 #### Visualizing the Poisson distribution
 
-*INSERT IMAGE* X 4
+![](images/Mod6_pt2_9.png){fig-align="center"}
 
 ### The structure of a GLM
 
@@ -277,7 +279,7 @@ $$
 
 3.  A linear expression of the predictor variables: $\beta_0 + \beta_1X_1 + \beta_2X_2 \dots$
 
-GLM examples
+#### GLM examples
 
 • Logistic regression uses $Y\sim Bernoulli (\pi)$ as the response variable and $g(\pi) = ln(\frac{\pi}{1-\pi})$ as the link function.
 
@@ -335,17 +337,17 @@ GLM examples
 
 • First thing to do is plot our variables.
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_10.png){fig-align="center" width="400"}
 
 • Yikes! There's some cleaning to do. The instances of 98 siblings are not real data points.
 
 • GSS data explorer website lets us look in detail at each variable. Here is part of the coding for "SIBS":
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_11.png){fig-align="center" width="202"}
 
 • And here's the coding for the variable CHILDS.
 
-*INSERT IAMGE*
+![](images/Mod6_pt2_12.png){fig-align="center" width="147"}
 
 • So, CHILDS = 9 is a value for missing data. These should also be excluded.
 
@@ -355,19 +357,19 @@ GLM examples
 
 • Here are the row selection options that will select all rows with invalid responses.
 
-*INSERT IAMGE*
+![](images/Mod6_pt2_13.png){fig-align="center"}
 
 • Once selected, they can be excluded.
 
 • Here is the distribution of CHILDS.
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_14.png){fig-align="center" width="398"}
 
 • This looks a lot like a Poisson distribution. Hooray!
 
 • To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_15.png){fig-align="center" width="400"}
 
 • JMP will automatically choose the log link
 
@@ -375,7 +377,7 @@ GLM examples
 
 • Here are results for a simple model, where \# of siblings is the sole predictor of \# of children. We'll just look at the parameter estimates and the overdispersion statistic:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_16.png){fig-align="center"}
 
 • Letting $\hat{\lambda}$ represent the predicted mean \# of children, we have:
 
@@ -387,9 +389,7 @@ $$
 
 • You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable: $e^{0.0627} = 1.065$
 
-*INSERT IMAGE*
-
-\
+![](images/Mod6_pt2_17.png){width="511"}\
 • So, increasing \# of siblings by one is associated with an 6.5% increase in \# of children.
 
 • We can see that this is statistically significant, but it is also small.
@@ -412,7 +412,7 @@ $$
 
 • JMP reports an overdispersion estimate:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_18.png){fig-align="center"}
 
 • The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom.
 
@@ -422,7 +422,7 @@ $$
 
 • For these data, it turns out that \# of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_19.png){fig-align="center"}
 
 • The other predictor variables and the interactions can be interpreted in the usual ways.
 
@@ -432,7 +432,7 @@ $$
 
 • There is also still some overdispersion, though less than there was before:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_20.png){fig-align="center"}
 
 • Remember that the Poisson distribution only has one parameter. This limits its flexibility.
 
@@ -464,15 +464,13 @@ $$
 
 • Here is where you select negative binomial regression in jamovi:
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_21.png){fig-align="center"}
 
 • Under "Generalized Linear Models", under "Frequencies" choose "Negative Binomial".
 
-*INSERT IMAGE*
-
 #### Negative binomial results
 
-*INSERT IMAGE*
+![](images/Mod6_pt2_22.png){fig-align="center"}
 
 • These results are awfully similar to the Poisson results.
 
