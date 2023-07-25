@@ -542,7 +542,7 @@ $$
 
 • This study was performed in France. The data are available at https://osf.io/rkj7y/ and the data file has a codebook sheet that defines the variables:
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_1.png){fig-align="center"}
 
 • In each study, 6th grade students are given a challenging reading comprehension assignment.
 
@@ -552,11 +552,11 @@ $$
 
 #### Paper abstract
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_2.png){fig-align="center"}
 
 ### Study 1
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_3.png){fig-align="center" width="400"}
 
 -   The variables used in this study are:
 
@@ -589,7 +589,7 @@ $$
 
 #### Study 1 in JMP
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_4.png){fig-align="center"}
 
 • Note that the response variable, PERF, is score on a reading comprehension test, on a scale of 0 to 20 points.
 
@@ -607,7 +607,7 @@ $$
 
 • A general principle for models with strong interactions is that our interpretation should focus on the interactions.
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_5.png)
 
 • Here, the interaction coefficient is -2.69, and the coefficient for $X_1$ is 1.12.
 
@@ -617,13 +617,13 @@ $$
 
 • Here is the plot reported in the paper, and the same plot in JMP:
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_6.png){fig-align="center"}
 
 • The practice of using a bar plot to show means is common, but flawed. The bars don't mean anything; all they do is go up to the means.
 
 • Here is what this looks like using boxplots instead.
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_7.png){fig-align="center" width="400"}
 
 • Notice that this plot shows variability in the data, where the bar plot does not.
 
@@ -661,7 +661,9 @@ $$
 
 #### Study 3 in jamovi
 
-*insert image* x2
+![](images/Mod7_pt3_8.png){fig-align="center"}
+
+![](images/Mod7_pt3_9.png){fig-align="center"}
 
 • As with before, the variance across classrooms is very small relative to the error variance.
 
@@ -675,13 +677,13 @@ $$
 
 • It helps to look at the data.
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_11.png){fig-align="center" width="400"}
 
 • The generic "$X_1$" and "$X_2$" have been replaced with more meaningful titles.
 
 • And here are the bar plots shows in the paper.
 
-*INSERT IMAGE*
+![](images/Mod7_pt3_12.png){fig-align="center" width="400"}
 
 • Again, the boxplots show more information.
 
