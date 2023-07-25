@@ -442,23 +442,23 @@ $$
 
 • To fit this model in jamovi, use "Linear Models", select "Mixed Model", and then add the fixed predictors as factors and covariates and random predictors as cluster variables:
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_1.png){fig-align="center" width="400"}
 
 • Note that Cow_ID is the random effect. Treatment, Day, and their interaction are fixed effects.
 
 • Note also jamovi will also require you to specify the random effects.
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_2.png){fig-align="center"}
 
 • jamovi gives the usual parameter estimates output, as well as a residual plot:
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_3.png){fig-align="center" width="400"}
 
 • Notice that "Cow_ID" is not listed under parameter estimates; only fixed coefficients are estimated.
 
 • Each cow has its own random coefficient, modeled as having been drawn from a normal distribution.
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_4.png){fig-align="center"}
 
 #### Slope coding in "Mixed Model"
 
@@ -466,7 +466,7 @@ $$
 
 • So, if we were looking at Treatment B, we'd apply a slope of -0.513.
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_5.png){fig-align="center"}
 
 ### Applied example: "The liking gap"
 
@@ -488,11 +488,13 @@ $$
 
 • From the results section of the paper:
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_6.png){fig-align="center" width="400"}
+
+![](images/Mod7_pt2_7.png){fig-align="center" width="400"}
 
 #### Fitting the model in jamovi
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_8.png){fig-align="center"}
 
 $$
 \textit{Liking index}_i = \beta_0 + \beta_1\textit{self_other} + \beta_2Day + \alpha_jpid_j(did_k) + \gamma_kdid_k + \epsilon_i \\
@@ -520,11 +522,11 @@ $$
 
 • The next section of the paper looks at personality variables as predictors:
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_9.png){fig-align="center" width="400"}
 
 #### In jamovi
 
-*INSERT IMAGE*
+![](images/Mod7_pt2_10.png){fig-align="center"}
 
 • We'll stop here. The paper goes on through many additional studies, and the data are all available via the supplemental materials link.
 
