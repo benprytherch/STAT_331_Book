@@ -158,7 +158,9 @@ $$
 
 • The file cows_ttest.jmp has some fake data, simulated as $y_i \sim Normal(12,4)$ for both groups:
 
-*INSERT IMAGE* X2
+![](images/Mod7_pt1_1.png){fig-align="center" width="400"}
+
+![](images/Mod7_pt1_2.png){fig-align="center" width="400"}
 
 • Not surprisingly, the t-test gives no significant difference in means:
 
@@ -166,21 +168,21 @@ $$
 95\% \textit{ CI for } \mu_1 - \mu_2 = (-18.00, 8.07), \text{ p-value} = 0.321
 $$
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_3.png){fig-align="center"}
 
 • Now suppose we measure infection level for each cow seven times after receiving treatment.
 
 • The file cows_repeated_ttest.csv contains data simulating this scenario.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_4.png){fig-align="center" width="400"}
 
 • For each cow, there are 7 observations. These all average out to the one observation per cow from the last data set.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_5.png){fig-align="center"}
 
 • But check out these t-test results!
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_6.png){fig-align="center"}
 
 • Notice where it says degrees of freedom = 29.2. If your degrees of freedom exceeds your sample size, something is wrong.
 
@@ -188,7 +190,9 @@ $$
 
 • Comparing the two t-tests:
 
-*INSERT IMAGE* x2
+![](images/Mod7_pt1_7.png){fig-align="center"}
+
+![](images/Mod7_pt1_8.png){fig-align="center"}
 
 • The mean difference is nearly the same for both.
 
@@ -224,7 +228,7 @@ $$
 
 • Here are the data in "wide form". Treatment group B is highlighted to distinguish it from treatment group A.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_9.png){fig-align="center"}
 
 -   Two things to note:
 
@@ -232,11 +236,11 @@ $$
 
     -   Every cow's infection rating goes down over time
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_10.png){fig-align="center"}
 
 • Here are the data in "long form."
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_11.png){fig-align="center" width="400"}
 
 • Long form is needed for most analyses.
 
@@ -244,7 +248,7 @@ $$
 
 • The following code will convert the data from wide to long form. Note you will need to open the data in a new session of jamovi and rename the Day and Infection_level columns.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_12.png){fig-align="center"}
 
 #### Converting from wide to long form
 
@@ -252,13 +256,13 @@ $$
 
 • Double click the Day column and in the Data menu select Transform / Using Transform / Create New Transformation.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_13.png){fig-align="center"}
 
 #### Plotting the data
 
 • Here is a basic plot of infection rates across time.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_14.png){fig-align="center" width="400"}
 
 • There appears to be a small downward trend, and lots of noise in the data.
 
@@ -266,7 +270,7 @@ $$
 
 • Here is a similar plot, with the Y axis grouped by treatment.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_15.png){fig-align="center" width="400"}
 
 • This shows a small decrease for treatment B.
 
@@ -276,13 +280,13 @@ $$
 
 • Here is the same plot, but with "cow_ID" as the overlay variable.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_16.png){fig-align="center" width="400"}
 
 • Each cow now gets its own line. The downward trend for B is clear.
 
 • Also, it is now clear that most of the variation in infection rate was due to differences between cows. Once this is accounted for, variability is low.
 
-*INSERT IMAGE*
+![](images/Mod7_pt1_17.png){fig-align="center" width="400"}
 
 #### Analyzing the data
 
@@ -305,31 +309,29 @@ $$
 \text{ where } \epsilon_i \overset{iid}\sim Normal(0, \sigma)
 $$
 
-• $R^2$ is small, suggesting this model does not explain much variability in infection rates.
+![](images/Mod7_pt1_18.png){fig-align="center"}
 
-*INSERT IMAGE*
+• $R^2$ is small, suggesting this model does not explain much variability in infection rates.
 
 • Remember, we know that a lot of variability is due to differences between cows. This is all getting "absorbed" by the error term.
 
-*INSERT IMAGE*
-
 • Large error variance gives small $R^2$ and large standard errors for slopes
-
-*INSERT IMAGE*
 
 #### Analyzing the data, accounting for cows
 
 • Here are results from analyzing these data using a mixed model. This mixed model accounts for differences between cows, and the fact that repeated measures taken on each cow are correlated.
 
-*INSERT IMAGE x2*
+![](images/Mod7_pt1_19.png){fig-align="center"}
 
 • We will cover the details of how mixed models work in the next set of notes. For now, note the much larger $R^2 = 0.83$
+
+![](images/Mod7_pt1_20.png){fig-align="center"}
 
 #### Side by side comparison
 
 • The mixed model (on the bottom) gives smaller standard errors for Day and the interaction.
 
-*INSERT IMAGE* X2
+![](images/Mod7_pt1_21.png)
 
 • Note what didn't change: the parameter estimates!
 
@@ -534,7 +536,11 @@ $$
 
 • This paper presents three studies on one topic. These notes cover studies 1 and 3; study 2 is reserved for a homework assignment.
 
+#### Worked example overview
+
 • This study was performed in France. The data are available at https://osf.io/rkj7y/ and the data file has a codebook sheet that defines the variables:
+
+*INSERT IMAGE*
 
 • In each study, 6th grade students are given a challenging reading comprehension assignment.
 
@@ -542,27 +548,36 @@ $$
 
 • The researchers investigate whether students' performance is associated with their awareness of their classmates' performance, and whether this association can be moderated by students' awareness of the different levels of preparation given to different students.
 
-Paper abstract
+#### Paper abstract
+
+*INSERT IMAGE*
 
 ### Study 1
 
-The variables used in this study are:
+*INSERT IMAGE*
 
-• Performance (response) • Visibility condition (fixed effect) • Social class (fixed effect) • Visibility X Social class interaction (fixed effect) • School (random effect) • Classroom, nested within School (random effect)
+-   The variables used in this study are:
 
-Study 1 model
+    -   Performance (response)
 
-𝑃𝐸𝑅𝐹𝑖 = 𝛽0 + 𝛽1𝑋1 + 𝛽2𝑃𝐶𝑆 + 𝛽3𝑋1 ∗ 𝑃𝐶𝑆 + 𝛼𝑗 𝑘 𝐶𝐿𝐴𝑆𝑆𝐸𝑗 𝑘 + 𝛾𝑖𝐸𝑇𝐴𝐵𝐿𝐼𝑆𝑆𝐸𝑀𝐸𝑁𝑇𝑘 + 𝜀𝑖
+    -   Visibility condition (fixed effect)
 
-𝛼𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙
+    -   Social class (fixed effect)
 
-, 𝛾𝑖
+    -   Visibility X Social class interaction (fixed effect)
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙
+    -   School (random effect)
 
-, 𝜀𝑖
+    -   Classroom, nested within School (random effect)
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+#### Study 1 model
+
+$$
+\textit{PERF}_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_1*PCS + \alpha_{j(k)}CLASSE_{j(k)}(ETABLISSEMENT_k) + \gamma_kETABLISSEMENT_k + \epsilon_i \\
+\text{ where } \alpha_{j} \sim Normal(0, \sigma^2_\alpha), \\
+\gamma_k \sim Normal(0, \sigma^2_\gamma), \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
 • Refer to the codebook for variable definitions
 
@@ -570,11 +585,13 @@ Study 1 model
 
 • Also note that PCS compares working class (PCS=1) to upper class (PCS=3.)
 
-Study 1 in JMP
+#### Study 1 in JMP
+
+*INSERT IMAGE*
 
 • Note that the response variable, PERF, is score on a reading comprehension test, on a scale of 0 to 20 points.
 
-Notes on Study 1 random effects output
+#### Notes on Study 1 random effects output
 
 • "The random effects covariance parameter estimates" table shows that there is much more residual (error) variance than there is variance across classrooms or across schools.
 
@@ -582,15 +599,29 @@ Notes on Study 1 random effects output
 
 • If we had deselected "unbounded variance estimates" under Fit Model, this would be zeroed out. It is a strange quirk of maximum likelihood variance estimation that negative estimates are possible. We can ignore this, and treat the classroom variance as just very small.
 
+#### Notes on Study 1 fixed effects output
+
 • We see strong "main effects" for visibility condition (X1), social class (PCS), and their interaction.
 
 • A general principle for models with strong interactions is that our interpretation should focus on the interactions.
 
-• Here, the interaction coefficient is -2.69, and the coefficient for X1 is 1.12. • For the Effect of X1"-1 - 1" refers to the "differences not visible" condition, in which students do not raise their hands when they have the answer. • For the Effect of PCS "3 - 1" refers to change in score for upper class students vs. working class students. • So, the "effect" of visibility seems to apply to working class students but not to upper class students, since --2.69 and 1.12 nearly cancel each other out.
+*INSERT IMAGE*
+
+• Here, the interaction coefficient is -2.69, and the coefficient for $X_1$ is 1.12.
+
+• For the Effect of $X_1$ "-1 - 1" refers to the "differences not visible" condition, in which students do not raise their hands when they have the answer. • For the Effect of PCS "3 - 1" refers to change in score for upper class students vs. working class students. • So, the "effect" of visibility seems to apply to working class students but not to upper class students, since --2.69 and 1.12 nearly cancel each other out.
+
+#### Plotting the fixed effects
 
 • Here is the plot reported in the paper, and the same plot in JMP:
 
-• The practice of using a bar plot to show means is common, but flawed. The bars don't mean anything; all they do is go up to the means. • Here is what this looks like using boxplots instead.
+*INSERT IMAGE*
+
+• The practice of using a bar plot to show means is common, but flawed. The bars don't mean anything; all they do is go up to the means.
+
+• Here is what this looks like using boxplots instead.
+
+*INSERT IMAGE*
 
 • Notice that this plot shows variability in the data, where the bar plot does not.
 
@@ -604,38 +635,52 @@ Notes on Study 1 random effects output
 
 • The variables in this study are almost the same as in study 1, with these changes:
 
-• X1 is "context": -1 = awareness of the disadvantage 1 = unawareness of the disadvantage
+-   X1 is "context":
 
-• X2 is "level of familiarity" with the reading material, based on intentional preparation given by the researchers: -1 = high level 1 = low level
+    -   -1 = awareness of the disadvantage
 
-Study 3 model
+    -   1 = unawareness of the disadvantage
 
-𝑃𝐸𝑅𝐹𝑖 = 𝛽0 + 𝛽1𝑋1 + 𝛽2𝑋2 + 𝛽3𝑋1 ∗ 𝑋2 + 𝛼𝑗𝐶𝐿𝐴𝑆𝑆𝐸𝑗 + 𝜀𝑖
+-   X2 is "level of familiarity" with the reading material, based on intentional preparation given by the researchers:
 
-𝛼𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙
+    -   -1 = high level
 
-, 𝜀𝑖
+    -   1 = low level
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+#### Study 3 model
+
+$$
+\textit{PERF}_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_1*X_2 + \alpha_{j}CLASSE_{j}+ \epsilon_i \\
+\text{ where } \alpha_{j} \sim Normal(0, \sigma^2_\alpha), \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
 • In this data set, there is no variable for "school", only one for "classroom". This isn't explained in the paper.
 
+#### Study 3 in jamovi
+
+*insert image* x2
+
 • As with before, the variance across classrooms is very small relative to the error variance.
 
-• The largest overall effect is X2: level of familiarity with the material. Students who are better prepared score higher.
+• The largest overall effect is $X_2$: level of familiarity with the material. Students who are better prepared score higher.
 
 • The negative interaction shows that the difference in performance between those with higher vs. low familiarity is lower when students are aware of the difference in familiarity.
 
-• The interaction of -5.81 just about cancels out the estimated slope for X1\[-1\] of 4.24.
+• The interaction of -5.81 just about cancels out the estimated slope for $X_1$\[-1\] of 4.24.
 
 • This shows that there is very little difference in scores between students with high preparation who are and are not aware of the advantage.
 
 • It helps to look at the data.
 
-• The generic "X1" and X2" have been replaced with more meaningful titles:
+*INSERT IMAGE*
+
+• The generic "$X_1$" and "$X_2$" have been replaced with more meaningful titles.
 
 • And here are the bar plots shows in the paper.
 
+*INSERT IMAGE*
+
 • Again, the boxplots show more information.
 
-• In this case, the boxplots reveal a potentially concerned "ceiling effect": many students earned the maximum possible score. This can't be seen from the bar plot. 24
+• In this case, the boxplots reveal a potentially concerned "ceiling effect": many students earned the maximum possible score. This can't be seen from the bar plot.
