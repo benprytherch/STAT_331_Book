@@ -10,7 +10,7 @@
 
 • This paper used standard statistical tools to show strong evidence for pre-cognition, a.k.a. ESP. Many scientists were bothered by this, because they did not believe in ESP but they did believe in the statistical methods used in this paper!
 
-*INSERT IMAGE*
+![](images/Mod9_1.png){fig-align="center"}
 
 • 2015's "Reproducibility Project: Psychology" by the Center for Open Science found that a large number of published experimental results in top Psychology journals failed to replicate.
 
@@ -50,11 +50,11 @@
 
 Ronald Fisher
 
-*INSERT IMAGE*
+![](images/Mod9_2.png){fig-align="center" width="200"}
 
 Jerzy Neyman and Egon Pearson
 
-*INSERT IMAGE*
+![](images/Mod9_3.png){fig-align="center" width="400"}
 
 #### Ronald Fisher
 
@@ -186,7 +186,7 @@ $$
 
 #### eBay study example
 
-*INSERT IMAGE*
+![](images/Mod9_4.png){fig-align="center"}
 
 *"Women had a slightly higher percentage of transactions for which positive feedback had been given in the year preceding the current transaction (99.60% for women and 99.58% for men, P \< 0.05)"*
 
@@ -240,7 +240,7 @@ $$
 
 • This is intuitive, but it is false. In most testing scenarios, all p-values are equally likely when the null is true. The distribution of p under $H_0$ is uniform:
 
-*INSERT IMAGE*
+![](images/Mod9_5.png){fig-align="center" width="400"}
 
 • Simulation: https://csu-statistics.shinyapps.io/visualize_power/
 
@@ -248,7 +248,7 @@ $$
 
 • Here is the distribution of p for Cohen's d = 0.5 and n = 30, implying power $\approx$ 75%
 
-*INSERT IMAGE*
+![](images/Mod9_6.png){fig-align="center" width="400"}
 
 • When null is false, smaller p-values are more likely than larger ones.
 
@@ -256,7 +256,7 @@ $$
 
 • This is false; even for low power, very small p-values are more likely than "marginally significant" p-values. Here is the distribution of p for Cohen's d = 0.2 and n = 30, impying power $\approx$ 19%
 
-*INSERT IMAGE*
+![](images/Mod9_7.png){fig-align="center" width="400"}
 
 • Upshot: we should never see lots of p-values *just* below 0.05, even under low power.
 
@@ -268,7 +268,7 @@ $$
 
 • "P-curve" takes a collection of p-values less than 0.05 and compares them to the uniform distribution expected under $H_0$
 
-*INSERT IMAGE*
+![](images/Mod9_8.png){fig-align="center"}
 
 • If p-values close to 0.05 occur too frequently, the p-curve is consistent with a true $H_0$, despite all p-values being less than 0.05.
 
@@ -296,7 +296,7 @@ $$
 
 • Plot effect size vs. standard error. Variance in effect sizes should decrease as standard error decreases, but effect size and standard error should not be correlated.
 
-*INSERT IMAGE*
+![](images/Mod9_9.png){fig-align="center"}
 
 • Correlation could suggest "missing" studies.
 
@@ -304,7 +304,7 @@ $$
 
 "Do the results hit you between the eyes?"
 
-*INSERT IMAGE*
+![](images/Mod9_10.png){fig-align="center"}
 
 (z = 1.96 is the threshold for statistical significance)
 
@@ -330,13 +330,13 @@ $$
 
 • A diagram of low power:
 
-*INSERT IMAGE*
+![](images/Mod9_11.png){fig-align="center"}
 
 • Notice: "the truth" is NOT in the "reject the null" region. So when power is low, "the truth" is not statistically significant!
 
 #### Visually, using confidence intervals
 
-*INSERT IMAGE*
+![](images/Mod9_12.png){fig-align="center"}
 
 • Low power =\> wide CIs
 
@@ -348,17 +348,17 @@ $$
 
 • Below: Sampling distribution of the Cohen's d statistic (standardized diff. in means). Simulated so that power = 0.27 and population d = 0.5.
 
-*INSERT IMAGE*
+![](images/Mod9_13.png){fig-align="center" width="400"}
 
 • Below: same thing, but after removing all d statistics that do not achieve statistical significance.
 
-*INSERT IMAGE*
+![](images/Mod9_14.png){fig-align="center" width="400"}
 
 • Upshot: conditioning an unbiased estimator on p \< 0.05 creates a biased estimator. The lower the power, the greater the bias.
 
 #### The extreme example
 
-*INSERT IMAGE*
+![](images/Mod9_15.png){fig-align="center"}
 
 #### Can low power be assessed empirically?
 
@@ -406,21 +406,23 @@ $$
 
 • In this example, all CIs contain zero, so all p-values exceed 0.05. All three tests are consistent with "no effect".
 
+![](images/Mod9_16.png){fig-align="center" width="200"}
+
 • However, the first CI is also consistent with a very large effect, which could be positive or negative. The third CI is consistent with no effect or a very small effect .
 
 • But - the p-values are the same! In all three cases, p = 0.51.
 
 #### Published example: knee surgery study
 
+![](images/Mod9_17.png){fig-align="center"}
+
 • The article "Arthroscopic partial meniscectomy versus placebo surgery for a degenerative meniscus tear: a 2-year follow-up of the randomized controlled trial" assesses the effectiveness of a surgical procedure for treating a degenerative knee tear relative to a sham "placebo" surgery (!!!). https://ard.bmj.com/content/77/2/188
 
 • The article finds a non-significant difference between treatment and placebo, and interprets this as the treatment being "no better" than placebo. Author conclude there is "no evidence" in favor of the treatment.
 
-*INSERT IMAGE*
-
 • However, later in the paper the authors make a much stronger argument: that the 95% CI for the difference in means is fully below the minimum clinically meaningful difference, which they established a priori:
 
-*INSERT IMAGE*
+![](images/Mod9_18.png){fig-align="center"}
 
 -   Note the sharp difference between these arguments:
 
@@ -472,13 +474,13 @@ $$
 
 • With registered reports, data analysis plans are peer reviewed, and papers can be accepted for publication before results are known. This removes publication bias.
 
-*INSERT IMAGE*
+![](images/Mod9_19.png){fig-align="center"}
 
 • Rewarding "open" practices.
 
 • The Association for Psychological Science now does this using badges:
 
-*INSERT IMAGE*
+![](images/Mod9_20.png){fig-align="center"}
 
 • "Equivalence testing": an alternative to "accepting" a null that has not been rejected.
 
@@ -490,7 +492,7 @@ $$
 
 • Visualization of equivalence testing, using confidence intervals:
 
-*INSERT IMAGE*
+![](images/Mod9_21.png){fig-align="center"}
 
 • Note that results can be both "not significantly different" and "not significantly equivalent".
 
