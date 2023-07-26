@@ -217,79 +217,79 @@ For instance, if I'm trying to predict how many tomatoes are produced per tomato
 
 ## Sums of squares and mean squares
 
-• We will look at some formulas in this section. Some are based on sums of squares, which are reported in the ANOVA table.
+We will look at some formulas in this section. Some are based on sums of squares, which are reported in the ANOVA table.
 
-• Total sum of squares quantifies total variability in $y$:
+Total sum of squares quantifies total variability in $y$:
 
 $$
 SS_{Total} = \sum^n_{i=1}(y_i - \bar{y})^2
 $$
 
-• Note that this has nothing to do with the regression line, or the predictor variable. It quantifies variability in the response variable alone.
+Note that this has nothing to do with the regression line, or the predictor variable. It quantifies variability in the response variable alone.
 
 ### Total sum of squares
 
-• Visually, $SS_{Total}$ is the sum of the squared vertical deviations between each data point and the mean of 𝑦, shown here as a horizontal line.
+Visually, $SS_{Total}$ is the sum of the squared vertical deviations between each data point and the mean of 𝑦, shown here as a horizontal line.
 
 ![](images/Mod2_pt1_1.png){fig-align="center" width="400"}
 
-• The two blue lines drawn are two such instances of these deviations. If we drew these for every data point, squared them, and added them up, we'd have $SS_{Total}$
+The two blue lines drawn are two such instances of these deviations. If we drew these for every data point, squared them, and added them up, we'd have $SS_{Total}$
 
-• Again, note that this quantity has nothing to do with the regression line!
+Again, note that this quantity has nothing to do with the regression line!
 
 ### Residual / Error sum of squares
 
-• Error sum of squares quantifies total variability in 𝑦 around the regression line:
+Error sum of squares quantifies total variability in 𝑦 around the regression line:
 
 $$
 SS_{Error} = \sum^n_{i=1}(y_i - \hat{y}_i)^2 = \sum^n_{i=1}[y_i - (\hat{\beta}_0 + \hat{\beta}_1)]^2
 $$
 
-• This is also known as the "sum of the squared residuals", where a residual is the vertical distance between a data point and the regression line. The values of $\hat{\beta}_0$ and $\hat{\beta}_1$ are chosen so as to minimize $SS_{Error}$.
+This is also known as the "sum of the squared residuals", where a residual is the vertical distance between a data point and the regression line. The values of $\hat{\beta}_0$ and $\hat{\beta}_1$ are chosen so as to minimize $SS_{Error}$.
 
-• In other words, the regression line drawn through the data produced a smaller $SS_{Error}$ than any other line we could possibly draw.
+In other words, the regression line drawn through the data produced a smaller $SS_{Error}$ than any other line we could possibly draw.
 
-• Visually, $SS_{Error}$ is the sum of the squared vertical deviations between each data point and the regression line.
+Visually, $SS_{Error}$ is the sum of the squared vertical deviations between each data point and the regression line.
 
 ![](images/Mod2_pt1_2.png){fig-align="center" width="400"}
 
-• Here, the blue lines are two instances of these deviations
+Here, the blue lines are two instances of these deviations
 
-• $SS_{Error}$ will be larger when the data are more spread out around the line, and vice versa.
+$SS_{Error}$ will be larger when the data are more spread out around the line, and vice versa.
 
 ### Mean square error
 
-• Error mean square (aka mean square error) is given by
+Error mean square (aka mean square error) is given by
 
 $$
 MSE = MS_{Error} = \frac{SS_{Error}}{n-k +1}
 $$
 
-• $k$ is the number of predictor variables. Example: for simple regression, $k = 1$, so $MSE = \frac{SS_{Error}}{N-2}$
+$k$ is the number of predictor variables. Example: for simple regression, $k = 1$, so $MSE = \frac{SS_{Error}}{N-2}$
 
-• As seen earlier, $\sqrt{MSE}$ is the estimate for the standard deviation of the residuals around the line: $\hat{\sigma} = \sqrt{MSE}$
+As seen earlier, $\sqrt{MSE}$ is the estimate for the standard deviation of the residuals around the line: $\hat{\sigma} = \sqrt{MSE}$
 
 ### Model sum of squares
 
-• Model sum of squares (aka "regression sum of squares") is given by:
+Model sum of squares (aka "regression sum of squares") is given by:
 
 $$
 SS_{Model} = \sum^n_{i=1}(\hat{y}_i - \bar{y})^2
 $$
 
-• This can be thought of as quantifying how much better the model is than $\bar{y}$ alone at accounting for variation in the values of $y$.
+This can be thought of as quantifying how much better the model is than $\bar{y}$ alone at accounting for variation in the values of $y$.
 
-• Visually, $SS_{Model}$ is the sum of the squared vertical deviations between the regression line and the horizontal line, at each value of the predictor variable.
+Visually, $SS_{Model}$ is the sum of the squared vertical deviations between the regression line and the horizontal line, at each value of the predictor variable.
 
 ![](images/Mod2_pt1_3.png){fig-align="center" width="399"}
 
-• Here, the blue lines are two instances of these deviations, associated with the circled blue data points.
+Here, the blue lines are two instances of these deviations, associated with the circled blue data points.
 
 #### $SS_{Total} = SS_{Error} + SS_{Model}$
 
-• Total sum of squares are equal to the sum of error sum of squares and model sum of squares.
+Total sum of squares are equal to the sum of error sum of squares and model sum of squares.
 
-• Note that this also implies:
+Note that this also implies:
 
 $$
 SS_{Model} = SS_{Total} - SS_{Error} \\
@@ -298,31 +298,31 @@ $$
 
 ## Interpreting regression results
 
-• Here again is the estimated model from the previous example:
+Here again is the estimated model from the previous example:
 
 $$
 \hat{y}_i = 9.1 + 0.71x_i
 $$
 
-• The intercept, $\hat{\beta}_0 = 9.1$, gives the predicted value of the response variable ($y$) when the predictor variable ($x$) equals zero. This is not typically of practical interest.
+The intercept, $\hat{\beta}_0 = 9.1$, gives the predicted value of the response variable ($y$) when the predictor variable ($x$) equals zero. This is not typically of practical interest.
 
-• The slope, $\hat{\beta}_1 = 0.71$, gives the predicted change in $y$ for a one unit increase in $x$.
+The slope, $\hat{\beta}_1 = 0.71$, gives the predicted change in $y$ for a one unit increase in $x$.
 
 #### More on interpreting the slope
 
-• The slope is often of practical interest. It tells us how much the response variable changes, on average, when the predictor variable increases by one unit.
+The slope is often of practical interest. It tells us how much the response variable changes, on average, when the predictor variable increases by one unit.
 
-• This interpretation is very common. It is also dangerous, because it is phrased in a way that suggests changes in 𝑥 cause changes in $y$.
+This interpretation is very common. It is also dangerous, because it is phrased in a way that suggests changes in 𝑥 cause changes in $y$.
 
-• Here is an alternate, non-causal sounding interpretation:
+Here is an alternate, non-causal sounding interpretation:
 
 *If we observe two values of* $x$ *that are one unit apart, we estimate that their corresponding average* $y$ *values will be* $\hat{\beta}_1$ *units apart.*
 
-• Visually, we can choose two values of $x$, go up to the line, and record the values of $y$. The slope tells us how much these $y$ values are expected to differ.
+Visually, we can choose two values of $x$, go up to the line, and record the values of $y$. The slope tells us how much these $y$ values are expected to differ.
 
 ![](images/Mod2_pt1_4.png){fig-align="center" width="400"}
 
-• Here, when we compare $x = 20$ and $x = 80$, we expect their corresponding $y$ values to differ by:
+Here, when we compare $x = 20$ and $x = 80$, we expect their corresponding $y$ values to differ by:
 
 $$
 (80 − 20) ∗ 0.725 = 43.5
@@ -330,11 +330,11 @@ $$
 
 #### Inference on the coefficients
 
-• For each estimated coefficient ($\hat{\beta}_0$ and $\hat{\beta}_0$), jamovi reports a standard error, along with a t-test statistic and p-value testing the null that the parameter being estimated equals zero.
+For each estimated coefficient ($\hat{\beta}_0$ and $\hat{\beta}_0$), jamovi reports a standard error, along with a t-test statistic and p-value testing the null that the parameter being estimated equals zero.
 
 ![](images/Mod2_pt1_5.png){fig-align="center" width="400"}
 
-• Example: the above output shows the test of $H_0: \beta_1 = 0$
+Example: the above output shows the test of $H_0: \beta_1 = 0$
 
 $$
 t = \frac{\hat{\beta}_1}{s_{\hat{\beta}_1}} = \frac{0.712}{0.034} = 21.22\\
@@ -342,84 +342,84 @@ p-value < 0.01 \\
 \text{"reject } H_0"
 $$
 
-• We can use these results to create an approximate 95% confidence for $\beta_1$:
+We can use these results to create an approximate 95% confidence for $\beta_1$:
 
 $$
 95\% \text{ CI for } \beta_1 \approx \hat{\beta}_1 \pm 2* s_{\hat{\beta}_1} = 0.712 \pm 2*0.034 = (0.645,0.779)
 $$
 
-• This is a very narrow interval, suggesting a "precise" estimate of $\beta_1$
+This is a very narrow interval, suggesting a "precise" estimate of $\beta_1$
 
-• For both the hypothesis test and 95% CI, the results depend on how large the estimate of $\beta_1$ is, relative to its standard error.
+For both the hypothesis test and 95% CI, the results depend on how large the estimate of $\beta_1$ is, relative to its standard error.
 
-• In this case, $\hat{\beta}_1$ is very large relative to $s_{\hat{\beta}_1}$, so the result is "highly significant" and the 95% CI is narrow.
+In this case, $\hat{\beta}_1$ is very large relative to $s_{\hat{\beta}_1}$, so the result is "highly significant" and the 95% CI is narrow.
 
 #### Formulas for $\hat{\beta}_1$ and $s_{\hat{\beta}_1}$
 
-• Now that you've seen how $\hat{\beta}_1$ and $s_{\hat{\beta}_1}$ are used, here are their formulas:
+Now that you've seen how $\hat{\beta}_1$ and $s_{\hat{\beta}_1}$ are used, here are their formulas:
 
 $$
 \hat{\beta}_1 = r_{xy} * \frac{s_y}{s_x} \\
 s_{\hat{\beta}_1} = \sqrt{\frac{MSE}{\sum^n_{i=1}(x_i - \bar{x})^2}} = \sqrt{\frac{1-R^2}{n-k-1}}*\frac{s_y}{s_x}
 $$
 
-• $\hat{\beta}_1$ is larger when the correlation between $x$ and $y$ is stronger, and when the variability in $y$ is larger relative to the variability in $x$.
+$\hat{\beta}_1$ is larger when the correlation between $x$ and $y$ is stronger, and when the variability in $y$ is larger relative to the variability in $x$.
 
-•$s_{\hat{\beta}_1}$ is smaller when $R^2$ is larger, when $n$ is larger, and when the variability in $x$ is larger relative to the variability in $y$.
+$s_{\hat{\beta}_1}$ is smaller when $R^2$ is larger, when $n$ is larger, and when the variability in $x$ is larger relative to the variability in $y$.
 
 ## Applied example: "The binary bias"
 
-• There is a paper up on Canvas, titled "The Binary Bias: A Systematic Distortion in the Integration of Information". This is a 2018 paper published in Psychological Science with open data.
+There is a paper up on Canvas, titled "The Binary Bias: A Systematic Distortion in the Integration of Information". This is a 2018 paper published in Psychological Science with open data.
 
-• The overall hypothesis is that people tend to assess continuous information using binary thinking. The experiments all involve testing to see if participants will give higher or lower assessments of where an average lies, based on the "imbalance" of the data: i.e. the comparative frequency with which very low or very high values turn up.
+The overall hypothesis is that people tend to assess continuous information using binary thinking. The experiments all involve testing to see if participants will give higher or lower assessments of where an average lies, based on the "imbalance" of the data: i.e. the comparative frequency with which very low or very high values turn up.
 
-• Here is the section of the paper describing the results of Study 1a:
+Here is the section of the paper describing the results of Study 1a:
 
 ![](images/Mod2_pt1_6.png){fig-align="center"}
 
-• The data:
+The data:
 
 ![](images/Mod2_pt1_7.png){fig-align="center"}
 
-• Telling jamovi to fit the model:
+Telling jamovi to fit the model:
 
 ![](images/Mod2_pt1_8.png){fig-align="center" width="400"}
 
-• The model, before being fit to the data:
+The model, before being fit to the data:
 
 $$
 Recorded_i = \beta_0 + \beta_1Imbalance_i + \beta_2Mode_i + \beta_3First_i + \beta_4Last_i + \epsilon_i
 $$
 
-• The results in jamovi:
+The results in jamovi:
 
 ![](images/Mod2_pt1_9.png){fig-align="center"}
 
 ![](images/Mod2_pt1_10.png){fig-align="center" width="400"}
 
-• Note that the estimated slope is being denoted as $b$ rather than as $\hat{\beta}_1$. $\hat{\sigma} = MSE$. Note also how the 95% CI was created: $\approx 4.62 ± 2 ∗ 0.63$
+Note that the estimated slope is being denoted as $b$ rather than as $\hat{\beta}_1$. $\hat{\sigma} = MSE$. Note also how the 95% CI was created: $\approx 4.62 ± 2 ∗ 0.63$
 
-• The paper does not mention $R^2$. We can see it in the jamovi output, and calculate it from the ANOVA table:
+The paper does not mention $R^2$. We can see it in the jamovi output, and calculate it from the ANOVA table:
 
 ![](images/Mod2_pt1_11.png){fig-align="center" width="400"}
 
-• $R^2 = 0.12$. So, about 12% of the total variance in "Recorded" is being "explained" or "accounted for" in the model.
+$R^2 = 0.12$. So, about 12% of the total variance in "Recorded" is being "explained" or "accounted for" in the model.
 
-• In multiple regression, each predictor is interpreted under the assumption that the values of all other predictors are held constant (i.e. "controlled for").
+In multiple regression, each predictor is interpreted under the assumption that the values of all other predictors are held constant (i.e. "controlled for").
 
-• So, if we were to observe two participants who were equal in terms of "First", "Last", and "Mode", but were one unit apart in terms of "Imbalance", we would expect their values for the response variable ("Recorded") to differ by 4.62 units on average.
+So, if we were to observe two participants who were equal in terms of "First", "Last", and "Mode", but were one unit apart in terms of "Imbalance", we would expect their values for the response variable ("Recorded") to differ by 4.62 units on average.
 
-• Or: The predicted (or average) difference in Recorded associated with a one unit difference in Imbalance is 4.62 units, if all other predictors are held constant.
+Or: The predicted (or average) difference in Recorded associated with a one unit difference in Imbalance is 4.62 units, if all other predictors are held constant.
 
 ## Interaction
 
-• "Interaction" is the phenomenon by which the association between a predictor variable and a response variable is itself dependent on the value of another predictor.
+"Interaction" is the phenomenon by which the association between a predictor variable and a response variable is itself dependent on the value of another predictor.
 
-• Say we have response $y$, one predictor $x_1$, and another predictor $x_2$. We say that $x_1$ and $x_2$ interact if the amount of change in $y$ associated with a change in $x_1$ is different for different values of $x_2$, or vice versa.
+Say we have response $y$, one predictor $x_1$, and another predictor $x_2$. We say that $x_1$ and $x_2$ interact if the amount of change in $y$ associated with a change in $x_1$ is different for different values of $x_2$, or vice versa.
 
-• You can think of this as saying that the "slope" of $x_1$ depends upon the value of $x_2$.
+You can think of this as saying that the "slope" of $x_1$ depends upon the value of $x_2$.
 
-• Another way of saying it: if the answer to the question:
+Another way of saying it: if the answer to the question:
 
 *"How much does our estimate for* $y$ *change when* $x_1$ *changes?"*
 
@@ -431,21 +431,21 @@ then $x_1$ and $x_2$ interact.
 
 ### Interaction example
 
-• Suppose a drug for treating rheumatoid arthritis is more effective at reducing inflammation for younger patients than it is for older patients.
+Suppose a drug for treating rheumatoid arthritis is more effective at reducing inflammation for younger patients than it is for older patients.
 
-• If we conduct an experiment in which inflammation is the response variable and the predictors are treatment group (drug vs. control) and age, then we expect treatment group and age to interact.
+If we conduct an experiment in which inflammation is the response variable and the predictors are treatment group (drug vs. control) and age, then we expect treatment group and age to interact.
 
-• This is different from saying that age and treatment both affect inflammation. It means that the extent to which treatment affects inflammation is different for patients of different age.
+This is different from saying that age and treatment both affect inflammation. It means that the extent to which treatment affects inflammation is different for patients of different age.
 
-• Sometimes interaction is referred to as "moderation". This is common in the social and behavioral sciences, particularly Psychology.
+Sometimes interaction is referred to as "moderation". This is common in the social and behavioral sciences, particularly Psychology.
 
-• So, a "moderator" variable is one that changes how the primary predictor of interest relates to the response.
+So, a "moderator" variable is one that changes how the primary predictor of interest relates to the response.
 
-• Example: suppose an experiment shows that subjects holding a pen with their teeth rate cartoons as funnier vs. subjects holding a pen with their lips.
+Example: suppose an experiment shows that subjects holding a pen with their teeth rate cartoons as funnier vs. subjects holding a pen with their lips.
 
-• Suppose also that this "pen in teeth" effect disappears if subjects see a video camera in the room.
+Suppose also that this "pen in teeth" effect disappears if subjects see a video camera in the room.
 
-• In this case, the presence of the video camera "moderates" the effect of the pen on cartoon ratings. In the language of interaction, the presence of the pen and the presence of the video camera "interact".
+In this case, the presence of the video camera "moderates" the effect of the pen on cartoon ratings. In the language of interaction, the presence of the pen and the presence of the video camera "interact".
 
 > This is based on a real study that has generated controversy, see:
 >
@@ -453,55 +453,55 @@ then $x_1$ and $x_2$ interact.
 
 ### Interaction, in the regression model
 
-• Mathematically, we create an interaction variable by multiplying predictor variables by one another.
+Mathematically, we create an interaction variable by multiplying predictor variables by one another.
 
-• So, if we want to allow $x_1$ and $x_2$ to interact, we simply make a new variable defined as $x_1*x_2$.
+So, if we want to allow $x_1$ and $x_2$ to interact, we simply make a new variable defined as $x_1*x_2$.
 
-• This interaction variable will be used as an additional predictor variable in the regression model:
-
-$$
-Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +\beta_3(x_1x_2)_i + \epsilon_i \\
-\text{ where } \epsilon_i \sim Normal(0,\sigma^2)
-$$
-
-• The interaction coefficient is $\beta_3$ in this model:
+This interaction variable will be used as an additional predictor variable in the regression model:
 
 $$
 Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +\beta_3(x_1x_2)_i + \epsilon_i \\
 \text{ where } \epsilon_i \sim Normal(0,\sigma^2)
 $$
 
-• To interpret this, let's look at how it affects the coefficients (aka slopes) for $x_1$ and $x_2$.
+The interaction coefficient is $\beta_3$ in this model:
 
-• We can think of the "slope" of a predictor as everything it is being multiplied by.
+$$
+Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +\beta_3(x_1x_2)_i + \epsilon_i \\
+\text{ where } \epsilon_i \sim Normal(0,\sigma^2)
+$$
+
+To interpret this, let's look at how it affects the coefficients (aka slopes) for $x_1$ and $x_2$.
+
+We can think of the "slope" of a predictor as everything it is being multiplied by.
 
 $$
 Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} +\beta_3(x_1x_2)_i + \epsilon_i
 $$
 
-• Factoring out $x_1$ from the above regression equation gives:
+Factoring out $x_1$ from the above regression equation gives:
 
 $$
 Y_i = \beta_0 + (\beta_1 + \beta_3x_{2i})x_{1i} + \beta_2x_{2i} + \epsilon_i
 $$
 
-• Similarly, factoring out $x_2$ gives:
+Similarly, factoring out $x_2$ gives:
 
 $$
 Y_i = \beta_0 + (\beta_2 + \beta_3x_{1i})x_{2i} + \beta_1x_{1i} + \epsilon_i
 $$
 
-• So, for this model, the "slope" of $x_1$ is $\beta_1 + \beta_3x_2$, and the "slope" of $x_2$ is $\beta_2 + \beta_3x_1$
+So, for this model, the "slope" of $x_1$ is $\beta_1 + \beta_3x_2$, and the "slope" of $x_2$ is $\beta_2 + \beta_3x_1$
 
-• In other words, the slope of $x_1$ depends on the value of $x_2$, and vice versa. For different values of $x_2$, the "predicted change in $y$ for a one unit increase in $x_1$" (i.e. the slope of $x_1$) will be different.
+In other words, the slope of $x_1$ depends on the value of $x_2$, and vice versa. For different values of $x_2$, the "predicted change in $y$ for a one unit increase in $x_1$" (i.e. the slope of $x_1$) will be different.
 
-• A simpler way of saying this is that, if two predictors interact, then the effect of one predictor on the response depends on the value of the other predictor.
+A simpler way of saying this is that, if two predictors interact, then the effect of one predictor on the response depends on the value of the other predictor.
 
 (This is a simpler interpretation, but also potentially misleading in that the term "effect" sounds causal. Nonetheless it is commonly used language when interpreting slopes.)
 
 ## jamovi Example: Arthritis data
 
-• The data set "arthritis_data.csv" contains simulated data from a (fictional) Randomized Control Trial comparing treatments for inflammation from rheumatoid arthritis: a disease-modifying anti-rheumatic drug (DMARD) vs. a non-steroidal anti-inflammatory drug (NSAID)
+The data set "arthritis_data.csv" contains simulated data from a (fictional) Randomized Control Trial comparing treatments for inflammation from rheumatoid arthritis: a disease-modifying anti-rheumatic drug (DMARD) vs. a non-steroidal anti-inflammatory drug (NSAID)
 
 -    The variables are:
 
@@ -515,31 +515,31 @@ $$
 
 #### Before vs. after scatterplot
 
-• We will fit some regression models using this data, but first let's take a look at our data using the Scatterplot module.
+We will fit some regression models using this data, but first let's take a look at our data using the Scatterplot module.
 
 ![](images/Mod2_pt2_1.png){fig-align="center" width="400"}
 
-• Here is "after" vs. "before", with a linear regression line superimposed. Note that most patients had greater inflammation before than after treatment.
+Here is "after" vs. "before", with a linear regression line superimposed. Note that most patients had greater inflammation before than after treatment.
 
 #### Differences by treatment type
 
-• Note that the differences tend to be larger for the DMARD group: this corresponds to a greater reduction in inflammation.
+Note that the differences tend to be larger for the DMARD group: this corresponds to a greater reduction in inflammation.
 
 ![](images/Mod2_pt2_2.png){fig-align="center" width="400"}
 
-• Use Descriptives to create the boxplot. Select difference as a Variable and Split by drug. Then select under Plots -- Box plot and Data Jittered to superimpose data.
+Use Descriptives to create the boxplot. Select difference as a Variable and Split by drug. Then select under Plots -- Box plot and Data Jittered to superimpose data.
 
 ![](images/Mod2_pt2_3.png){fig-align="center" width="249"}
 
 #### Before vs. age scatterplot
 
-• Here we see that age is positively correlated with inflammation before the drug trial.
+Here we see that age is positively correlated with inflammation before the drug trial.
 
 ![](images/Mod2_pt2_4.png){fig-align="center" width="400"}
 
-• jamovi gives options to superimpose regression output on a scatterplot.
+jamovi gives options to superimpose regression output on a scatterplot.
 
-• jamovi can also plot "standard error" bands around the line. These show the standard error for the average value of y ("before"), given x ("age").
+jamovi can also plot "standard error" bands around the line. These show the standard error for the average value of y ("before"), given x ("age").
 
 ![](images/Mod2_pt2_5.png){fig-align="center" width="326"}
 
@@ -565,11 +565,11 @@ We see a small negative correlation between difference and age...
 
 #### Now with model output...
 
-• The following slides show the plots again, plus the regression output JMP produces. First up, Difference vs. Drug, using t-test:
+The following slides show the plots again, plus the regression output JMP produces. First up, Difference vs. Drug, using t-test:
 
 ![](images/Mod2_pt2_10.png){fig-align="center"}
 
-• And using regression:
+And using regression:
 
 ![](images/Mod2_pt2_11.png){fig-align="center" width="386"}
 
@@ -583,29 +583,29 @@ OMG! The estimated slope for "drug" is the same as the difference in means betwe
 
 #### Difference vs. age, with drug interaction
 
-• Here, we are fitting the model:
+Here, we are fitting the model:
 
 $$
 Difference_i = \beta_0 + \beta_1age_i + \beta_2drug_i + \beta_3(age*drug)_i + \epsilon_i
 $$
 
-• To do this, create a new column in jamovi, defined as $age*drug$*.* May as well label it *"*$age*drug$".
+To do this, create a new column in jamovi, defined as $age*drug$*.* May as well label it *"*$age*drug$".
 
 ![](images/Mod2_pt2_14.png){fig-align="left" width="299"}
 
 ![](images/Mod2_pt2_15.png){fig-align="right" width="400"}
 
-• Notice that the slope of "age" by itself is for when drug = 0. The age\*treatment interaction shows how much the slope of "age" changes when treatment = 1.
+Notice that the slope of "age" by itself is for when drug = 0. The age\*treatment interaction shows how much the slope of "age" changes when treatment = 1.
 
 $$
 \widehat{difference} = 2.0114 + 0.0125(age) + 15.1586(drug) -0.2493(age*drug)
 $$
 
-• Slope of "age" when drug = 1 is: $0.0125 − 0.2493 = −0.2368$
+Slope of "age" when drug = 1 is: $0.0125 − 0.2493 = −0.2368$
 
-• Notice also that the slope of "age" by itself is nowhere close to being statistically significant (the estimate is less than half the standard error), but the slope of the interaction is highly significant (the estimate is 6 times as large as the standard error)
+Notice also that the slope of "age" by itself is nowhere close to being statistically significant (the estimate is less than half the standard error), but the slope of the interaction is highly significant (the estimate is 6 times as large as the standard error)
 
-• Now take a look at the plot. There is a clear negative correlation between age and difference when drug = 1. There is essentially none when drug = 0.
+Now take a look at the plot. There is a clear negative correlation between age and difference when drug = 1. There is essentially none when drug = 0.
 
 ![](images/Mod2_pt2_16.png){fig-align="center" width="385"}
 
@@ -617,23 +617,23 @@ $$
 
 #### Interaction is NOT correlation!
 
-• In this example, we see a clear interaction between drug and age: the slope for age is negative for DMARD and flat for NSAID.
+In this example, we see a clear interaction between drug and age: the slope for age is negative for DMARD and flat for NSAID.
 
-• Another way of thinking about this: DMARD appears to be more effective for younger patients than for older patients. NSAID appears to be equally effective regardless of age.
+Another way of thinking about this: DMARD appears to be more effective for younger patients than for older patients. NSAID appears to be equally effective regardless of age.
 
-• HOWEVER -- this does NOT mean that treatment and age are correlated!
+HOWEVER -- this does NOT mean that treatment and age are correlated!
 
-• This should make sense, after all patients were randomly assigned to one of the two drugs. If drug were correlated with age, there would be bias in this study. The whole point of randomization is to remove correlations!
+This should make sense, after all patients were randomly assigned to one of the two drugs. If drug were correlated with age, there would be bias in this study. The whole point of randomization is to remove correlations!
 
-• Just to confirm, here is the distribution of age, split by drug:
+Just to confirm, here is the distribution of age, split by drug:
 
 ![](images/Mod2_pt2_17.png){fig-align="center" width="400"}
 
-• Again, age and drug "interact" when it comes to their associations with the differences in inflammation scores: the association between "age" and "difference" is different for the two different drugs.
+Again, age and drug "interact" when it comes to their associations with the differences in inflammation scores: the association between "age" and "difference" is different for the two different drugs.
 
-• Similarly, the association between "drug" and "difference" is different for patients of different ages.
+Similarly, the association between "drug" and "difference" is different for patients of different ages.
 
-• But, age and drug are not correlated with one another!
+But, age and drug are not correlated with one another!
 
 ## Centering predictor variables
 
@@ -641,9 +641,9 @@ $$
 \widehat{difference} = 2.0114 + 0.0125(age) + 15.1586(drug) -0.2493(age*drug)
 $$
 
-• There is a serious challenge when interpreting the slope for "drug": this slope is only 15.1586 if $age = 0$. But $age = 0$ is not of interest.
+There is a serious challenge when interpreting the slope for "drug": this slope is only 15.1586 if $age = 0$. But $age = 0$ is not of interest.
 
-• Plug in mean age (52.096) and see what happens to the slope for drug:
+Plug in mean age (52.096) and see what happens to the slope for drug:
 
 $$
 15.1586(drug) − 0.2493(52.096*drug) \\
@@ -651,155 +651,155 @@ $$
  = 2.171(𝑑𝑟𝑢𝑔) 
 $$
 
-• So, for patients at mean age, the predicted difference in inflammation is 2.171 units greater under the DMARD than under the NSAID
+So, for patients at mean age, the predicted difference in inflammation is 2.171 units greater under the DMARD than under the NSAID
 
-• This process of estimating slopes at the average value of predictors can be done via "centering"
+This process of estimating slopes at the average value of predictors can be done via "centering"
 
-• Centering means subtracting the mean from a variable's distribution.
+Centering means subtracting the mean from a variable's distribution.
 
-• In this example, $centered\text{ }age = age - \overline{age} = age - 52.096$
+In this example, $centered\text{ }age = age - \overline{age} = age - 52.096$
 
-• This is very useful when using interaction terms in a regression model.
+This is very useful when using interaction terms in a regression model.
 
 #### Centered interaction in jamovi
 
-• To center age, create a new columns called "centered age", defined as age -- VMEAN(age).
+To center age, create a new columns called "centered age", defined as age -- VMEAN(age).
 
-• Create another new column for "centered drug", defined as drug -- VMEAN(drug). Now create a final column defined as centered drug \* centered age, call it "centered age\*drug"
+Create another new column for "centered drug", defined as drug -- VMEAN(drug). Now create a final column defined as centered drug \* centered age, call it "centered age\*drug"
 
-• We can't use MEAN() to center variables in jamovi since it works across variables, one row at a time. What we want is to take the overall mean of a variable and subtract it from each measurement.
+We can't use MEAN() to center variables in jamovi since it works across variables, one row at a time. What we want is to take the overall mean of a variable and subtract it from each measurement.
 
-• So, use VMEAN() to center variables in jamovi.
+So, use VMEAN() to center variables in jamovi.
 
-• Compare the new results (on the left) to the results we saw when using the interaction term we created manually (on the right)
+Compare the new results (on the left) to the results we saw when using the interaction term we created manually (on the right)
 
 ![](images/Mod2_pt2_18.png){fig-align="center"}
 
 #### Centered interaction in JMP
 
-• The "Model Fit Measures" are identical. Centering has no effect on $R^2$ or any sums of squares.
+The "Model Fit Measures" are identical. Centering has no effect on $R^2$ or any sums of squares.
 
-• Centering also had no effect on the slope for the interaction, or on its standard error. But, look at the individual "age" and "drug" predictors.
+Centering also had no effect on the slope for the interaction, or on its standard error. But, look at the individual "age" and "drug" predictors.
 
 ![](images/Mod2_pt2_19.png){fig-align="center" width="347"}
 
-• These slopes are different, because they are being calculated at the mean value of the other.
+These slopes are different, because they are being calculated at the mean value of the other.
 
-• Centering also reduces the standard errors of the individual slopes!
+Centering also reduces the standard errors of the individual slopes!
 
 #### Centered interaction in jamovi
 
-• Look at the slope for drug when using a centered interaction: it's the same value we calculated by plugging the mean of age into the interaction term in the non-centered model!
+Look at the slope for drug when using a centered interaction: it's the same value we calculated by plugging the mean of age into the interaction term in the non-centered model!
 
 ![](images/Mod2_pt2_20.png){fig-align="center" width="325"}
 
-• The slope for age in the centered model is harder to interpret. It is calculated at the "average" for drug, which doesn't make real world sense.
+The slope for age in the centered model is harder to interpret. It is calculated at the "average" for drug, which doesn't make real world sense.
 
 #### Only centering one predictor in jamovi
 
-• It would be best if we could center "age" but not drug.
+It would be best if we could center "age" but not drug.
 
-• But we already created centered age when we created the centered interaction.
+But we already created centered age when we created the centered interaction.
 
-• Now we need to create the new interaction where only age is centered. Create a new column and define it as "drug \* centered age".
+Now we need to create the new interaction where only age is centered. Create a new column and define it as "drug \* centered age".
 
 ![](images/Mod2_pt2_21.png){fig-align="center" width="183"}
 
 #### Only centering one predictor in JMP
 
-• Here are the results. Compare them to the previous two versions:
+Here are the results. Compare them to the previous two versions:
 
-• Only age centered:
+Only age centered:
 
 ![](images/Mod2_pt2_22.png){fig-align="center" width="400"}
 
-• Age and drug centered in the interaction:
+Age and drug centered in the interaction:
 
 ![](images/Mod2_pt2_23.png){fig-align="center" width="400"}
 
-• Nothing centered:
+Nothing centered:
 
 ![](images/Mod2_pt2_24.png){fig-align="center" width="400"}
 
 #### Only centering one predictor in jamovi
 
-• First, the slope for the interaction is the same in all three models.
+First, the slope for the interaction is the same in all three models.
 
-• Second, the slope for drug is the same in both centered models, but different in the non-centered model. It is the centering of age in the interaction that changed the slope for drug.
+Second, the slope for drug is the same in both centered models, but different in the non-centered model. It is the centering of age in the interaction that changed the slope for drug.
 
 ![](images/Mod2_pt2_25.png){fig-align="center"}
 
-• Third, the slope for age is the same in both models for which drug is not centered. This allows us to interpret it as before: slope for age is 0.0125 for the NSAID and is 0.0125 − 0.2493 = −0.2368 for the DMARD
+Third, the slope for age is the same in both models for which drug is not centered. This allows us to interpret it as before: slope for age is 0.0125 for the NSAID and is 0.0125 − 0.2493 = −0.2368 for the DMARD
 
-• Fourth, the standard error for drug is substantially smaller when age is centered in the interaction. This is typically the case when centering a continuous variable in an interaction.
+Fourth, the standard error for drug is substantially smaller when age is centered in the interaction. This is typically the case when centering a continuous variable in an interaction.
 
 #### Interpreting the intercept when centering
 
-• Finally, the intercept is different in all three models.
+Finally, the intercept is different in all three models.
 
-• Normally we don't care about the intercept, but centering allows the intercept to be meaningfully interpreted.
+Normally we don't care about the intercept, but centering allows the intercept to be meaningfully interpreted.
 
-• Since $[Center]age = age - \overline{age}, [Center]age = 0 \text{ when } age = \overline{age}$
+Since $[Center]age = age - \overline{age}, [Center]age = 0 \text{ when } age = \overline{age}$
 
-• Remember that the intercept is interpreted as the "predicted value of the response when the predictors equal zero".
+Remember that the intercept is interpreted as the "predicted value of the response when the predictors equal zero".
 
-• So, when centering, the intercept is the predicted value of the response when the centered predictors equal their mean.
+So, when centering, the intercept is the predicted value of the response when the centered predictors equal their mean.
 
-• Going back to our example, the predicted reduction in inflammation (before minus after) for a patient at the average age in our data set who got the NSAID is 2.665.
+Going back to our example, the predicted reduction in inflammation (before minus after) for a patient at the average age in our data set who got the NSAID is 2.665.
 
 ![](images/Mod2_pt2_26.png){fig-align="center" width="400"}
 
-• The predicted reduction in inflammation for a patient at the average age who got the DMARD is 2.665 + 2.171 = 4.836
+The predicted reduction in inflammation for a patient at the average age who got the DMARD is 2.665 + 2.171 = 4.836
 
 ## Standardizing predictor variables
 
-• We will briefly consider an extension on centering: standardizing.
+We will briefly consider an extension on centering: standardizing.
 
-• Recall from your introductory statistics course the standardization "z" formula:
+Recall from your introductory statistics course the standardization "z" formula:
 
 $$
 z = \frac{x - \mu}{\sigma}, \text{ or in words: } z = \frac{\text{value - mean}}{\text{standard deviation}}
 $$
 
-• To center a variable, we subtract the mean. To standardize, we subtract the mean and then divide by the standard deviation.
+To center a variable, we subtract the mean. To standardize, we subtract the mean and then divide by the standard deviation.
 
 #### Why standardize?
 
-• Just like with a centered variable, the mean of a standardized variable is zero. So, standardizing has all the same benefits as centering when it comes to interpretation of interactions.
+Just like with a centered variable, the mean of a standardized variable is zero. So, standardizing has all the same benefits as centering when it comes to interpretation of interactions.
 
-• Standardizing has an additional potential benefit: the slope can be interpreted as the predicted change in $Y$ for a one standard deviation increase in $X$ (while holding all other predictors constant).
+Standardizing has an additional potential benefit: the slope can be interpreted as the predicted change in $Y$ for a one standard deviation increase in $X$ (while holding all other predictors constant).
 
-• $Z$ values are interpreted as "number of standard deviations from the mean". And so increasing $Z$ by $1$ implies increasing $X$ by $1$ standard deviation.
+$Z$ values are interpreted as "number of standard deviations from the mean". And so increasing $Z$ by $1$ implies increasing $X$ by $1$ standard deviation.
 
 #### Standardizing in jamovi
 
-• To standardize in jamovi we will need to create a new column defined by (age -- VMEAN(age)) / VSTDEV(age).
+To standardize in jamovi we will need to create a new column defined by (age -- VMEAN(age)) / VSTDEV(age).
 
-• We will also need to create a column for the new interaction and define it as drug\*Standardized age
+We will also need to create a column for the new interaction and define it as drug\*Standardized age
 
 ![](images/Mod2_pt2_27.png){fig-align="center"}
 
-• Here are the results when age is standardized:
+Here are the results when age is standardized:
 
 ![](images/Mod2_pt2_28.png){fig-align="center" width="400"}
 
-• Compare to the results when age is centered:
+Compare to the results when age is centered:
 
 ![](images/Mod2_pt2_29.png){fig-align="center" width="400"}
 
-• Note that the intercepts are the same. In both cases, the predicted reduction in inflammation for a patient at average age getting NSAID is $2.665$. Likewise, in both cases this prediction is $4.836$ for DMARD.
+Note that the intercepts are the same. In both cases, the predicted reduction in inflammation for a patient at average age getting NSAID is $2.665$. Likewise, in both cases this prediction is $4.836$ for DMARD.
 
-• What has changed is the slope for terms involving age. Now, a one unit increase in standardized age is a one standard deviation increase in age.
+What has changed is the slope for terms involving age. Now, a one unit increase in standardized age is a one standard deviation increase in age.
 
-• So, for NSAID, the predicted difference in inflammation reduction for two people whose ages are one standard deviation apart is $0.14$. For DMARD, it is $0.14 – 2.79 = -2.64$.
+So, for NSAID, the predicted difference in inflammation reduction for two people whose ages are one standard deviation apart is $0.14$. For DMARD, it is $0.14 – 2.79 = -2.64$.
 
-• How much is a standard deviation? We can look it up...
+How much is a standard deviation? We can look it up...
 
 ![](images/Mod2_pt2_30.png){fig-align="center" width="203"}
 
 #### Interaction and centering / standardizing summary
 
-• This has been a long example. I encourage you to load up the data yourself and play around with it in jamovi. At the minimum, make sure you can re-create the results in these notes.
+This has been a long example. I encourage you to load up the data yourself and play around with it in jamovi. At the minimum, make sure you can re-create the results in these notes.
 
 -   The most important take-aways:
 
