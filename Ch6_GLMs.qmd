@@ -2,59 +2,59 @@
 
 ## Part 1: Logistic regression
 
-• All of the regression methods we've seen have involved models in which the response variable is normally distributed, given values for the predictor variables
+All of the regression methods we've seen have involved models in which the response variable is normally distributed, given values for the predictor variables
 
-• In other words, the residuals have been modeled as normal.
+In other words, the residuals have been modeled as normal.
 
-• What if we have a different kind of response variable? In particular, consider a binary response variable. Maybe the outcomes are "yes" and "no", or "success" and "failure", or "present" and "absent".
+What if we have a different kind of response variable? In particular, consider a binary response variable. Maybe the outcomes are "yes" and "no", or "success" and "failure", or "present" and "absent".
 
-• Logistic regression is a type of "generalized linear model" (GLM) that works well for modeling binary outcome data.
+Logistic regression is a type of "generalized linear model" (GLM) that works well for modeling binary outcome data.
 
-• Before we get into logistic regression, though, let's see what happens if we use standard regression (sometimes called "ordinary least squares", or OLS regression) with a binary response.
+Before we get into logistic regression, though, let's see what happens if we use standard regression (sometimes called "ordinary least squares", or OLS regression) with a binary response.
 
-• We'll use simulated data corresponding to a study of sexual harassment reporting at a university. (Brooks and Perot "Reporting Sexual Harassment: Exploring a Predictive Model" (1991)).
+We'll use simulated data corresponding to a study of sexual harassment reporting at a university. (Brooks and Perot "Reporting Sexual Harassment: Exploring a Predictive Model" (1991)).
 
-• Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable:
+Here is data on whether or not sexual harassment at a university was reported, using the offensiveness of the behavior as a predictor variable:
 
 ![](images/Mod6_pt2_1.png){fig-align="center" width="400"}
 
-• Data points are "jittered" so that they don't fall right on top of one another.
+Data points are "jittered" so that they don't fall right on top of one another.
 
-• Suppose we want to predict the value of "Report", using "OffensBeh".
+Suppose we want to predict the value of "Report", using "OffensBeh".
 
-• Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered.
+Here is the linear regression line. In this picture, the response variable takes on the values 0 and 1, and the data are not jittered.
 
 ![](images/Mod6_pt2_2.png){fig-align="center" width="400"}
 
-• The predicted value of "Report" can be thought of as the predicted probability that Report=1 (for reported behavior)
+The predicted value of "Report" can be thought of as the predicted probability that Report=1 (for reported behavior)
 
-• Note that this line can go below zero and above one. We don't want to predict probability greater than 1! A straight line is not great here. Logistic regression is an alternative to this straight line model.
+Note that this line can go below zero and above one. We don't want to predict probability greater than 1! A straight line is not great here. Logistic regression is an alternative to this straight line model.
 
 ## The logistic regression model
 
 #### Another way of writing a linear regression model
 
-• By now we are well familiar with the linear regression model:
+By now we are well familiar with the linear regression model:
 
 $$
 Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi} + \varepsilon_i \\
 \varepsilon_i \sim \text{Normal}(0,\sigma^2) 
 $$
 
-• Here is an equivalent way of writing it:
+Here is an equivalent way of writing it:
 
 $$
 Y_i \sim Normal(\mu_i, \sigma^2) \\
 \mu_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
 $$
 
-• In other words, the response variable is normally distributed with some mean $\mu$, and the value of $\mu$ is determined by the predictor ($x$) variables.
+In other words, the response variable is normally distributed with some mean $\mu$, and the value of $\mu$ is determined by the predictor ($x$) variables.
 
 #### Writing a logistic regression model
 
-• We will take this approach to writing the logistic regression model.
+We will take this approach to writing the logistic regression model.
 
-• What we want is a regression equation that looks like this:
+What we want is a regression equation that looks like this:
 
 $$
 Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
@@ -64,17 +64,17 @@ But that will work when $Y_i$ does not follow a normal distribution.
 
 #### The theoretical logistic regression model
 
-• Response variable $Y$ takes on the values 0 and 1.
+Response variable $Y$ takes on the values 0 and 1.
 
-• Denote the probability that $Y = 1$ as $\pi$.
+Denote the probability that $Y = 1$ as $\pi$.
 
-• This can be written $Y\sim Bernoulli (\pi)$
+This can be written $Y\sim Bernoulli (\pi)$
 
 (The Bernoulli distribution is a distribution of 1's and 0's, where the probability of 1 is $\pi$ and the probability of 0 is $1 − \pi$)
 
-• We will use regression to model $\pi$, the probability that $Y = 1$. This is often thought of as the probability of a "success".
+We will use regression to model $\pi$, the probability that $Y = 1$. This is often thought of as the probability of a "success".
 
-• If we wanted, we could use this model:
+If we wanted, we could use this model:
 
 $$
 Y_i\sim Bernoulli (\pi_i)
@@ -82,31 +82,31 @@ Y_i\sim Bernoulli (\pi_i)
 \pi_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
 $$
 
-• The standard deviation of a Bernoulli distribution is $\pi(1 − \pi )$. So, $\pi$ is the only parameter for this distribution. This is different from the normal distribution, which has two parameters $\mu$ and $\sigma$.
+The standard deviation of a Bernoulli distribution is $\pi(1 − \pi )$. So, $\pi$ is the only parameter for this distribution. This is different from the normal distribution, which has two parameters $\mu$ and $\sigma$.
 
 #### Logit: log odds
 
-• But, as we saw in the opening example, a linear model for probability can have serious deficiencies.
+But, as we saw in the opening example, a linear model for probability can have serious deficiencies.
 
-• So, instead of a linear model for probability $\pi$, we'll make a linear model for a function of $\pi$, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.
+So, instead of a linear model for probability $\pi$, we'll make a linear model for a function of $\pi$, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.
 
-• In logistic regression, we use the "logit" function, also known as "log odds"
+In logistic regression, we use the "logit" function, also known as "log odds"
 
 $$
 logit(\pi) = ln(\frac{\pi}{1-\pi}) = \textit{"log odds"}
 $$
 
-• Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted $\pi$
+Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted $\pi$
 
-• Plugging this into the logit formula:
+Plugging this into the logit formula:
 
 $$
 logit(P(reported)) = ln(\frac{P(reported}{1-P(reported)}) = \textit{"log odds" of reporting}
 $$
 
-• This will be our response variable for logistic regression.
+This will be our response variable for logistic regression.
 
-• Logit vs. probability, visually:
+Logit vs. probability, visually:
 
 ![](images/Mod6_pt2_3.png){fig-align="center"}
 
@@ -116,43 +116,43 @@ $$
 
 #### Odds vs. probability
 
-• To understand logistic regression, you'll need to understand odds.
+To understand logistic regression, you'll need to understand odds.
 
-• In casual English, "odds" and "probability" are often used interchangeably.
+In casual English, "odds" and "probability" are often used interchangeably.
 
-• In statistics, they are not the same thing. Odds tell you how likely one outcome is compared to another.
+In statistics, they are not the same thing. Odds tell you how likely one outcome is compared to another.
 
-• For instance, you might hear that a football team has been given "3 to 2" odds of winning a game. This means that their probability of winning is $\frac{3}{2}= 1.5$ times as big as their probability of losing. Or, that they'd be expected to win 3 times for every 2 times they lost.
+For instance, you might hear that a football team has been given "3 to 2" odds of winning a game. This means that their probability of winning is $\frac{3}{2}= 1.5$ times as big as their probability of losing. Or, that they'd be expected to win 3 times for every 2 times they lost.
 
-• Formally, consider some outcome A, where the probability of A occurring is written as "$P(A)$". In this case,
+Formally, consider some outcome A, where the probability of A occurring is written as "$P(A)$". In this case,
 
 $$
 odds(A) = \frac{P(A)}{1-P(A)} = \frac{\textit{probability A occurs}}{\textit{probability A does not occur}}
 $$
 
-• This is the ratio of the probability A occurs to the probability A does not occur. To convert odds into probability, we use:
+This is the ratio of the probability A occurs to the probability A does not occur. To convert odds into probability, we use:
 
 $$
 P(A) = \frac{odds(A)}{odds(A) + 1}
 $$
 
-• Some probabilities and their associated odds:
+Some probabilities and their associated odds:
 
 ![](images/Mod6_pt2_5.png){fig-align="center" width="400"}
 
-• Think of odds(A) as "how many times will A occur for every time A does not occur?"
+Think of odds(A) as "how many times will A occur for every time A does not occur?"
 
-• Sometimes we add "to 1" to an odds statement, e.g. "odds of 4 to 1" means "this outcomes occurs 4 times for every 1 time it does not occur."
+Sometimes we add "to 1" to an odds statement, e.g. "odds of 4 to 1" means "this outcomes occurs 4 times for every 1 time it does not occur."
 
 #### Back to the logistic regression model
 
-• The response variable for logistic regression, again, is:
+The response variable for logistic regression, again, is:
 
 $$
 logit(\pi) = ln(\frac{\pi}{1-\pi}) = \textit{"log odds"}
 $$
 
-• So, the full logistic regression model is :
+So, the full logistic regression model is :
 
 $$
 Y_i\sim Bernoulli (\pi_i)
@@ -160,7 +160,7 @@ Y_i\sim Bernoulli (\pi_i)
 ln(\frac{\pi_i}{1-\pi_i})=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
 $$
 
-• We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have $logit(\hat{\pi}_i)$, we can $\hat{\pi}_i$ back via the inverse logit function:
+We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have $logit(\hat{\pi}_i)$, we can $\hat{\pi}_i$ back via the inverse logit function:
 
 $$
 logit^{-1}(logit(\pi)) \\
@@ -171,7 +171,7 @@ logit^{-1}(logit(\pi)) \\
 = \pi
 $$
 
-• In the context of the logistic regression model:
+In the context of the logistic regression model:
 
 $$
 \hat{\pi}_i  \\
@@ -181,23 +181,23 @@ $$
 
 ### jamovi example
 
-• Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.
+Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.
 
 ![](images/Mod6_pt2_6.png){fig-align="center" width="398"}
 
-• Note that "Target Level" defaults to zero. Changing it to 1 makes sense in this case; we want to predict 𝑃(𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑).
+Note that "Target Level" defaults to zero. Changing it to 1 makes sense in this case; we want to predict 𝑃(𝑅𝑒𝑝𝑜𝑟𝑡𝑒𝑑).
 
-• jamovi also produces a Loglikelihood ratio test, but we will just focus on "Parameter Estimates":
+jamovi also produces a Loglikelihood ratio test, but we will just focus on "Parameter Estimates":
 
 ![](images/Mod6_pt2_7.png){fig-align="center"}
 
-• Here is our estimated model:
+Here is our estimated model:
 
 $$
 \textit{log odds (Reported)} = -1.7976 + 0.4869*OffensBeh
 $$
 
-• Plugging in large and small values for OffensBeh:
+Plugging in large and small values for OffensBeh:
 
 $$
 \textit{log odds (Reported)} = -1.7976 + 0.4869*1 = -1.3107 \\
@@ -211,27 +211,27 @@ $$
 
 #### Interpreting slope in logistic regression 
 
-• The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. "Log odds" are not of direct interest.
+The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. "Log odds" are not of direct interest.
 
-• Exponentiating both sides of the equation gives straight odds
+Exponentiating both sides of the equation gives straight odds
 
 $$
 odds = (\frac{\pi_i}{1-\pi_i})=e^{\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}}
 $$
 
-• This means that, for a one unit increase in $X_1$, odds are multiplied by $e^\beta_1$
+This means that, for a one unit increase in $X_1$, odds are multiplied by $e^\beta_1$
 
-• For the harassment data:
+For the harassment data:
 
 $$
 \textit{log odds (Reported)} = -1.7976 + 0.4869*OffensBeh
 $$
 
-• $\hat{\beta}_1 = 0.4869$. So, for a one unit increase in OffensBeh, predicted odds of reporting are multiplied by $e^{0.4869} = 1.627$
+$\hat{\beta}_1 = 0.4869$. So, for a one unit increase in OffensBeh, predicted odds of reporting are multiplied by $e^{0.4869} = 1.627$
 
-• In other words, there is about a 63% increase in odds of reporting when OffensBeh increases by one. NOTE: odds are not probabilities!
+In other words, there is about a 63% increase in odds of reporting when OffensBeh increases by one. NOTE: odds are not probabilities!
 
-• Comparing probabilities and odds from this model:
+Comparing probabilities and odds from this model:
 
 ![](images/Mod6_pt2_8.png){fig-align="center"}
 
@@ -239,17 +239,17 @@ $$
 
 We'll now look at two other popular GLMs: Poisson ("pwa-sawn" roughly) and negative binomial.
 
-• These are used for modeling count data, which can be extended to how often a categorical variable takes on some value. Thus Poisson regression can be used to model contingency table data.
+These are used for modeling count data, which can be extended to how often a categorical variable takes on some value. Thus Poisson regression can be used to model contingency table data.
 
 ### The Poisson distribution
 
-• The Poisson distribution is a discrete probability distribution. A Poisson distributed variable takes on only positive integer values. The integer is referred to as "count" or "\# of events".
+The Poisson distribution is a discrete probability distribution. A Poisson distributed variable takes on only positive integer values. The integer is referred to as "count" or "\# of events".
 
-• The Poisson distribution has a single parameter, $\lambda$ ("lambda"), which is sometimes called the "rate" parameter.
+The Poisson distribution has a single parameter, $\lambda$ ("lambda"), which is sometimes called the "rate" parameter.
 
-• $\lambda$ is both the mean and the variance of a Poisson distribution
+$\lambda$ is both the mean and the variance of a Poisson distribution
 
-• The probability function for the Poisson is:
+The probability function for the Poisson is:
 
 $$
 P(count = k) = \frac{\lambda^k}{e^\lambda k!}
@@ -263,15 +263,15 @@ $$
 
 #### The link function
 
-• In logistic regression, the response variable was $logit(\pi) = ln(\frac{\pi}{1-\pi})$
+In logistic regression, the response variable was \$logit(\\pi) = ln(\\frac{\\pi}{1-\\pi}) \$
 
-• In Poisson regression, the response variable is $ln(\lambda)$
+In Poisson regression, the response variable is $ln(\lambda)$
 
-• The reasoning will be that the natural log allows the estimated rate to be modeled as a linear function of some predictor variables.
+The reasoning will be that the natural log allows the estimated rate to be modeled as a linear function of some predictor variables.
 
-• This is how GLMs work: they allow us to use non-normal response variables by expressing a function of their mean as a linear function of the predictors.
+This is how GLMs work: they allow us to use non-normal response variables by expressing a function of their mean as a linear function of the predictors.
 
-• A GLM has three parts:
+A GLM has three parts:
 
 1.  A response variable with some distribution
 
@@ -281,43 +281,43 @@ $$
 
 #### GLM examples
 
-• Logistic regression uses $Y\sim Bernoulli (\pi)$ as the response variable and $g(\pi) = ln(\frac{\pi}{1-\pi})$ as the link function.
+Logistic regression uses $Y\sim Bernoulli (\pi)$ as the response variable and $g(\pi) = ln(\frac{\pi}{1-\pi})$ as the link function.
 
-• Poisson regression uses $Y\sim Poisson(\lambda)$ as the response variable and $g(\lambda) = ln(\lambda)$ as the link function.
+Poisson regression uses $Y\sim Poisson(\lambda)$ as the response variable and $g(\lambda) = ln(\lambda)$ as the link function.
 
-• Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses $Y\sim Normal (\mu, \sigma^2)$ and the response variable and the identity function, $g(\mu) = \mu$ as the link.
+Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses $Y\sim Normal (\mu, \sigma^2)$ and the response variable and the identity function, $g(\mu) = \mu$ as the link.
 
 *UNABLE TO FIND IN NOTES*
 
-• It's worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not "least squares". So, we are not getting our $\beta$'s by minimizing sums of squared residuals.
+It's worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not "least squares". So, we are not getting our $\beta$'s by minimizing sums of squared residuals.
 
-• Instead, the estimation procedure we use is called "maximum likelihood". This method finds the values of the parameter estimates that maximize (i.e. make as large as possible for a given set of data) something called "the likelihood function".
+Instead, the estimation procedure we use is called "maximum likelihood". This method finds the values of the parameter estimates that maximize (i.e. make as large as possible for a given set of data) something called "the likelihood function".
 
-• The likelihood function takes a fixed set of data and an assumed distribution (e.g. normal), and gives the "probability of the data", given
+The likelihood function takes a fixed set of data and an assumed distribution (e.g. normal), and gives the "probability of the data", given
 
-• So, if we have:
+So, if we have:
 
-• Then the likelihood function is:
+Then the likelihood function is:
 
-• Values of 𝛽መ , 𝛽መ , 𝜎ො are found that maximize this function, i.e. that maximize the probability of the data, given the parameter estimates.
+Values of 𝛽መ , 𝛽መ , 𝜎ො are found that maximize this function, i.e. that maximize the probability of the data, given the parameter estimates.
 
 ### Poisson regression example
 
-• We'll use some General Social Survey data for this example.
+We'll use some General Social Survey data for this example.
 
-• Poisson is good for modeling count data, so we'll use a response variable that takes the form of counts.
+Poisson is good for modeling count data, so we'll use a response variable that takes the form of counts.
 
-• For this example, the goal will be to look at the relationship (if any) between the number of sibling a person has, and the number of children that person has.
+For this example, the goal will be to look at the relationship (if any) between the number of sibling a person has, and the number of children that person has.
 
-• Our question will be: do people with more siblings tend to have more children? And if so, can we quantify the relationship?
+Our question will be: do people with more siblings tend to have more children? And if so, can we quantify the relationship?
 
-• It would be wise to collect data on covariates that we expect will also be related to the number of children someone has.
+It would be wise to collect data on covariates that we expect will also be related to the number of children someone has.
 
-• An obvious one is age. Older people will have more children than younger people.
+An obvious one is age. Older people will have more children than younger people.
 
-• We might also want to control for "culture". If people from different cultural backgrounds tend to have more or fewer children, then this would definitely induce a relationship between \# of siblings and \# of children.
+We might also want to control for "culture". If people from different cultural backgrounds tend to have more or fewer children, then this would definitely induce a relationship between \# of siblings and \# of children.
 
-• There are lots of possible ways to try account for cultural background. I'm choosing rate of attending religious services.
+There are lots of possible ways to try account for cultural background. I'm choosing rate of attending religious services.
 
 -   So, the variables will be:
 
@@ -329,57 +329,57 @@ $$
 
     -   Frequency of attending religious services
 
-• We'll just look at 2018 data. The GSS lets us choose any years we want, going back to 1972.
+We'll just look at 2018 data. The GSS lets us choose any years we want, going back to 1972.
 
-• This data set is on Canvas, as GSS_Children_Siblings.jmp
+This data set is on Canvas, as GSS_Children_Siblings.jmp
 
 #### Poisson regression EDA
 
-• First thing to do is plot our variables.
+First thing to do is plot our variables.
 
 ![](images/Mod6_pt2_10.png){fig-align="center" width="400"}
 
-• Yikes! There's some cleaning to do. The instances of 98 siblings are not real data points.
+Yikes! There's some cleaning to do. The instances of 98 siblings are not real data points.
 
-• GSS data explorer website lets us look in detail at each variable. Here is part of the coding for "SIBS":
+GSS data explorer website lets us look in detail at each variable. Here is part of the coding for "SIBS":
 
 ![](images/Mod6_pt2_11.png){fig-align="center" width="202"}
 
-• And here's the coding for the variable CHILDS.
+And here's the coding for the variable CHILDS.
 
 ![](images/Mod6_pt2_12.png){fig-align="center" width="147"}
 
-• So, CHILDS = 9 is a value for missing data. These should also be excluded.
+So, CHILDS = 9 is a value for missing data. These should also be excluded.
 
-• This should feel familiar -- remember how messy the NLSY data was in the heights analysis?
+This should feel familiar -- remember how messy the NLSY data was in the heights analysis?
 
-• Keep in mind that data in public databases often have idiosyncrasies like this.
+Keep in mind that data in public databases often have idiosyncrasies like this.
 
-• Here are the row selection options that will select all rows with invalid responses.
+Here are the row selection options that will select all rows with invalid responses.
 
 ![](images/Mod6_pt2_13.png){fig-align="center"}
 
-• Once selected, they can be excluded.
+Once selected, they can be excluded.
 
-• Here is the distribution of CHILDS.
+Here is the distribution of CHILDS.
 
 ![](images/Mod6_pt2_14.png){fig-align="center" width="398"}
 
-• This looks a lot like a Poisson distribution. Hooray!
+This looks a lot like a Poisson distribution. Hooray!
 
-• To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.
+To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.
 
 ![](images/Mod6_pt2_15.png){fig-align="center" width="400"}
 
-• JMP will automatically choose the log link
+JMP will automatically choose the log link
 
-• Select the "Overdispersion tests and intervals" box
+Select the "Overdispersion tests and intervals" box
 
-• Here are results for a simple model, where \# of siblings is the sole predictor of \# of children. We'll just look at the parameter estimates and the overdispersion statistic:
+Here are results for a simple model, where \# of siblings is the sole predictor of \# of children. We'll just look at the parameter estimates and the overdispersion statistic:
 
 ![](images/Mod6_pt2_16.png){fig-align="center"}
 
-• Letting $\hat{\lambda}$ represent the predicted mean \# of children, we have:
+Letting $\hat{\lambda}$ represent the predicted mean \# of children, we have:
 
 $$
 ln(\hat{\lambda}) = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
@@ -387,91 +387,91 @@ $$
 
 #### Interpreting the slope
 
-• You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable: $e^{0.0627} = 1.065$
+You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable: $e^{0.0627} = 1.065$
 
 ![](images/Mod6_pt2_17.png){width="511"}\
-• So, increasing \# of siblings by one is associated with an 6.5% increase in \# of children.
+So, increasing \# of siblings by one is associated with an 6.5% increase in \# of children.
 
-• We can see that this is statistically significant, but it is also small.
+We can see that this is statistically significant, but it is also small.
 
-• It is also not obvious that % change is the best way to quantify this. Maybe an OLS model would have been more interpretable.
+It is also not obvious that % change is the best way to quantify this. Maybe an OLS model would have been more interpretable.
 
-• It might be more desirable to relate an additive change in siblings to an additive change in children.
+It might be more desirable to relate an additive change in siblings to an additive change in children.
 
-• Downside is that \# of children is not normally distributed.
+Downside is that \# of children is not normally distributed.
 
-• As is often the case, we are trading some interpretability for a better fitting model.
+As is often the case, we are trading some interpretability for a better fitting model.
 
 #### Interpreting the slope
 
-• The Poisson distribution makes a strong assumption: the mean should be equal to the variance.
+The Poisson distribution makes a strong assumption: the mean should be equal to the variance.
 
-• Often, we observe real data in which the variance is greater than the mean.
+Often, we observe real data in which the variance is greater than the mean.
 
-• This is referred to as "overdispersion".
+This is referred to as "overdispersion".
 
-• JMP reports an overdispersion estimate:
+JMP reports an overdispersion estimate:
 
 ![](images/Mod6_pt2_18.png){fig-align="center"}
 
-• The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom.
+The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom.
 
-• If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model will fit better.
+If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model will fit better.
 
 #### Fitting a larger model
 
-• For these data, it turns out that \# of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:
+For these data, it turns out that \# of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:
 
 ![](images/Mod6_pt2_19.png){fig-align="center"}
 
-• The other predictor variables and the interactions can be interpreted in the usual ways.
+The other predictor variables and the interactions can be interpreted in the usual ways.
 
-• One thing to notice is that the estimate for SIBS has not changed much. So, while the other covariates and interactions matter, they don't substantially change our interpretation of the SIBS predictor.
+One thing to notice is that the estimate for SIBS has not changed much. So, while the other covariates and interactions matter, they don't substantially change our interpretation of the SIBS predictor.
 
 ### Negative binomial regression
 
-• There is also still some overdispersion, though less than there was before:
+There is also still some overdispersion, though less than there was before:
 
 ![](images/Mod6_pt2_20.png){fig-align="center"}
 
-• Remember that the Poisson distribution only has one parameter. This limits its flexibility.
+Remember that the Poisson distribution only has one parameter. This limits its flexibility.
 
-• The negative binomial distribution is similar to the Poisson distribution, but it is more flexible, and may be a better choice in the presence of overdispersion.
+The negative binomial distribution is similar to the Poisson distribution, but it is more flexible, and may be a better choice in the presence of overdispersion.
 
-• The negative binomial distribution is also a distribution for count data. It is interpreted as giving the number of "success" before a certain number of "failures" occur.
+The negative binomial distribution is also a distribution for count data. It is interpreted as giving the number of "success" before a certain number of "failures" occur.
 
-• There are two parameters: $p$, the probability of success, and $r$, the number of failures at which counting stops.
+There are two parameters: $p$, the probability of success, and $r$, the number of failures at which counting stops.
 
-• If a variable $Y$ is distributed negative binomial, we denote it:
+If a variable $Y$ is distributed negative binomial, we denote it:
 
 $$
 Y\sim NB(r,p)
 $$
 
-• The mean of the negative binomial distribution is $\frac{rp}{1-p} = r*odds(success)$
+The mean of the negative binomial distribution is $\frac{rp}{1-p} = r*odds(success)$
 
-• Example: suppose $p = 0.8$ and $r = 2$. We expect $\frac{2∗0.8}{0.2} = 8$ success before we observe two failures.
+Example: suppose $p = 0.8$ and $r = 2$. We expect $\frac{2∗0.8}{0.2} = 8$ success before we observe two failures.
 
-• Or suppose $p= 0.5$ and $r= 1$. We expect $\frac{1∗0.5}{0.5} = 1$ success before we observe 1 failure.
+Or suppose $p= 0.5$ and $r= 1$. We expect $\frac{1∗0.5}{0.5} = 1$ success before we observe 1 failure.
 
-• For practical purposes, negative binomial regression will show better fit than Poisson regression in the presence of overdispersion.
+For practical purposes, negative binomial regression will show better fit than Poisson regression in the presence of overdispersion.
 
-• The tradeoff is that the interpretation is less generally applicable. It might not make sense to think of your count variable as \# of successes for a certain \# of failures.
+The tradeoff is that the interpretation is less generally applicable. It might not make sense to think of your count variable as \# of successes for a certain \# of failures.
 
-• As with Poisson regression, negative binomial regression uses a GLM with a log link.
+As with Poisson regression, negative binomial regression uses a GLM with a log link.
 
 #### Negative binomial example
 
-• Here is where you select negative binomial regression in jamovi:
+Here is where you select negative binomial regression in jamovi:
 
 ![](images/Mod6_pt2_21.png){fig-align="center"}
 
-• Under "Generalized Linear Models", under "Frequencies" choose "Negative Binomial".
+Under "Generalized Linear Models", under "Frequencies" choose "Negative Binomial".
 
 #### Negative binomial results
 
 ![](images/Mod6_pt2_22.png){fig-align="center"}
 
-• These results are awfully similar to the Poisson results.
+These results are awfully similar to the Poisson results.
 
-• It is often the case that different statistical methods designed for the same purpose will with similar results.
+It is often the case that different statistical methods designed for the same purpose will with similar results.
