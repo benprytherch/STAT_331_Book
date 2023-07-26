@@ -1,6 +1,6 @@
 # Chapter 1: Review of classical inference
 
-## Module 1 overview
+## Module 1 overview:
 
 • These notes briefly cover material from your introductory statistics course that will be relevant in STAT 331.
 
@@ -192,13 +192,13 @@ $$
 
 • This app also super-imposes the standard error in pink.
 
-![](images/mod1_6.png){fig-align="left" width="220"}
+![](images/mod1_6.png){fig-align="left" width="310"}
 
-![](images/mod1_7.png){width="339"}
+![](images/mod1_7.png){fig-align="center" width="505"}
 
-![](images/mod1_8.png){fig-align="left" width="223"}
+![](images/mod1_8.png){fig-align="left" width="310"}
 
-![](images/mod1_9.png){width="339"}
+![](images/mod1_9.png){fig-align="center" width="505"}
 
 ## Confidence intervals in jamovi
 
@@ -206,7 +206,7 @@ $$
 
 • For example, when producing summary statistics for a variable using the Statistics drop down menu in Descriptives, you will need to select Confidence Interval for Mean found under Mean Dispersion. Jamovi will report "95% CI mean lower bound" and "95% CI mean upper bound". These are the endpoints for the 95% CI for $\bar{X}$.
 
-![](images/mod1_10.png){fig-align="right" width="200"}
+![](images/mod1_10.png){fig-align="center" width="200"}
 
 ## Hypothesis testing
 
@@ -406,6 +406,6 @@ $\bar{x}_1 = 19.7$, $\bar{x}_2 = 22.7$, p-value = 0.0013
 
 -   Now Independent Samples T-test can be used to compare means:
 
-![](images/mod1_27.png){fig-align="left" width="250"}
+![](images/mod1_27.png){fig-align="center" width="300"}
 
-![](images/mod1_28.png){fig-align="right" width="250"}
+![](images/mod1_28.png){fig-align="center" width="300"}
