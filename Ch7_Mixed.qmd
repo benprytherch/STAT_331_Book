@@ -92,500 +92,599 @@ STAT 331
 </body>
 </html>
 ```
-
 ## Part 1: Repeated measures
 
+This module covers data analysis methods for "repeated measures" data.
 
-• This module covers data analysis methods for "repeated measures" data.
+"Repeated measures" refers to measuring the same subjects (people, trees, dogs, cities, cells, widgets, etc) more than once.
 
-• "Repeated measures" refers to measuring the same subjects (people, trees, dogs, cities, cells, widgets, etc) more than once.
+Studies that use repeated measures are often referred to as "within subjects" studies. The idea is that multiple measurements within the same subject will be compared.
 
-• Studies that use repeated measures are often referred to as "within subjects" studies. The idea is that multiple measurements within the same subject will be compared.
+Mixed models are popular tools for analyzing repeated measures data.
 
-• Mixed models are popular tools for analyzing repeated measures data.
+We will see these models formally in the next notes.
 
-• We will see these models formally in the next notes.
-
-• These notes introduce the problems and opportunities that arise from the use of repeated measures data.
-
+These notes introduce the problems and opportunities that arise from the use of repeated measures data.
 
 ### The independence assumption
 
-• We have looked at model assumptions in this class, e.g.
+We have looked at model assumptions in this class, e.g.
 
-𝜀𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+$$
+\epsilon_i \sim Normal(0, \sigma)
+$$
 
-• There is one that has been left out. The complete way to write this statement is:
+There is one that has been left out. The complete way to write this statement is:
 
-iid 𝜀𝑖 \~
+$$
+\epsilon_i \overset{iid}\sim Normal(0, \sigma)
+$$
 
-𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎)
+The "iid" means "independent and identically distributed.
 
-• The "iid" means "independent and identically distributed.
+$\epsilon_i \overset{iid}\sim Normal(0, \sigma)$ says that $\epsilon_i$ takes on values that are independently sampled from the same normal distribution.
 
-iid 𝜀𝑖 \~
+"independently sampled" means that the value of the next data point is not dependent upon the value of the previous data point.
 
-𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎) says that 𝜀𝑖 takes on values that are independently
+Every method we have used assumes independence of the response variable, conditional on the predictor(s).
 
-sampled from the same normal distribution.
+But, if the same subjects are measured multiple times, then the multiple observations on each subject will not be independent.
 
-• "independently sampled" means that the value of the next data point is not dependent upon the value of the previous data point.
+Example: suppose we take a random sample of 10 people, have each solve a maze, and record how much time it takes each person to solve it. Call this time $T$.
 
-• Every method we have used assumes independence of the response variable, conditional on the predictor(s).
+We might model the times as i.i.d. normal:
 
-• But, if the same subjects are measured multiple times, then the multiple observations on each subject will not be independent.
+$$
+T_i \overset{iid}\sim Normal( \mu, \sigma)
+$$
 
-• Example: suppose we take a random sample of 10 people, have each solve a maze, and record how much time it takes each person to solve it. Call this time 𝑇.
+This means that, given a mean and standard deviation, each observed time $T_i$ is uncorrelated with any previous times. This should make sense: there is no reason that the $3^{rd}$ person's maze time should depend upon the $2^{nd}$ person's maze time.
 
-• We might model the times as i.i.d. normal:
+But, if we take repeated measures on each subject, then our data will not be independent.
 
-𝑖𝑖𝑑 𝑇𝑖 \~
+For instance, suppose we have 10 observations on maze completion from 2 people, where the first 5 come from one person and the last 5 come from the other.
 
-𝑁𝑜𝑟𝑚𝑎𝑙(𝜇, 𝜎)
-
-• This means that, given a mean and standard deviation, each observed time 𝑇𝑖 is uncorrelated with any previous times. This should make sense: there is no reason that the 3rd person's maze time should depend upon the 2nd person's maze time.
-
-• But, if we take repeated measures on each subject, then our data will not be independent.
-
-• For instance, suppose we have 10 observations on maze completion from 2 people, where the first 5 come from one person and the last 5 come from the other.
-
-• Then I would expect correlation (non-independence) between the first 5 maze times, and between the last 5 times. Observation 5 should be closer to observations 1-4 than it is to observations 6-10.
+Then I would expect correlation (non-independence) between the first 5 maze times, and between the last 5 times. Observation 5 should be closer to observations 1-4 than it is to observations 6-10.
 
 ### Cheating with repeated measures
 
-• We will look at a fake data simulation of repeated measures data.
+We will look at a fake data simulation of repeated measures data.
 
-• In this simulation, suppose we have cows infected with the Staph bacteria.
+In this simulation, suppose we have cows infected with the Staph bacteria.
 
-• We are comparing two treatments for Staph. We have 6 cows, and each treatment is randomly assigned to 3 cows. We will do a t-test to compare mean infection levels (quantified on some arbitrary scale).
+We are comparing two treatments for Staph. We have 6 cows, and each treatment is randomly assigned to 3 cows. We will do a t-test to compare mean infection levels (quantified on some arbitrary scale).
 
-• We will also assume that the two treatments have an identical effect. Therefore the null hypothesis of no difference in means is true.
+We will also assume that the two treatments have an identical effect. Therefore the null hypothesis of no difference in means is true.
 
-• The file cows_ttest.jmp has some fake data, simulated as 𝑦𝑖\~𝑁𝑜𝑟𝑚𝑎𝑙(12,4) for both groups:
+The file cows_ttest.jmp has some fake data, simulated as $y_i \sim Normal(12,4)$ for both groups:
 
-• Not surprisingly, the t-test gives no significant difference in means:
+![](images/Mod7_pt1_1.png){fig-align="center" width="400"}
 
-95% 𝐶𝐼 𝑓𝑜𝑟 𝜇1 − 𝜇2 =
+![](images/Mod7_pt1_2.png){fig-align="center" width="400"}
 
-, p−value = 0.321
+Not surprisingly, the t-test gives no significant difference in means:
 
-• Now suppose we measure infection level for each cow seven times after receiving treatment.
+$$
+95\% \textit{ CI for } \mu_1 - \mu_2 = (-18.00, 8.07), \text{ p-value} = 0.321
+$$
 
-• The file cows_repeated_ttest.csv contains data simulating this scenario.
+![](images/Mod7_pt1_3.png){fig-align="center"}
 
-• For each cow, there are 7 observations. These all average out to the one observation per cow from the last data set.
+Now suppose we measure infection level for each cow seven times after receiving treatment.
 
-• But check out these t-test results!
+The file cows_repeated_ttest.csv contains data simulating this scenario.
 
-• Notice where it says degrees of freedom = 29.2. If your degrees of freedom exceeds your sample size, something is wrong.
+![](images/Mod7_pt1_4.png){fig-align="center" width="400"}
 
-• Comparing the two t-tests:
+For each cow, there are 7 observations. These all average out to the one observation per cow from the last data set.
 
-• The mean difference is nearly the same for both.
+![](images/Mod7_pt1_5.png){fig-align="center"}
 
-• The standard error for the repeated measures data is much smaller.
+But check out these t-test results!
 
-• Remember that the t-test is just a simple regression model:
+![](images/Mod7_pt1_6.png){fig-align="center"}
 
-𝑖𝑖𝑑 𝑦𝑖 = 𝛽0 + 𝛽1𝐺𝑟𝑜𝑢𝑝𝑖 + 𝜀𝑖, 𝜀𝑖 \~
+Notice where it says degrees of freedom = 29.2. If your degrees of freedom exceeds your sample size, something is wrong.
 
-𝑁𝑜𝑟𝑚𝑎𝑙
+#### What happened?
 
-• In this case, 𝛽መ is the estimated mean difference in infection levels between the two groups.
+Comparing the two t-tests:
 
-• There's nothing wrong with this estimate on its own. However its standard error is computing using an incorrect assumption: that all of the observations within each group are independent.
+![](images/Mod7_pt1_7.png){fig-align="center"}
 
-Effective sample size
+![](images/Mod7_pt1_8.png){fig-align="center"}
 
-• In this case, the apparent sample size is 𝑛 = 42, or 𝑛 = 21 per group.
+The mean difference is nearly the same for both.
 
-• But the "effective" sample size is 𝑛 = 6, or 𝑛 = 3 per group.
+The standard error for the repeated measures data is much smaller.
 
-• Taking lots of observations from each animal and doing a t-test on all the data amounts to falsely inflating the sample size without having to actually collect more data.
+Remember that the t-test is just a simple regression model:
 
-• Main lesson: observations that are correlated should not be treated as independent!
+$$
+y_i = \beta_0 + \beta_1Group_i + \epsilon_i \text{ where } \epsilon_i \overset{iid}\sim Normal(0, \sigma)
+$$
+
+In this case, $\hat{\beta}_1$ is the estimated mean difference in infection levels between the two groups.
+
+There's nothing wrong with this estimate on its own. However its standard error is computing using an incorrect assumption: that all of the observations within each group are independent.
+
+#### Effective sample size
+
+In this case, the apparent sample size is $n = 42$, or $n = 21$ per group.
+
+But the "effective" sample size is $n = 6$, or $n = 3$ per group.
+
+Taking lots of observations from each animal and doing a t-test on all the data amounts to falsely inflating the sample size without having to actually collect more data.
+
+Main lesson: observations that are correlated should not be treated as independent!
 
 ### Cheating ourselves with repeated measures
 
-• Treating repeated measures as independent can fool us into thinking we've discovered an association when really there is none.
+Treating repeated measures as independent can fool us into thinking we've discovered an association when really there is none.
 
-• It can also do the opposite: it can fool us into thinking we see no association when really there is one.
+It can also do the opposite: it can fool us into thinking we see no association when really there is one.
 
-• This will be illustrated with another toy example. In this case, we will again consider collecting data on infection level in cows under two treatments. This time, we'll imagine collecting repeated observations over the course of a week.
+This will be illustrated with another toy example. In this case, we will again consider collecting data on infection level in cows under two treatments. This time, we'll imagine collecting repeated observations over the course of a week.
 
-• Here are the data in "wide form". Treatment group B is highlighted to distinguish it from treatment group A.
+Here are the data in "wide form". Treatment group B is highlighted to distinguish it from treatment group A.
 
-• Two things to note:
+![](images/Mod7_pt1_9.png){fig-align="center"}
 
-o There is a lot of variability across cows. o Every cow's infection rating goes down over time
+-   Two things to note:
 
-• Here are the data in "long form".
+    -   There is a lot of variability across cows.
 
-• Long form is needed for most analyses.
+    -   Every cow's infection rating goes down over time
 
-• We can use jamovi's Rj-code editor to wide form to long form. (Though using Excel might be easier) • The following code will convert the data from wide to long form. Note you will need to open the data in a new session of jamovi and rename the Day and Infection_level columns. 23
+![](images/Mod7_pt1_10.png){fig-align="center"}
 
-Converting from wide to long form
+Here are the data in "long form."
 
-• We must now transform the Day column of the longform data. We want the variable Day to take on nominal integer values
+![](images/Mod7_pt1_11.png){fig-align="center" width="400"}
 
-• Double click the Day column and in the Data menu select Transform / Using Transform / Create New Transformation.
+Long form is needed for most analyses.
 
-• Here is a basic plot of infection rates across time.
+We can use jamovi's Rj-code editor to wide form to long form. (Though using Excel might be easier)
 
-• There appears to be a small downward trend, and lots of noise in the data.
+The following code will convert the data from wide to long form. Note you will need to open the data in a new session of jamovi and rename the Day and Infection_level columns.
 
-• But we can account for this noise! It is due to different cows having different overall infection rates.
+![](images/Mod7_pt1_12.png){fig-align="center"}
 
-• Here is a similar plot, with the Y axis grouped by treatment.
+#### Converting from wide to long form
 
-• This shows a small decrease for treatment B.
+We must now transform the Day column of the longform data. We want the variable Day to take on nominal integer values
 
-• But, we are still treating these observations as though they are independent.
+Double click the Day column and in the Data menu select Transform / Using Transform / Create New Transformation.
 
-• They are not independent; they are
+![](images/Mod7_pt1_13.png){fig-align="center"}
 
-• Here is the same plot, but with "cow_ID" as the overlay variable.
+#### Plotting the data
 
-• Each cow now gets its own line. The downward trend for B is clear.
+Here is a basic plot of infection rates across time.
 
-• Also, it is now clear that most of the variation in infection rate was due to differences between cows. Once this is accounted for, variability is low.
+![](images/Mod7_pt1_14.png){fig-align="center" width="400"}
 
-Analyzing the data
+There appears to be a small downward trend, and lots of noise in the data.
 
-• These plots illustrate the idea behind accounting for repeated measures.
+But we can account for this noise! It is due to different cows having different overall infection rates.
 
-• In this module, we will learn how to incorporate repeated measures in statistical models.
+Here is a similar plot, with the Y axis grouped by treatment.
 
-• For now, let's look at some different way of analyzing the data that we just plotted.
+![](images/Mod7_pt1_15.png){fig-align="center" width="400"}
 
-• We can run regression models where infection rate is the response variable and some combination of treatment and day are the predictors.
+This shows a small decrease for treatment B.
 
-• We know both variables matter, and that they interact -- the "effect" of day on infection level depends on treatment, and the "effect" of treatment on infection level depends on day.
+But, we are still treating these observations as though they are independent.
 
-• The next slide shows output for fitting this model:
+They are not independent; they are correlated within each cow.
 
-𝐼𝑛𝑓𝑒𝑐𝑡𝑖𝑜𝑛 𝑙𝑒𝑣𝑒𝑙𝑖 = 𝛽0 + 𝛽1𝑇𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 + 𝛽2𝐷𝑎𝑦 + 𝛽3𝑇𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡 ∗ 𝐷𝑎𝑦 + 𝜀𝑖
+Here is the same plot, but with "cow_ID" as the overlay variable.
 
-𝑖𝑖𝑑 𝜀𝑖 \~
+![](images/Mod7_pt1_16.png){fig-align="center" width="400"}
 
-𝑁𝑜𝑟𝑚𝑎𝑙 29
+Each cow now gets its own line. The downward trend for B is clear.
 
-• 𝑅2 is small, suggesting this model does not explain much variability in infection rates.
+Also, it is now clear that most of the variation in infection rate was due to differences between cows. Once this is accounted for, variability is low.
 
-• Remember, we know that a lot of variability is due to differences between cows. This is all getting "absorbed" by the error term.
+![](images/Mod7_pt1_17.png){fig-align="center" width="400"}
 
-• Large error variance gives small 𝑅2 and large standard errors for slopes
+#### Analyzing the data
 
-Analyzing the data, accounting for cows
+These plots illustrate the idea behind accounting for repeated measures.
 
-• Here are results from analyzing these data using a mixed model. This mixed model accounts for differences between cows, and the fact that repeated measures taken on each cow are correlated.
+In this module, we will learn how to incorporate repeated measures in statistical models.
 
-• We will cover the details of how mixed models work in the next set of notes. For now, note the much larger 𝑅2 = 0.83
+For now, let's look at some different way of analyzing the data that we just plotted.
 
-Side by side comparison
+#### Analyzing the data, assuming independence
 
-• The mixed model (on the bottom) gives smaller standard errors for Day and the interaction.
+We can run regression models where infection rate is the response variable and some combination of treatment and day are the predictors.
 
-• Note what didn't change: the parameter estimates!
+We know both variables matter, and that they interact -- the "effect" of day on infection level depends on treatment, and the "effect" of treatment on infection level depends on day.
 
-Challenges from repeated measures data
+The next slide shows output for fitting this model:
 
-• Repeated measures data can be challenging to analyze, if the design gets complicated. We will see some study designs in which it isn't immediately obvious how to set up an appropriate model.
+$$
+\textit{Infection level}_i = \beta_0 + \beta_1Treatment + \beta_2Day + \beta_3Treatment*Day + \epsilon_i \\
+\text{ where } \epsilon_i \overset{iid}\sim Normal(0, \sigma)
+$$
 
-• Repeated measures data can also be analyzed incorrectly (assuming independence) to artificially increase apparent sample size and get strong looking results that are not valid.
+![](images/Mod7_pt1_18.png){fig-align="center"}
 
-Opportunities from repeated measures data
+$R^2$ is small, suggesting this model does not explain much variability in infection rates.
 
-• Repeated measures data can also be very useful!
+Remember, we know that a lot of variability is due to differences between cows. This is all getting "absorbed" by the error term.
 
-• "Within subject" designs, in which subjects are measured repeatedly across time and / or conditions, can greatly enhance the precision and power of our inferences.
+Large error variance gives small $R^2$ and large standard errors for slopes
 
-• This is because variability that would normally be accounted for by the error term can instead be attributed to overall differences between the subjects from whom repeated measurements were taken.
+#### Analyzing the data, accounting for cows
 
-• We will get into the details of mixed modeling for repeated measures data
+Here are results from analyzing these data using a mixed model. This mixed model accounts for differences between cows, and the fact that repeated measures taken on each cow are correlated.
+
+![](images/Mod7_pt1_19.png){fig-align="center"}
+
+We will cover the details of how mixed models work in the next set of notes. For now, note the much larger $R^2 = 0.83$
+
+![](images/Mod7_pt1_20.png){fig-align="center"}
+
+#### Side by side comparison
+
+The mixed model (on the bottom) gives smaller standard errors for Day and the interaction.
+
+![](images/Mod7_pt1_21.png)
+
+Note what didn't change: the parameter estimates!
+
+#### Challenges from repeated measures data
+
+Repeated measures data can be challenging to analyze, if the design gets complicated. We will see some study designs in which it isn't immediately obvious how to set up an appropriate model.
+
+Repeated measures data can also be analyzed incorrectly (assuming independence) to artificially increase apparent sample size and get strong looking results that are not valid.
+
+#### Opportunities from repeated measures data
+
+Repeated measures data can also be very useful!
+
+"Within subject" designs, in which subjects are measured repeatedly across time and / or conditions, can greatly enhance the precision and power of our inferences.
+
+This is because variability that would normally be accounted for by the error term can instead be attributed to overall differences between the subjects from whom repeated measurements were taken.
+
+We will get into the details of mixed modeling for repeated measures data in the next set of notes.
 
 ## Part 2: Random and fixed effects
 
+The "mixed" in "mixed models" refers to a mix of random effects and fixed effects.
 
-
-• The "mixed" in "mixed models" refers to a mix of random effects and fixed effects.
-
-• All of the predictor variables we've seen all semester have been "fixed effects". What this means will only make sense in comparison to a new kind of predictor: a "random effect".
-
-STAT 331
+All of the predictor variables we've seen all semester have been "fixed effects". What this means will only make sense in comparison to a new kind of predictor: a "random effect".
 
 ### Random effects
 
-• Every predictor variable we've seen this semester has been one for which we estimate and interpret a slope coefficient.
+Every predictor variable we've seen this semester has been one for which we estimate and interpret a slope coefficient.
 
-• Sometimes, though, we want our model to account for a variable that is important for explaining variability in the response variable, but for which we are not interested in estimating coefficients.
+Sometimes, though, we want our model to account for a variable that is important for explaining variability in the response variable, but for which we are not interested in estimating coefficients.
 
-• A random effect (or random factor) will accomplish this. Random factors take on values that are treated as having been drawn at random from a larger population of possible values that might be different if we take a new sample. These random factors have coefficients (aka slopes)
+A random effect (or random factor) will accomplish this. Random factors take on values that are treated as having been drawn at random from a larger population of possible values that might be different if we take a new sample. These random factors have coefficients (aka slopes) that are also treated as taking on random values.
 
-• In the last set of notes, we imagined measuring the same cows over and over again. "Cow" should probably be treated as a random factor in these cases. The cows themselves were drawn from a larger population; we would not get the same cows again in a new study.
+In the last set of notes, we imagined measuring the same cows over and over again. "Cow" should probably be treated as a random factor in these cases. The cows themselves were drawn from a larger population; we would not get the same cows again in a new study.
 
-• Also, we wanted to account for differences in the mean infection levels for each individual cow, so that we could estimate standard errors appropriate to our study designs. And these mean infection levels should also be treated as random, in that they came from some population of possible mean infection levels.
+Also, we wanted to account for differences in the mean infection levels for each individual cow, so that we could estimate standard errors appropriate to our study designs. And these mean infection levels should also be treated as random, in that they came from some population of possible mean infection levels.
 
-• There are many interpretations of a "random effect", and they aren't always helpful. From a 2005 paper by Andrew Gelman: 1. Fixed effects are constant across individuals, and random effects vary.
+So, the cows are random, and their coefficients are random.
 
+There are many interpretations of a "random effect", and they aren't always helpful. From a 2005 paper by Andrew Gelman:
+
+1.  Fixed effects are constant across individuals, and random effects vary.
+
+```{=html}
+<!-- -->
+```
 2.  Effects are fixed if they are interesting in themselves or random if there is interest in the underlying population.
 
 3.  When a sample exhausts the population, the corresponding variable is fixed; when the sample is a small (i.e., negligible) part of the population the corresponding variable is random".
 
-4.  "If an effect is assumed to be a realized value of a random variable, it is called
+4.  "If an effect is assumed to be a realized value of a random variable, it is called a random effect."
 
-• So, interpretations of what random vs. fixed effects "really mean" will vary.
+So, interpretations of what random vs. fixed effects "really mean" will vary.
 
-• But, formally, it isn't so ambiguous. "Fixed" effects are treated as having "fixed" coefficients whose values we estimate and draw inference on (e.g. with confidence intervals and hypothesis tests).
+But, formally, it isn't so ambiguous. "Fixed" effects are treated as having "fixed" coefficients whose values we estimate and draw inference on (e.g. with confidence intervals and hypothesis tests).
 
-• "Random" effects are treated as having "random" coefficients drawn from some distribution. We won't estimate individual coefficients, but we will estimate the variance of the distribution from which they came.
+"Random" effects are treated as having "random" coefficients drawn from some distribution. We won't estimate individual coefficients, but we will estimate the variance of the distribution from which they came.
 
-Subjects and Nesting
+#### Subjects and Nesting
 
-• Our main motivation right now is to have a method of accounting for repeated measurements on the same subjects.
+Our main motivation right now is to have a method of accounting for repeated measurements on the same subjects.
 
-• So, in this class, we will look at mixed models for which the random effect is "subject". In other words, we will make models that account for differences between subjects measured multiple times.
+So, in this class, we will look at mixed models for which the random effect is "subject". In other words, we will make models that account for differences between subjects measured multiple times.
 
-• In a study in which subjects are assigned to groups, each subject is assigned to one group.
+In a study in which subjects are assigned to groups, each subject is assigned to one group.
 
-• From a modeling perspective, subject is "nested" within group.
+From a modeling perspective, subject is "nested" within group.
 
-• In general, one variable is nested within the other if values of the nested variable only occur in certain categories of the variable it is nested within.
+#### Nesting
 
-• In this case, cows are nesting within treatments because each cow is measures only in one treatment.
+In general, one variable is nested within the other if values of the nested variable only occur in certain categories of the variable it is nested within.
 
-• A non-nested design would have each cow measured under each value of the other predictors.
+In this case, cows are nesting within treatments because each cow is measures only in one treatment.
 
-• In other words, each cow would be measured under both treatment.
+A non-nested design would have each cow measured under each value of the other predictors.
 
-• Another example: say we are doing an education research study and we randomly sample 4 districts in a state, then 3 schools in each district, then 7 classrooms in each school
+In other words, each cow would be measured under both treatment.
 
-• In this case, classroom is nested within school, and school is nested within district.
+Another example: say we are doing an education research study and we randomly sample 4 districts in a state, then 3 schools in each district, then 7 classrooms in each school
 
-• This is because each classroom exists in only one school, and each school exists in only one district.
+In this case, classroom is nested within school, and school is nested within district.
 
-• The notation for "subject nested within group" is 𝑠𝑢𝑏𝑗𝑒𝑐𝑡(𝑔𝑟𝑜𝑢𝑝)
+This is because each classroom exists in only one school, and each school exists in only one district.
+
+The notation for "subject nested within group" is $subject(group)$
 
 ### The mixed effects model
 
-• A mixed effects model contains both random and fixed effects.
+A mixed effects model contains both random and fixed effects.
 
-• Applying this to the cows example, in which cows are assigned to one of two treatment groups and measured daily for seven days:
+Applying this to the cows example, in which cows are assigned to one of two treatment groups and measured daily for seven days:
 
-𝐼𝑛𝑓𝑒𝑐𝑡𝑖𝑜𝑛 𝑟𝑎𝑡𝑒𝑖 = 𝛽0 + 𝛽1𝑇𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡𝑖 + 𝛽2𝐷𝑎𝑦𝑖 + 𝛽3𝑇𝑟𝑒𝑎𝑡𝑚𝑒𝑛𝑡𝑖 ∗ 𝐷𝑎𝑦𝑖
+$$
+\textit{Infection rate}_i = \beta_0 + \beta_1Treatment_i + \beta_2Day_i + \beta_3Treatment_i*Day_i + \alpha_jCow_j(Treatment_i) + \epsilon_i \\
+\text{ where } \alpha_j \sim Normal(0, \sigma^2_\alpha) \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
--   𝛼𝑗𝐶𝑜𝑤𝑗
+Don't worry too much about the notation details. The most important part is that "Cow" is random, while "Treatment" and "Day" are fixed.
 
-𝛼𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙
+We will not estimate coefficients for the different cows. This model treats each cow as having its own "random intercept", meaning that the intercept, $\beta_0$, gets adjusted by some amount for each individual cow.
 
--   𝜀𝑖
+As we saw in the last set of notes, the purpose of this is to let the model estimate the effects of the "Treatment" and "Day" variables, while taking accounts of the fact that different cows will have different overall mean infection rates.
 
-, 𝜀𝑖
+### The (fake) cows example
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+#### The mixed effects model in jamovi
 
-• Don't worry too much about the notation details. The most important part is that "Cow" is random, while "Treatment" and "Day" are fixed.
+To fit this model in jamovi, use "Linear Models", select "Mixed Model", and then add the fixed predictors as factors and covariates and random predictors as cluster variables:
 
-• We will not estimate coefficients for the different cows. This model treats each cow as having its own "random intercept", meaning that the intercept, 𝛽0, gets adjusted by some amount for each individual cow.
+![](images/Mod7_pt2_1.png){fig-align="center" width="400"}
 
-• As we saw in the last set of notes, the purpose of this is to let the model estimate the effects of the "Treatment" and "Day" variables, while taking accounts of the fact that different cows will have different overall mean infection rates.
+Note that Cow_ID is the random effect. Treatment, Day, and their interaction are fixed effects.
 
-### The mixed effects model in jamovi
+Note also jamovi will also require you to specify the random effects.
 
-• To fit this model in jamovi, use "Linear Models", select "Mixed Model", and then add the fixed predictors as factors and covariates and random predictors as cluster variables:
+![](images/Mod7_pt2_2.png){fig-align="center"}
 
-• Note that Cow_ID is the random effect. Treatment, Day, and their interaction are fixed effects. 
+jamovi gives the usual parameter estimates output, as well as a residual plot:
 
-• Note also jamovi will also require you to specify the random effects.
+![](images/Mod7_pt2_3.png){fig-align="center" width="400"}
 
-• jamovi gives the usual parameter estimates output, as well as a residual plot:
+Notice that "Cow_ID" is not listed under parameter estimates; only fixed coefficients are estimated.
 
-• Notice that "Cow_ID" is not listed under parameter estimates; only fixed coefficients are estimated. • Each cow has its own random coefficient, modeled as having been drawn from a normal distribution. 17
+Each cow has its own random coefficient, modeled as having been drawn from a normal distribution.
 
-Slope coding in "Mixed Model"
+![](images/Mod7_pt2_4.png){fig-align="center"}
 
-• Notice the categorical predictor "Treatment" lists "Effect" as "A -- (B, A)". jamovi is coding this slope as the difference between Treatment A and the "mean" of Treatments A and B.
+#### Slope coding in "Mixed Model"
 
-• So, if we were looking at Treatment B, we'd apply a slope of -0.513.
+Notice the categorical predictor "Treatment" lists "Effect" as "A -- (B, A)". jamovi is coding this slope as the difference between Treatment A and the "mean" of Treatments A and B.
+
+So, if we were looking at Treatment B, we'd apply a slope of -0.513.
+
+![](images/Mod7_pt2_5.png){fig-align="center"}
 
 ### Applied example: "The liking gap"
 
-• The journal Psychological Science published many studies in which data are publicly available.
+The journal Psychological Science published many studies in which data are publicly available.
 
-• The remaining slides reproduce results from a recent study published in Psychological Science on the difference between how much individuals "like" other people and how much they perceive others "like" them.
+The remaining slides reproduce results from a recent study published in Psychological Science on the difference between how much individuals "like" other people and how much they perceive others "like" them.
 
-• The paper is available at: https://doi.org/10.1177%2F0956797618783714
+The paper is available at: https://doi.org/10.1177%2F0956797618783714
 
-• The basic setup is that volunteers were paired up (each pair is called a "dyad") and directed to have a conversation for five minutes
+The basic setup is that volunteers were paired up (each pair is called a "dyad") and directed to have a conversation for five minutes.
 
-• After this, participants rated their partners on some survey questions that the authors take as a measure of liking the other person.
+After this, participants rated their partners on some survey questions that the authors take as a measure of liking the other person.
 
-• Participants also rated how much they thought they were liked.
+Participants also rated how much they thought they were liked.
 
-• The study is looking for a "gap" (i.e. difference) between volunteers' self-perception of how much their partners liked them, and how much their partners actually liked them.
+The study is looking for a "gap" (i.e. difference) between volunteers' self-perception of how much their partners liked them, and how much their partners actually liked them.
 
-The liking gap example
+#### The liking gap example
 
-• From the results section of the paper:
+From the results section of the paper:
 
-𝐿𝑖𝑘𝑖𝑛𝑔 𝐼𝑛𝑑𝑒𝑥𝑖 = 𝛽0 + 𝛽1𝑠𝑒𝑙𝑓 𝑜𝑡ℎ𝑒𝑟 + 𝛽2𝐷𝑎𝑦 + 𝛼𝑗𝑝𝑖𝑑𝑗 + 𝛾𝑘𝑑𝑖𝑑𝑘 + 𝜀𝑖
+![](images/Mod7_pt2_6.png){fig-align="center" width="400"}
 
-𝛼𝑗(𝑘)\~𝑁𝑜𝑟𝑚𝑎𝑙
+![](images/Mod7_pt2_7.png){fig-align="center" width="400"}
 
-, 𝛾𝑘
+#### Fitting the model in jamovi
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙
+![](images/Mod7_pt2_8.png){fig-align="center"}
 
-, 𝜀𝑖
+$$
+\textit{Liking index}_i = \beta_0 + \beta_1\textit{self_other} + \beta_2Day + \alpha_jpid_j(did_k) + \gamma_kdid_k + \epsilon_i \\
+\text{ where } \alpha_{j(k)} \sim Normal(0, \sigma^2_\alpha), \\
+\gamma_k \sim Normal(0, \sigma^2_\gamma), \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+The model statement starts looking complicated. We have two different random effects, one nested in the other.
 
-• The model statement starts looking complicated. We have two different random effects, one nested in the other.
+The $\alpha$'s and $\gamma$'s are modeled as random values.
 
-• The 𝛼's and 𝛾's are modeled as random values.
+We have two fixed effects: self_other and Day. Their coefficients will be estimated as normal.
 
-• We have two fixed effects: self_other and Day. Their coefficients will
+$$
+\textit{Liking index}_i = \beta_0 + \beta_1\textit{self_other} + \alpha_jpid_j(did_k) + \gamma_kdid_k + \epsilon_i \\
+\text{ where } \alpha_{j(k)} \sim Normal(0, \sigma^2_\alpha), \\
+\gamma_k \sim Normal(0, \sigma^2_\gamma), \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
-𝐿𝑖𝑘𝑖𝑛𝑔 𝐼𝑛𝑑𝑒𝑥𝑖 = 𝛽0 + 𝛽1𝑠𝑒𝑙𝑓 𝑜𝑡ℎ𝑒𝑟 + 𝛼𝑗𝑝𝑖𝑑𝑗 + 𝛾𝑘𝑑𝑖𝑑𝑘 + 𝜀𝑖
+The random effect variances, $\sigma^2_\alpha$ and $\sigma^2_\gamma$, are estimated in the mixed model. These variances could be interpreted, but we will stick to interpreted the fixed effects in this class.
 
-𝛼𝑗(𝑘)\~𝑁𝑜𝑟𝑚𝑎𝑙
+#### Adding an interaction...
 
-, 𝛾𝑘
+The next section of the paper looks at personality variables as predictors:
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙
+![](images/Mod7_pt2_9.png){fig-align="center" width="400"}
 
-, 𝜀𝑖
+#### In jamovi
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+![](images/Mod7_pt2_10.png){fig-align="center"}
 
-• The random effect variances, 𝜎2 and 𝜎2, are estimated in the mixed 𝛼 𝛾 model. These variances could be interpreted, but we will stick to interpreted the fixed effects in this class.
+We'll stop here. The paper goes on through many additional studies, and the data are all available via the supplemental materials link.
 
-Adding an interaction...
+## Part 3: Worked example
 
-• The next section of the paper looks at personality variables as predictors:
-
-In jamovi
-
-• We'll stop here. The paper goes on through many additional studies, and the data are all available via the supplemental materials link.
-
-## Part 3: Worked example 
-
-
-• This set of notes on mixed models covers the analysis from a 2017 Psychological Science paper by Goudeau and Croizet, titled
+This set of notes on mixed models covers the analysis from a 2017 Psychological Science paper by Goudeau and Croizet, titled
 
 "Hidden Advantages and Disadvantages of Social Class: How Classroom Settings Reproduce Social Inequality by Staging Unfair Comparison"
 
-• This paper presents three studies on one topic. These notes cover studies 1 and 3; study 2 is reserved for a homework assignment.
+This paper presents three studies on one topic. These notes cover studies 1 and 3; study 2 is reserved for a homework assignment.
 
-• This study was performed in France. The data are available at https://osf.io/rkj7y/ and the data file has a codebook sheet that defines the variables:
+#### Worked example overview
 
-• In each study, 6th grade students are given a challenging reading comprehension assignment.
+This study was performed in France. The data are available at https://osf.io/rkj7y/ and the data file has a codebook sheet that defines the variables:
 
-• Performance on the assignment is the dependent variable.
+![](images/Mod7_pt3_1.png){fig-align="center"}
 
-• The researchers investigate whether students' performance is associated with their awareness of their classmates' performance, and whether this association can be moderated by students' awareness of the different levels of preparation given to different students.
+In each study, 6th grade students are given a challenging reading comprehension assignment.
 
-Paper abstract
+Performance on the assignment is the dependent variable.
 
+The researchers investigate whether students' performance is associated with their awareness of their classmates' performance, and whether this association can be moderated by students' awareness of the different levels of preparation given to different students.
 
+#### Paper abstract
+
+![](images/Mod7_pt3_2.png){fig-align="center"}
 
 ### Study 1
 
-The variables used in this study are:
+![](images/Mod7_pt3_3.png){fig-align="center" width="400"}
 
-• Performance (response) • Visibility condition (fixed effect) • Social class (fixed effect) • Visibility X Social class interaction (fixed effect) • School (random effect) • Classroom, nested within School (random effect)
+-   The variables used in this study are:
 
-Study 1 model
+    -   Performance (response)
 
-𝑃𝐸𝑅𝐹𝑖 = 𝛽0 + 𝛽1𝑋1 + 𝛽2𝑃𝐶𝑆 + 𝛽3𝑋1 ∗ 𝑃𝐶𝑆 + 𝛼𝑗 𝑘 𝐶𝐿𝐴𝑆𝑆𝐸𝑗 𝑘 + 𝛾𝑖𝐸𝑇𝐴𝐵𝐿𝐼𝑆𝑆𝐸𝑀𝐸𝑁𝑇𝑘 + 𝜀𝑖
+    -   Visibility condition (fixed effect)
 
-𝛼𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙
+    -   Social class (fixed effect)
 
-, 𝛾𝑖
+    -   Visibility X Social class interaction (fixed effect)
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙
+    -   School (random effect)
 
-, 𝜀𝑖
+    -   Classroom, nested within School (random effect)
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+#### Study 1 model
 
-• Refer to the codebook for variable definitions
+$$
+\textit{PERF}_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_1*PCS + \alpha_{j(k)}CLASSE_{j(k)}(ETABLISSEMENT_k) + \gamma_kETABLISSEMENT_k + \epsilon_i \\
+\text{ where } \alpha_{j} \sim Normal(0, \sigma^2_\alpha), \\
+\gamma_k \sim Normal(0, \sigma^2_\gamma), \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
-• Note that in this study, subjects (students) are only measured once. The repeated measurements are on classrooms and schools.
+Refer to the codebook for variable definitions
 
-• Also note that PCS compares working class (PCS=1) to upper class (PCS=3.)
+Note that in this study, subjects (students) are only measured once. The repeated measurements are on classrooms and schools.
 
-Study 1 in JMP
+Also note that PCS compares working class (PCS=1) to upper class (PCS=3.)
 
-• Note that the response variable, PERF, is score on a reading comprehension test, on a scale of 0 to 20 points.
+#### Study 1 in JMP
 
-Notes on Study 1 random effects output
+![](images/Mod7_pt3_4.png){fig-align="center"}
 
-• "The random effects covariance parameter estimates" table shows that there is much more residual (error) variance than there is variance across classrooms or across schools.
+Note that the response variable, PERF, is score on a reading comprehension test, on a scale of 0 to 20 points.
 
-• One very odd result: the classroom variance estimate is negative! But variances cannot be negative.
+#### Notes on Study 1 random effects output
 
-• If we had deselected "unbounded variance estimates" under Fit Model, this would be zeroed out. It is a strange quirk of maximum likelihood variance estimation that negative estimates are possible. We can ignore this, and treat the classroom variance as just very small.
+"The random effects covariance parameter estimates" table shows that there is much more residual (error) variance than there is variance across classrooms or across schools.
 
-• We see strong "main effects" for visibility condition (X1), social class (PCS), and their interaction.
+One very odd result: the classroom variance estimate is negative! But variances cannot be negative.
 
-• A general principle for models with strong interactions is that our interpretation should focus on the interactions.
+If we had deselected "unbounded variance estimates" under Fit Model, this would be zeroed out. It is a strange quirk of maximum likelihood variance estimation that negative estimates are possible. We can ignore this, and treat the classroom variance as just very small.
 
-• Here, the interaction coefficient is -2.69, and the coefficient for X1 is 1.12. • For the Effect of X1"-1 - 1" refers to the "differences not visible" condition, in which students do not raise their hands when they have the answer. • For the Effect of PCS "3 - 1" refers to change in score for upper class students vs. working class students. • So, the "effect" of visibility seems to apply to working class students but not to upper class students, since --2.69 and 1.12 nearly cancel each other out.
+#### Notes on Study 1 fixed effects output
 
-• Here is the plot reported in the paper, and the same plot in JMP:
+We see strong "main effects" for visibility condition (X1), social class (PCS), and their interaction.
 
-• The practice of using a bar plot to show means is common, but flawed. The bars don't mean anything; all they do is go up to the means. • Here is what this looks like using boxplots instead.
+A general principle for models with strong interactions is that our interpretation should focus on the interactions.
 
-• Notice that this plot shows variability in the data, where the bar plot does not.
+![](images/Mod7_pt3_5.png)
+
+Here, the interaction coefficient is -2.69, and the coefficient for $X_1$ is 1.12.
+
+For the Effect of $X_1$ "-1 - 1" refers to the "differences not visible" condition, in which students do not raise their hands when they have the answer. For the Effect of PCS "3 - 1" refers to change in score for upper class students vs. working class students. So, the "effect" of visibility seems to apply to working class students but not to upper class students, since --2.69 and 1.12 nearly cancel each other out.
+
+#### Plotting the fixed effects
+
+Here is the plot reported in the paper, and the same plot in JMP:
+
+![](images/Mod7_pt3_6.png){fig-align="center"}
+
+The practice of using a bar plot to show means is common, but flawed. The bars don't mean anything; all they do is go up to the means.
+
+Here is what this looks like using boxplots instead.
+
+![](images/Mod7_pt3_7.png){fig-align="center" width="400"}
+
+Notice that this plot shows variability in the data, where the bar plot does not.
 
 ### Study 3
 
-• In Study 2, social class is not used. Rather, some students are given better preparation for the reading comprehension test than others.
+In Study 2, social class is not used. Rather, some students are given better preparation for the reading comprehension test than others.
 
-• Similar results are found: those with worse preparation perform more poorly when students are told to raise their hands after determining the answer.
+Similar results are found: those with worse preparation perform more poorly when students are told to raise their hands after determining the answer.
 
-• In Study 3, the authors attempt to "undo" this effect by informing the class that some students were given better preparation than others. Half the classrooms are made aware of this; the other half are not.
+In Study 3, the authors attempt to "undo" this effect by informing the class that some students were given better preparation than others. Half the classrooms are made aware of this; the other half are not.
 
-• The variables in this study are almost the same as in study 1, with these changes:
+The variables in this study are almost the same as in study 1, with these changes:
 
-• X1 is "context": -1 = awareness of the disadvantage 1 = unawareness of the disadvantage
+-   X1 is "context":
 
-• X2 is "level of familiarity" with the reading material, based on intentional preparation given by the researchers: -1 = high level 1 = low level
+    -   -1 = awareness of the disadvantage
 
-Study 3 model
+    -   1 = unawareness of the disadvantage
 
-𝑃𝐸𝑅𝐹𝑖 = 𝛽0 + 𝛽1𝑋1 + 𝛽2𝑋2 + 𝛽3𝑋1 ∗ 𝑋2 + 𝛼𝑗𝐶𝐿𝐴𝑆𝑆𝐸𝑗 + 𝜀𝑖
+-   X2 is "level of familiarity" with the reading material, based on intentional preparation given by the researchers:
 
-𝛼𝑗\~𝑁𝑜𝑟𝑚𝑎𝑙
+    -   -1 = high level
 
-, 𝜀𝑖
+    -   1 = low level
 
-\~𝑁𝑜𝑟𝑚𝑎𝑙(0, 𝜎2)
+#### Study 3 model
 
-• In this data set, there is no variable for "school", only one for "classroom". This isn't explained in the paper.
+$$
+\textit{PERF}_i = \beta_0 + \beta_1X_1 + \beta_2X_2 + \beta_3X_1*X_2 + \alpha_{j}CLASSE_{j}+ \epsilon_i \\
+\text{ where } \alpha_{j} \sim Normal(0, \sigma^2_\alpha), \\
+\text{ and } \epsilon_i \sim Normal(0, \sigma^2_\epsilon)
+$$
 
-• As with before, the variance across classrooms is very small relative to the error variance.
+In this data set, there is no variable for "school", only one for "classroom". This isn't explained in the paper.
 
-• The largest overall effect is X2: level of familiarity with the material. Students who are better prepared score higher.
+#### Study 3 in jamovi
 
-• The negative interaction shows that the difference in performance between those with higher vs. low familiarity is lower when students are aware of the difference in familiarity.
+![](images/Mod7_pt3_8.png){fig-align="center"}
 
-• The interaction of -5.81 just about cancels out the estimated slope for X1\[-1\] of 4.24.
+![](images/Mod7_pt3_9.png){fig-align="center"}
 
-• This shows that there is very little difference in scores between students with high preparation who are and are not aware of the advantage.
+As with before, the variance across classrooms is very small relative to the error variance.
 
-• It helps to look at the data.
+The largest overall effect is $X_2$: level of familiarity with the material. Students who are better prepared score higher.
 
-• The generic "X1" and X2" have been replaced with more meaningful titles:
+The negative interaction shows that the difference in performance between those with higher vs. low familiarity is lower when students are aware of the difference in familiarity.
 
-• And here are the bar plots shows in the paper.
+The interaction of -5.81 just about cancels out the estimated slope for $X_1$\[-1\] of 4.24.
 
-• Again, the boxplots show more information.
+This shows that there is very little difference in scores between students with high preparation who are and are not aware of the advantage.
 
-• In this case, the boxplots reveal a potentially concerned "ceiling effect": many students earned the maximum possible score. This can't be seen from the bar plot. 24
+It helps to look at the data.
 
+![](images/Mod7_pt3_11.png){fig-align="center" width="400"}
 
+The generic "$X_1$" and "$X_2$" have been replaced with more meaningful titles.
 
+And here are the bar plots shows in the paper.
 
+![](images/Mod7_pt3_12.png){fig-align="center" width="400"}
+
+Again, the boxplots show more information.
+
+In this case, the boxplots reveal a potentially concerned "ceiling effect": many students earned the maximum possible score. This can't be seen from the bar plot.
