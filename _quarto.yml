@@ -20,6 +20,14 @@ book:
 
 bibliography: references.bib
 
+
+toc: true
+toc-location: right
+toc-expand: true
+
+reference-location: margin
+citation-location: margin
+
 format:
   html:
     theme: united
