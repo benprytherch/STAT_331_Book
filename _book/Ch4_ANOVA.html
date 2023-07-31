@@ -177,7 +177,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#what-is-anova" id="toc-what-is-anova" class="nav-link active" data-scroll-target="#what-is-anova"><span class="header-section-number">4.1</span> What is ANOVA?</a>
+  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link active" data-scroll-target="#outline-of-notes">Outline of notes</a></li>
+  <li><a href="#what-is-anova" id="toc-what-is-anova" class="nav-link" data-scroll-target="#what-is-anova"><span class="header-section-number">4.1</span> What is ANOVA?</a>
   <ul class="collapse">
   <li><a href="#anova-is-regression-presented-differently" id="toc-anova-is-regression-presented-differently" class="nav-link" data-scroll-target="#anova-is-regression-presented-differently"><span class="header-section-number">4.1.1</span> ANOVA is regression presented differently</a></li>
   <li><a href="#indicator-variables" id="toc-indicator-variables" class="nav-link" data-scroll-target="#indicator-variables"><span class="header-section-number">4.1.2</span> Indicator variables</a></li>
@@ -218,26 +219,35 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="outline-of-notes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="outline-of-notes">Outline of notes</h2>
+<ol type="1">
+<li>What is ANOVA?</li>
+<li>One-way ANOVA</li>
+<li>Factorial ANOVA</li>
+<li>ANCOVA</li>
+</ol>
+</section>
 <section id="what-is-anova" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="what-is-anova"><span class="header-section-number">4.1</span> What is ANOVA?</h2>
-<p>• ANOVA stands for “analysis of variance”</p>
-<p>• ANOVA is regression with categorical predictors. That’s it.</p>
+<p>ANOVA stands for “analysis of variance”</p>
+<p>ANOVA is regression with categorical predictors. That’s it.</p>
 <section id="anova-is-regression-presented-differently" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="anova-is-regression-presented-differently"><span class="header-section-number">4.1.1</span> ANOVA is regression presented differently</h3>
-<p>• OK, there’s more to say about ANOVA than just “regression with categorical predictors.”</p>
-<p>• ANOVA is typically used to analyze data from experiments. In experiments, the categorical predictors are usually groups to which experimental units (aka subjects) are assigned. • ANOVA tends to focus on comparing means of different groups to one another. • Although ANOVA is “just” regression, there are conventions for reporting ANOVA results that are simpler and cleaner than what we’ve seen for regression.</p>
+<p>OK, there’s more to say about ANOVA than just “regression with categorical predictors.”</p>
+<p>ANOVA is typically used to analyze data from experiments. In experiments, the categorical predictors are usually groups to which experimental units (aka subjects) are assigned. ANOVA tends to focus on comparing means of different groups to one another. Although ANOVA is “just” regression, there are conventions for reporting ANOVA results that are simpler and cleaner than what we’ve seen for regression.</p>
 </section>
 <section id="indicator-variables" class="level3" data-number="4.1.2">
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="indicator-variables"><span class="header-section-number">4.1.2</span> Indicator variables</h3>
-<p>• We’ve seen how to incorporate a categorical predictor into a regression model when the predictor takes on two values. We create an “indicator” (aka “dummy” aka “binary”) variable that takes on the values 0 or 1. For example:</p>
+<p>We’ve seen how to incorporate a categorical predictor into a regression model when the predictor takes on two values. We create an “indicator” (aka “dummy” aka “binary”) variable that takes on the values 0 or 1. For example:</p>
 <p><span class="math display">\[
 Y_i=\beta_0+\beta_1x_{1i} + \epsilon_i
 \]</span></p>
 <p><span class="math display">\[
 x_i = 1 \text{ if "treatment;"} x_i = 0 \text{ if "control"}
 \]</span></p>
-<p>• Here, <span class="math inline">\(\hat{y}_i = \hat{\beta}_0\)</span> for control, and <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1\)</span> for treatment.</p>
-<p>• What if our categorical predictor takes on more than two categories? Suppose we have three groups: treatment 1, treatment 2, and control. We can add another indicator:</p>
+<p>Here, <span class="math inline">\(\hat{y}_i = \hat{\beta}_0\)</span> for control, and <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1\)</span> for treatment.</p>
+<p>What if our categorical predictor takes on more than two categories? Suppose we have three groups: treatment 1, treatment 2, and control. We can add another indicator:</p>
 <p><span class="math display">\[
 Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \epsilon_i
 \]</span></p>
@@ -245,42 +255,42 @@ Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \epsilon_i
 x_{1i} = 1 \text{ if treatment }1; x_{1i} = 0 \text{ otherwise} \\
 x_{2i} = 1 \text{ if treatment }2; x_{1i} = 0 \text{ otherwise}
 \]</span></p>
-<p>• <span class="math inline">\(\hat{y}_i = \hat{\beta}_0\)</span> for control, <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1\)</span> for treatment 1, and <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 + \hat{\beta}_2\)</span> for treatment 2.</p>
-<p>• Control is serving as the “baseline” category, represented by the intercept.</p>
+<p><span class="math inline">\(\hat{y}_i = \hat{\beta}_0\)</span> for control, <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1\)</span> for treatment 1, and <span class="math inline">\(\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 + \hat{\beta}_2\)</span> for treatment 2.</p>
+<p>Control is serving as the “baseline” category, represented by the intercept.</p>
 </section>
 </section>
 <section id="one-way-anova" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">4.2</span> One-Way ANOVA</h2>
-<p>• One-way ANOVA models have a single categorical predictor variable. They can be written as:</p>
+<p>One-way ANOVA models have a single categorical predictor variable. They can be written as:</p>
 <p><span class="math display">\[
 Y_i = \mu + \alpha_j + \epsilon_{ij}, \text{ where } \epsilon_{ij} \sim Normal(0,\sigma^2) \text{ and } i = 1, \dots ,n_j, j = 1, \dots, p
 \]</span></p>
-<p>• Where there are “<span class="math inline">\(p\)</span>” groups (i.e.&nbsp;the categorical predictor takes on “<span class="math inline">\(p\)</span>” values), “$n_j$” is the sample size of the <span class="math inline">\(j^{th}\)</span> group, and <span class="math inline">\(y_{ij}\)</span> is the <span class="math inline">\(i^{th}\)</span> observation in the <span class="math inline">\(j^{th}\)</span> group.</p>
-<p>• Here, <span class="math inline">\(\mu\)</span> is the overall mean and <span class="math inline">\(\alpha_j\)</span> is the deviation of the <span class="math inline">\(j^{th}\)</span> group mean from the overall mean.</p>
-<p>• Suppose we have 4 groups. The ANOVA model is:</p>
+<p>Where there are “<span class="math inline">\(p\)</span>” groups (i.e.&nbsp;the categorical predictor takes on “<span class="math inline">\(p\)</span>” values), “$n_j$” is the sample size of the <span class="math inline">\(j^{th}\)</span> group, and <span class="math inline">\(y_{ij}\)</span> is the <span class="math inline">\(i^{th}\)</span> observation in the <span class="math inline">\(j^{th}\)</span> group.</p>
+<p>Here, <span class="math inline">\(\mu\)</span> is the overall mean and <span class="math inline">\(\alpha_j\)</span> is the deviation of the <span class="math inline">\(j^{th}\)</span> group mean from the overall mean.</p>
+<p>Suppose we have 4 groups. The ANOVA model is:</p>
 <p><span class="math display">\[
 Y_i = \mu + \alpha_j + \epsilon_{ij}, \text{ where } \epsilon_{ij} \sim Normal(0,\sigma^2) \text{ and } i = 1, \dots ,n_j, j = 1, \dots, 4
 \]</span></p>
-<p>• Written as a regression model instead:</p>
+<p>Written as a regression model instead:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 +\beta_1Group1 + \beta_2Group2 + \beta_3Group3 + \epsilon_{i}, \text{ where } \epsilon_{i} \sim Normal(0,\sigma^2) \text{ and } i = 1, \dots ,n
 \]</span></p>
-<p>• Here, the “Group” predictors are <span class="math inline">\(0\)</span> / <span class="math inline">\(1\)</span> indicator variables. For group <span class="math inline">\(4\)</span>, the mean of <span class="math inline">\(y\)</span> is the intercept, <span class="math inline">\(\beta_0\)</span>.</p>
+<p>Here, the “Group” predictors are <span class="math inline">\(0\)</span> / <span class="math inline">\(1\)</span> indicator variables. For group <span class="math inline">\(4\)</span>, the mean of <span class="math inline">\(y\)</span> is the intercept, <span class="math inline">\(\beta_0\)</span>.</p>
 </section>
 <section id="factorial-anova" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="factorial-anova"><span class="header-section-number">4.3</span> Factorial ANOVA</h2>
-<p>• If we have more than one categorical predictor variable, and interactions between the predictors, we have a factorial ANOVA model. Generically:</p>
+<p>If we have more than one categorical predictor variable, and interactions between the predictors, we have a factorial ANOVA model. Generically:</p>
 <p><span class="math display">\[
 Y_{ijk} = \mu + \alpha_j + \beta_k + (\alpha\beta)_{jk} + \epsilon_{ijk}, \text{ where } \epsilon_{ijk} \sim Normal(0,\sigma^2) \\
 \text{ and } i = 1, \dots ,n_{jk}, j = 1, \dots, p, k = 1, \dots,q
 \]</span></p>
-<p>• Now predictor <span class="math inline">\(1\)</span> is <span class="math inline">\(\alpha\)</span> and predictor <span class="math inline">\(2\)</span> is <span class="math inline">\(\beta\)</span> and they interact. There are “$p$” groups for predictor <span class="math inline">\(1\)</span> and “$q$” groups for predictor <span class="math inline">\(2\)</span>.</p>
-<p>• The subscripts start getting messy pretty fast.</p>
+<p>Now predictor <span class="math inline">\(1\)</span> is <span class="math inline">\(\alpha\)</span> and predictor <span class="math inline">\(2\)</span> is <span class="math inline">\(\beta\)</span> and they interact. There are “$p$” groups for predictor <span class="math inline">\(1\)</span> and “$q$” groups for predictor <span class="math inline">\(2\)</span>.</p>
+<p>The subscripts start getting messy pretty fast.</p>
 <section id="factorial-anova-example" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="factorial-anova-example"><span class="header-section-number">4.3.1</span> Factorial ANOVA example</h3>
-<p>• Here’s an example of a “5x2 factorial” ANOVA, meaning that one variable has 5 groups and the other has 2.</p>
-<p>• The study is on memory: how many words, on average, do people recall when given certain processing tasks?</p>
-<p>• This example is where the graph on our Canvas home page comes from. It uses data simulated to mimic data from a 1974 Hans Eysenck study.</p>
+<p>Here’s an example of a “5x2 factorial” ANOVA, meaning that one variable has 5 groups and the other has 2.</p>
+<p>The study is on memory: how many words, on average, do people recall when given certain processing tasks?</p>
+<p>This example is where the graph on our Canvas home page comes from. It uses data simulated to mimic data from a 1974 Hans Eysenck study.</p>
 <ul>
 <li><p>100 subjects were split into 5 recall groups:</p>
 <ul>
@@ -291,29 +301,29 @@ Y_{ijk} = \mu + \alpha_j + \beta_k + (\alpha\beta)_{jk} + \epsilon_{ijk}, \text{
 <li><p>“Intentional”: subjects were told to memorize the word for later recall</p></li>
 </ul></li>
 </ul>
-<p>• Counting and rhyming are lower level processing tasks, so the hypothesis was that this group would recall fewer words than the others. Subjects were also classified as “young” or “old”.</p>
-<p>• Here’s the ANOVA model:</p>
+<p>Counting and rhyming are lower level processing tasks, so the hypothesis was that this group would recall fewer words than the others. Subjects were also classified as “young” or “old”.</p>
+<p>Here’s the ANOVA model:</p>
 <p><span class="math display">\[
 Recall_{ijk} = \mu + Group_j + Age_k + (Group \cdot Age)_{jk} + \epsilon_{ijk}, \text{ where } \epsilon_{ijk} \sim Normal(0,\sigma^2) \\
 \text{ and } j = 1, \dots ,5, k = 1, 2
 \]</span></p>
-<p>• Jamovi has an “ANOVA” function and a “regression” function. We’ll use both the analyze these data.</p>
+<p>Jamovi has an “ANOVA” function and a “regression” function. We’ll use both the analyze these data.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod5_1.png" class="img-fluid figure-img" width="136"></p>
 </figure>
 </div>
-<p>• First we’ll use ANOVA, using items recalled as the response (dependent) variable, and recall condition and age as factors. Note that jamovi automatically includes their interaction.</p>
+<p>First we’ll use ANOVA, using items recalled as the response (dependent) variable, and recall condition and age as factors. Note that jamovi automatically includes their interaction.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• I am usually not interested in the sums of squares or mean squares in the ANOVA table, as these are not interpretable. We do have p-values for each “main effect” along with the interaction. More importantly, we have effect size statistics: eta-squared (<span class="math inline">\(\eta^2\)</span>) and partial eta-squared (<span class="math inline">\(\eta^2p\)</span>)</p>
+<p>I am usually not interested in the sums of squares or mean squares in the ANOVA table, as these are not interpretable. We do have p-values for each “main effect” along with the interaction. More importantly, we have effect size statistics: eta-squared (<span class="math inline">\(\eta^2\)</span>) and partial eta-squared (<span class="math inline">\(\eta^2p\)</span>)</p>
 </section>
 <section id="anova-effect-sizes-eta2-and-partial-eta2" class="level3" data-number="4.3.2">
 <h3 data-number="4.3.2" class="anchored" data-anchor-id="anova-effect-sizes-eta2-and-partial-eta2"><span class="header-section-number">4.3.2</span> ANOVA effect sizes: <span class="math inline">\(\eta^2\)</span> and partial-<span class="math inline">\(\eta^2\)</span></h3>
-<p>• <span class="math inline">\(\eta^2\)</span> is akin to <span class="math inline">\(R^2\)</span> for one factor (main effect or interaction). It gives the proportion of variance in the response attributable to the factor in question:</p>
+<p><span class="math inline">\(\eta^2\)</span> is akin to <span class="math inline">\(R^2\)</span> for one factor (main effect or interaction). It gives the proportion of variance in the response attributable to the factor in question:</p>
 <p><span class="math display">\[
 \eta^2 = \frac{SS_{factor}}{SS_{total}}
 \]</span></p>
@@ -322,143 +332,143 @@ Recall_{ijk} = \mu + Group_j + Age_k + (Group \cdot Age)_{jk} + \epsilon_{ijk}, 
 <p><img src="images/Mod5_3.png" class="img-fluid figure-img" width="464"></p>
 </figure>
 </div>
-<p>• Here, we see that recall condition explains the most variance by far, followed by age, followed by their interaction.</p>
-<p>• <span class="math inline">\(\eta^2p\)</span> (partial eta-squared) is like <span class="math inline">\(\eta^2\)</span>, but with the variance accounted for by the other factors removed from the denominator:</p>
+<p>Here, we see that recall condition explains the most variance by far, followed by age, followed by their interaction.</p>
+<p><span class="math inline">\(\eta^2p\)</span> (partial eta-squared) is like <span class="math inline">\(\eta^2\)</span>, but with the variance accounted for by the other factors removed from the denominator:</p>
 <p><span class="math display">\[
 \eta^2p = \frac{SS_{factor}}{SS_{factor} + SS_{residuals}}
 \]</span> <img src="images/Mod5_4.png" class="img-fluid"></p>
-<p>• Example: for recall condition,</p>
+<p>Example: for recall condition,</p>
 <p><span class="math display">\[
 \eta^2p = \frac{1515}{1515 + 722} = 0.677, \text{ and } \eta^2 = \frac{1515}{1515 + 240 + 190 + 722} = 0.568
 \]</span></p>
-<p>• I personally prefer <span class="math inline">\(\eta^2\)</span>, as their sum cannot exceed <span class="math inline">\(1\)</span>. Some prefer <span class="math inline">\(\eta^2p\)</span>, because it quantifies the “effect” of a factor relative to remaining unexplained variance,</p>
+<p>I personally prefer <span class="math inline">\(\eta^2\)</span>, as their sum cannot exceed <span class="math inline">\(1\)</span>. Some prefer <span class="math inline">\(\eta^2p\)</span>, because it quantifies the “effect” of a factor relative to remaining unexplained variance,</p>
 </section>
 <section id="the-means-interaction-plot" class="level3" data-number="4.3.3">
 <h3 data-number="4.3.3" class="anchored" data-anchor-id="the-means-interaction-plot"><span class="header-section-number">4.3.3</span> The means / interaction plot</h3>
-<p>• We can make a nice plot under “estimated marginal means”:</p>
+<p>We can make a nice plot under “estimated marginal means”:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• This plot shows every combination of means across recall condition and age. It also has 95% CIs around each mean, and raw data displayed.</p>
+<p>This plot shows every combination of means across recall condition and age. It also has 95% CIs around each mean, and raw data displayed.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_6.png" class="img-fluid figure-img" width="447"></p>
 </figure>
 </div>
-<p>• This is sometimes called a “means plot” or an “interaction plot”. The interaction is represented by non-parallel lines, e.g.&nbsp;a positive change going from “Imagery” to “Intention” for young people, but a negative change for old people.</p>
-<p>• The previous plot showed means for recall condition, with separate lines for age. If we flip the order of the variables, we get this:</p>
+<p>This is sometimes called a “means plot” or an “interaction plot”. The interaction is represented by non-parallel lines, e.g.&nbsp;a positive change going from “Imagery” to “Intention” for young people, but a negative change for old people.</p>
+<p>The previous plot showed means for recall condition, with separate lines for age. If we flip the order of the variables, we get this:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_7.png" class="img-fluid figure-img" width="483"></p>
 </figure>
 </div>
-<p>• Here we see that mean items recalled for young people is substantially higher than for old people in the last three conditions, but differs only slightly in the first two conditions.</p>
+<p>Here we see that mean items recalled for young people is substantially higher than for old people in the last three conditions, but differs only slightly in the first two conditions.</p>
 </section>
 <section id="anova-diagnostics" class="level3" data-number="4.3.4">
 <h3 data-number="4.3.4" class="anchored" data-anchor-id="anova-diagnostics"><span class="header-section-number">4.3.4</span> ANOVA diagnostics</h3>
-<p>• We can also run diagnostic tests, under “Assumption checks”:</p>
+<p>We can also run diagnostic tests, under “Assumption checks”:</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/Mod5_8.png" class="img-fluid figure-img" width="146"></p>
 </figure>
 </div>
-<p>• The QQ plot looks pretty good.</p>
+<p>The QQ plot looks pretty good.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_9.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• I personally do not recommend paying attention to Levene’s “homogeneity of variances” test, nor to the Shapiro-Wilk normality tests</p>
+<p>I personally do not recommend paying attention to Levene’s “homogeneity of variances” test, nor to the Shapiro-Wilk normality tests</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_10.png" class="img-fluid figure-img" width="293"></p>
 </figure>
 </div>
-<p>• These tests use null hypotheses of “population variance is the same in all groups”, or “the residuals were drawn from a normal distribution”. As I don’t think these model assumptions could be literally true, I am not interested in whether they can be rejected by the data.</p>
-<p>• A “significant” violation of modeling assumptions does not imply a consequential violation. In particular, if sample size is large, trivial violations of assumption</p>
+<p>These tests use null hypotheses of “population variance is the same in all groups”, or “the residuals were drawn from a normal distribution”. As I don’t think these model assumptions could be literally true, I am not interested in whether they can be rejected by the data.</p>
+<p>A “significant” violation of modeling assumptions does not imply a consequential violation. In particular, if sample size is large, trivial violations of assumption</p>
 </section>
 <section id="doing-all-of-this-as-regression" class="level3" data-number="4.3.5">
 <h3 data-number="4.3.5" class="anchored" data-anchor-id="doing-all-of-this-as-regression"><span class="header-section-number">4.3.5</span> Doing all of this as regression</h3>
-<p>• The beginning of these slides claimed that ANOVA is just regression with categorical predictors. Let’s see what our results look like if we use jamovi’s “linear regression” function rather than “ANOVA”.</p>
+<p>The beginning of these slides claimed that ANOVA is just regression with categorical predictors. Let’s see what our results look like if we use jamovi’s “linear regression” function rather than “ANOVA”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_11.png" class="img-fluid figure-img" width="242"></p>
 </figure>
 </div>
-<p>• The predictor variables are entered as “factors” here, rather than as “covariates”, to ensure they are treated as categorical rather than as quantitative variables.</p>
+<p>The predictor variables are entered as “factors” here, rather than as “covariates”, to ensure they are treated as categorical rather than as quantitative variables.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_12.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
-<p>• Finally, the interaction must be specified under “model builder”; jamovi does not create regression interactions by default.</p>
-<p>• There are five recall condition groups, giving four indicator variables, all compared against the baseline group “counting”, whose mean is represented by the intercept.</p>
-<p>• There are two “age” groups; “young” is the baseline group.</p>
+<p>Finally, the interaction must be specified under “model builder”; jamovi does not create regression interactions by default.</p>
+<p>There are five recall condition groups, giving four indicator variables, all compared against the baseline group “counting”, whose mean is represented by the intercept.</p>
+<p>There are two “age” groups; “young” is the baseline group.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/Mod5_13.png" class="img-fluid figure-img" width="510"></p>
 </figure>
 </div>
-<p>• So the intercept of <span class="math inline">\(6.500\)</span> is the mean words recalled for a young person in the “counting” condition.</p>
-<p>• The first indicator under RecallCondition is “Rhyming – Counting”. Its slope of <span class="math inline">\(1.1\)</span> is the difference in mean recall for these two groups, when Age = Young</p>
-<p>• The interaction slope for “Rhyming – Counting” is <span class="math inline">\(-1.2\)</span>.</p>
-<p>• So, for Age = Old, the difference in mean recall is <span class="math inline">\(1.1 +(-1.2) = −0.1\)</span></p>
-<p>• The interaction terms are all indicators, that “turn on” when Age = Old, and “turn off” when Age = Young.</p>
-<p>• Notice that the slope for Age (“Old – Young”) is 0.5, suggesting greater recall for older participants.</p>
-<p>• However, the interaction slopes are all larger negative values.</p>
-<p>• So, when RecallCondition = Counting, the mean items recalled for Age = Old is larger than for Age = Young. But for all other recall conditions, the interaction slopes turn this negative, and mean items recalled is larger for younger participants.</p>
+<p>So the intercept of <span class="math inline">\(6.500\)</span> is the mean words recalled for a young person in the “counting” condition.</p>
+<p>The first indicator under RecallCondition is “Rhyming – Counting”. Its slope of <span class="math inline">\(1.1\)</span> is the difference in mean recall for these two groups, when Age = Young</p>
+<p>The interaction slope for “Rhyming – Counting” is <span class="math inline">\(-1.2\)</span>.</p>
+<p>So, for Age = Old, the difference in mean recall is <span class="math inline">\(1.1 +(-1.2) = −0.1\)</span></p>
+<p>The interaction terms are all indicators, that “turn on” when Age = Old, and “turn off” when Age = Young.</p>
+<p>Notice that the slope for Age (“Old – Young”) is 0.5, suggesting greater recall for older participants.</p>
+<p>However, the interaction slopes are all larger negative values.</p>
+<p>So, when RecallCondition = Counting, the mean items recalled for Age = Old is larger than for Age = Young. But for all other recall conditions, the interaction slopes turn this negative, and mean items recalled is larger for younger participants.</p>
 <section id="main-regression-results" class="level4" data-number="4.3.5.1">
 <h4 data-number="4.3.5.1" class="anchored" data-anchor-id="main-regression-results"><span class="header-section-number">4.3.5.1</span> Main regression results</h4>
-<p>• “Estimated Marginal Means” under regression will produce a similar plot to the one made under ANOVA, just without the connecting lines and raw data:</p>
+<p>“Estimated Marginal Means” under regression will produce a similar plot to the one made under ANOVA, just without the connecting lines and raw data:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_15.png" class="img-fluid figure-img" width="395"></p>
 </figure>
 </div>
-<p>• If you look carefully, you should be able to see how the regression results correspond to this plot. For instance, we see that the only condition where Old &gt; Young is Counting.</p>
+<p>If you look carefully, you should be able to see how the regression results correspond to this plot. For instance, we see that the only condition where Old &gt; Young is Counting.</p>
 <p><img src="images/Mod5_16.png" class="img-fluid"></p>
 </section>
 <section id="residual-plot" class="level4" data-number="4.3.5.2">
 <h4 data-number="4.3.5.2" class="anchored" data-anchor-id="residual-plot"><span class="header-section-number">4.3.5.2</span> Residual plot</h4>
-<p>• We can get a plot of residuals vs.&nbsp;fitted values.</p>
+<p>We can get a plot of residuals vs.&nbsp;fitted values.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_17.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• Notice that the residuals are all vertically stacked? This is to be expected when predictor variables are categorical.</p>
-<p>• In this case, there are 5x2 = 10 possible combinations of groups that participants could be assigned to. And so there are only 10 possible “fitted” (i.e.&nbsp;predicted) values that the model can produce.</p>
+<p>Notice that the residuals are all vertically stacked? This is to be expected when predictor variables are categorical.</p>
+<p>In this case, there are 5x2 = 10 possible combinations of groups that participants could be assigned to. And so there are only 10 possible “fitted” (i.e.&nbsp;predicted) values that the model can produce.</p>
 </section>
 </section>
 </section>
 <section id="ancova" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="ancova"><span class="header-section-number">4.4</span> ANCOVA</h2>
-<p>• ANCOVA (analysis of covariance) is ANOVA with an additional continuous predictor variable.</p>
-<p>• Typically, this additional continuous predictor is not of primary interest; the primary interest is still comparing group means.</p>
-<p>• The continuous predictor is often thought of as a “covariate” – a variable that should be accounted for when drawing inference on the other variables.</p>
-<p>• A common use of ANCOVA is for modeling an outcome when “baseline” or “pre-study” or “pre-test” scores are available.</p>
-<p>• For instance, consider testing different educational models on different sections of a class. Some get traditional lecture, some are completely “flipped”, and some are a combination of the two.</p>
-<p>• In this study, a preliminary quiz is given on the first day of class. Score on the preliminary quiz will be the covariate. Score on an end of semester quiz (“post”) will be the response variable.</p>
+<p>ANCOVA (analysis of covariance) is ANOVA with an additional continuous predictor variable.</p>
+<p>Typically, this additional continuous predictor is not of primary interest; the primary interest is still comparing group means.</p>
+<p>The continuous predictor is often thought of as a “covariate” – a variable that should be accounted for when drawing inference on the other variables.</p>
+<p>A common use of ANCOVA is for modeling an outcome when “baseline” or “pre-study” or “pre-test” scores are available.</p>
+<p>For instance, consider testing different educational models on different sections of a class. Some get traditional lecture, some are completely “flipped”, and some are a combination of the two.</p>
+<p>In this study, a preliminary quiz is given on the first day of class. Score on the preliminary quiz will be the covariate. Score on an end of semester quiz (“post”) will be the response variable.</p>
 <p><span class="math display">\[
 Post_{ij} = \mu + type_j + \beta(pre_{ij} - \overline{pre}) + \epsilon_{ij}
 \]</span></p>
-<p>• Here, <span class="math inline">\(j\)</span> goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(3\)</span>, for the three teaching types being compared.</p>
-<p>• The pre-test predictor is centered (note that <span class="math inline">\(\overline{pre}\)</span> is mean for pretests).</p>
-<p>• Imagine we believe that the mean differences between teaching types will be larger for students with lower pretest scores. To account for this possibility, let type and (centered) pretest interact:</p>
+<p>Here, <span class="math inline">\(j\)</span> goes from <span class="math inline">\(1\)</span> to <span class="math inline">\(3\)</span>, for the three teaching types being compared.</p>
+<p>The pre-test predictor is centered (note that <span class="math inline">\(\overline{pre}\)</span> is mean for pretests).</p>
+<p>Imagine we believe that the mean differences between teaching types will be larger for students with lower pretest scores. To account for this possibility, let type and (centered) pretest interact:</p>
 <p><span class="math display">\[
 Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)(pre_j - \overline{pre}) + \epsilon_{ij}
 \]</span></p>
 <section id="looking-at-the-data" class="level4" data-number="4.4.0.1">
 <h4 data-number="4.4.0.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">4.4.0.1</span> Looking at the data</h4>
-<p>• The data file is called “test_pretest”. Here is the formatting:</p>
+<p>The data file is called “test_pretest”. Here is the formatting:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_18.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• This plot was made using Analyses / Exploration / Scatterplot. Density curves are there, just for fun:</p>
+<p>This plot was made using Analyses / Exploration / Scatterplot. Density curves are there, just for fun:</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/Mod5_19.png" class="img-fluid figure-img" width="428"></p>
@@ -469,7 +479,7 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 <p><img src="images/Mod5_20.png" class="img-fluid figure-img" width="478"></p>
 </figure>
 </div>
-<p>• The three lines look pretty close to parallel, so there either isn’t an obvious interaction here, or it’s small.</p>
+<p>The three lines look pretty close to parallel, so there either isn’t an obvious interaction here, or it’s small.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_21.png" class="img-fluid figure-img" width="333"></p>
@@ -478,40 +488,40 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 </section>
 <section id="analysis-using-ancova" class="level4" data-number="4.4.0.2">
 <h4 data-number="4.4.0.2" class="anchored" data-anchor-id="analysis-using-ancova"><span class="header-section-number">4.4.0.2</span> Analysis using ANCOVA</h4>
-<p>• Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.</p>
+<p>Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_22.png" class="img-fluid figure-img" width="626"></p>
 </figure>
 </div>
-<p>• Type is still significant; it’s <span class="math inline">\(\eta^2p\)</span> value is much larger than its <span class="math inline">\(\eta^2\)</span> value.</p>
-<p>• Careful interpreting the “Estimated marginal means” plot – it takes into account only “post” scores!</p>
+<p>Type is still significant; it’s <span class="math inline">\(\eta^2p\)</span> value is much larger than its <span class="math inline">\(\eta^2\)</span> value.</p>
+<p>Careful interpreting the “Estimated marginal means” plot – it takes into account only “post” scores!</p>
 </section>
 <section id="analysis-using-regression-w-indicators" class="level4" data-number="4.4.0.3">
 <h4 data-number="4.4.0.3" class="anchored" data-anchor-id="analysis-using-regression-w-indicators"><span class="header-section-number">4.4.0.3</span> Analysis using regression w/ indicators</h4>
-<p>• For the regression analysis, we’ll use two indicator variables. We don’t have to do it this way; if we just include “type”, jamovi will create the indicators for us, using the first class type listed in the data.</p>
+<p>For the regression analysis, we’ll use two indicator variables. We don’t have to do it this way; if we just include “type”, jamovi will create the indicators for us, using the first class type listed in the data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_23.png" class="img-fluid figure-img" width="389"></p>
 </figure>
 </div>
-<p>• Notice that the interaction estimates are small relative to their standard errors (thus producing large p- values).</p>
+<p>Notice that the interaction estimates are small relative to their standard errors (thus producing large p- values).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_24.png" class="img-fluid figure-img" width="509"></p>
 </figure>
 </div>
-<p>• According to this regression model, there is not a “significant” interaction.</p>
+<p>According to this regression model, there is not a “significant” interaction.</p>
 </section>
 <section id="analysis-using-regression-wfactor" class="level4" data-number="4.4.0.4">
 <h4 data-number="4.4.0.4" class="anchored" data-anchor-id="analysis-using-regression-wfactor"><span class="header-section-number">4.4.0.4</span> Analysis using regression w/factor</h4>
-<p>• Here’s what happens if we put in “type” as a factor variable rather than making our own indicators. The results are the same.</p>
+<p>Here’s what happens if we put in “type” as a factor variable rather than making our own indicators. The results are the same.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_25.png" class="img-fluid figure-img" width="510"></p>
 </figure>
 </div>
-<p>• The QQ plot and residual plot both look great</p>
+<p>The QQ plot and residual plot both look great</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_26.png" class="img-fluid figure-img"></p>
@@ -520,13 +530,13 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 </section>
 <section id="analyzing-paired-data-ancova-vs-anova" class="level3" data-number="4.4.1">
 <h3 data-number="4.4.1" class="anchored" data-anchor-id="analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.1</span> Analyzing paired data: ANCOVA vs ANOVA</h3>
-<p>• Another approach we could take would be to compute the differences in the two scores for each person, then do a regular ANOVA or regression analysis on those.</p>
+<p>Another approach we could take would be to compute the differences in the two scores for each person, then do a regular ANOVA or regression analysis on those.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_27.png" class="img-fluid figure-img" width="397"></p>
 </figure>
 </div>
-<p>• We see that there are significant differences in mean test score change between teaching types ($F=8.94, p&lt;0.001$)</p>
+<p>We see that there are significant differences in mean test score change between teaching types ($F=8.94, p&lt;0.001$)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_28.png" class="img-fluid figure-img" width="438"></p>
@@ -539,16 +549,16 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 </div>
 <section id="analyze-differences-regression-approach" class="level4" data-number="4.4.1.1">
 <h4 data-number="4.4.1.1" class="anchored" data-anchor-id="analyze-differences-regression-approach"><span class="header-section-number">4.4.1.1</span> Analyze differences, regression approach</h4>
-<p>• This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post – pre) when comparing “combo” to “flipped” or “traditional”. And <span class="math inline">\(R^2 = \eta^2\)</span>!</p>
+<p>This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post – pre) when comparing “combo” to “flipped” or “traditional”. And <span class="math inline">\(R^2 = \eta^2\)</span>!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod5_30.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• It turns out here that taking the post – pre differences first and then comparing mean differences across teaching types produces similar results to predicting post-test scores using pre-test and teaching type as predictors.</p>
-<p>• But, these methods are not answering the exact same question. Using pre-test as a covariate, we answer the question “what difference do I expect in post-test scores when comparing two students with the same pre- test score but different teaching types”?</p>
-<p>• When differencing first and then doing the analysis, we answer the question “what differences in the mean post-pre score change do I expect when comparing class types”?</p>
-<p>• These question sound similar, but they aren’t the same! Whether to use ANCOVA or do the differencing first is a matter of subjective judgement, and the experts don’t all agree (see “Lord’s Paradox” for more fun on this).</p>
+<p>It turns out here that taking the post – pre differences first and then comparing mean differences across teaching types produces similar results to predicting post-test scores using pre-test and teaching type as predictors.</p>
+<p>But, these methods are not answering the exact same question. Using pre-test as a covariate, we answer the question “what difference do I expect in post-test scores when comparing two students with the same pre- test score but different teaching types”?</p>
+<p>When differencing first and then doing the analysis, we answer the question “what differences in the mean post-pre score change do I expect when comparing class types”?</p>
+<p>These question sound similar, but they aren’t the same! Whether to use ANCOVA or do the differencing first is a matter of subjective judgement, and the experts don’t all agree (see “Lord’s Paradox” for more fun on this).</p>
 
 
 </section>

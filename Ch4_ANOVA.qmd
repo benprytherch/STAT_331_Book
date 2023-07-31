@@ -1,5 +1,12 @@
 # Chapter 4: ANOVA-based methods
 
+## Outline of notes {.unnumbered}
+
+1.  What is ANOVA?
+2.  One-way ANOVA
+3.  Factorial ANOVA
+4.  ANCOVA
+
 ## What is ANOVA?
 
 ANOVA stands for "analysis of variance"

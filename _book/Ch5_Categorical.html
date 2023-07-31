@@ -62,6 +62,8 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -181,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#relative-risk" id="toc-relative-risk" class="nav-link" data-scroll-target="#relative-risk"><span class="header-section-number">5.2</span> Relative risk</a>
   <ul class="collapse">
-  <li><a href="#relative-risk-in-jamovi" id="toc-relative-risk-in-jamovi" class="nav-link" data-scroll-target="#relative-risk-in-jamovi"><span class="header-section-number">5.2.1</span> Relative Risk in jamovi</a></li>
+  <li><a href="#relative-risk-in-jamovi" id="toc-relative-risk-in-jamovi" class="nav-link" data-scroll-target="#relative-risk-in-jamovi"><span class="header-section-number">5.2.1</span> Relative risk in jamovi</a></li>
   </ul></li>
   <li><a href="#the-chi-square-test" id="toc-the-chi-square-test" class="nav-link" data-scroll-target="#the-chi-square-test"><span class="header-section-number">5.3</span> The chi-square test</a></li>
   </ul>
@@ -209,123 +211,243 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="confidence-intervals-and-hypothesis-tests-for-proportions" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="confidence-intervals-and-hypothesis-tests-for-proportions"><span class="header-section-number">5.1</span> Confidence intervals and hypothesis tests for proportions</h2>
-<p>• At the beginning of the class we reviewed confidence intervals and hypothesis tests for means. These methods can also be used for proportions</p>
-<p>• A proportion is just a special kind of mean, where the data are all ones and zeros.</p>
-<p>• Example: 8 out of 10 people say “yes” to the question “Is politics too polarized?” Let yes = 1 and no = 0. Average is:</p>
-<p>𝑥ҧ</p>
-<p>1 + 1 + 1 + 1 + 1 + 1 + 1 + 1 + 0 + 0 8 = =</p>
-<p>= 0.8</p>
-<p>• We make confidence intervals and perform hypothesis tests for proportions using the exact same methods used for means. Only differences are:</p>
-<p>• Sampling distribution of proportions follow z, rather than t (the difference is usually trivial)</p>
-<p>• We denote the population proportion 𝜋 and the sample proportion</p>
-<p>𝜋ො</p>
-<p>• Standard error of a sample proportion is 𝑠𝜋ෝ =</p>
-<p>• Here are results from a recent political poll:</p>
-<p>• Say we want to make a confidence interval for the proportion of registered voters who say that “things in the country are going in the right direction”. Denote this population proportion 𝜋.</p>
-<p>• 95% CI for 𝜋:</p>
-<p>𝜋ො</p>
-<p>± 𝑧𝑐𝑟𝑖𝑡𝑖𝑐𝑎𝑙</p>
-<p>∗ 𝑠𝜋ෝ</p>
-<p>= 0.39 ± 1.96 ∗</p>
-<p>= 0.39 ± 0.022 = (0.368, 0.412)</p>
-<p>• In jamovi, enter a column of frequencies for each value of the response variable, then use Frequencies / N – Outcomes or Frequencies / 2 Outcomes:</p>
+<p>At the beginning of the class we reviewed confidence intervals and hypothesis tests for means. These methods can also be used for proportions</p>
+<p>A proportion is just a special kind of mean, where the data are all ones and zeros.</p>
+<p>Example: 8 out of 10 people say “yes” to the question “Is politics too polarized?” Let yes = 1 and no = 0. Average is:</p>
+<p><span class="math display">\[
+\bar{x} = \frac{1 + 1+ 1 + 1+ 1+1+1+1+0+0}{10} = \frac{8}{10} =0.8
+\]</span></p>
+<ul>
+<li><p>We make confidence intervals and perform hypothesis tests for proportions using the exact same methods used for means. Only differences are:</p>
+<ul>
+<li><p>Sampling distribution of proportions follow z, rather than t (the difference is usually trivial)</p></li>
+<li><p>We denote the population proportion <span class="math inline">\(\pi\)</span> and the sample proportion <span class="math inline">\(\hat{\pi}\)</span></p></li>
+<li><p>Standard error of a sample proportion is <span class="math inline">\(s_{\hat{\pi}} = \sqrt{\frac{\hat{\pi}(1-\hat{\pi})}{\pi}}\)</span></p></li>
+</ul></li>
+</ul>
+<section id="political-polling-example" class="level4" data-number="5.1.0.1">
+<h4 data-number="5.1.0.1" class="anchored" data-anchor-id="political-polling-example"><span class="header-section-number">5.1.0.1</span> Political polling example</h4>
+<p>Here are results from a recent political poll:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Say we want to make a confidence interval for the proportion of registered voters who say that “things in the country are going in the right direction”. Denote this population proportion <span class="math inline">\(\pi\)</span>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p><span class="math display">\[
+95\% \text{ CI for }\pi:
+\hat{\pi} \pm z_{critical} *s_{\hat{\pi}} \\
+= 0.39 ± 1.96 ∗ \sqrt{\frac{0.39*0.61}{1978}}\\
+= 0.39 ± 0.022 \\
+= (0.368, 0.412)
+\]</span></p>
+<p>In jamovi, enter a column of frequencies for each value of the response variable, then use Frequencies / N – Outcomes or Frequencies / 2 Outcomes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_4.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</section>
 <section id="toy-example-skin-cream-and-rashes" class="level3" data-number="5.1.1">
 <h3 data-number="5.1.1" class="anchored" data-anchor-id="toy-example-skin-cream-and-rashes"><span class="header-section-number">5.1.1</span> Toy example: skin cream and rashes</h3>
-<p>• Here is an example from the 2013 paper “Motivated Reasoning and Enlightened Self Government”, by Kahan et. al.:</p>
-<p>• Putting the data into jamovi:</p>
-<p>• Analyzing the data using Frequencies / Independent Samples: • Rash is the response variable • Skin cream is the predictor variable • Frequency tells how often each combination occurred. (note: if you had raw data where each row was a single response, you would not use Freq)</p>
-<p>• Results! There’s a lot in here…</p>
-<p>• Split bar plot: displays each cell in the contingency table as a bar:</p>
-<p>• Here we can easily see that the largest number of people were those who got the skin cream and whose rash got better.</p>
-<p>• But, we can also see that rashes got better at a higher rate for those who did not get the skin cream.</p>
-<p>• We’ll cover the chi-square results soon. Right now, let’s have jamovi directly compare proportions, using Frequencies / Independent Samples:</p>
-<p>• Here, jamovi quantifies what we saw in the split bar plot: that the proportion of those who got better without the skin cream is greater than the proportion of those who got better with the skin cream:</p>
-<p>− 𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑁𝑜 = −0.0876</p>
-<p>• We also see a 95% CI for this difference, which is fairly wide and just barely excludes zero</p>
-<p>• And we see the p-value testing against:</p>
-<p>𝐻0: 𝜋</p>
-<p>− 𝜋 = 0</p>
-<p>• The two-sided p-value is 0.047, so this result is just barely significant. Woohoo!</p>
+<p>Here is an example from the 2013 paper “Motivated Reasoning and Enlightened Self Government”, by Kahan et. al.:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_5.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_6.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Putting the data into jamovi:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_7.png" class="img-fluid figure-img" width="400"></p>
+</figure>
+</div>
+<p>Analyzing the data using Frequencies / Independent Samples:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_8.png" class="img-fluid figure-img" width="440"></p>
+</figure>
+</div>
+<p>Rash is the response variable</p>
+<p>Skin cream is the predictor variable</p>
+<p>Frequency tells how often each combination occurred. (note: if you had raw data where each row was a single response, you would not use Freq)</p>
+<p>Results! There’s a lot in here…</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_9.png" class="img-fluid figure-img" width="505"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_10.png" class="img-fluid figure-img" width="499"></p>
+</figure>
+</div>
+<p>Split bar plot: displays each cell in the contingency table as a bar:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_11.png" class="img-fluid figure-img" width="383"></p>
+</figure>
+</div>
+<p>Here we can easily see that the largest number of people were those who got the skin cream and whose rash got better.</p>
+<p>But, we can also see that rashes got better at a higher rate for those who did not get the skin cream.</p>
+<p>We’ll cover the chi-square results soon. Right now, let’s have jamovi directly compare proportions, using Frequencies / Independent Samples:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_12.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>Here, jamovi quantifies what we saw in the split bar plot: that the proportion of those who got better without the skin cream is greater than the proportion of those who got better with the skin cream:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_13.png" class="img-fluid figure-img" width="426"></p>
+</figure>
+</div>
+<p><span class="math display">\[
+\text{"Probability of Better, given Yes" - "Probability of Better, given No" } =-0.0876 \\
+P(Better|Yes) - P(Better|No) = -0.0876
+\]</span></p>
+<p>We also see a 95% CI for this difference, which is fairly wide and just barely excludes zero</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_14.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>And we see the p-value testing against:</p>
+<p><span class="math display">\[
+H_0:\pi_{(Better|Yes)} - \pi_{(Better|No)} = 0
+\]</span></p>
+<p>The two-sided p-value is 0.047, so this result is just barely significant. Woohoo!</p>
 </section>
 </section>
 <section id="relative-risk" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="relative-risk"><span class="header-section-number">5.2</span> Relative risk</h2>
-<p>• Instead of knowing the difference in proportions / probabilities, we may want to know their ratio. This would tell us how many times larger one is than the other.</p>
-<p>• This is quantified by the “relative risk”, a.k.a. “risk ratio” :</p>
-<p>𝑅𝑅 =</p>
-<p>𝑃𝑟𝑜𝑝𝑜𝑟𝑡𝑖𝑜𝑛 𝐴</p>
-<p>𝑃𝑟𝑜𝑝𝑜𝑟𝑡𝑖𝑜𝑛 𝐵</p>
-<p>• The phrase “risk” is used because this method is popular for comparing the risk of a negative outcome under two conditions (e.g.&nbsp;treatment and</p>
+<p>Instead of knowing the difference in proportions / probabilities, we may want to know their ratio. This would tell us how many times larger one is than the other.</p>
+<p>This is quantified by the “relative risk”, a.k.a. “risk ratio” :</p>
+<p><span class="math display">\[
+RR = \frac{\text{Proportion A}}{\text{Proportion B}}
+\]</span></p>
+<p>The phrase “risk” is used because this method is popular for comparing the risk of a negative outcome under two conditions (e.g.&nbsp;treatment and control, or drug A and drug B)</p>
 <section id="relative-risk-in-jamovi" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="relative-risk-in-jamovi"><span class="header-section-number">5.2.1</span> Relative Risk in jamovi</h3>
-<p>• “Relative Risk” is an option under Comparative Measures. jamovi will give conditional probabilities based on the order of the data. Here, rash getting worse is Better is selected:</p>
-<p>𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑌𝑒𝑠 /𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑁𝑜</p>
-<p>𝑃 𝑌𝑒𝑠 𝐵𝑒𝑡𝑡𝑒𝑟 /𝑃 𝑌𝑒𝑠 𝑊𝑜𝑟𝑠𝑒</p>
-<p>20</p>
-<p>𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑌𝑒𝑠 /𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑁𝑜 • We see here that 𝑅𝑅 = 0.895.</p>
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="relative-risk-in-jamovi"><span class="header-section-number">5.2.1</span> Relative risk in jamovi</h3>
+<p>“Relative Risk” is an option under Comparative Measures. jamovi will give conditional probabilities based on the order of the data. Here, rash getting worse is Better is selected:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_15.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<section id="relative-risk-in-jmp" class="level4" data-number="5.2.1.1">
+<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="relative-risk-in-jmp"><span class="header-section-number">5.2.1.1</span> Relative risk in JMP</h4>
+<p>We see here that 𝑅𝑅 = 0.895.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_13-01.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
 <p>Notice the 95% CI is not very wide.</p>
-<p>• We could also flip this ratio:</p>
-<p>𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑁𝑜 /𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑌𝑒𝑠 • Now everything is reciprocated, e.g.&nbsp;1</p>
-<p>0.809</p>
-<p>= 1.236</p>
-<p>𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑌𝑒𝑠 /𝑃 𝐵𝑒𝑡𝑡𝑒𝑟 𝑁𝑜</p>
-<p>• Notice that, for “Better”, RR is small but (just barely) statistically significant, because the CI does not contain 1. • For “Worse”, RR is large but (just barely) not statistically significant, because the CI contains 1.</p>
-<p>• There is another very popular kind of ratio called an “odds ratio”, which we will consider more when we cover logistic regression.</p>
+<p>We could also flip this ratio:</p>
+<p><span class="math display">\[
+\frac{P(Better|No)}{P(Better|Yes)}
+\]</span></p>
+<p>Now everything is reciprocated, e.g.</p>
+<p><span class="math display">\[
+\frac{1}{0.809}=1.236
+\]</span></p>
+<p>Notice that, for “Better”, RR is small but (just barely) statistically significant, because the CI does not contain 1.</p>
+<p>For “Worse”, RR is large but (just barely) not statistically significant, because the CI contains 1.</p>
+<p>There is another very popular kind of ratio called an “odds ratio”, which we will consider more when we cover logistic regression.</p>
+</section>
 </section>
 </section>
 <section id="the-chi-square-test" class="level2" data-number="5.3">
 <h2 data-number="5.3" class="anchored" data-anchor-id="the-chi-square-test"><span class="header-section-number">5.3</span> The chi-square test</h2>
-<p>• The chi-square (𝜒2) test is a popular hypothesis test for comparing observed frequencies to expected frequencies under a null hypothesis.</p>
-<p>• The null is typically that of “independence” between two categorical variables, meaning the probability an observation falls into a category for one variable does not depend on its category for the other variable</p>
-<p>(As a side note, 𝜒2 is a distribution that is used for many purposes, including modeling distributions of variances. A statistic that is distributed chi-square is not necessarily being used in the context of the chi-square test outlined here)</p>
-<p>• Staying with the skin cream example, here is the contingency table as jamovi initially reports it: • There is a lot being shown here. Top rows are observed frequencies, what jamovi calls “observed”.</p>
-<p>• The two middle rows are column % and row %.</p>
-<p>• Notice that the column %’s sum to 100% down the columns, and the row</p>
-<p>• We can have jamovi display the components of a chi-square test.</p>
-<p>• The first of these are the expected counts under the null hypothesis of independence.</p>
-<p>• To see how these “expected” counts would suggest independence, consider the relative risk:</p>
-<p>𝑅𝑅 =</p>
-<p>𝑃(𝑊𝑜𝑟𝑠𝑒|𝑁𝑜)</p>
-<p>𝑃(𝑊𝑜𝑟𝑠𝑒|𝑌𝑒𝑠)</p>
-<p>28.8451 28.8451+99.1549</p>
-<p>28.8451 = 128</p>
-<p>0.2254 = = 1 0.2254</p>
-<p>• The chi-square statistic compares the expected frequencies under the null (which we denote E) to the observed frequencies in the data (which we denote O).</p>
-<p>𝜒2 = ෍</p>
-<p>2</p>
-<p>𝐸</p>
-<p>• This is a general formula that can be used when you have one variable, two variable, three variables, etc.</p>
-<p>• Most popular use is for two variables, as in this skin cream example.</p>
-<p>• Just to verify the math, here’s the chi-square calculation for the upper left cell of the table:</p>
-<p>𝑂 − 𝐸 2 ෍ = 𝐸</p>
-<p>107 − 99.2 2 + 99.2</p>
-<p>223 − 230.8 2 + 230.8</p>
-<p>75 − 67.2 2 + 67.2</p>
-<p>21 − 28.8 2</p>
-<p>28.8</p>
-<p>= 3.94</p>
-<p>• And here is the jamovi output showing the full chi-square test:</p>
+<p>The chi-square ( <span class="math inline">\(\chi^2\)</span>) test is a popular hypothesis test for comparing observed frequencies to expected frequencies under a null hypothesis.</p>
+<p>The null is typically that of “independence” between two categorical variables, meaning the probability an observation falls into a category for one variable does not depend on its category for the other variable</p>
+<p><em>(As a side note,</em> <span class="math inline">\(\chi^2\)</span> <em>is a distribution that is used for many purposes, including modeling distributions of variances. A statistic that is distributed chi-square is not necessarily being used in the context of the chi-square test outlined here)</em></p>
+<p>Staying with the skin cream example, here is the contingency table as jamovi initially reports it:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_16.png" class="img-fluid figure-img" width="511"></p>
+</figure>
+</div>
+<p>There is a lot being shown here. Top rows are observed frequencies, what jamovi calls “observed”.</p>
+<p>The two middle rows are column % and row %.</p>
+<p>Notice that the column %’s sum to 100% down the columns, and the row %’s sum to 100% across the rows.</p>
+<p>We can have jamovi display the components of a chi-square test.</p>
+<p>The first of these are the expected counts under the null hypothesis of independence.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_17.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+<p>To see how these “expected” counts would suggest independence, consider the relative risk:</p>
+<p><span class="math display">\[
+RR = \frac{P(Worse|No)}{P(Worse|Yes)} \\
+= \frac{(\frac{28.8451}{28.8451 + 99.1549})}{(\frac{67.1549}{67.1549 + 230.845})} \\
+= \frac{(\frac{28.8451}{128})}{(\frac{67.1549}{298})} \\
+= \frac{0.2254}{0.2254} \\
+=1
+\]</span></p>
+<section id="chi-square-statistic" class="level4" data-number="5.3.0.1">
+<h4 data-number="5.3.0.1" class="anchored" data-anchor-id="chi-square-statistic"><span class="header-section-number">5.3.0.1</span> Chi-square statistic</h4>
+<p>The chi-square statistic compares the expected frequencies under the null (which we denote E) to the observed frequencies in the data (which we denote O).</p>
+<p><span class="math display">\[
+\chi^2 = \sum\frac{(O-E)^2}{E}
+\]</span></p>
+<p>This is a general formula that can be used when you have one variable, two variable, three variables, etc.</p>
+<p>Most popular use is for two variables, as in this skin cream example.</p>
+<p>Just to verify the math, here’s the chi-square calculation for the upper left cell of the table:</p>
+<p><span class="math display">\[
+\sum\frac{(O-E)^2}{E} = \frac{(107-99.2)^2}{230.8} + \frac{(223-230.8)^2}{230.8} + \frac{(75-67.2)^2}{67.2} + \frac{(21-28.8)^2}{28.8} =3.94
+\]</span></p>
+<p>And here is the jamovi output showing the full chi-square test:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_18.png" class="img-fluid figure-img" width="373"></p>
+</figure>
+</div>
 <p>(“Pearson” chi-square is the classic chi-square test)</p>
-<p>• Verifying that this chi-square statistic is indeed the sum of the chi-square values for each of the four cells:</p>
-<p>2 𝜒2 = ෍ 𝐸</p>
-<p>= 0.6207 + 2.1336 + 0.2666 + 0.9165 = 3.937</p>
-<p>• The p-value is found using the appropriate degrees of freedom for the chi-square distribution. We won’t cover this part.</p>
-<p>• In this case, we see that the chi-square test just barely meets the standard for statistical significance (𝑝 = 0.0472).</p>
-<p>• This is in line with the other methods we used to analyze these data.</p>
-<p>• Recall that the test for a difference in proportions was barely significant, and the risk ratios were just on either side of significance, depending on whether “rash got worse” or “rash got better” was used as the outcome variable.</p>
-<p>• The chi-square test can be used when we have frequencies for a single variable. All we have to do is specify expected counts or probabilities.</p>
-<p>• Going back to the polling data, we can select Frequencies / N - Outcomes, and then make Answer “Variable” and Frequency “Counts”.</p>
-<p>• Suppose the null hypothesis is that equal numbers of voters feel the country is on the right vs.&nbsp;wrong track. Enter 0.5 for hypothesized probability:</p>
-<p>• Here we get a very large chi-square statistic and a very small p-value.</p>
-<p>• No surprise; the frequencies were very different!</p>
+<p>Verifying that this chi-square statistic is indeed the sum of the chi-square values for each of the four cells:</p>
+<p><span class="math display">\[
+\sum\frac{(O-E)^2}{E} = 0.6207 + 2.1336 + 0.2666 + 0.9165 = 3.937
+\]</span></p>
+<p>The p-value is found using the appropriate degrees of freedom for the chi-square distribution. We won’t cover this part.</p>
+<p>In this case, we see that the chi-square test just barely meets the standard for statistical significance (<span class="math inline">\(p = 0.0472\)</span>).</p>
+<p>This is in line with the other methods we used to analyze these data.</p>
+<p>Recall that the test for a difference in proportions was barely significant, and the risk ratios were just on either side of significance, depending on whether “rash got worse” or “rash got better” was used as the outcome variable.</p>
+<p>The chi-square test can be used when we have frequencies for a single variable. All we have to do is specify expected counts or probabilities.</p>
+<p>Going back to the polling data, we can select Frequencies / N - Outcomes, and then make Answer “Variable” and Frequency “Counts”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_19-01.png" class="img-fluid figure-img" width="478"></p>
+</figure>
+</div>
+<p>Suppose the null hypothesis is that equal numbers of voters feel the country is on the right vs.&nbsp;wrong track. Enter 0.5 for hypothesized probability:</p>
+<p>Here we get a very large chi-square statistic and a very small p-value.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Mod6_20.png" class="img-fluid figure-img" width="385"></p>
+</figure>
+</div>
+<p>No surprise; the frequencies were very different!</p>
 <p>My opinion on these</p>
-<p>• I personally dislike statistical tests, and I really dislike tests that don’t incorporate an interpretable statistic.</p>
-<p>• So, I am not a big fan of this chi-square test. To compare rates for categorical variables, I prefer a 95% CI around either a relative risk or a difference in proportions, whichever seems more meaning for the question at hand.</p>
-<p>• Note that a “chi-square test” is quite general; it refers to any test whose test statistic follows a chi-square distribution. So you may see “chi-square tests” that are not being used to test against a null of independence for categorical variables.</p>
-<p>• The methods we’ve covered in these notes are useful for analyzing fairly simple categorical data.</p>
-<p>• In the next set of notes, we will look at logistic regression, which is a way to use regression modeling to predict the outcome of a categorical variable.</p>
+<p>I personally dislike statistical tests, and I really dislike tests that don’t incorporate an interpretable statistic.</p>
+<p>So, I am not a big fan of this chi-square test. To compare rates for categorical variables, I prefer a 95% CI around either a relative risk or a difference in proportions, whichever seems more meaning for the question at hand.</p>
+<p>Note that a “chi-square test” is quite general; it refers to any test whose test statistic follows a chi-square distribution. So you may see “chi-square tests” that are not being used to test against a null of independence for categorical variables.</p>
+<p>The methods we’ve covered in these notes are useful for analyzing fairly simple categorical data.</p>
+<p>In the next set of notes, we will look at logistic regression, which is a way to use regression modeling to predict the outcome of a categorical variable.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

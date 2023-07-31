@@ -177,30 +177,67 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#part-1-assumptions-and-assumption-violations" id="toc-part-1-assumptions-and-assumption-violations" class="nav-link active" data-scroll-target="#part-1-assumptions-and-assumption-violations"><span class="header-section-number">3.1</span> Part 1: assumptions and assumption violations</a></li>
-  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link" data-scroll-target="#outline-of-notes"><span class="header-section-number">3.2</span> Outline of notes:</a>
+  <li><a href="#part-1-assumptions-and-assumption-violations" id="toc-part-1-assumptions-and-assumption-violations" class="nav-link active" data-scroll-target="#part-1-assumptions-and-assumption-violations">Part 1: assumptions and assumption violations</a></li>
+  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link" data-scroll-target="#outline-of-notes">Outline of notes:</a></li>
+  <li><a href="#violating-model-assumptions" id="toc-violating-model-assumptions" class="nav-link" data-scroll-target="#violating-model-assumptions"><span class="header-section-number">3.1</span> Violating model assumptions</a>
   <ul class="collapse">
-  <li><a href="#violating-model-assumptions" id="toc-violating-model-assumptions" class="nav-link" data-scroll-target="#violating-model-assumptions"><span class="header-section-number">3.2.1</span> Violating model assumptions</a></li>
-  <li><a href="#the-regression-model-and-what-it-assumes" id="toc-the-regression-model-and-what-it-assumes" class="nav-link" data-scroll-target="#the-regression-model-and-what-it-assumes"><span class="header-section-number">3.2.2</span> The regression model and what it assumes</a></li>
-  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">3.2.3</span> Linearity</a></li>
-  <li><a href="#diagnosing-non-linearity" id="toc-diagnosing-non-linearity" class="nav-link" data-scroll-target="#diagnosing-non-linearity"><span class="header-section-number">3.2.4</span> Diagnosing non-linearity</a></li>
-  <li><a href="#what-to-look-for-in-a-residual-plot" id="toc-what-to-look-for-in-a-residual-plot" class="nav-link" data-scroll-target="#what-to-look-for-in-a-residual-plot"><span class="header-section-number">3.2.5</span> What to look for in a residual plot</a></li>
-  <li><a href="#normality-of-residuals" id="toc-normality-of-residuals" class="nav-link" data-scroll-target="#normality-of-residuals"><span class="header-section-number">3.2.6</span> Normality of residuals</a></li>
-  <li><a href="#the-homogeneity-of-variance-assumption" id="toc-the-homogeneity-of-variance-assumption" class="nav-link" data-scroll-target="#the-homogeneity-of-variance-assumption"><span class="header-section-number">3.2.7</span> The homogeneity of variance assumption</a></li>
-  <li><a href="#influential-observations-outliers" id="toc-influential-observations-outliers" class="nav-link" data-scroll-target="#influential-observations-outliers"><span class="header-section-number">3.2.8</span> Influential observations (outliers)</a></li>
-  <li><a href="#cooks-distances" id="toc-cooks-distances" class="nav-link" data-scroll-target="#cooks-distances"><span class="header-section-number">3.2.9</span> Cook’s Distances</a></li>
-  <li><a href="#multicollinearity" id="toc-multicollinearity" class="nav-link" data-scroll-target="#multicollinearity"><span class="header-section-number">3.2.10</span> (Multi)collinearity</a></li>
-  <li><a href="#why-dont-we-want-correlated-predictors" id="toc-why-dont-we-want-correlated-predictors" class="nav-link" data-scroll-target="#why-dont-we-want-correlated-predictors"><span class="header-section-number">3.2.11</span> Why don’t we want correlated predictors?</a></li>
-  <li><a href="#collinearity-example-florida-election-data" id="toc-collinearity-example-florida-election-data" class="nav-link" data-scroll-target="#collinearity-example-florida-election-data"><span class="header-section-number">3.2.12</span> Collinearity example: Florida election data</a></li>
+  <li><a href="#the-regression-model-and-what-it-assumes" id="toc-the-regression-model-and-what-it-assumes" class="nav-link" data-scroll-target="#the-regression-model-and-what-it-assumes"><span class="header-section-number">3.1.1</span> The regression model and what it assumes</a></li>
   </ul></li>
-  <li><a href="#part-2-improving-models" id="toc-part-2-improving-models" class="nav-link" data-scroll-target="#part-2-improving-models"><span class="header-section-number">3.3</span> Part 2: Improving models</a>
+  <li><a href="#linearity" id="toc-linearity" class="nav-link" data-scroll-target="#linearity"><span class="header-section-number">3.2</span> Linearity</a>
   <ul class="collapse">
-  <li><a href="#summary-of-part-1" id="toc-summary-of-part-1" class="nav-link" data-scroll-target="#summary-of-part-1"><span class="header-section-number">3.3.1</span> Summary of part 1</a></li>
-  <li><a href="#transforming-variables" id="toc-transforming-variables" class="nav-link" data-scroll-target="#transforming-variables"><span class="header-section-number">3.3.2</span> Transforming variables</a></li>
-  <li><a href="#log-transformation" id="toc-log-transformation" class="nav-link" data-scroll-target="#log-transformation"><span class="header-section-number">3.3.3</span> Log transformation</a></li>
-  <li><a href="#non-linearity" id="toc-non-linearity" class="nav-link" data-scroll-target="#non-linearity"><span class="header-section-number">3.3.4</span> Non-linearity</a></li>
-  <li><a href="#over-fitting" id="toc-over-fitting" class="nav-link" data-scroll-target="#over-fitting"><span class="header-section-number">3.3.5</span> Over-fitting</a></li>
-  <li><a href="#back-to-basics-is-the-model-sensible" id="toc-back-to-basics-is-the-model-sensible" class="nav-link" data-scroll-target="#back-to-basics-is-the-model-sensible"><span class="header-section-number">3.3.6</span> Back to basics: is the model sensible?</a></li>
+  <li><a href="#diagnosing-non-linearity" id="toc-diagnosing-non-linearity" class="nav-link" data-scroll-target="#diagnosing-non-linearity"><span class="header-section-number">3.2.1</span> Diagnosing non-linearity</a></li>
+  <li><a href="#what-to-look-for-in-a-residual-plot" id="toc-what-to-look-for-in-a-residual-plot" class="nav-link" data-scroll-target="#what-to-look-for-in-a-residual-plot"><span class="header-section-number">3.2.2</span> What to look for in a residual plot</a></li>
+  </ul></li>
+  <li><a href="#normality-of-residuals" id="toc-normality-of-residuals" class="nav-link" data-scroll-target="#normality-of-residuals"><span class="header-section-number">3.3</span> Normality of residuals</a>
+  <ul class="collapse">
+  <li><a href="#the-qq-plot" id="toc-the-qq-plot" class="nav-link" data-scroll-target="#the-qq-plot"><span class="header-section-number">3.3.1</span> The QQ plot</a></li>
+  <li><a href="#assessing-normality-with-a-qq-plot" id="toc-assessing-normality-with-a-qq-plot" class="nav-link" data-scroll-target="#assessing-normality-with-a-qq-plot"><span class="header-section-number">3.3.2</span> Assessing normality with a QQ plot</a></li>
+  <li><a href="#limitations-of-qq-plots" id="toc-limitations-of-qq-plots" class="nav-link" data-scroll-target="#limitations-of-qq-plots"><span class="header-section-number">3.3.3</span> Limitations of QQ plots</a></li>
+  <li><a href="#tests-for-normality-not-recommended" id="toc-tests-for-normality-not-recommended" class="nav-link" data-scroll-target="#tests-for-normality-not-recommended"><span class="header-section-number">3.3.4</span> Tests for normality (not recommended)</a></li>
+  </ul></li>
+  <li><a href="#the-homogeneity-of-variance-assumption" id="toc-the-homogeneity-of-variance-assumption" class="nav-link" data-scroll-target="#the-homogeneity-of-variance-assumption"><span class="header-section-number">3.4</span> The homogeneity of variance assumption</a>
+  <ul class="collapse">
+  <li><a href="#heterogeneity-of-variance" id="toc-heterogeneity-of-variance" class="nav-link" data-scroll-target="#heterogeneity-of-variance"><span class="header-section-number">3.4.1</span> Heterogeneity of variance</a></li>
+  <li><a href="#the-residuals-vs-fitted-plot" id="toc-the-residuals-vs-fitted-plot" class="nav-link" data-scroll-target="#the-residuals-vs-fitted-plot"><span class="header-section-number">3.4.2</span> The residuals vs fitted plot</a></li>
+  </ul></li>
+  <li><a href="#influential-observations-outliers" id="toc-influential-observations-outliers" class="nav-link" data-scroll-target="#influential-observations-outliers"><span class="header-section-number">3.5</span> Influential observations (outliers)</a>
+  <ul class="collapse">
+  <li><a href="#cooks-distances" id="toc-cooks-distances" class="nav-link" data-scroll-target="#cooks-distances"><span class="header-section-number">3.5.1</span> Cook’s Distances</a></li>
+  </ul></li>
+  <li><a href="#multicollinearity" id="toc-multicollinearity" class="nav-link" data-scroll-target="#multicollinearity"><span class="header-section-number">3.6</span> (Multi)collinearity</a>
+  <ul class="collapse">
+  <li><a href="#why-dont-we-want-correlated-predictors" id="toc-why-dont-we-want-correlated-predictors" class="nav-link" data-scroll-target="#why-dont-we-want-correlated-predictors"><span class="header-section-number">3.6.1</span> Why don’t we want correlated predictors?</a></li>
+  <li><a href="#collinearity-example-florida-election-data" id="toc-collinearity-example-florida-election-data" class="nav-link" data-scroll-target="#collinearity-example-florida-election-data"><span class="header-section-number">3.6.2</span> Collinearity example: Florida election data</a></li>
+  <li><a href="#variance-inflation-factor-vif" id="toc-variance-inflation-factor-vif" class="nav-link" data-scroll-target="#variance-inflation-factor-vif"><span class="header-section-number">3.6.3</span> Variance inflation factor (VIF)</a></li>
+  <li><a href="#when-should-we-worry-about-multicollinearity" id="toc-when-should-we-worry-about-multicollinearity" class="nav-link" data-scroll-target="#when-should-we-worry-about-multicollinearity"><span class="header-section-number">3.6.4</span> When should we worry about (multi)collinearity?</a></li>
+  </ul></li>
+  <li><a href="#part-2-improving-models" id="toc-part-2-improving-models" class="nav-link" data-scroll-target="#part-2-improving-models">Part 2: Improving models</a></li>
+  <li><a href="#log-transformation" id="toc-log-transformation" class="nav-link" data-scroll-target="#log-transformation"><span class="header-section-number">3.7</span> Log transformation</a>
+  <ul class="collapse">
+  <li><a href="#why-log-transform" id="toc-why-log-transform" class="nav-link" data-scroll-target="#why-log-transform"><span class="header-section-number">3.7.1</span> Why log transform?</a></li>
+  <li><a href="#same-again-with-log-base-2" id="toc-same-again-with-log-base-2" class="nav-link" data-scroll-target="#same-again-with-log-base-2"><span class="header-section-number">3.7.2</span> Same again, with log base 2</a></li>
+  <li><a href="#log-transforming-right-skewed-data" id="toc-log-transforming-right-skewed-data" class="nav-link" data-scroll-target="#log-transforming-right-skewed-data"><span class="header-section-number">3.7.3</span> Log transforming right-skewed data</a></li>
+  <li><a href="#interpreting-slope-as-a-change-in-outcome" id="toc-interpreting-slope-as-a-change-in-outcome" class="nav-link" data-scroll-target="#interpreting-slope-as-a-change-in-outcome"><span class="header-section-number">3.7.4</span> Interpreting slope as a % change in outcome</a></li>
+  <li><a href="#log-transformation-applied-example" id="toc-log-transformation-applied-example" class="nav-link" data-scroll-target="#log-transformation-applied-example"><span class="header-section-number">3.7.5</span> Log transformation applied example</a></li>
+  <li><a href="#log-transformation-in-y-vs.-in-x" id="toc-log-transformation-in-y-vs.-in-x" class="nav-link" data-scroll-target="#log-transformation-in-y-vs.-in-x"><span class="header-section-number">3.7.6</span> Log transformation in <span class="math inline">\(Y\)</span> vs.&nbsp;in <span class="math inline">\(X\)</span></a></li>
+  </ul></li>
+  <li><a href="#non-linearity" id="toc-non-linearity" class="nav-link" data-scroll-target="#non-linearity"><span class="header-section-number">3.8</span> Non-linearity</a>
+  <ul class="collapse">
+  <li><a href="#polynomial-review" id="toc-polynomial-review" class="nav-link" data-scroll-target="#polynomial-review"><span class="header-section-number">3.8.1</span> “Polynomial” review</a></li>
+  <li><a href="#nd-degree-and-3rd-degree-polynomials" id="toc-nd-degree-and-3rd-degree-polynomials" class="nav-link" data-scroll-target="#nd-degree-and-3rd-degree-polynomials"><span class="header-section-number">3.8.2</span> <span class="math inline">\(2^{nd}\)</span> degree and <span class="math inline">\(3^{rd}\)</span> degree polynomials</a></li>
+  <li><a href="#curvature-in-residuals" id="toc-curvature-in-residuals" class="nav-link" data-scroll-target="#curvature-in-residuals"><span class="header-section-number">3.8.3</span> Curvature in residuals</a></li>
+  <li><a href="#example-florida-election-data" id="toc-example-florida-election-data" class="nav-link" data-scroll-target="#example-florida-election-data"><span class="header-section-number">3.8.4</span> Example: Florida election data</a></li>
+  <li><a href="#example-florida-election-data-check-note" id="toc-example-florida-election-data-check-note" class="nav-link" data-scroll-target="#example-florida-election-data-check-note"><span class="header-section-number">3.8.5</span> Example: Florida election data: check note</a></li>
+  </ul></li>
+  <li><a href="#over-fitting" id="toc-over-fitting" class="nav-link" data-scroll-target="#over-fitting"><span class="header-section-number">3.9</span> Over-fitting</a></li>
+  <li><a href="#back-to-basics-is-the-model-sensible" id="toc-back-to-basics-is-the-model-sensible" class="nav-link" data-scroll-target="#back-to-basics-is-the-model-sensible"><span class="header-section-number">3.10</span> Back to basics: is the model sensible?</a>
+  <ul class="collapse">
+  <li><a href="#if-you-just-want-to-make-predictions" id="toc-if-you-just-want-to-make-predictions" class="nav-link" data-scroll-target="#if-you-just-want-to-make-predictions"><span class="header-section-number">3.10.1</span> If you just want to make predictions</a></li>
+  <li><a href="#if-you-want-to-interpret-slopes" id="toc-if-you-want-to-interpret-slopes" class="nav-link" data-scroll-target="#if-you-want-to-interpret-slopes"><span class="header-section-number">3.10.2</span> If you want to interpret slopes</a></li>
+  <li><a href="#is-the-model-missing-something-important" id="toc-is-the-model-missing-something-important" class="nav-link" data-scroll-target="#is-the-model-missing-something-important"><span class="header-section-number">3.10.3</span> Is the model missing something important?</a></li>
+  <li><a href="#what-would-you-like-to-control-for" id="toc-what-would-you-like-to-control-for" class="nav-link" data-scroll-target="#what-would-you-like-to-control-for"><span class="header-section-number">3.10.4</span> What would you like to “control” for?</a></li>
+  <li><a href="#beware-the-kitchen-sink-approach" id="toc-beware-the-kitchen-sink-approach" class="nav-link" data-scroll-target="#beware-the-kitchen-sink-approach"><span class="header-section-number">3.10.5</span> Beware the “kitchen sink” approach</a></li>
+  <li><a href="#the-model-is-simpler-than-whats-being-modeled" id="toc-the-model-is-simpler-than-whats-being-modeled" class="nav-link" data-scroll-target="#the-model-is-simpler-than-whats-being-modeled"><span class="header-section-number">3.10.6</span> The model is simpler than what’s being modeled</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -225,11 +262,11 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="part-1-assumptions-and-assumption-violations" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="part-1-assumptions-and-assumption-violations"><span class="header-section-number">3.1</span> Part 1: assumptions and assumption violations</h2>
+<section id="part-1-assumptions-and-assumption-violations" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="part-1-assumptions-and-assumption-violations">Part 1: assumptions and assumption violations</h2>
 </section>
-<section id="outline-of-notes" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="outline-of-notes"><span class="header-section-number">3.2</span> Outline of notes:</h2>
+<section id="outline-of-notes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="outline-of-notes">Outline of notes:</h2>
 <ol type="1">
 <li>Regression assumptions</li>
 <li>Linearity</li>
@@ -237,16 +274,20 @@ ul.task-list li input[type="checkbox"] {
 <li>Homogeneity of variance</li>
 <li>Influential observations</li>
 <li>(Multi)collinearity</li>
+<li>Log transformation</li>
+<li>Non-linearity</li>
+<li>Over-fitting</li>
+<li>Back to basics: is the model sensible?</li>
 </ol>
-<section id="violating-model-assumptions" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="violating-model-assumptions"><span class="header-section-number">3.2.1</span> Violating model assumptions</h3>
-<p>• The previous notes outlined the fundamentals of specifying, fitting, and interpreting a linear regression model.</p>
-<p>• These notes focus on the assumptions that our models are based upon, and how we check to see if they are being violated.</p>
-<p>• If model assumptions are violated, DON’T PANIC! There is nearly always a remedy. In these notes we will look at how to spot violations of assumptions. In the next set of notes we will look at ways to remedy these violations, and how to decide if they pose a serious problem to the usefulness of the model.</p>
 </section>
-<section id="the-regression-model-and-what-it-assumes" class="level3" data-number="3.2.2">
-<h3 data-number="3.2.2" class="anchored" data-anchor-id="the-regression-model-and-what-it-assumes"><span class="header-section-number">3.2.2</span> The regression model and what it assumes</h3>
-<p>• Once again, here is the regression model:</p>
+<section id="violating-model-assumptions" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="violating-model-assumptions"><span class="header-section-number">3.1</span> Violating model assumptions</h2>
+<p>The previous notes outlined the fundamentals of specifying, fitting, and interpreting a linear regression model.</p>
+<p>These notes focus on the assumptions that our models are based upon, and how we check to see if they are being violated.</p>
+<p>If model assumptions are violated, DON’T PANIC! There is nearly always a remedy. In these notes we will look at how to spot violations of assumptions. In the next set of notes we will look at ways to remedy these violations, and how to decide if they pose a serious problem to the usefulness of the model.</p>
+<section id="the-regression-model-and-what-it-assumes" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="the-regression-model-and-what-it-assumes"><span class="header-section-number">3.1.1</span> The regression model and what it assumes</h3>
+<p>Once again, here is the regression model:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi} + \epsilon_i, \text{ where } \epsilon_i \sim Normal(0,\sigma)
 \]</span></p>
@@ -260,25 +301,25 @@ Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi} + \epsilon
 </ul></li>
 </ul>
 </section>
-<section id="linearity" class="level3" data-number="3.2.3">
-<h3 data-number="3.2.3" class="anchored" data-anchor-id="linearity"><span class="header-section-number">3.2.3</span> Linearity</h3>
-<p>• Remember the “simple” (i.e.&nbsp;single predictor) regression model</p>
+</section>
+<section id="linearity" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="linearity"><span class="header-section-number">3.2</span> Linearity</h2>
+<p>Remember the “simple” (i.e.&nbsp;single predictor) regression model</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1x_{i} + \epsilon_i, \text{ where } \epsilon_i \sim Normal(0,\sigma)
 \]</span></p>
-<p>• This is linear in that it fits a straight line to the two-dimensional data.</p>
-<p>• A two-predictor model would fit a flat plane to the three-dimensional data, and so on</p>
-<p>• Here’s a bad idea: fitting a linear model to non-linear data!</p>
+<p>This is linear in that it fits a straight line to the two-dimensional data.</p>
+<p>A two-predictor model would fit a flat plane to the three-dimensional data, and so on</p>
+<p>Here’s a bad idea: fitting a linear model to non-linear data!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_1.png" class="img-fluid figure-img" width="400"></p>
 </figure>
 </div>
-</section>
-<section id="diagnosing-non-linearity" class="level3" data-number="3.2.4">
-<h3 data-number="3.2.4" class="anchored" data-anchor-id="diagnosing-non-linearity"><span class="header-section-number">3.2.4</span> Diagnosing non-linearity</h3>
-<p>• When running “Linear Regression” in jamovi, a “residuals by predicted” plot can be created by selecting “Residual plots” under “Assumption Checks”</p>
-<p>• The residuals are the differences between each observed values of the response variable and the value that the model predicts:</p>
+<section id="diagnosing-non-linearity" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="diagnosing-non-linearity"><span class="header-section-number">3.2.1</span> Diagnosing non-linearity</h3>
+<p>When running “Linear Regression” in jamovi, a “residuals by predicted” plot can be created by selecting “Residual plots” under “Assumption Checks”</p>
+<p>The residuals are the differences between each observed values of the response variable and the value that the model predicts:</p>
 <p><span class="math display">\[
 residual_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\beta_2x_2 + \dots)
 \]</span></p>
@@ -287,31 +328,31 @@ residual_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\be
 <p><img src="images/mod4_pt1_2.png" class="img-fluid figure-img" width="383"></p>
 </figure>
 </div>
-<p>• For simple regression, this plot just looks like the regression plot with the line turned horizontally.</p>
-<p>• For multiple regression, there is no (two dimensional) “regression plot”, so the residual plot will be very useful!</p>
+<p>For simple regression, this plot just looks like the regression plot with the line turned horizontally.</p>
+<p>For multiple regression, there is no (two dimensional) “regression plot”, so the residual plot will be very useful!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_3.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• In this example, there is clear curvature in the data. A straight line model is not appropriate.</p>
-<p>• Here’s an example of what a linear relationship might look like:</p>
+<p>In this example, there is clear curvature in the data. A straight line model is not appropriate.</p>
+<p>Here’s an example of what a linear relationship might look like:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• When there is non-linearity, you will see the residuals mostly on one side of zero, then on the other size of zero, then back again, and so on.</p>
-<p>• When there is linearity, the residuals should randomly fall on either side of zero.</p>
+<p>When there is non-linearity, you will see the residuals mostly on one side of zero, then on the other size of zero, then back again, and so on.</p>
+<p>When there is linearity, the residuals should randomly fall on either side of zero.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
-<section id="what-to-look-for-in-a-residual-plot" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="what-to-look-for-in-a-residual-plot"><span class="header-section-number">3.2.5</span> What to look for in a residual plot</h3>
-<p>• We will look at many more examples of residual plots in these notes.</p>
+<section id="what-to-look-for-in-a-residual-plot" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="what-to-look-for-in-a-residual-plot"><span class="header-section-number">3.2.2</span> What to look for in a residual plot</h3>
+<p>We will look at many more examples of residual plots in these notes.</p>
 <ul>
 <li><p>We want a residual plot that appears to agree with the model assumptions:</p>
 <ul>
@@ -321,44 +362,45 @@ residual_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\be
 </ul></li>
 </ul>
 </section>
-<section id="normality-of-residuals" class="level3" data-number="3.2.6">
-<h3 data-number="3.2.6" class="anchored" data-anchor-id="normality-of-residuals"><span class="header-section-number">3.2.6</span> Normality of residuals</h3>
-<p>• The “error term” in a regression model is that <span class="math inline">\(+ \epsilon_i\)</span> on the end</p>
-<p>• When we write <span class="math inline">\(\epsilon_i \sim Normal(0, \sigma)\)</span>, we are saying that the errors (aka residuals) are normally distributed, with mean zero and some standard deviation <span class="math inline">\(\sigma\)</span>.</p>
-<p>• This can be assessed visually: run the regression plot the residuals to see if they appear roughly normally distributed.</p>
-<section id="the-qq-plot" class="level4" data-number="3.2.6.1">
-<h4 data-number="3.2.6.1" class="anchored" data-anchor-id="the-qq-plot"><span class="header-section-number">3.2.6.1</span> The QQ plot</h4>
-<p>• When fitting a model using “Linear Regression” in jamovi, there is an option to save residuals. This will create a new column with a residual for each row.</p>
-<p>• The option is under the last drop-down menu, under “Save”.</p>
+</section>
+<section id="normality-of-residuals" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="normality-of-residuals"><span class="header-section-number">3.3</span> Normality of residuals</h2>
+<p>The “error term” in a regression model is that <span class="math inline">\(+ \epsilon_i\)</span> on the end</p>
+<p>When we write <span class="math inline">\(\epsilon_i \sim Normal(0, \sigma)\)</span>, we are saying that the errors (aka residuals) are normally distributed, with mean zero and some standard deviation <span class="math inline">\(\sigma\)</span>.</p>
+<p>This can be assessed visually: run the regression plot the residuals to see if they appear roughly normally distributed.</p>
+<section id="the-qq-plot" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="the-qq-plot"><span class="header-section-number">3.3.1</span> The QQ plot</h3>
+<p>When fitting a model using “Linear Regression” in jamovi, there is an option to save residuals. This will create a new column with a residual for each row.</p>
+<p>The option is under the last drop-down menu, under “Save”.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_6.png" class="img-fluid figure-img" width="278"></p>
 </figure>
 </div>
-<p>• To create a plot of the residuals, select “Q-Q plot of residuals” under “Assumption Checks” in “Linear Regression”</p>
-<p>• The Normal Quantile plot is also known as the QQ plot, for “quantile quantile”.</p>
-<p>• It is easier to assess normality with a QQ plot than with a histogram.</p>
+<p>To create a plot of the residuals, select “Q-Q plot of residuals” under “Assumption Checks” in “Linear Regression”</p>
+<p>The Normal Quantile plot is also known as the QQ plot, for “quantile quantile”.</p>
+<p>It is easier to assess normality with a QQ plot than with a histogram.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_7.png" class="img-fluid figure-img" width="274"></p>
 </figure>
 </div>
 </section>
-<section id="assessing-normality-with-a-qq-plot" class="level4" data-number="3.2.6.2">
-<h4 data-number="3.2.6.2" class="anchored" data-anchor-id="assessing-normality-with-a-qq-plot"><span class="header-section-number">3.2.6.2</span> Assessing normality with a QQ plot</h4>
-<p>• On Canvas under Simulations there is a “QQ plot generator” app.</p>
-<p>• This app allows you to manipulate a distribution, sample from it, and then view a histogram next to a QQ plot. It is meant to give you an idea of how QQ plots work.</p>
-<p>• By default, it draws data from a normal distribution. But, you can add “skewedness” or “peakedness” (aka kurtosis) to make the distribution non-normal. You can also adjust sample size.</p>
+<section id="assessing-normality-with-a-qq-plot" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="assessing-normality-with-a-qq-plot"><span class="header-section-number">3.3.2</span> Assessing normality with a QQ plot</h3>
+<p>On Canvas under Simulations there is a “QQ plot generator” app.</p>
+<p>This app allows you to manipulate a distribution, sample from it, and then view a histogram next to a QQ plot. It is meant to give you an idea of how QQ plots work.</p>
+<p>By default, it draws data from a normal distribution. But, you can add “skewedness” or “peakedness” (aka kurtosis) to make the distribution non-normal. You can also adjust sample size.</p>
 <p><img src="images/mod4_pt1_8.png" class="img-fluid"></p>
-<p>• A QQ plot shows you how much the distribution of your data “agree” with a normal distribution.</p>
+<p>A QQ plot shows you how much the distribution of your data “agree” with a normal distribution.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_9.png" class="img-fluid figure-img" width="323"></p>
 </figure>
 </div>
-<p>• The horizonal axis gives the distribution data would follow if it were perfectly normal.</p>
-<p>• The vertical axis gives the distribution your data actually follows.</p>
-<p>• The diagonal line shows perfect agreement between the two.</p>
+<p>The horizonal axis gives the distribution data would follow if it were perfectly normal.</p>
+<p>The vertical axis gives the distribution your data actually follows.</p>
+<p>The diagonal line shows perfect agreement between the two.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod4_pt1_10.png" class="img-fluid figure-img" width="312"></p>
@@ -369,8 +411,8 @@ residual_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\be
 <p><img src="images/mod4_pt1_11.png" class="img-fluid figure-img" width="356"></p>
 </figure>
 </div>
-<p>• The big advantage of the QQ plot vs.&nbsp;the histogram is that very often data that come from a normal distribution don’t look normal, especially if the sample size is small.</p>
-<p>• In this case, the histogram isn’t clearly normal. But, on the QQ plot the data are close to the line.</p>
+<p>The big advantage of the QQ plot vs.&nbsp;the histogram is that very often data that come from a normal distribution don’t look normal, especially if the sample size is small.</p>
+<p>In this case, the histogram isn’t clearly normal. But, on the QQ plot the data are close to the line.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_12.png" class="img-fluid figure-img"></p>
@@ -386,145 +428,144 @@ residual_i = y_i - \hat{y}_i = y_i - (\hat{\beta}_0 + \hat{\beta}_1x_1 + \hat\be
 <p><img src="images/mod4_pt1_14.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• Notice that the data still veer from the diagonal line to some extent, even though we know for a fact they came from a normal distribution.</p>
+<p>Notice that the data still veer from the diagonal line to some extent, even though we know for a fact they came from a normal distribution.</p>
 </section>
-<section id="limitations-of-qq-plots" class="level4" data-number="3.2.6.3">
-<h4 data-number="3.2.6.3" class="anchored" data-anchor-id="limitations-of-qq-plots"><span class="header-section-number">3.2.6.3</span> Limitations of QQ plots</h4>
-<p>• As you can see from the app, sometimes data that come from a normal distribution don’t sit right on the line.</p>
-<p>• Sometimes data that come from a skewed distribution look similar to data that come from a normal distribution</p>
-<p>• It’s easier to assess normality when sample sizes are larger.</p>
-<p>• As it turns out, the assumption of normality is not vital to the validity of a regression model. If the QQ plot is vague, you’re probably fine. We only worry when we see extreme non-normality.</p>
+<section id="limitations-of-qq-plots" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="limitations-of-qq-plots"><span class="header-section-number">3.3.3</span> Limitations of QQ plots</h3>
+<p>As you can see from the app, sometimes data that come from a normal distribution don’t sit right on the line.</p>
+<p>Sometimes data that come from a skewed distribution look similar to data that come from a normal distribution</p>
+<p>It’s easier to assess normality when sample sizes are larger.</p>
+<p>As it turns out, the assumption of normality is not vital to the validity of a regression model. If the QQ plot is vague, you’re probably fine. We only worry when we see extreme non-normality.</p>
 </section>
-<section id="tests-for-normality-not-recommended" class="level4" data-number="3.2.6.4">
-<h4 data-number="3.2.6.4" class="anchored" data-anchor-id="tests-for-normality-not-recommended"><span class="header-section-number">3.2.6.4</span> Tests for normality (not recommended)</h4>
-<p>• There are statistical tests, such as “Shapiro-Wilks” or “Kolmgorov-Smirnov”, for which the null hypothesis is that the data come from some specified distribution, like the normal.</p>
-<p>• Rejecting this null means that the data “significantly” disagree with the assumption of normality.</p>
-<p>• I do not recommend using this test. The problem is that, when the sample size is large enough, even small deviations from normality will be statistically significant. But small deviations from normality are OK. Only major deviations are concerning.</p>
+<section id="tests-for-normality-not-recommended" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="tests-for-normality-not-recommended"><span class="header-section-number">3.3.4</span> Tests for normality (not recommended)</h3>
+<p>There are statistical tests, such as “Shapiro-Wilks” or “Kolmgorov-Smirnov”, for which the null hypothesis is that the data come from some specified distribution, like the normal.</p>
+<p>Rejecting this null means that the data “significantly” disagree with the assumption of normality.</p>
+<p>I do not recommend using this test. The problem is that, when the sample size is large enough, even small deviations from normality will be statistically significant. But small deviations from normality are OK. Only major deviations are concerning.</p>
 </section>
 </section>
-<section id="the-homogeneity-of-variance-assumption" class="level3" data-number="3.2.7">
-<h3 data-number="3.2.7" class="anchored" data-anchor-id="the-homogeneity-of-variance-assumption"><span class="header-section-number">3.2.7</span> The homogeneity of variance assumption</h3>
-<p>• Back to the error term:</p>
+<section id="the-homogeneity-of-variance-assumption" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="the-homogeneity-of-variance-assumption"><span class="header-section-number">3.4</span> The homogeneity of variance assumption</h2>
+<p>Back to the error term:</p>
 <p><span class="math inline">\(\epsilon_i \sim Normal(0, \sigma)\)</span></p>
-<p>• Notice that <span class="math inline">\(\sigma\)</span> is just one number. This suggests that the standard deviation of the residuals should be the same across all values of predictor variables. In other words, there is homogeneity of variance.</p>
-<p>• Another name for this is “homoscedasticity”. If this assumption is violated, then we have “heteroscedasticity”.</p>
-<section id="heterogeneity-of-variance" class="level4" data-number="3.2.7.1">
-<h4 data-number="3.2.7.1" class="anchored" data-anchor-id="heterogeneity-of-variance"><span class="header-section-number">3.2.7.1</span> Heterogeneity of variance</h4>
-<p>• To show heterogeneity of variance, I’ll simulate data that is a function of an X variable, plus random values from a normal distribution with standard deviation equal to X.</p>
-<p>• Thus, the standard deviation of residuals will get bigger as X gets bigger:</p>
+<p>Notice that <span class="math inline">\(\sigma\)</span> is just one number. This suggests that the standard deviation of the residuals should be the same across all values of predictor variables. In other words, there is homogeneity of variance.</p>
+<p>Another name for this is “homoscedasticity”. If this assumption is violated, then we have “heteroscedasticity”.</p>
+<section id="heterogeneity-of-variance" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="heterogeneity-of-variance"><span class="header-section-number">3.4.1</span> Heterogeneity of variance</h3>
+<p>To show heterogeneity of variance, I’ll simulate data that is a function of an X variable, plus random values from a normal distribution with standard deviation equal to X.</p>
+<p>Thus, the standard deviation of residuals will get bigger as X gets bigger:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_15.png" class="img-fluid figure-img" width="256"></p>
 </figure>
 </div>
 </section>
-<section id="the-residuals-vs-fitted-plot" class="level4" data-number="3.2.7.2">
-<h4 data-number="3.2.7.2" class="anchored" data-anchor-id="the-residuals-vs-fitted-plot"><span class="header-section-number">3.2.7.2</span> The residuals vs fitted plot</h4>
-<p>• Here is the regression plot and residual plot when this simulated variable (called “W” here) is the response and X is the predictor:</p>
+<section id="the-residuals-vs-fitted-plot" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="the-residuals-vs-fitted-plot"><span class="header-section-number">3.4.2</span> The residuals vs fitted plot</h3>
+<p>Here is the regression plot and residual plot when this simulated variable (called “W” here) is the response and X is the predictor:</p>
 <p><img src="images/mod4_pt1_16.png" class="img-fluid"></p>
-<p>• Notice that the residuals are more spread out for larger X</p>
-<p>• We also see “heavy tails” when plotting the residuals with a histogram and QQ plot:</p>
+<p>Notice that the residuals are more spread out for larger X</p>
+<p>We also see “heavy tails” when plotting the residuals with a histogram and QQ plot:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_17.png" class="img-fluid figure-img" width="332"></p>
 </figure>
 </div>
-<p>• Heavy tails refers to a distribution with outliers on both ends.</p>
-<p>• This shows up on the QQ plot as the residuals being too flat in the middle and then curving out on both ends.</p>
+<p>Heavy tails refers to a distribution with outliers on both ends.</p>
+<p>This shows up on the QQ plot as the residuals being too flat in the middle and then curving out on both ends.</p>
 </section>
 </section>
-<section id="influential-observations-outliers" class="level3" data-number="3.2.8">
-<h3 data-number="3.2.8" class="anchored" data-anchor-id="influential-observations-outliers"><span class="header-section-number">3.2.8</span> Influential observations (outliers)</h3>
-<p>• Outliers in regression can be seen on a residual plot, or on a QQ plot, or on just a regular plot of the data.</p>
-<p>• Example: the Florida election data.</p>
+<section id="influential-observations-outliers" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="influential-observations-outliers"><span class="header-section-number">3.5</span> Influential observations (outliers)</h2>
+<p>Outliers in regression can be seen on a residual plot, or on a QQ plot, or on just a regular plot of the data.</p>
+<p>Example: the Florida election data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_18.png" class="img-fluid figure-img" width="411"></p>
 </figure>
 </div>
-<p>• Outliers can “pull” on the regression line, especially if they are far away from the mean of the predictor(s).</p>
-<p>• There are many statistics that assess influence. jamovi will calculate one of the most popular: a Cook’s Distance</p>
-</section>
-<section id="cooks-distances" class="level3" data-number="3.2.9">
-<h3 data-number="3.2.9" class="anchored" data-anchor-id="cooks-distances"><span class="header-section-number">3.2.9</span> Cook’s Distances</h3>
-<p>• As we saw in the Florida election example, removing the outlier (Palm Beach County) had a substantial effect on the regression results.</p>
-<p>• The logic behind Cook’s Distance is to quantify what happens to the regression model when a single observation is removed. This is sometimes referred to as a “leave one out” method.</p>
-<p>• Cook’s Distances quantify how much the predicted values of the response variable change when an observation is removed.</p>
-<p>• Recall that, in simple regression, the predicted values are the values on the regression line.</p>
-<p>• It is hard to interpret the actual values for Cook’s Distances. Values greater than 1 are often considered “influential”.</p>
-<p>• The formula shows that it is based on the sum of the differences in predicted values between a model with the data point included and a model with it removed:</p>
+<p>Outliers can “pull” on the regression line, especially if they are far away from the mean of the predictor(s).</p>
+<p>There are many statistics that assess influence. jamovi will calculate one of the most popular: a Cook’s Distance</p>
+<section id="cooks-distances" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="cooks-distances"><span class="header-section-number">3.5.1</span> Cook’s Distances</h3>
+<p>As we saw in the Florida election example, removing the outlier (Palm Beach County) had a substantial effect on the regression results.</p>
+<p>The logic behind Cook’s Distance is to quantify what happens to the regression model when a single observation is removed. This is sometimes referred to as a “leave one out” method.</p>
+<p>Cook’s Distances quantify how much the predicted values of the response variable change when an observation is removed.</p>
+<p>Recall that, in simple regression, the predicted values are the values on the regression line.</p>
+<p>It is hard to interpret the actual values for Cook’s Distances. Values greater than 1 are often considered “influential”.</p>
+<p>The formula shows that it is based on the sum of the differences in predicted values between a model with the data point included and a model with it removed:</p>
 <p><span class="math display">\[
 \text{Cook's Distance for data point } "i" = D_i = \frac{\sum^n_{j=1}(\hat{y}_i - \hat{y}_{j(i)})^2}{MSE * p}
 \]</span></p>
-<p>• Where <span class="math inline">\(\hat{y}_{j(i)}\)</span> is the predicted value of the response variable when the model is re- fit with the <span class="math inline">\(i^{th}\)</span> data point removed, and <span class="math inline">\(p\)</span> is the number of predictor variables in</p>
-<p>• A Cook’s Distance is calculated for every data point. The option to do this in jamovi is under “Save” in “Linear Regression”. This creates a new column with a Cook’s distance for each row.</p>
-<p>• The saved Cook’s Distances can then be plotted. Any possibly influential points will usually stand out clearly from the rest.</p>
+<p>Where <span class="math inline">\(\hat{y}_{j(i)}\)</span> is the predicted value of the response variable when the model is re- fit with the <span class="math inline">\(i^{th}\)</span> data point removed, and <span class="math inline">\(p\)</span> is the number of predictor variables in</p>
+<p>A Cook’s Distance is calculated for every data point. The option to do this in jamovi is under “Save” in “Linear Regression”. This creates a new column with a Cook’s distance for each row.</p>
+<p>The saved Cook’s Distances can then be plotted. Any possibly influential points will usually stand out clearly from the rest.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_19.png" class="img-fluid figure-img" width="393"></p>
 </figure>
 </div>
-<p>• To quickly narrow in on the influential counties, we can filter out all the small Cook’s distances.</p>
-<p>• After implementing the filter, we can see that all rows which do not meet the criteria of the filter are excluded.</p>
+<p>To quickly narrow in on the influential counties, we can filter out all the small Cook’s distances.</p>
+<p>After implementing the filter, we can see that all rows which do not meet the criteria of the filter are excluded.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_20.png" class="img-fluid figure-img" width="363"></p>
 </figure>
 </div>
-<p>• Only rows 13 and 50 should be highlighted for Dade and Palmbeach county which have cook’s distances of 1.983 and 3.786.</p>
+<p>Only rows 13 and 50 should be highlighted for Dade and Palmbeach county which have cook’s distances of 1.983 and 3.786.</p>
 </section>
-<section id="multicollinearity" class="level3" data-number="3.2.10">
-<h3 data-number="3.2.10" class="anchored" data-anchor-id="multicollinearity"><span class="header-section-number">3.2.10</span> (Multi)collinearity</h3>
-<p>• In regression analysis, we want our predictor variables to be correlated with the response variable.</p>
-<p>• But we don’t want our predictor variables to be (highly) correlated with one another!</p>
-<p>• When two predictor variables are highly correlated, we say our model has “collinearity.”</p>
-<p>• When more than two predictor variables are mutually highly correlated, we say our model as “multicollinearity”.</p>
 </section>
-<section id="why-dont-we-want-correlated-predictors" class="level3" data-number="3.2.11">
-<h3 data-number="3.2.11" class="anchored" data-anchor-id="why-dont-we-want-correlated-predictors"><span class="header-section-number">3.2.11</span> Why don’t we want correlated predictors?</h3>
-<p>• To understand why we don’t want correlated predictors, recall that multiple regression models estimate the association between each individual predictor variable and the response, <span class="math inline">\(\textit{while holding all other predictor variables constant}\)</span>.</p>
-<p>• This can be thought of as asking “what is the difference in the response variable when we observe data points that have different values of one predictor but the same values of the other predictors?”</p>
-<p>• If <span class="math inline">\(Y\)</span> is the response and <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are predictors, we want to know how different <span class="math inline">\(Y\)</span> is when <span class="math inline">\(x_1\)</span> values differ but <span class="math inline">\(x_2\)</span> values are the same, or vice versa.</p>
-<p>• But, if <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are highly correlated, then we don’t get to observe cases where values of one variable differ substantially while values of the other are the same! Consider instances of no correlation vs.&nbsp;heavy correlation:</p>
+<section id="multicollinearity" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="multicollinearity"><span class="header-section-number">3.6</span> (Multi)collinearity</h2>
+<p>In regression analysis, we want our predictor variables to be correlated with the response variable.</p>
+<p>But we don’t want our predictor variables to be (highly) correlated with one another!</p>
+<p>When two predictor variables are highly correlated, we say our model has “collinearity.”</p>
+<p>When more than two predictor variables are mutually highly correlated, we say our model as “multicollinearity”.</p>
+<section id="why-dont-we-want-correlated-predictors" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="why-dont-we-want-correlated-predictors"><span class="header-section-number">3.6.1</span> Why don’t we want correlated predictors?</h3>
+<p>To understand why we don’t want correlated predictors, recall that multiple regression models estimate the association between each individual predictor variable and the response, <span class="math inline">\(\textit{while holding all other predictor variables constant}\)</span>.</p>
+<p>This can be thought of as asking “what is the difference in the response variable when we observe data points that have different values of one predictor but the same values of the other predictors?”</p>
+<p>If <span class="math inline">\(Y\)</span> is the response and <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are predictors, we want to know how different <span class="math inline">\(Y\)</span> is when <span class="math inline">\(x_1\)</span> values differ but <span class="math inline">\(x_2\)</span> values are the same, or vice versa.</p>
+<p>But, if <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are highly correlated, then we don’t get to observe cases where values of one variable differ substantially while values of the other are the same! Consider instances of no correlation vs.&nbsp;heavy correlation:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_21.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• When <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are uncorrelated, we see lots of instances of <span class="math inline">\(x_1\)</span> values differing a lot when <span class="math inline">\(x_2\)</span> values are equal.</p>
+<p>When <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are uncorrelated, we see lots of instances of <span class="math inline">\(x_1\)</span> values differing a lot when <span class="math inline">\(x_2\)</span> values are equal.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_22.0.png" class="img-fluid figure-img" width="369"></p>
 </figure>
 </div>
-<p>• When <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are highly correlated, we never see instances where <span class="math inline">\(x_2\)</span> values are equal but <span class="math inline">\(x_1\)</span> values are highly correlated.</p>
+<p>When <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are highly correlated, we never see instances where <span class="math inline">\(x_2\)</span> values are equal but <span class="math inline">\(x_1\)</span> values are highly correlated.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_22.5.png" class="img-fluid figure-img" width="337"></p>
 </figure>
 </div>
-<p>• The upshot is that, when <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are highly correlated, the regression procedure has a difficult time distinguishing between the “effect” of <span class="math inline">\(x_1\)</span> on <span class="math inline">\(Y\)</span> and the “effect” of <span class="math inline">\(x_2\)</span> on <span class="math inline">\(Y\)</span>.</p>
-<p>• Extreme example: if we had degrees Celsius and degrees Fahrenheit as predictors in the same model, it would be impossible to tell their effects apart. You can’t change Celsius while holding Fahrenheit constant!</p>
-<p>• The practical consequence is that the standard errors for the slopes of (multi)collinear predictors are much larger than they would be if it were not for the (multi)collinearity.</p>
-<p>• If two or more predictors are perfectly correlated (<span class="math inline">\(r=1\)</span>), then the model cannot be fit and jamovi produces an error:</p>
+<p>The upshot is that, when <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span> are highly correlated, the regression procedure has a difficult time distinguishing between the “effect” of <span class="math inline">\(x_1\)</span> on <span class="math inline">\(Y\)</span> and the “effect” of <span class="math inline">\(x_2\)</span> on <span class="math inline">\(Y\)</span>.</p>
+<p>Extreme example: if we had degrees Celsius and degrees Fahrenheit as predictors in the same model, it would be impossible to tell their effects apart. You can’t change Celsius while holding Fahrenheit constant!</p>
+<p>The practical consequence is that the standard errors for the slopes of (multi)collinear predictors are much larger than they would be if it were not for the (multi)collinearity.</p>
+<p>If two or more predictors are perfectly correlated (<span class="math inline">\(r=1\)</span>), then the model cannot be fit and jamovi produces an error:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_23.png" class="img-fluid figure-img" width="314"></p>
 </figure>
 </div>
-<p>• Here, <span class="math inline">\(X1\)</span> and <span class="math inline">\(X2\)</span> are perfectly correlated. jamovi cannot estimate a slope for <span class="math inline">\(X2\)</span>.</p>
+<p>Here, <span class="math inline">\(X1\)</span> and <span class="math inline">\(X2\)</span> are perfectly correlated. jamovi cannot estimate a slope for <span class="math inline">\(X2\)</span>.</p>
 </section>
-<section id="collinearity-example-florida-election-data" class="level3" data-number="3.2.12">
-<h3 data-number="3.2.12" class="anchored" data-anchor-id="collinearity-example-florida-election-data"><span class="header-section-number">3.2.12</span> Collinearity example: Florida election data</h3>
-<p>• In the Florida election data, we used total votes for each county as our predictor variable.</p>
-<p>• There is another variable called “Total_Reg”. This is the total number of registered voters in each county.</p>
-<p>• Unsurprisingly, Total_Votes and Total_Reg are highly correlated:</p>
+<section id="collinearity-example-florida-election-data" class="level3" data-number="3.6.2">
+<h3 data-number="3.6.2" class="anchored" data-anchor-id="collinearity-example-florida-election-data"><span class="header-section-number">3.6.2</span> Collinearity example: Florida election data</h3>
+<p>In the Florida election data, we used total votes for each county as our predictor variable.</p>
+<p>There is another variable called “Total_Reg”. This is the total number of registered voters in each county.</p>
+<p>Unsurprisingly, Total_Votes and Total_Reg are highly correlated:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt1_24.png" class="img-fluid figure-img" width="355"></p>
 </figure>
 </div>
-<p>• If we run two separate simple regression models, we get very similar results:</p>
+<p>If we run two separate simple regression models, we get very similar results:</p>
 <p><span class="math display">\[
 Buchanin_i = \beta_0 + \beta_1Total\_Votes_i + \epsilon_i
 \]</span></p>
@@ -541,7 +582,7 @@ Buchanin_i = \beta_0 + \beta_1Total\_Reg_i + \epsilon_i
 <p><img src="images/mod4_pt1_27.png" class="img-fluid figure-img" width="315"></p>
 </figure>
 </div>
-<p>• But look what happens if we use Total_Votes and Total_Reg as predictors in the same model:</p>
+<p>But look what happens if we use Total_Votes and Total_Reg as predictors in the same model:</p>
 <p><span class="math display">\[
 Buchanin_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Reg_i + \epsilon_i
 \]</span></p>
@@ -550,24 +591,25 @@ Buchanin_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Reg_i + \epsilon_i
 <p><img src="images/mod4_pt1_27-01.png" class="img-fluid figure-img" width="312"></p>
 </figure>
 </div>
-<p>• Two important things to note:</p>
-<p>• P-values on slopes are much larger than for the individual models</p>
-<p>• <span class="math inline">\(R^2\)</span> is larger than on either individual model!</p>
-<p>• Looking at the estimates and standard errors in all three models, we see that the standard errors are much larger in the multiple regression model. These estimates are “unstable” – their values will change a lot if the data change a little.</p>
+<p>Two important things to note:</p>
+<p>P-values on slopes are much larger than for the individual models</p>
+<p><span class="math inline">\(R^2\)</span> is larger than on either individual model!</p>
+<p>Looking at the estimates and standard errors in all three models, we see that the standard errors are much larger in the multiple regression model. These estimates are “unstable” – their values will change a lot if the data change a little.</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod4_pt1_28.png" class="img-fluid figure-img" width="341"></p>
 </figure>
 </div>
-<p>• We know the association between Total_Reg are Buchanan is actually positive. But with so high a standard error, the slope for Total_Reg turned out negative!</p>
-<section id="variance-inflation-factor-vif" class="level4" data-number="3.2.12.1">
-<h4 data-number="3.2.12.1" class="anchored" data-anchor-id="variance-inflation-factor-vif"><span class="header-section-number">3.2.12.1</span> Variance inflation factor (VIF)</h4>
-<p>• (Multi)collinearity can be assessed using a “Variance Inflation Factor”, or VIF. A VIF is calculated for the <span class="math inline">\(j^{th}\)</span> predictor variable as:</p>
+<p>We know the association between Total_Reg are Buchanan is actually positive. But with so high a standard error, the slope for Total_Reg turned out negative!</p>
+</section>
+<section id="variance-inflation-factor-vif" class="level3" data-number="3.6.3">
+<h3 data-number="3.6.3" class="anchored" data-anchor-id="variance-inflation-factor-vif"><span class="header-section-number">3.6.3</span> Variance inflation factor (VIF)</h3>
+<p>(Multi)collinearity can be assessed using a “Variance Inflation Factor”, or VIF. A VIF is calculated for the <span class="math inline">\(j^{th}\)</span> predictor variable as:</p>
 <p><span class="math display">\[
 VIF_j = \frac{1}{1-R^2_j}
 \]</span></p>
-<p>• Where <span class="math inline">\(R^2_j\)</span> is the <span class="math inline">\(R^2\)</span> from a regression model with predictor <span class="math inline">\(j\)</span> as the response variable and all other predictors still as predictors.</p>
-<p>• In the Florida election example, the VIF for Total_Votes can be found using the <span class="math inline">\(R^2\)</span> for the model:</p>
+<p>Where <span class="math inline">\(R^2_j\)</span> is the <span class="math inline">\(R^2\)</span> from a regression model with predictor <span class="math inline">\(j\)</span> as the response variable and all other predictors still as predictors.</p>
+<p>In the Florida election example, the VIF for Total_Votes can be found using the <span class="math inline">\(R^2\)</span> for the model:</p>
 <p><span class="math display">\[
 Total\_Votes_i = \beta_0 + \beta_1Total\_Reg_i + \epsilon_i
 \]</span></p>
@@ -577,36 +619,31 @@ Total\_Votes_i = \beta_0 + \beta_1Total\_Reg_i + \epsilon_i
 </figure>
 </div>
 <p><br>
-• This <span class="math inline">\(R^2\)</span> is huge! Plugging it into the formula:</p>
+This <span class="math inline">\(R^2\)</span> is huge! Plugging it into the formula:</p>
 <p><span class="math display">\[
 VIF_{Total\_Votes}=\frac{1}{1-0.997} = 333.33
 \]</span></p>
-<p>• Thankfully we don’t have to do this by hand. In jamovi, under “Linear Regression” select “Collinearity statistics”:</p>
+<p>Thankfully we don’t have to do this by hand. In jamovi, under “Linear Regression” select “Collinearity statistics”:</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod4_pt1_30.png" class="img-fluid figure-img" width="330"></p>
 </figure>
 </div>
-<p>• VIF &gt; 10 typically is considered large (note that this would imply <span class="math inline">\(R^2 = 0.9\)</span> between predictor variables).</p>
-<p>• The most obvious thing to do in the presence of (multi)collinearity is to remove one or more correlated predictor variable. From a scientific standpoint, you also may not want highly correlated predictors in the same model.</p>
+<p>VIF &gt; 10 typically is considered large (note that this would imply <span class="math inline">\(R^2 = 0.9\)</span> between predictor variables).</p>
+<p>The most obvious thing to do in the presence of (multi)collinearity is to remove one or more correlated predictor variable. From a scientific standpoint, you also may not want highly correlated predictors in the same model.</p>
 </section>
-<section id="when-should-we-worry-about-multicollinearity" class="level4" data-number="3.2.12.2">
-<h4 data-number="3.2.12.2" class="anchored" data-anchor-id="when-should-we-worry-about-multicollinearity"><span class="header-section-number">3.2.12.2</span> When should we worry about (multi)collinearity?</h4>
-<p>• (Multi)collinearity is a potentially huge problem if the goal of the regression model is to interpret the estimated slopes.</p>
-<p>• This is because it increases the standard error of these slopes, making their values less reliable. Some people say it makes slopes “unstable”.</p>
-<p>• It may also complicate the interpretation of slopes: you are trying to statistically “hold constant” a predictor variable that doesn’t naturally stay constant when the other predictor varies. This isn’t necessarily a problem, but it is something to be aware of.</p>
-<p>• However, (multi)collinearity does not negatively impact the predicted values themselves. Remember that it didn’t hurt the <span class="math inline">\(R^2\)</span> value in the Florida election example. <span class="math inline">\(R^2\)</span> tells you how good your predictions are.</p>
-<p>• So, if the model is only for predicting, you probably don’t need to worry about using correlated predictor variables. Just beware when interpreting the slopes.</p>
+<section id="when-should-we-worry-about-multicollinearity" class="level3" data-number="3.6.4">
+<h3 data-number="3.6.4" class="anchored" data-anchor-id="when-should-we-worry-about-multicollinearity"><span class="header-section-number">3.6.4</span> When should we worry about (multi)collinearity?</h3>
+<p>(Multi)collinearity is a potentially huge problem if the goal of the regression model is to interpret the estimated slopes.</p>
+<p>This is because it increases the standard error of these slopes, making their values less reliable. Some people say it makes slopes “unstable”.</p>
+<p>It may also complicate the interpretation of slopes: you are trying to statistically “hold constant” a predictor variable that doesn’t naturally stay constant when the other predictor varies. This isn’t necessarily a problem, but it is something to be aware of.</p>
+<p>However, (multi)collinearity does not negatively impact the predicted values themselves. Remember that it didn’t hurt the <span class="math inline">\(R^2\)</span> value in the Florida election example. <span class="math inline">\(R^2\)</span> tells you how good your predictions are.</p>
+<p>So, if the model is only for predicting, you probably don’t need to worry about using correlated predictor variables. Just beware when interpreting the slopes.</p>
 </section>
 </section>
-</section>
-<section id="part-2-improving-models" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="part-2-improving-models"><span class="header-section-number">3.3</span> Part 2: Improving models</h2>
-<section id="summary-of-part-1" class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="summary-of-part-1"><span class="header-section-number">3.3.1</span> Summary of part 1</h3>
-<ul>
-<li>In the last set of notes, we looked at some things that can go wrong in regression modeling, including:</li>
-</ul>
+<section id="part-2-improving-models" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="part-2-improving-models">Part 2: Improving models</h2>
+<p>In the the first part of chapter 3, we looked at some things that can go wrong in regression modeling, including:</p>
 <pre><code>-    Non-linear relationships between predictor(s) and response
 
 -   Non-normality of residuals
@@ -616,29 +653,26 @@ VIF_{Total\_Votes}=\frac{1}{1-0.997} = 333.33
 -   Influential outliers
 
 -   Multicollinearity</code></pre>
-<p>• In these notes, we’ll look at some tools available for dealing with these problems.</p>
+<p>Now we’ll look at some tools available for dealing with these problems.</p>
 </section>
-<section id="transforming-variables" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="transforming-variables"><span class="header-section-number">3.3.2</span> Transforming variables</h3>
-<p>• Recall the regression model:</p>
+<section id="log-transformation" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="log-transformation"><span class="header-section-number">3.7</span> Log transformation</h2>
+<p>Recall the regression model:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi} + \epsilon_i, \text{ where } \epsilon_i \sim Normal(0,\sigma)
 \]</span></p>
-<p>• Sometimes we can correct violations of model assumptions by applying a mathematical transformation to the response or predictor variables.</p>
-<p>• The most common transformation in Statistics is the log transformation:</p>
+<p>Sometimes we can correct violations of model assumptions by applying a mathematical transformation to the response or predictor variables.</p>
+<p>The most common transformation in Statistics is the log transformation:</p>
 <p><span class="math display">\[
 ln(x) = log_e(x)
 \]</span></p>
-</section>
-<section id="log-transformation" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="log-transformation"><span class="header-section-number">3.3.3</span> Log transformation</h3>
-<p>• <span class="math inline">\(ln(𝑥)\)</span> is the inverse function of <span class="math inline">\(e^𝑥\)</span>, where <span class="math inline">\(𝑒 = 2.718 \dots\)</span></p>
-<p>• In other words, <span class="math inline">\(ln(e^x) = x\)</span></p>
-<p>• Example: <span class="math inline">\(𝑒^3 = 20.086; ln(20.086) = 3\)</span></p>
-<p>• So, the natural log of <span class="math inline">\(x\)</span> is the number you would have to raise <span class="math inline">\(e\)</span> to so that you’d get <span class="math inline">\(x\)</span>.</p>
-<p>• Note: in statistics, when we say “log”, we usually mean “natural log”. It turns out that the distinction is not very important. I’ll say “log transform”</p>
-<section id="why-log-transform" class="level4" data-number="3.3.3.1">
-<h4 data-number="3.3.3.1" class="anchored" data-anchor-id="why-log-transform"><span class="header-section-number">3.3.3.1</span> Why log transform?</h4>
+<p><span class="math inline">\(ln(𝑥)\)</span> is the inverse function of <span class="math inline">\(e^𝑥\)</span>, where <span class="math inline">\(𝑒 = 2.718 \dots\)</span></p>
+<p>In other words, <span class="math inline">\(ln(e^x) = x\)</span></p>
+<p>Example: <span class="math inline">\(𝑒^3 = 20.086; ln(20.086) = 3\)</span></p>
+<p>So, the natural log of <span class="math inline">\(x\)</span> is the number you would have to raise <span class="math inline">\(e\)</span> to so that you’d get <span class="math inline">\(x\)</span>.</p>
+<p>Note: in statistics, when we say “log”, we usually mean “natural log”. It turns out that the distinction is not very important. I’ll say “log transform”</p>
+<section id="why-log-transform" class="level3" data-number="3.7.1">
+<h3 data-number="3.7.1" class="anchored" data-anchor-id="why-log-transform"><span class="header-section-number">3.7.1</span> Why log transform?</h3>
 <ul>
 <li><p>There are two main reasons for log transforming a variable:</p>
 <ul>
@@ -646,39 +680,39 @@ ln(x) = log_e(x)
 <li><p>To interpret increases in a variable as multiplicative rather than additive.</p></li>
 </ul></li>
 </ul>
-<p>• Both can be understood by recognizing an important property of logarithms; they “turn addition into multiplication”</p>
+<p>Both can be understood by recognizing an important property of logarithms; they “turn addition into multiplication”</p>
 <p><span class="math display">\[
 log(𝐴) + log(𝐵) = log(𝐴𝐵)
 \]</span></p>
-<p>• In this sense, logarithms turn addition into multiplication.</p>
-<p>• Example: suppose we have data for a skewed variable <span class="math inline">\(X_1\)</span>:</p>
+<p>In this sense, logarithms turn addition into multiplication.</p>
+<p>Example: suppose we have data for a skewed variable <span class="math inline">\(X_1\)</span>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_1.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• Now we define <span class="math inline">\(x_2 = ln(x_1)\)</span>:</p>
+<p>Now we define <span class="math inline">\(x_2 = ln(x_1)\)</span>:</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod4_pt2_2.png" class="img-fluid figure-img" width="216"></p>
 </figure>
 </div>
-<p>• This is a toy “data set”. I chose <span class="math inline">\(x_1\)</span> so that <span class="math inline">\(x_2 = ln(x_1)\)</span> would just be the integers <span class="math inline">\(1\)</span> through <span class="math inline">\(10\)</span>.</p>
-<p>• Note: there is no more skew.</p>
-<p>• Also note: increasing <span class="math inline">\(x_2\)</span> by one unit results in multiplying <span class="math inline">\(x_1\)</span> by <span class="math inline">\(e\)</span>. Addition in <span class="math inline">\(x_2 = ln(x_1)\)</span> is the same thing as multiplication in <span class="math inline">\(x_1\)</span>.</p>
+<p>This is a toy “data set”. I chose <span class="math inline">\(x_1\)</span> so that <span class="math inline">\(x_2 = ln(x_1)\)</span> would just be the integers <span class="math inline">\(1\)</span> through <span class="math inline">\(10\)</span>.</p>
+<p>Note: there is no more skew.</p>
+<p>Also note: increasing <span class="math inline">\(x_2\)</span> by one unit results in multiplying <span class="math inline">\(x_1\)</span> by <span class="math inline">\(e\)</span>. Addition in <span class="math inline">\(x_2 = ln(x_1)\)</span> is the same thing as multiplication in <span class="math inline">\(x_1\)</span>.</p>
 </section>
-<section id="same-again-with-log-base-2" class="level4" data-number="3.3.3.2">
-<h4 data-number="3.3.3.2" class="anchored" data-anchor-id="same-again-with-log-base-2"><span class="header-section-number">3.3.3.2</span> Same again, with log base 2</h4>
-<p>• Even simpler: define <span class="math inline">\(x_2\)</span> as log base <span class="math inline">\(2\)</span> of <span class="math inline">\(x_1\)</span>, i.e.&nbsp;<span class="math inline">\(log_2(x_1)\)</span></p>
+<section id="same-again-with-log-base-2" class="level3" data-number="3.7.2">
+<h3 data-number="3.7.2" class="anchored" data-anchor-id="same-again-with-log-base-2"><span class="header-section-number">3.7.2</span> Same again, with log base 2</h3>
+<p>Even simpler: define <span class="math inline">\(x_2\)</span> as log base <span class="math inline">\(2\)</span> of <span class="math inline">\(x_1\)</span>, i.e.&nbsp;<span class="math inline">\(log_2(x_1)\)</span></p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod4_pt2_3.png" class="img-fluid figure-img" width="162"></p>
 </figure>
 </div>
-<p>• Now increasing <span class="math inline">\(x_2\)</span> by one unit is equivalent to multiplying <span class="math inline">\(x_1\)</span> by <span class="math inline">\(2\)</span>. Addition in <span class="math inline">\(x_2 = log_2(x_1)\)</span> is the same thing as multiplication in <span class="math inline">\(x_1\)</span>.</p>
+<p>Now increasing <span class="math inline">\(x_2\)</span> by one unit is equivalent to multiplying <span class="math inline">\(x_1\)</span> by <span class="math inline">\(2\)</span>. Addition in <span class="math inline">\(x_2 = log_2(x_1)\)</span> is the same thing as multiplication in <span class="math inline">\(x_1\)</span>.</p>
 </section>
-<section id="log-transforming-right-skewed-data" class="level4" data-number="3.3.3.3">
-<h4 data-number="3.3.3.3" class="anchored" data-anchor-id="log-transforming-right-skewed-data"><span class="header-section-number">3.3.3.3</span> Log transforming right-skewed data</h4>
+<section id="log-transforming-right-skewed-data" class="level3" data-number="3.7.3">
+<h3 data-number="3.7.3" class="anchored" data-anchor-id="log-transforming-right-skewed-data"><span class="header-section-number">3.7.3</span> Log transforming right-skewed data</h3>
 <ul>
 <li>Skewed data can be bad for regression, in that it can lead to:</li>
 </ul>
@@ -689,48 +723,48 @@ log(𝐴) + log(𝐵) = log(𝐴𝐵)
 -   Non-normal residuals
 
 -   Non-constant variance in residuals</code></pre>
-<p>• So a simple log transformation can sometimes go a long way toward making the regression model fit the better!</p>
-<p>• It is most common to log transform a response variable, because assumptions about residuals apply to <span class="math inline">\(Y\)</span>, not <span class="math inline">\(X\)</span>.</p>
-<p>• But if <span class="math inline">\(X\)</span> is skewed, the model can benefit from a log transformation of <span class="math inline">\(X\)</span>.</p>
-<p>• Bear in mind that log transformation will affect the interpretation of slope coefficients!</p>
-<p>• If <span class="math inline">\(X\)</span> is log transformed, then a one unit increase in <span class="math inline">\(ln(𝑋)\)</span> corresponds to multiplying <span class="math inline">\(X\)</span> by <span class="math inline">\(e \approx 2.72\)</span>. So the slope for <span class="math inline">\(ln(𝑋)\)</span> tells you how much <span class="math inline">\(Y\)</span> increases when <span class="math inline">\(X\)</span> is multiplied by <span class="math inline">\(2.72\)</span>. Or, even better, use log base <span class="math inline">\(2\)</span> and the slope will give how much <span class="math inline">\(Y\)</span> changes when <span class="math inline">\(X\)</span> is doubled.</p>
-<p>• If <span class="math inline">\(Y\)</span> is log transformed, then the interpretations of slopes get more complicated. Here’s the math, with the error term omitted for convenience:</p>
+<p>So a simple log transformation can sometimes go a long way toward making the regression model fit the better!</p>
+<p>It is most common to log transform a response variable, because assumptions about residuals apply to <span class="math inline">\(Y\)</span>, not <span class="math inline">\(X\)</span>.</p>
+<p>But if <span class="math inline">\(X\)</span> is skewed, the model can benefit from a log transformation of <span class="math inline">\(X\)</span>.</p>
+<p>Bear in mind that log transformation will affect the interpretation of slope coefficients!</p>
+<p>If <span class="math inline">\(X\)</span> is log transformed, then a one unit increase in <span class="math inline">\(ln(𝑋)\)</span> corresponds to multiplying <span class="math inline">\(X\)</span> by <span class="math inline">\(e \approx 2.72\)</span>. So the slope for <span class="math inline">\(ln(𝑋)\)</span> tells you how much <span class="math inline">\(Y\)</span> increases when <span class="math inline">\(X\)</span> is multiplied by <span class="math inline">\(2.72\)</span>. Or, even better, use log base <span class="math inline">\(2\)</span> and the slope will give how much <span class="math inline">\(Y\)</span> changes when <span class="math inline">\(X\)</span> is doubled.</p>
+<p>If <span class="math inline">\(Y\)</span> is log transformed, then the interpretations of slopes get more complicated. Here’s the math, with the error term omitted for convenience:</p>
 <p><span class="math display">\[
 ln(y_i) = \beta_0 + \beta_1X_i
 \]</span></p>
 <p><span class="math display">\[
 \therefore y_i = e^{\beta_0 + \beta_1X_i}
 \]</span></p>
-<p>• Increase <span class="math inline">\(X\)</span> by <span class="math inline">\(1 \dots\)</span></p>
+<p>Increase <span class="math inline">\(X\)</span> by <span class="math inline">\(1 \dots\)</span></p>
 <p><span class="math display">\[
 y_i^* = e^{\beta_0 + \beta_1(X_i + 1)} = e^{\beta_0 + \beta_1X_i} \cdot e^{\beta_1}
 \]</span></p>
-<p>• So, when <span class="math inline">\(Y\)</span> is log transformed, a one unit increase in <span class="math inline">\(X\)</span> multiplies predicted <span class="math inline">\(Y\)</span> by <span class="math inline">\(e^{\beta_1}\)</span></p>
+<p>So, when <span class="math inline">\(Y\)</span> is log transformed, a one unit increase in <span class="math inline">\(X\)</span> multiplies predicted <span class="math inline">\(Y\)</span> by <span class="math inline">\(e^{\beta_1}\)</span></p>
 </section>
-<section id="interpreting-slope-as-a-change-in-outcome" class="level4" data-number="3.3.3.4">
-<h4 data-number="3.3.3.4" class="anchored" data-anchor-id="interpreting-slope-as-a-change-in-outcome"><span class="header-section-number">3.3.3.4</span> Interpreting slope as a % change in outcome</h4>
-<p>• Recall the heights vs.&nbsp;wages data from group project 1. The paper reported this estimated model:</p>
+<section id="interpreting-slope-as-a-change-in-outcome" class="level3" data-number="3.7.4">
+<h3 data-number="3.7.4" class="anchored" data-anchor-id="interpreting-slope-as-a-change-in-outcome"><span class="header-section-number">3.7.4</span> Interpreting slope as a % change in outcome</h3>
+<p>Recall the heights vs.&nbsp;wages data from group project 1. The paper reported this estimated model:</p>
 <p><span class="math display">\[
 ln(\text{wage}) = \hat{\beta}_0 + 0.002\text{(Adult Height)} + 0.027\text{(Youth Height)} + 0.024\text{(Age)}
 \]</span></p>
-<p>• So, when comparing two adults <span class="math inline">\(1\)</span> inch apart in height but with the same youth height and age predicted wage is multiplied by <span class="math inline">\(e^{0.027} = 1.027\)</span> for the taller adult.</p>
-<p>• Multiplying by <span class="math inline">\(1.027\)</span> can be thought of as increasing by <span class="math inline">\(2.7\%\)</span></p>
+<p>So, when comparing two adults <span class="math inline">\(1\)</span> inch apart in height but with the same youth height and age predicted wage is multiplied by <span class="math inline">\(e^{0.027} = 1.027\)</span> for the taller adult.</p>
+<p>Multiplying by <span class="math inline">\(1.027\)</span> can be thought of as increasing by <span class="math inline">\(2.7\%\)</span></p>
 </section>
-<section id="log-transformation-applied-example" class="level4" data-number="3.3.3.5">
-<h4 data-number="3.3.3.5" class="anchored" data-anchor-id="log-transformation-applied-example"><span class="header-section-number">3.3.3.5</span> Log transformation applied example</h4>
-<p>• Here is the percent change formula:</p>
+<section id="log-transformation-applied-example" class="level3" data-number="3.7.5">
+<h3 data-number="3.7.5" class="anchored" data-anchor-id="log-transformation-applied-example"><span class="header-section-number">3.7.5</span> Log transformation applied example</h3>
+<p>Here is the percent change formula:</p>
 <p><span class="math display">\[
 \%\text{ change (from A to B)} = \frac{B-A}{A}*100\%
 \]</span></p>
-<p>• If B is <span class="math inline">\(1.027*\)</span>A, then</p>
+<p>If B is <span class="math inline">\(1.027*\)</span>A, then</p>
 <p><span class="math display">\[
 \%\text{ change} = \frac{1.027*A - A}{A}*100 = \frac{0.027A}{A}*100 = 2.7\%
 \]</span></p>
-<p>• So, when comparing two adults 1 inch apart in height but with the same youth height and age, predicted wage is <span class="math inline">\(2.7\%\)</span> higher for the taller adult.</p>
+<p>So, when comparing two adults 1 inch apart in height but with the same youth height and age, predicted wage is <span class="math inline">\(2.7\%\)</span> higher for the taller adult.</p>
 </section>
-<section id="log-transformation-in-y-vs.-in-x" class="level4" data-number="3.3.3.6">
-<h4 data-number="3.3.3.6" class="anchored" data-anchor-id="log-transformation-in-y-vs.-in-x"><span class="header-section-number">3.3.3.6</span> Log transformation in <span class="math inline">\(Y\)</span> vs.&nbsp;in <span class="math inline">\(X\)</span></h4>
-<p>• Remember that log transformation “turns addition into multiplication”. So, to keep track of how log transforming <span class="math inline">\(Y\)</span> vs.&nbsp;log transforming <span class="math inline">\(X\)</span> affects your model:</p>
+<section id="log-transformation-in-y-vs.-in-x" class="level3" data-number="3.7.6">
+<h3 data-number="3.7.6" class="anchored" data-anchor-id="log-transformation-in-y-vs.-in-x"><span class="header-section-number">3.7.6</span> Log transformation in <span class="math inline">\(Y\)</span> vs.&nbsp;in <span class="math inline">\(X\)</span></h3>
+<p>Remember that log transformation “turns addition into multiplication”. So, to keep track of how log transforming <span class="math inline">\(Y\)</span> vs.&nbsp;log transforming <span class="math inline">\(X\)</span> affects your model:</p>
 <p><span class="math display">\[
 \text{log}(Y_i) = \beta_0 + \beta_1X_i + \epsilon_i
 \]</span></p>
@@ -740,47 +774,47 @@ ln(\text{wage}) = \hat{\beta}_0 + 0.002\text{(Adult Height)} + 0.027\text{(Youth
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1\text{log}(X_i) + \epsilon_i
 \]</span></p>
-<p>• If you log transform <span class="math inline">\(Y\)</span> but not <span class="math inline">\(X\)</span>, your model estimates the multiplicative change in predicted <span class="math inline">\(Y\)</span> for an additive change in <span class="math inline">\(X\)</span>.</p>
-<p>• If you log transform <span class="math inline">\(X\)</span> but not <span class="math inline">\(Y\)</span>, your model estimates the additive change in predicted <span class="math inline">\(Y\)</span> for a multiplicative change in <span class="math inline">\(X\)</span>.</p>
+<p>If you log transform <span class="math inline">\(Y\)</span> but not <span class="math inline">\(X\)</span>, your model estimates the multiplicative change in predicted <span class="math inline">\(Y\)</span> for an additive change in <span class="math inline">\(X\)</span>.</p>
+<p>If you log transform <span class="math inline">\(X\)</span> but not <span class="math inline">\(Y\)</span>, your model estimates the additive change in predicted <span class="math inline">\(Y\)</span> for a multiplicative change in <span class="math inline">\(X\)</span>.</p>
 </section>
 </section>
-<section id="non-linearity" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="non-linearity"><span class="header-section-number">3.3.4</span> Non-linearity</h3>
-<p>• Sometimes data show obvious curvature, in the sense that <span class="math inline">\(Y\)</span> is clearly not a straight line function of <span class="math inline">\(X\)</span>.</p>
-<p>• This will be visible on a plot of <span class="math inline">\(Y\)</span> vs.&nbsp;<span class="math inline">\(X\)</span>. It will also be visible on a residuals vs.&nbsp;predicted values plot after running a regression.</p>
-<p>• If there is curvature in the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, then it might be sensible to add a polynomial <span class="math inline">\(X\)</span> term:</p>
+<section id="non-linearity" class="level2" data-number="3.8">
+<h2 data-number="3.8" class="anchored" data-anchor-id="non-linearity"><span class="header-section-number">3.8</span> Non-linearity</h2>
+<p>Sometimes data show obvious curvature, in the sense that <span class="math inline">\(Y\)</span> is clearly not a straight line function of <span class="math inline">\(X\)</span>.</p>
+<p>This will be visible on a plot of <span class="math inline">\(Y\)</span> vs.&nbsp;<span class="math inline">\(X\)</span>. It will also be visible on a residuals vs.&nbsp;predicted values plot after running a regression.</p>
+<p>If there is curvature in the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>, then it might be sensible to add a polynomial <span class="math inline">\(X\)</span> term:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1x_i + \beta_2x_i^2 + \epsilon_i
 \]</span></p>
-<section id="polynomial-review" class="level4" data-number="3.3.4.1">
-<h4 data-number="3.3.4.1" class="anchored" data-anchor-id="polynomial-review"><span class="header-section-number">3.3.4.1</span> “Polynomial” review</h4>
-<p>• A “polynomial” expression is typically one in which variables are included at different powers. For example, a generic third degree polynomial equation might look like:</p>
+<section id="polynomial-review" class="level3" data-number="3.8.1">
+<h3 data-number="3.8.1" class="anchored" data-anchor-id="polynomial-review"><span class="header-section-number">3.8.1</span> “Polynomial” review</h3>
+<p>A “polynomial” expression is typically one in which variables are included at different powers. For example, a generic third degree polynomial equation might look like:</p>
 <p><span class="math display">\[
 y = a + bx + cx^2 + dx^3
 \]</span></p>
-<p>• A “second degree” polynomial is one in which an <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span> term are both included. This is by far the most common type of polynomial seen in regression models.</p>
+<p>A “second degree” polynomial is one in which an <span class="math inline">\(x\)</span> and <span class="math inline">\(x^2\)</span> term are both included. This is by far the most common type of polynomial seen in regression models.</p>
 </section>
-<section id="nd-degree-and-3rd-degree-polynomials" class="level4" data-number="3.3.4.2">
-<h4 data-number="3.3.4.2" class="anchored" data-anchor-id="nd-degree-and-3rd-degree-polynomials"><span class="header-section-number">3.3.4.2</span> <span class="math inline">\(2^{nd}\)</span> degree and <span class="math inline">\(3^{rd}\)</span> degree polynomials</h4>
-<p>• <span class="math inline">\(2^{nd}\)</span> degree polynomials are often called “quadratic”. <span class="math inline">\(3^{rd}\)</span> degree polynomials are often called “cubic”. Here are visual examples of simulated quadratic and cubic relationships between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>:</p>
+<section id="nd-degree-and-3rd-degree-polynomials" class="level3" data-number="3.8.2">
+<h3 data-number="3.8.2" class="anchored" data-anchor-id="nd-degree-and-3rd-degree-polynomials"><span class="header-section-number">3.8.2</span> <span class="math inline">\(2^{nd}\)</span> degree and <span class="math inline">\(3^{rd}\)</span> degree polynomials</h3>
+<p><span class="math inline">\(2^{nd}\)</span> degree polynomials are often called “quadratic”. <span class="math inline">\(3^{rd}\)</span> degree polynomials are often called “cubic”. Here are visual examples of simulated quadratic and cubic relationships between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_4.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
-<section id="curvature-in-residuals" class="level4" data-number="3.3.4.3">
-<h4 data-number="3.3.4.3" class="anchored" data-anchor-id="curvature-in-residuals"><span class="header-section-number">3.3.4.3</span> Curvature in residuals</h4>
-<p>• Here is regression output comparing a linear model to a quadratic model when the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> is quadratic:</p>
+<section id="curvature-in-residuals" class="level3" data-number="3.8.3">
+<h3 data-number="3.8.3" class="anchored" data-anchor-id="curvature-in-residuals"><span class="header-section-number">3.8.3</span> Curvature in residuals</h3>
+<p>Here is regression output comparing a linear model to a quadratic model when the relationship between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span> is quadratic:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_5.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
-<section id="example-florida-election-data" class="level4" data-number="3.3.4.4">
-<h4 data-number="3.3.4.4" class="anchored" data-anchor-id="example-florida-election-data"><span class="header-section-number">3.3.4.4</span> Example: Florida election data</h4>
-<p>• Here is what the Florida election data look like with the Palm Beach County outlier removed, along with regression results for the simple linear regression model:</p>
+<section id="example-florida-election-data" class="level3" data-number="3.8.4">
+<h3 data-number="3.8.4" class="anchored" data-anchor-id="example-florida-election-data"><span class="header-section-number">3.8.4</span> Example: Florida election data</h3>
+<p>Here is what the Florida election data look like with the Palm Beach County outlier removed, along with regression results for the simple linear regression model:</p>
 <p><span class="math display">\[
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \epsilon_i
 \]</span></p>
@@ -789,13 +823,13 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \epsilon_i
 <p><img src="images/mod4_pt2_6.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• Now we will fit a quadratic polynomial model to the same data:</p>
+<p>Now we will fit a quadratic polynomial model to the same data:</p>
 <p><span class="math display">\[
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i + \epsilon_i
 \]</span></p>
-<p>• To create this polynomial predictor in jamovi we first need to install the GAMLj module. Then, select “Generalized Linear Models” and last our “Dependent Variable” and “Covariates”.</p>
-<p>• Under the “Model” drop down menu, click on Total_Votes in the “Components” table.</p>
-<p>• An up and down arrow will appear with the degree of Total_Votes, click the up arrow so the 1 changes to 2. Then click the right arrow to add Total_Votes2 to “Model Terms”</p>
+<p>To create this polynomial predictor in jamovi we first need to install the GAMLj module. Then, select “Generalized Linear Models” and last our “Dependent Variable” and “Covariates”.</p>
+<p>Under the “Model” drop down menu, click on Total_Votes in the “Components” table.</p>
+<p>An up and down arrow will appear with the degree of Total_Votes, click the up arrow so the 1 changes to 2. Then click the right arrow to add Total_Votes2 to “Model Terms”</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_7.png" class="img-fluid figure-img" width="463"></p>
@@ -809,8 +843,8 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i + \epsilo
 <p><img src="images/mod4_pt2_8.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• This is better, but we still see curvature in the residual plot.</p>
-<p>• Let’s try a cubic model:</p>
+<p>This is better, but we still see curvature in the residual plot.</p>
+<p>Let’s try a cubic model:</p>
 <p><span class="math display">\[
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3Total\_Votes_i^3 + \epsilon_i
 \]</span></p>
@@ -828,19 +862,19 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3T
 </figure>
 </div>
 </section>
-<section id="example-florida-election-data-check-note" class="level4" data-number="3.3.4.5">
-<h4 data-number="3.3.4.5" class="anchored" data-anchor-id="example-florida-election-data-check-note"><span class="header-section-number">3.3.4.5</span> Example: Florida election data: check note</h4>
-<p>• It’s debatable whether this is much better. For one, the <span class="math inline">\(Total\_Votes^2\)</span> term is non-significant.</p>
-<p>• But think back to multicollinearity. Each polynomial term will be correlated with the other terms – after all, <span class="math inline">\(Total\_Votes\)</span>, <span class="math inline">\(Total\_Votes^2\)</span>, and <span class="math inline">\(Total\_Votes^3\)</span> must all be correlated.</p>
-<p>• Note that jamovi will not produce VIFs in GLM. Intuitively we know these will be highly correlated with each other.</p>
-<p>• It turns out that centering helps in polynomial models:</p>
+<section id="example-florida-election-data-check-note" class="level3" data-number="3.8.5">
+<h3 data-number="3.8.5" class="anchored" data-anchor-id="example-florida-election-data-check-note"><span class="header-section-number">3.8.5</span> Example: Florida election data: check note</h3>
+<p>It’s debatable whether this is much better. For one, the <span class="math inline">\(Total\_Votes^2\)</span> term is non-significant.</p>
+<p>But think back to multicollinearity. Each polynomial term will be correlated with the other terms – after all, <span class="math inline">\(Total\_Votes\)</span>, <span class="math inline">\(Total\_Votes^2\)</span>, and <span class="math inline">\(Total\_Votes^3\)</span> must all be correlated.</p>
+<p>Note that jamovi will not produce VIFs in GLM. Intuitively we know these will be highly correlated with each other.</p>
+<p>It turns out that centering helps in polynomial models:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_11.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• By default jamovi centers polynomials which makes their standard errors smaller than if they were not centered. But, these estimates are not interpretable; you cannot hold <span class="math inline">\(Total\_Votes^2\)</span> constant while increasing <span class="math inline">\(Total\_Votes\)</span>.</p>
-<p>• In this example, the two counties with the highest total votes are heavily pulling on the regression line.</p>
+<p>By default jamovi centers polynomials which makes their standard errors smaller than if they were not centered. But, these estimates are not interpretable; you cannot hold <span class="math inline">\(Total\_Votes^2\)</span> constant while increasing <span class="math inline">\(Total\_Votes\)</span>.</p>
+<p>In this example, the two counties with the highest total votes are heavily pulling on the regression line.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_12.png" class="img-fluid figure-img" width="382"></p>
@@ -848,36 +882,36 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3T
 </div>
 </section>
 </section>
-<section id="over-fitting" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="over-fitting"><span class="header-section-number">3.3.5</span> Over-fitting</h3>
-<p>• This model might be “over-fit”.</p>
-<p>• Over-fitting is when a model fits the data so well that it ends up fitting random variation that is not of interest.</p>
+<section id="over-fitting" class="level2" data-number="3.9">
+<h2 data-number="3.9" class="anchored" data-anchor-id="over-fitting"><span class="header-section-number">3.9</span> Over-fitting</h2>
+<p>This model might be “over-fit”.</p>
+<p>Over-fitting is when a model fits the data so well that it ends up fitting random variation that is not of interest.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_13.png" class="img-fluid figure-img" width="343"></p>
 </figure>
 </div>
-<p>• Imagine if the two data points on the right had slightly higher vote counts for Buchanan. Or if the next two to their left had slightly lower vote counts. The curve would look very different.</p>
-<p>• At this point, we might just be modelling noise.</p>
-<p>• Here is an extreme example of over-fitting: fitting a “smoother” curve to data and giving it permission to move dramatically up and down through the data.</p>
+<p>Imagine if the two data points on the right had slightly higher vote counts for Buchanan. Or if the next two to their left had slightly lower vote counts. The curve would look very different.</p>
+<p>At this point, we might just be modelling noise.</p>
+<p>Here is an extreme example of over-fitting: fitting a “smoother” curve to data and giving it permission to move dramatically up and down through the data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_14.png" class="img-fluid figure-img" width="357"></p>
 </figure>
 </div>
-<p>• This line fits the data very well, but does it represent the general trend between total votes and votes for Buchanan? Definitely not!</p>
-<p>• (Side note: “smoothers” are great tools for visualizing and summarizing data, but they can be extremely sensitive to degree of smoothing. We won’t use them in STAT 331)</p>
-<p>• Compare the over-fit model to the linear model.</p>
+<p>This line fits the data very well, but does it represent the general trend between total votes and votes for Buchanan? Definitely not!</p>
+<p>(Side note: “smoothers” are great tools for visualizing and summarizing data, but they can be extremely sensitive to degree of smoothing. We won’t use them in STAT 331)</p>
+<p>Compare the over-fit model to the linear model.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_15.png" class="img-fluid figure-img" width="354"></p>
 </figure>
 </div>
-<p>• The linear model may be missing out on some curvature. But it might also make better predictions.</p>
-<p>• If we were to observe a new county with <span class="math inline">\(450,000\)</span> total votes, would we be better guessing that votes for Buchanan fall on the highly curved line or on the straight line?</p>
+<p>The linear model may be missing out on some curvature. But it might also make better predictions.</p>
+<p>If we were to observe a new county with <span class="math inline">\(450,000\)</span> total votes, would we be better guessing that votes for Buchanan fall on the highly curved line or on the straight line?</p>
 </section>
-<section id="back-to-basics-is-the-model-sensible" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="back-to-basics-is-the-model-sensible"><span class="header-section-number">3.3.6</span> Back to basics: is the model sensible?</h3>
+<section id="back-to-basics-is-the-model-sensible" class="level2" data-number="3.10">
+<h2 data-number="3.10" class="anchored" data-anchor-id="back-to-basics-is-the-model-sensible"><span class="header-section-number">3.10</span> Back to basics: is the model sensible?</h2>
 <ul>
 <li><p>Back to basics: regression models are typically used for two purposes:</p>
 <ul>
@@ -885,33 +919,33 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3T
 <li><p>Estimating the association between each individual predictor variable and the outcome while statistically holding other predictor variables constant. This is done by interpreted estimated slope coefficients.</p></li>
 </ul></li>
 </ul>
-<section id="if-you-just-want-to-make-predictions" class="level4" data-number="3.3.6.1">
-<h4 data-number="3.3.6.1" class="anchored" data-anchor-id="if-you-just-want-to-make-predictions"><span class="header-section-number">3.3.6.1</span> If you just want to make predictions</h4>
-<p>• <span class="math inline">\(R^2\)</span> is the easiest to understand statistic for assessing how well your model makes predictions. The closer to <span class="math inline">\(1\)</span>, the better.</p>
-<p>• Multicollinearity isn’t an issue. It doesn’t affect predicted values.</p>
-<p>• BUT – beware of overfitting! The more complex your model, the more risk you take of modeling noise instead of signal.</p>
-<p>• Also, be aware that <span class="math inline">\(R^2\)</span> can never go down when adding predictors. You can add complete nonsense predictor variables, and the worst that will happen to <span class="math inline">\(R^2\)</span> is that it stays the same.</p>
+<section id="if-you-just-want-to-make-predictions" class="level3" data-number="3.10.1">
+<h3 data-number="3.10.1" class="anchored" data-anchor-id="if-you-just-want-to-make-predictions"><span class="header-section-number">3.10.1</span> If you just want to make predictions</h3>
+<p><span class="math inline">\(R^2\)</span> is the easiest to understand statistic for assessing how well your model makes predictions. The closer to <span class="math inline">\(1\)</span>, the better.</p>
+<p>Multicollinearity isn’t an issue. It doesn’t affect predicted values.</p>
+<p>BUT – beware of overfitting! The more complex your model, the more risk you take of modeling noise instead of signal.</p>
+<p>Also, be aware that <span class="math inline">\(R^2\)</span> can never go down when adding predictors. You can add complete nonsense predictor variables, and the worst that will happen to <span class="math inline">\(R^2\)</span> is that it stays the same.</p>
 </section>
-<section id="if-you-want-to-interpret-slopes" class="level4" data-number="3.3.6.2">
-<h4 data-number="3.3.6.2" class="anchored" data-anchor-id="if-you-want-to-interpret-slopes"><span class="header-section-number">3.3.6.2</span> If you want to interpret slopes</h4>
-<p>• Always remember that each slope is interpreted under the assumption that all other predictor variables are being held constant, i.e.&nbsp;“controlled for”.</p>
-<p>• The more predictor variables in the model, the less sense this will make.</p>
-<p>• Example: wage vs.&nbsp;height study:</p>
+<section id="if-you-want-to-interpret-slopes" class="level3" data-number="3.10.2">
+<h3 data-number="3.10.2" class="anchored" data-anchor-id="if-you-want-to-interpret-slopes"><span class="header-section-number">3.10.2</span> If you want to interpret slopes</h3>
+<p>Always remember that each slope is interpreted under the assumption that all other predictor variables are being held constant, i.e.&nbsp;“controlled for”.</p>
+<p>The more predictor variables in the model, the less sense this will make.</p>
+<p>Example: wage vs.&nbsp;height study:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_16.png" class="img-fluid figure-img" width="502"></p>
 </figure>
 </div>
-<p>• In model 4, the estimated slope for youth height can be interpreted as:</p>
+<p>In model 4, the estimated slope for youth height can be interpreted as:</p>
 <p>“The predicted difference in ln(wage) for two people one inch apart in youth height, but equal in adult height, whose mothers have the same # of years of schooling and are both in either skilled fields or work or not, whose fathers have the same # of years of schooling and are both in either skilled fields or work or not, and who have the same number of siblings.”</p>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="images/mod4_pt2_17.png" class="img-fluid figure-img" width="216"></p>
 </figure>
 </div>
-<p>• Maybe this is the best way to think about the association between youth height and wages. But it is fairly complicated.</p>
-<p>• If you’re going to try to make “real world” sense out of regression results, your model should be informed by theory.</p>
-<p>• This is necessarily subjective! You have to choose which variables you think are important. You have to think about what makes sense.</p>
+<p>Maybe this is the best way to think about the association between youth height and wages. But it is fairly complicated.</p>
+<p>If you’re going to try to make “real world” sense out of regression results, your model should be informed by theory.</p>
+<p>This is necessarily subjective! You have to choose which variables you think are important. You have to think about what makes sense.</p>
 <ul>
 <li><p>This might require:</p>
 <ul>
@@ -921,9 +955,9 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Total\_Votes^2_i +\beta_3T
 </ul></li>
 </ul>
 </section>
-<section id="is-the-model-missing-something-important" class="level4" data-number="3.3.6.3">
-<h4 data-number="3.3.6.3" class="anchored" data-anchor-id="is-the-model-missing-something-important"><span class="header-section-number">3.3.6.3</span> Is the model missing something important?</h4>
-<p>• There is another variable in the Florida election data set that could be worth including: “Reg_Reform”: the total number of voters registered with the Reform Party. Pat Buchanan was the Reform Party candidate. Let’s add it to the model:</p>
+<section id="is-the-model-missing-something-important" class="level3" data-number="3.10.3">
+<h3 data-number="3.10.3" class="anchored" data-anchor-id="is-the-model-missing-something-important"><span class="header-section-number">3.10.3</span> Is the model missing something important?</h3>
+<p>There is another variable in the Florida election data set that could be worth including: “Reg_Reform”: the total number of voters registered with the Reform Party. Pat Buchanan was the Reform Party candidate. Let’s add it to the model:</p>
 <p><span class="math display">\[
 Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Reg\_Reform_i + \epsilon_i
 \]</span></p>
@@ -932,66 +966,65 @@ Buchanan_i = \beta_0 + \beta_1Total\_Votes_i + \beta_2Reg\_Reform_i + \epsilon_i
 <p><img src="images/mod4_pt2_18.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• This residual plot looks great!</p>
+<p>This residual plot looks great!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_19.png" class="img-fluid figure-img" width="275"></p>
 </figure>
 </div>
-<p>• It turns out that the curvature in the previous residual plots went away when adding an important variable to the model. No need to mess with polynomials after all!</p>
-<p>• Also, the <span class="math inline">\(R^2\)</span> is roughly the same as in the cubic model using only total votes as a predictor.</p>
-<p>• So we have roughly equal fit, without having to worry about overfitting, and without having to give up interpretability of the slopes.</p>
-<p>• One downside: there is some collinearity. Look at the VIFs.</p>
+<p>It turns out that the curvature in the previous residual plots went away when adding an important variable to the model. No need to mess with polynomials after all!</p>
+<p>Also, the <span class="math inline">\(R^2\)</span> is roughly the same as in the cubic model using only total votes as a predictor.</p>
+<p>So we have roughly equal fit, without having to worry about overfitting, and without having to give up interpretability of the slopes.</p>
+<p>One downside: there is some collinearity. Look at the VIFs.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/mod4_pt2_20.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<p>• VIF of about <span class="math inline">\(5\)</span> implies <span class="math inline">\(\frac{1}{1-R^2}\approx 5\)</span> when using the <span class="math inline">\(R^2\)</span> from:</p>
+<p>VIF of about <span class="math inline">\(5\)</span> implies <span class="math inline">\(\frac{1}{1-R^2}\approx 5\)</span> when using the <span class="math inline">\(R^2\)</span> from:</p>
 <p><span class="math display">\[
 Total\_Votes_i = \beta_0 + \beta_1Reg\_Reform_i + \epsilon_i
 \]</span></p>
-<p>• So, this <span class="math inline">\(R^2\)</span> is about <span class="math inline">\(1 − \frac{1}{5} = 0.8\)</span>. And so <span class="math inline">\(r = \sqrt{0.8} =0.89\)</span> . These predictors are strongly correlated.</p>
+<p>So, this <span class="math inline">\(R^2\)</span> is about <span class="math inline">\(1 − \frac{1}{5} = 0.8\)</span>. And so <span class="math inline">\(r = \sqrt{0.8} =0.89\)</span> . These predictors are strongly correlated.</p>
 <p><img src="images/mod4_pt2_21.png" class="img-fluid"></p>
-<p>• Note also that total votes is not significant.</p>
-<p>• But: the slope for <span class="math inline">\(Reg\_Reform\)</span> has a nice interpretation:</p>
+<p>Note also that total votes is not significant.</p>
+<p>But: the slope for <span class="math inline">\(Reg\_Reform\)</span> has a nice interpretation:</p>
 <p>When comparing two counties with the same number of votes cast in the election, a county with an additional registered Reform Party member is estimated to have <span class="math inline">\(2.24\)</span> additional votes, on average, for Pat Buchanan.</p>
-<p>• Should total votes be taken out of the model? This is a subjective decision.</p>
+<p>Should total votes be taken out of the model? This is a subjective decision.</p>
 </section>
-<section id="what-would-you-like-to-control-for" class="level4" data-number="3.3.6.4">
-<h4 data-number="3.3.6.4" class="anchored" data-anchor-id="what-would-you-like-to-control-for"><span class="header-section-number">3.3.6.4</span> What would you like to “control” for?</h4>
-<p>• In regression analysis, we usually emphasize (correctly) that correlation does not imply causation.</p>
-<p>• However, if you have knowledge or beliefs about causal direction, you should take these into account when choosing your variables!</p>
-<p>• Example: in the rheumatoid arthritis study, we were looking at the effect of drugs on inflammation level. In particular, we were comparing how effective they were at reducing inflammation. Suppose we also asked patients to rate their mobility level (RA tends to reduce mobility).</p>
-<p>• Our model might be:</p>
+<section id="what-would-you-like-to-control-for" class="level3" data-number="3.10.4">
+<h3 data-number="3.10.4" class="anchored" data-anchor-id="what-would-you-like-to-control-for"><span class="header-section-number">3.10.4</span> What would you like to “control” for?</h3>
+<p>In regression analysis, we usually emphasize (correctly) that correlation does not imply causation.</p>
+<p>However, if you have knowledge or beliefs about causal direction, you should take these into account when choosing your variables!</p>
+<p>Example: in the rheumatoid arthritis study, we were looking at the effect of drugs on inflammation level. In particular, we were comparing how effective they were at reducing inflammation. Suppose we also asked patients to rate their mobility level (RA tends to reduce mobility).</p>
+<p>Our model might be:</p>
 <p><span class="math display">\[
 Difference_i = \beta_0 + \beta_1age_i + \beta_2drug_i + \beta_3(age*drug)_i + \beta_4mobility_i + \epsilon_i
 \]</span></p>
-<p>• Now, when interpreting the previous slopes, I am comparing average reduction in inflammation (“difference”, the response variable), between two people who have the same mobility level. But if they have the same mobility level, then they will have more similar inflammation levels than if we allowed mobility level to differ.</p>
-<p>• In other words, because the drug reduces inflammation <em>and</em> improves mobility, “controlling” for mobility will make it look like the drugs are less effective than they really are.</p>
+<p>Now, when interpreting the previous slopes, I am comparing average reduction in inflammation (“difference”, the response variable), between two people who have the same mobility level. But if they have the same mobility level, then they will have more similar inflammation levels than if we allowed mobility level to differ.</p>
+<p>In other words, because the drug reduces inflammation <em>and</em> improves mobility, “controlling” for mobility will make it look like the drugs are less effective than they really are.</p>
 </section>
-<section id="beware-the-kitchen-sink-approach" class="level4" data-number="3.3.6.5">
-<h4 data-number="3.3.6.5" class="anchored" data-anchor-id="beware-the-kitchen-sink-approach"><span class="header-section-number">3.3.6.5</span> Beware the “kitchen sink” approach</h4>
-<p>• There’s an old saying: “taking everything but the kitchen sink”.</p>
-<p>• It can be tempting to toss everything but the kitchen sink into a regression model, especially when you have loads of variables that all seem like they’d be associated with the response.</p>
-<p>• But beware! Adding in one predictor can have a dramatic effect on the slopes of other predictors, as well as on their standard errors.</p>
-<p>• It really really <em>really</em> matters that each slope is estimated as though all other predictors are held constant. This can reveal otherwise unseen effects, but it can also obscure otherwise obvious effects or induce apparent effects that aren’t real. There is no substitute for scientific reasoning when choosing a model.</p>
+<section id="beware-the-kitchen-sink-approach" class="level3" data-number="3.10.5">
+<h3 data-number="3.10.5" class="anchored" data-anchor-id="beware-the-kitchen-sink-approach"><span class="header-section-number">3.10.5</span> Beware the “kitchen sink” approach</h3>
+<p>There’s an old saying: “taking everything but the kitchen sink”.</p>
+<p>It can be tempting to toss everything but the kitchen sink into a regression model, especially when you have loads of variables that all seem like they’d be associated with the response.</p>
+<p>But beware! Adding in one predictor can have a dramatic effect on the slopes of other predictors, as well as on their standard errors.</p>
+<p>It really really <em>really</em> matters that each slope is estimated as though all other predictors are held constant. This can reveal otherwise unseen effects, but it can also obscure otherwise obvious effects or induce apparent effects that aren’t real. There is no substitute for scientific reasoning when choosing a model.</p>
 </section>
-<section id="the-model-is-simpler-than-whats-being-modeled" class="level4" data-number="3.3.6.6">
-<h4 data-number="3.3.6.6" class="anchored" data-anchor-id="the-model-is-simpler-than-whats-being-modeled"><span class="header-section-number">3.3.6.6</span> The model is simpler than what’s being modeled</h4>
-<p>• Let’s take a step back and ask: why are we fitting data to models?</p>
-<p>• Well, we are interested in the real world. And the real world in incredibly complicated. Maybe incomprehensibly complicated.</p>
-<p>• So, we simplify things using models. We hope that the model captures the essence of what we care about in the real world. But we know it is a simplification; perhaps an extreme simplification.</p>
-<p>• “All models are wrong; some are useful” – George Box</p>
-<p>• Consider how the regression model describes where data comes from:</p>
+<section id="the-model-is-simpler-than-whats-being-modeled" class="level3" data-number="3.10.6">
+<h3 data-number="3.10.6" class="anchored" data-anchor-id="the-model-is-simpler-than-whats-being-modeled"><span class="header-section-number">3.10.6</span> The model is simpler than what’s being modeled</h3>
+<p>Let’s take a step back and ask: why are we fitting data to models?</p>
+<p>Well, we are interested in the real world. And the real world in incredibly complicated. Maybe incomprehensibly complicated.</p>
+<p>So, we simplify things using models. We hope that the model captures the essence of what we care about in the real world. But we know it is a simplification; perhaps an extreme simplification.</p>
+<p>“All models are wrong; some are useful” – George Box</p>
+<p>Consider how the regression model describes where data comes from:</p>
 <p><span class="math display">\[
 Y_i = \beta_0 + \beta_1x_{i} + \epsilon_i, \text{ where } \epsilon_i \sim Normal(0,\sigma)
 \]</span></p>
-<p>• This says that to get data, we pick a value for X, go to a line, then randomly draw a value from a normal distribution and add this to the value on the line. And that’s where data comes from!</p>
-<p>• Except, that’s not where data comes from. This is a model. It is a simplification of reality. We use these models because we think they will help us answer questions we care about (e.g.&nbsp;make predictions, identify associations between variables). Don’t forget that the model is not the thing itself.</p>
+<p>This says that to get data, we pick a value for X, go to a line, then randomly draw a value from a normal distribution and add this to the value on the line. And that’s where data comes from!</p>
+<p>Except, that’s not where data comes from. This is a model. It is a simplification of reality. We use these models because we think they will help us answer questions we care about (e.g.&nbsp;make predictions, identify associations between variables). Don’t forget that the model is not the thing itself.</p>
 
 
-</section>
 </section>
 </section>
 

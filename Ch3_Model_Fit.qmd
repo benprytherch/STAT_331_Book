@@ -1,8 +1,8 @@
 # Chapter 3: Assessing and improving model fit
 
-## Part 1: assumptions and assumption violations
+## Part 1: assumptions and assumption violations {.unnumbered}
 
-## Outline of notes:
+## Outline of notes: {.unnumbered}
 
 1.  Regression assumptions
 2.  Linearity
@@ -10,8 +10,12 @@
 4.  Homogeneity of variance
 5.  Influential observations
 6.  (Multi)collinearity
+7.  Log transformation
+8.  Non-linearity
+9.  Over-fitting
+10. Back to basics: is the model sensible?
 
-### Violating model assumptions
+## Violating model assumptions
 
 The previous notes outlined the fundamentals of specifying, fitting, and interpreting a linear regression model.
 
@@ -37,7 +41,7 @@ $$
 
     -   That the residuals are independent
 
-### Linearity
+## Linearity
 
 Remember the "simple" (i.e. single predictor) regression model
 
@@ -95,7 +99,7 @@ We will look at many more examples of residual plots in these notes.
 
     -   Equal variance in residuals across line
 
-### Normality of residuals
+## Normality of residuals
 
 The "error term" in a regression model is that $+ \epsilon_i$ on the end
 
@@ -103,7 +107,7 @@ When we write $\epsilon_i \sim Normal(0, \sigma)$, we are saying that the errors
 
 This can be assessed visually: run the regression plot the residuals to see if they appear roughly normally distributed.
 
-#### The QQ plot
+### The QQ plot
 
 When fitting a model using "Linear Regression" in jamovi, there is an option to save residuals. This will create a new column with a residual for each row.
 
@@ -119,7 +123,7 @@ It is easier to assess normality with a QQ plot than with a histogram.
 
 ![](images/mod4_pt1_7.png){fig-align="center" width="274"}
 
-#### Assessing normality with a QQ plot
+### Assessing normality with a QQ plot
 
 On Canvas under Simulations there is a "QQ plot generator" app.
 
@@ -155,7 +159,7 @@ In this case, the histogram isn't clearly normal. But, on the QQ plot the data a
 
 Notice that the data still veer from the diagonal line to some extent, even though we know for a fact they came from a normal distribution.
 
-#### Limitations of QQ plots
+### Limitations of QQ plots
 
 As you can see from the app, sometimes data that come from a normal distribution don't sit right on the line.
 
@@ -165,7 +169,7 @@ It's easier to assess normality when sample sizes are larger.
 
 As it turns out, the assumption of normality is not vital to the validity of a regression model. If the QQ plot is vague, you're probably fine. We only worry when we see extreme non-normality.
 
-#### Tests for normality (not recommended)
+### Tests for normality (not recommended)
 
 There are statistical tests, such as "Shapiro-Wilks" or "Kolmgorov-Smirnov", for which the null hypothesis is that the data come from some specified distribution, like the normal.
 
@@ -173,7 +177,7 @@ Rejecting this null means that the data "significantly" disagree with the assump
 
 I do not recommend using this test. The problem is that, when the sample size is large enough, even small deviations from normality will be statistically significant. But small deviations from normality are OK. Only major deviations are concerning.
 
-### The homogeneity of variance assumption
+## The homogeneity of variance assumption
 
 Back to the error term:
 
@@ -183,7 +187,7 @@ Notice that $\sigma$ is just one number. This suggests that the standard deviati
 
 Another name for this is "homoscedasticity". If this assumption is violated, then we have "heteroscedasticity".
 
-#### Heterogeneity of variance
+### Heterogeneity of variance
 
 To show heterogeneity of variance, I'll simulate data that is a function of an X variable, plus random values from a normal distribution with standard deviation equal to X.
 
@@ -191,7 +195,7 @@ Thus, the standard deviation of residuals will get bigger as X gets bigger:
 
 ![](images/mod4_pt1_15.png){fig-align="center" width="256"}
 
-#### The residuals vs fitted plot
+### The residuals vs fitted plot
 
 Here is the regression plot and residual plot when this simulated variable (called "W" here) is the response and X is the predictor:
 
@@ -207,7 +211,7 @@ Heavy tails refers to a distribution with outliers on both ends.
 
 This shows up on the QQ plot as the residuals being too flat in the middle and then curving out on both ends.
 
-### Influential observations (outliers)
+## Influential observations (outliers)
 
 Outliers in regression can be seen on a residual plot, or on a QQ plot, or on just a regular plot of the data.
 
@@ -253,7 +257,7 @@ After implementing the filter, we can see that all rows which do not meet the cr
 
 Only rows 13 and 50 should be highlighted for Dade and Palmbeach county which have cook's distances of 1.983 and 3.786.
 
-### (Multi)collinearity
+## (Multi)collinearity
 
 In regression analysis, we want our predictor variables to be correlated with the response variable.
 
@@ -339,7 +343,7 @@ Looking at the estimates and standard errors in all three models, we see that th
 
 We know the association between Total_Reg are Buchanan is actually positive. But with so high a standard error, the slope for Total_Reg turned out negative!
 
-#### Variance inflation factor (VIF)
+### Variance inflation factor (VIF)
 
 (Multi)collinearity can be assessed using a "Variance Inflation Factor", or VIF. A VIF is calculated for the $j^{th}$ predictor variable as:
 
@@ -372,7 +376,7 @@ VIF \> 10 typically is considered large (note that this would imply $R^2 = 0.9$ 
 
 The most obvious thing to do in the presence of (multi)collinearity is to remove one or more correlated predictor variable. From a scientific standpoint, you also may not want highly correlated predictors in the same model.
 
-#### When should we worry about (multi)collinearity?
+### When should we worry about (multi)collinearity?
 
 (Multi)collinearity is a potentially huge problem if the goal of the regression model is to interpret the estimated slopes.
 
@@ -384,11 +388,9 @@ However, (multi)collinearity does not negatively impact the predicted values the
 
 So, if the model is only for predicting, you probably don't need to worry about using correlated predictor variables. Just beware when interpreting the slopes.
 
-## Part 2: Improving models
+## Part 2: Improving models {.unnumbered}
 
-### Summary of part 1
-
--    In the last set of notes, we looked at some things that can go wrong in regression modeling, including:
+In the the first part of chapter 3, we looked at some things that can go wrong in regression modeling, including:
 
     -    Non-linear relationships between predictor(s) and response
 
@@ -400,9 +402,9 @@ So, if the model is only for predicting, you probably don't need to worry about 
 
     -   Multicollinearity
 
-In these notes, we'll look at some tools available for dealing with these problems.
+Now we'll look at some tools available for dealing with these problems.
 
-### Transforming variables
+## Log transformation
 
 Recall the regression model:
 
@@ -418,7 +420,6 @@ $$
 ln(x) = log_e(x)
 $$
 
-### Log transformation
 
 $ln(𝑥)$ is the inverse function of $e^𝑥$, where $𝑒 = 2.718 \dots$
 
@@ -430,7 +431,7 @@ So, the natural log of $x$ is the number you would have to raise $e$ to so that 
 
 Note: in statistics, when we say "log", we usually mean "natural log". It turns out that the distinction is not very important. I'll say "log transform"
 
-#### Why log transform?
+### Why log transform?
 
 -   There are two main reasons for log transforming a variable:
 
@@ -460,7 +461,7 @@ Note: there is no more skew.
 
 Also note: increasing $x_2$ by one unit results in multiplying $x_1$ by $e$. Addition in $x_2 = ln(x_1)$ is the same thing as multiplication in $x_1$.
 
-#### Same again, with log base 2
+### Same again, with log base 2
 
 Even simpler: define $x_2$ as log base $2$ of $x_1$, i.e. $log_2(x_1)$
 
@@ -468,7 +469,7 @@ Even simpler: define $x_2$ as log base $2$ of $x_1$, i.e. $log_2(x_1)$
 
 Now increasing $x_2$ by one unit is equivalent to multiplying $x_1$ by $2$. Addition in $x_2 = log_2(x_1)$ is the same thing as multiplication in $x_1$.
 
-#### Log transforming right-skewed data
+### Log transforming right-skewed data
 
 -    Skewed data can be bad for regression, in that it can lead to:
 
@@ -508,7 +509,7 @@ $$
 
 So, when $Y$ is log transformed, a one unit increase in $X$ multiplies predicted $Y$ by $e^{\beta_1}$
 
-#### Interpreting slope as a % change in outcome
+### Interpreting slope as a % change in outcome
 
 Recall the heights vs. wages data from group project 1. The paper reported this estimated model:
 
@@ -520,7 +521,7 @@ So, when comparing two adults $1$ inch apart in height but with the same youth h
 
 Multiplying by $1.027$ can be thought of as increasing by $2.7\%$
 
-#### Log transformation applied example
+### Log transformation applied example
 
 Here is the percent change formula:
 
@@ -536,7 +537,7 @@ $$
 
 So, when comparing two adults 1 inch apart in height but with the same youth height and age, predicted wage is $2.7\%$ higher for the taller adult.
 
-#### Log transformation in $Y$ vs. in $X$
+### Log transformation in $Y$ vs. in $X$
 
 Remember that log transformation "turns addition into multiplication". So, to keep track of how log transforming $Y$ vs. log transforming $X$ affects your model:
 
@@ -556,7 +557,7 @@ If you log transform $Y$ but not $X$, your model estimates the multiplicative ch
 
 If you log transform $X$ but not $Y$, your model estimates the additive change in predicted $Y$ for a multiplicative change in $X$.
 
-### Non-linearity
+## Non-linearity
 
 Sometimes data show obvious curvature, in the sense that $Y$ is clearly not a straight line function of $X$.
 
@@ -568,7 +569,7 @@ $$
 Y_i = \beta_0 + \beta_1x_i + \beta_2x_i^2 + \epsilon_i
 $$
 
-#### "Polynomial" review
+### "Polynomial" review
 
 A "polynomial" expression is typically one in which variables are included at different powers. For example, a generic third degree polynomial equation might look like:
 
@@ -578,19 +579,19 @@ $$
 
 A "second degree" polynomial is one in which an $x$ and $x^2$ term are both included. This is by far the most common type of polynomial seen in regression models.
 
-#### $2^{nd}$ degree and $3^{rd}$ degree polynomials
+### $2^{nd}$ degree and $3^{rd}$ degree polynomials
 
 $2^{nd}$ degree polynomials are often called "quadratic". $3^{rd}$ degree polynomials are often called "cubic". Here are visual examples of simulated quadratic and cubic relationships between $Y$ and $X$:
 
 ![](images/mod4_pt2_4.png){fig-align="center"}
 
-#### Curvature in residuals
+### Curvature in residuals
 
 Here is regression output comparing a linear model to a quadratic model when the relationship between $Y$ and $X$ is quadratic:
 
 ![](images/mod4_pt2_5.png){fig-align="center"}
 
-#### Example: Florida election data
+### Example: Florida election data
 
 Here is what the Florida election data look like with the Palm Beach County outlier removed, along with regression results for the simple linear regression model:
 
@@ -636,7 +637,7 @@ $$
 
 ![](images/mod4_pt2_10.png){fig-align="center"}
 
-#### Example: Florida election data: check note
+### Example: Florida election data: check note
 
 It's debatable whether this is much better. For one, the $Total\_Votes^2$ term is non-significant.
 
@@ -654,7 +655,7 @@ In this example, the two counties with the highest total votes are heavily pulli
 
 ![](images/mod4_pt2_12.png){fig-align="center" width="382"}
 
-### Over-fitting
+## Over-fitting
 
 This model might be "over-fit".
 
@@ -682,7 +683,7 @@ The linear model may be missing out on some curvature. But it might also make be
 
 If we were to observe a new county with $450,000$ total votes, would we be better guessing that votes for Buchanan fall on the highly curved line or on the straight line?
 
-### Back to basics: is the model sensible?
+## Back to basics: is the model sensible?
 
 -   Back to basics: regression models are typically used for two purposes:
 
@@ -690,7 +691,7 @@ If we were to observe a new county with $450,000$ total votes, would we be bette
 
     -   Estimating the association between each individual predictor variable and the outcome while statistically holding other predictor variables constant. This is done by interpreted estimated slope coefficients.
 
-#### If you just want to make predictions
+### If you just want to make predictions
 
 $R^2$ is the easiest to understand statistic for assessing how well your model makes predictions. The closer to $1$, the better.
 
@@ -700,7 +701,7 @@ BUT -- beware of overfitting! The more complex your model, the more risk you tak
 
 Also, be aware that $R^2$ can never go down when adding predictors. You can add complete nonsense predictor variables, and the worst that will happen to $R^2$ is that it stays the same.
 
-#### If you want to interpret slopes
+### If you want to interpret slopes
 
 Always remember that each slope is interpreted under the assumption that all other predictor variables are being held constant, i.e. "controlled for".
 
@@ -730,7 +731,7 @@ This is necessarily subjective! You have to choose which variables you think are
 
     -   Removing a variable you are interested in, because it doesn't make sense to "hold it constant" when estimating slopes for other variables.
 
-#### Is the model missing something important?
+### Is the model missing something important?
 
 There is another variable in the Florida election data set that could be worth including: "Reg_Reform": the total number of voters registered with the Reform Party. Pat Buchanan was the Reform Party candidate. Let's add it to the model:
 
@@ -772,7 +773,7 @@ When comparing two counties with the same number of votes cast in the election, 
 
 Should total votes be taken out of the model? This is a subjective decision.
 
-#### What would you like to "control" for?
+### What would you like to "control" for?
 
 In regression analysis, we usually emphasize (correctly) that correlation does not imply causation.
 
@@ -790,7 +791,7 @@ Now, when interpreting the previous slopes, I am comparing average reduction in 
 
 In other words, because the drug reduces inflammation *and* improves mobility, "controlling" for mobility will make it look like the drugs are less effective than they really are.
 
-#### Beware the "kitchen sink" approach
+### Beware the "kitchen sink" approach
 
 There's an old saying: "taking everything but the kitchen sink".
 
@@ -800,7 +801,7 @@ But beware! Adding in one predictor can have a dramatic effect on the slopes of 
 
 It really really *really* matters that each slope is estimated as though all other predictors are held constant. This can reveal otherwise unseen effects, but it can also obscure otherwise obvious effects or induce apparent effects that aren't real. There is no substitute for scientific reasoning when choosing a model.
 
-#### The model is simpler than what's being modeled
+### The model is simpler than what's being modeled
 
 Let's take a step back and ask: why are we fitting data to models?
 

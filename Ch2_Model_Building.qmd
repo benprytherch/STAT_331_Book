@@ -4,14 +4,14 @@ Module 2 covers linear regression models. Parts 1 through 4 will be mostly revie
 
 For more details on regression, see [section 3.5 of Answering questions with data](https://crumplab.com/statistics/03-Correlation.html#regression-a-mini-intro) and [chapter 12 of Learning statistics with jamovi](https://davidfoxcroft.github.io/lsj-book/12-Correlation-and-linear-regression.html)
 
-## Outline of notes:
+## Outline of notes: {.unnumbered}
 
 1.  The linear regression equation
 2.  Regression analysis in jamovi
-3.  Interpreting regression results
-4.  Applied example ("The Binary Bias")
-5.  Interaction between variables, conceptually
-6.  Interaction between variables in a regression model
+3.  Sums of squares and mean squares
+4.  Interpreting regression results
+5.  Applied example ("The Binary Bias")
+6.  Interaction between variables
 7.  Applied example: arthritis treatment data
 8.  Centering predictor variables
 9.  Standardizing predictor variables
@@ -135,7 +135,7 @@ These are random data, so yours will look a little bit different. But the scales
 
 Next, we'll fit a regression model to this data. In practice, we do not know the values of the parameters in our model, so we estimate them using data. This is known as "fitting" the model to the data. The point of this simulation is to look at what kind of results we get when fiting a regression model to fake data that was produced by a mechanism we fully understand.
 
-## Fitting a regression model in jamovi
+### Fitting a regression model in jamovi
 
 We can use Regression / Linear Regression to fit a "simple" regression model, which is a regression model with just one predictor.
 
@@ -171,7 +171,7 @@ $$
 \end{align}
 $$
 
-## The $R^2$ statistic
+### The $R^2$ statistic
 
 Note that the output tells us $R^2=0.874$. This is a statistic quantifying how well this model can "predict" the data used to fit it. It is found from the "sum of squares" values in the ANOVA table, Generically:
 
@@ -285,7 +285,7 @@ Visually, $SS_{Model}$ is the sum of the squared vertical deviations between the
 
 Here, the blue lines are two instances of these deviations, associated with the circled blue data points.
 
-#### $SS_{Total} = SS_{Error} + SS_{Model}$
+### $SS_{Total} = SS_{Error} + SS_{Model}$
 
 Total sum of squares are equal to the sum of error sum of squares and model sum of squares.
 
