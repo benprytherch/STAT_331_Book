@@ -270,7 +270,7 @@ $$
 Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)(pre_j - \overline{pre}) + \epsilon_{ij}
 $$
 
-#### Looking at the data
+### Looking at the data
 
 The data file is called "test_pretest". Here is the formatting:
 
@@ -286,7 +286,7 @@ The three lines look pretty close to parallel, so there either isn't an obvious 
 
 ![](images/Mod5_21.png){fig-align="center" width="333"}
 
-#### Analysis using ANCOVA
+### Analysis using ANCOVA
 
 Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.
 
@@ -296,7 +296,7 @@ Type is still significant; it's $\eta^2p$ value is much larger than its $\eta^2$
 
 Careful interpreting the "Estimated marginal means" plot -- it takes into account only "post" scores!
 
-#### Analysis using regression w/ indicators
+### Analysis using regression w/ indicators
 
 For the regression analysis, we'll use two indicator variables. We don't have to do it this way; if we just include "type", jamovi will create the indicators for us, using the first class type listed in the data.
 
@@ -308,7 +308,7 @@ Notice that the interaction estimates are small relative to their standard error
 
 According to this regression model, there is not a "significant" interaction.
 
-#### Analysis using regression w/factor
+### Analysis using regression w/factor
 
 Here's what happens if we put in "type" as a factor variable rather than making our own indicators. The results are the same.
 
@@ -330,7 +330,7 @@ We see that there are significant differences in mean test score change between 
 
 ![](images/Mod5_29.png){fig-align="center" width="333"}
 
-#### Analyze differences, regression approach
+### Analyze differences, regression approach
 
 This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post -- pre) when comparing "combo" to "flipped" or "traditional". And $R^2 = \eta^2$!
 
