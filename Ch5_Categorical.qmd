@@ -1,5 +1,11 @@
 # Chapter 5: Analyzing categorical data
 
+## Outline of notes {.unnumbered}
+
+1.  Confidence intervals and hypothesis tests for proportions
+2.  Relative Risk
+3.  The chi-square test
+
 ## Confidence intervals and hypothesis tests for proportions
 
 At the beginning of the class we reviewed confidence intervals and hypothesis tests for means. These methods can also be used for proportions
@@ -121,9 +127,8 @@ The phrase "risk" is used because this method is popular for comparing the risk 
 
 ![](images/Mod6_15.png){fig-align="center"}
 
-#### Relative risk in JMP
 
-We see here that 𝑅𝑅 = 0.895.
+We see here that $RR = 0.895$.
 
 ![](images/Mod6_13-01.png){fig-align="center"}
 
@@ -233,14 +238,14 @@ Here we get a very large chi-square statistic and a very small p-value.
 
 No surprise; the frequencies were very different!
 
-My opinion on these
+*Side note: there are lots of different "chi-square tests"; this term refers to any test whose test statistic follows a chi-square distribution. So you may see "chi-square tests" that are not being used to test against a null of independence for categorical variables.*
 
-I personally dislike statistical tests, and I really dislike tests that don't incorporate an interpretable statistic.
 
-So, I am not a big fan of this chi-square test. To compare rates for categorical variables, I prefer a 95% CI around either a relative risk or a difference in proportions, whichever seems more meaning for the question at hand.
+### Wrapping up
 
-Note that a "chi-square test" is quite general; it refers to any test whose test statistic follows a chi-square distribution. So you may see "chi-square tests" that are not being used to test against a null of independence for categorical variables.
+My personal view is that hypothesis testing should only be used when a null hypothesis is of direct scientific interest.  In general, I'm more interested in statistics that quantify the size of an "effect" than I am in deciding whether or not to reject a null of "no effect". 
+So, I am not a big fan of this chi-square test. To compare rates for categorical variables, I prefer a 95% CI around either a relative risk or a difference in proportions, whichever seems more meaningful for the question at hand. 
 
-The methods we've covered in these notes are useful for analyzing fairly simple categorical data.
+In the case of a political poll, I don't believe that *identical* proportions of voters in the country would endorse two different statements, and so I'm not very interested testing this as a null hypothesis.  I'm interested in how large a difference might be, and how much statistical uncertainty there is an estimate for that difference.
 
-In the next set of notes, we will look at logistic regression, which is a way to use regression modeling to predict the outcome of a categorical variable.
+The methods we've covered in these notes are useful for analyzing fairly simple categorical data. In the next set of notes, we will look at logistic regression, which is a way to use regression modeling to predict the outcome of a categorical variable.

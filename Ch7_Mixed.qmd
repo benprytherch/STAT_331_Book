@@ -1,112 +1,30 @@
 # Chapter 7: Mixed-effects models
 
-STAT 331
+This chapter covers "mixed-effect" regression and ANOVA models in which some of the coefficients are modeled as random values drawn from a distribution, rather than fixed values that exist at the population level. 
+Mixed models are particularly useful when you have data where individuals are measured more than once.
 
-## Test for screen reader:
+## Outline of notes {.unnumbered}
 
-```{=html}
+1.  Repeated measures
+2.  The independence assumption
+3.  Cheating with repeated measures
+4.  Cheating ourselves with repeated measures
+5.  Challenges and opportunities with repeated measures data
+6.  Random effects
+7.  The mixed effects model
+8.  Applied example: "The liking gap"
+9.  Replicating a published mixed model analysis
 
 
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="generator" content="jamovi 2.3.16.0" />
-        <title>Results</title>
-        <style>
-
-    body {
-        font-family: "Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Segoe UI Emoji","Segoe UI Symbol" ;
-        color: #333333 ;
-        cursor: default ;
-        margin: 24px;
-        font-size: 12px ;
-    }
-
-    h1 {
-        font-size: 160% ;
-        color: #3E6DA9 ;
-        margin-bottom: 12px ;
-        white-space: nowrap ;
-    }
-
-    h2 {
-        font-size: 130% ;
-        margin-bottom: 12px ;
-        color: #3E6DA9 ;
-    }
-
-    h3, h4, h5 {
-        font-size: 110% ;
-        margin-bottom: 12px ;
-    }
-
-    table {
-        border-spacing: 0 ;
-        page-break-inside: avoid;
-    }
-
-    table tr td, table tr th {
-        page-break-inside: avoid;
-        font-size: 12px ;
-    }
-
-    .ql-align-center {
-        text-align: center;
-    }
-
-    .ql-align-right {
-        text-align: right;
-    }
-
-    .ql-align-justify {
-        text-align: justify;
-    }
-
-    .ql-indent-1 {
-        padding-left: 3em;
-    }
-
-    .ql-indent-2 {
-        padding-left: 6em;
-    }
-
-    .ql-indent-3 {
-        padding-left: 9em;
-    }
-
-    .ql-indent-4 {
-        padding-left: 12em;
-    }
-
-    .ql-indent-5 {
-        padding-left: 15em;
-    }
-
-    .note {
-        margin: 5px 0px;
-    }
-        </style>
-</head>
-<body>
-    <table><thead><tr><th colspan="10" style="text-align:left;padding:4px 8px 4px 0px;border-top:0px;border-right:0px;border-bottom:1px solid rgb(51, 51, 51);border-left:0px;"><span style="font-weight:400;">Fixed Effect Omnibus tests</span></th></tr><tr></tr><tr><th colspan="2" style="text-align:center;padding:4px 8px 4px 8px;border-top:0px;border-right:0px;border-bottom:1px solid rgb(51, 51, 51);border-left:0px;"> </th><th colspan="2" style="text-align:center;padding:4px 8px 4px 8px;border-top:0px;border-right:0px;border-bottom:1px solid rgb(51, 51, 51);border-left:0px;">F</th><th colspan="2" style="text-align:center;padding:4px 8px 4px 8px;border-top:0px;border-right:0px;border-bottom:1px solid rgb(51, 51, 51);border-left:0px;">Num df</th><th colspan="2" style="text-align:center;padding:4px 8px 4px 8px;border-top:0px;border-right:0px;border-bottom:1px solid rgb(51, 51, 51);border-left:0px;">Den df</th><th colspan="2" style="text-align:center;padding:4px 8px 4px 8px;border-top:0px;border-right:0px;border-bottom:1px solid rgb(51, 51, 51);border-left:0px;">p</th></tr></thead><tbody><tr><td style="padding:8px 0px 8px 8px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;">Soil</td><td style="padding:8px 8px 8px 2px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;"></td><td style="text-align:right;padding:8px 0px 8px 8px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;">1.769</td><td style="padding:8px 8px 8px 2px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;"></td><td style="text-align:right;padding:8px 0px 8px 8px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;">1</td><td style="padding:8px 8px 8px 2px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;"></td><td style="text-align:right;padding:8px 0px 8px 8px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;">8.000</td><td style="padding:8px 8px 8px 2px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;"></td><td style="text-align:right;padding:8px 0px 8px 8px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;">0.220</td><td style="padding:8px 8px 8px 2px;border-top:0px;border-right:0px;border-bottom:2px solid rgb(51, 51, 51);border-left:0px;"></td></tr></tbody><tfoot><tr><td colspan="10" style="padding:6px 8px 2px 8px;border:0px;"><span style="font-style: italic ;" style="font-weight:400;">Note.</span> Satterthwaite method for degrees of freedom</td></tr><tr><td colspan="10" style="padding:2px 8px 2px 8px;border:0px;"></td></tr></tfoot></table><p>&nbsp;</p>
-</body>
-</html>
-```
-## Part 1: Repeated measures
-
-This module covers data analysis methods for "repeated measures" data.
+## Repeated measures
 
 "Repeated measures" refers to measuring the same subjects (people, trees, dogs, cities, cells, widgets, etc) more than once.
 
 Studies that use repeated measures are often referred to as "within subjects" studies. The idea is that multiple measurements within the same subject will be compared.
 
-Mixed models are popular tools for analyzing repeated measures data.
+Mixed models are popular tools for analyzing repeated measures data; we'll get to these later in the notes.  For now, we'll consider the problems and opportunities that arise from the use of repeated measures data.
 
-We will see these models formally in the next notes.
-
-These notes introduce the problems and opportunities that arise from the use of repeated measures data.
-
-### The independence assumption
+## The independence assumption
 
 We have looked at model assumptions in this class, e.g.
 
@@ -146,7 +64,7 @@ For instance, suppose we have 10 observations on maze completion from 2 people, 
 
 Then I would expect correlation (non-independence) between the first 5 maze times, and between the last 5 times. Observation 5 should be closer to observations 1-4 than it is to observations 6-10.
 
-### Cheating with repeated measures
+## Cheating with repeated measures
 
 We will look at a fake data simulation of repeated measures data.
 
@@ -186,7 +104,7 @@ But check out these t-test results!
 
 Notice where it says degrees of freedom = 29.2. If your degrees of freedom exceeds your sample size, something is wrong.
 
-#### What happened?
+### What happened?
 
 Comparing the two t-tests:
 
@@ -208,7 +126,7 @@ In this case, $\hat{\beta}_1$ is the estimated mean difference in infection leve
 
 There's nothing wrong with this estimate on its own. However its standard error is computing using an incorrect assumption: that all of the observations within each group are independent.
 
-#### Effective sample size
+### Effective sample size
 
 In this case, the apparent sample size is $n = 42$, or $n = 21$ per group.
 
@@ -218,7 +136,7 @@ Taking lots of observations from each animal and doing a t-test on all the data 
 
 Main lesson: observations that are correlated should not be treated as independent!
 
-### Cheating ourselves with repeated measures
+## Cheating ourselves with repeated measures
 
 Treating repeated measures as independent can fool us into thinking we've discovered an association when really there is none.
 
@@ -250,7 +168,7 @@ The following code will convert the data from wide to long form. Note you will n
 
 ![](images/Mod7_pt1_12.png){fig-align="center"}
 
-#### Converting from wide to long form
+### Converting from wide to long form
 
 We must now transform the Day column of the longform data. We want the variable Day to take on nominal integer values
 
@@ -258,7 +176,7 @@ Double click the Day column and in the Data menu select Transform / Using Transf
 
 ![](images/Mod7_pt1_13.png){fig-align="center"}
 
-#### Plotting the data
+### Plotting the data
 
 Here is a basic plot of infection rates across time.
 
@@ -288,7 +206,7 @@ Also, it is now clear that most of the variation in infection rate was due to di
 
 ![](images/Mod7_pt1_17.png){fig-align="center" width="400"}
 
-#### Analyzing the data
+### Analyzing the data
 
 These plots illustrate the idea behind accounting for repeated measures.
 
@@ -296,7 +214,7 @@ In this module, we will learn how to incorporate repeated measures in statistica
 
 For now, let's look at some different way of analyzing the data that we just plotted.
 
-#### Analyzing the data, assuming independence
+### Analyzing the data, assuming independence
 
 We can run regression models where infection rate is the response variable and some combination of treatment and day are the predictors.
 
@@ -317,7 +235,7 @@ Remember, we know that a lot of variability is due to differences between cows. 
 
 Large error variance gives small $R^2$ and large standard errors for slopes
 
-#### Analyzing the data, accounting for cows
+### Analyzing the data, accounting for cows
 
 Here are results from analyzing these data using a mixed model. This mixed model accounts for differences between cows, and the fact that repeated measures taken on each cow are correlated.
 
@@ -327,7 +245,7 @@ We will cover the details of how mixed models work in the next set of notes. For
 
 ![](images/Mod7_pt1_20.png){fig-align="center"}
 
-#### Side by side comparison
+### Side by side comparison
 
 The mixed model (on the bottom) gives smaller standard errors for Day and the interaction.
 
@@ -335,37 +253,28 @@ The mixed model (on the bottom) gives smaller standard errors for Day and the in
 
 Note what didn't change: the parameter estimates!
 
-#### Challenges from repeated measures data
+## Challenges and opportunities with repeated measures data
 
 Repeated measures data can be challenging to analyze, if the design gets complicated. We will see some study designs in which it isn't immediately obvious how to set up an appropriate model.
 
 Repeated measures data can also be analyzed incorrectly (assuming independence) to artificially increase apparent sample size and get strong looking results that are not valid.
 
-#### Opportunities from repeated measures data
+But repeated measures data can also be very useful! "Within subject" designs, in which subjects are measured repeatedly across time and / or conditions, can greatly enhance the precision and power of our inferences.
+This is because variability that would normally be accounted for by the error term can instead be attributed to overall differences between the subjects from whom repeated measurements were taken.  
 
-Repeated measures data can also be very useful!
-
-"Within subject" designs, in which subjects are measured repeatedly across time and / or conditions, can greatly enhance the precision and power of our inferences.
-
-This is because variability that would normally be accounted for by the error term can instead be attributed to overall differences between the subjects from whom repeated measurements were taken.
-
-We will get into the details of mixed modeling for repeated measures data in the next set of notes.
-
-## Part 2: Random and fixed effects
+## Random effects
 
 The "mixed" in "mixed models" refers to a mix of random effects and fixed effects.
 
 All of the predictor variables we've seen all semester have been "fixed effects". What this means will only make sense in comparison to a new kind of predictor: a "random effect".
 
-### Random effects
+Fixed effects variables are predictor variables for which we "estimate" a slope coefficient, usually denoted with a $\beta$.  We calculate a value for this coefficient using our data, and then we treat this value (usually denoted as a $\hat{\beta}$) as an estimate for some fixed but unknown population-level parameter.
 
-Every predictor variable we've seen this semester has been one for which we estimate and interpret a slope coefficient.
+Sometimes, though, we want our model to account for a variable that is important for explaining variability in the response variable, but for which we do not want to treat its coefficients as estimates of unknown parameters.  For instance, in the previous "cows" examples, we'll want to calculate the mean infection levels for each cow and take these into account.  But, it probably doesn't make sense to treat each cow's mean as a population level parameter value of interest.  After all, if we conducted the study again, we'd have new cows!
 
-Sometimes, though, we want our model to account for a variable that is important for explaining variability in the response variable, but for which we are not interested in estimating coefficients.
+Treating this predictor variable as a random effect (or random factor) will accomplish this. Random factors take on values that are treated as having been drawn at random from a larger population of possible values that might be different if we take a new sample. These random factors have coefficients (aka slopes) that are also treated as taking on random values.
 
-A random effect (or random factor) will accomplish this. Random factors take on values that are treated as having been drawn at random from a larger population of possible values that might be different if we take a new sample. These random factors have coefficients (aka slopes) that are also treated as taking on random values.
-
-In the last set of notes, we imagined measuring the same cows over and over again. "Cow" should probably be treated as a random factor in these cases. The cows themselves were drawn from a larger population; we would not get the same cows again in a new study.
+So, with the "cows" examples, we imagined measuring the same cows over and over again. "Cow" should probably be treated as a random factor in these cases. The cows themselves were drawn from a larger population; we would not get the same cows again in a new study.
 
 Also, we wanted to account for differences in the mean infection levels for each individual cow, so that we could estimate standard errors appropriate to our study designs. And these mean infection levels should also be treated as random, in that they came from some population of possible mean infection levels.
 
@@ -390,7 +299,7 @@ But, formally, it isn't so ambiguous. "Fixed" effects are treated as having "fix
 
 "Random" effects are treated as having "random" coefficients drawn from some distribution. We won't estimate individual coefficients, but we will estimate the variance of the distribution from which they came.
 
-#### Subjects and Nesting
+### Subjects and Nesting
 
 Our main motivation right now is to have a method of accounting for repeated measurements on the same subjects.
 
@@ -398,27 +307,15 @@ So, in this class, we will look at mixed models for which the random effect is "
 
 In a study in which subjects are assigned to groups, each subject is assigned to one group.
 
-From a modeling perspective, subject is "nested" within group.
+From a modeling perspective, subject is "nested" within group. In general, one variable is nested within the other if values of the nested variable only occur in certain categories of the variable it is nested within.
 
-#### Nesting
+In this case, cows are nesting within treatments because each cow is measures only in one treatment. A non-nested design would have each cow measured under each value of the other predictors. In other words, each cow would be measured under both treatment.
 
-In general, one variable is nested within the other if values of the nested variable only occur in certain categories of the variable it is nested within.
-
-In this case, cows are nesting within treatments because each cow is measures only in one treatment.
-
-A non-nested design would have each cow measured under each value of the other predictors.
-
-In other words, each cow would be measured under both treatment.
-
-Another example: say we are doing an education research study and we randomly sample 4 districts in a state, then 3 schools in each district, then 7 classrooms in each school
-
-In this case, classroom is nested within school, and school is nested within district.
-
-This is because each classroom exists in only one school, and each school exists in only one district.
+Another example: say we are doing an education research study and we randomly sample 4 districts in a state, then 3 schools in each district, then 7 classrooms in each school. In this case, classroom is nested within school, and school is nested within district. This is because each classroom exists in only one school, and each school exists in only one district.
 
 The notation for "subject nested within group" is $subject(group)$
 
-### The mixed effects model
+## The mixed effects model
 
 A mixed effects model contains both random and fixed effects.
 
@@ -436,9 +333,7 @@ We will not estimate coefficients for the different cows. This model treats each
 
 As we saw in the last set of notes, the purpose of this is to let the model estimate the effects of the "Treatment" and "Day" variables, while taking accounts of the fact that different cows will have different overall mean infection rates.
 
-### The (fake) cows example
-
-#### The mixed effects model in jamovi
+### The mixed effects model in jamovi
 
 To fit this model in jamovi, use "Linear Models", select "Mixed Model", and then add the fixed predictors as factors and covariates and random predictors as cluster variables:
 
@@ -460,7 +355,7 @@ Each cow has its own random coefficient, modeled as having been drawn from a nor
 
 ![](images/Mod7_pt2_4.png){fig-align="center"}
 
-#### Slope coding in "Mixed Model"
+### Slope coding in "Mixed Model"
 
 Notice the categorical predictor "Treatment" lists "Effect" as "A -- (B, A)". jamovi is coding this slope as the difference between Treatment A and the "mean" of Treatments A and B.
 
@@ -468,7 +363,7 @@ So, if we were looking at Treatment B, we'd apply a slope of -0.513.
 
 ![](images/Mod7_pt2_5.png){fig-align="center"}
 
-### Applied example: "The liking gap"
+## Applied example: "The liking gap"
 
 The journal Psychological Science published many studies in which data are publicly available.
 
@@ -484,7 +379,7 @@ Participants also rated how much they thought they were liked.
 
 The study is looking for a "gap" (i.e. difference) between volunteers' self-perception of how much their partners liked them, and how much their partners actually liked them.
 
-#### The liking gap example
+### The liking gap example
 
 From the results section of the paper:
 
@@ -492,7 +387,7 @@ From the results section of the paper:
 
 ![](images/Mod7_pt2_7.png){fig-align="center" width="400"}
 
-#### Fitting the model in jamovi
+### Fitting the model in jamovi
 
 ![](images/Mod7_pt2_8.png){fig-align="center"}
 
@@ -518,27 +413,27 @@ $$
 
 The random effect variances, $\sigma^2_\alpha$ and $\sigma^2_\gamma$, are estimated in the mixed model. These variances could be interpreted, but we will stick to interpreted the fixed effects in this class.
 
-#### Adding an interaction...
+### Adding an interaction...
 
 The next section of the paper looks at personality variables as predictors:
 
 ![](images/Mod7_pt2_9.png){fig-align="center" width="400"}
 
-#### In jamovi
+In jamovi:
 
 ![](images/Mod7_pt2_10.png){fig-align="center"}
 
 We'll stop here. The paper goes on through many additional studies, and the data are all available via the supplemental materials link.
 
-## Part 3: Worked example
+## Replicating a published mixed model analysis
 
-This set of notes on mixed models covers the analysis from a 2017 Psychological Science paper by Goudeau and Croizet, titled
+The remainder of this chapter covers the analysis from a 2017 Psychological Science paper by Goudeau and Croizet, titled:
 
-"Hidden Advantages and Disadvantages of Social Class: How Classroom Settings Reproduce Social Inequality by Staging Unfair Comparison"
+*"Hidden Advantages and Disadvantages of Social Class: How Classroom Settings Reproduce Social Inequality by Staging Unfair Comparison"*
 
 This paper presents three studies on one topic. These notes cover studies 1 and 3; study 2 is reserved for a homework assignment.
 
-#### Worked example overview
+### Worked example overview
 
 This study was performed in France. The data are available at https://osf.io/rkj7y/ and the data file has a codebook sheet that defines the variables:
 
@@ -550,7 +445,7 @@ Performance on the assignment is the dependent variable.
 
 The researchers investigate whether students' performance is associated with their awareness of their classmates' performance, and whether this association can be moderated by students' awareness of the different levels of preparation given to different students.
 
-#### Paper abstract
+### Paper abstract
 
 ![](images/Mod7_pt3_2.png){fig-align="center"}
 

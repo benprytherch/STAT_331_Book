@@ -177,7 +177,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#confidence-intervals-and-hypothesis-tests-for-proportions" id="toc-confidence-intervals-and-hypothesis-tests-for-proportions" class="nav-link active" data-scroll-target="#confidence-intervals-and-hypothesis-tests-for-proportions"><span class="header-section-number">5.1</span> Confidence intervals and hypothesis tests for proportions</a>
+  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link active" data-scroll-target="#outline-of-notes">Outline of notes</a></li>
+  <li><a href="#confidence-intervals-and-hypothesis-tests-for-proportions" id="toc-confidence-intervals-and-hypothesis-tests-for-proportions" class="nav-link" data-scroll-target="#confidence-intervals-and-hypothesis-tests-for-proportions"><span class="header-section-number">5.1</span> Confidence intervals and hypothesis tests for proportions</a>
   <ul class="collapse">
   <li><a href="#toy-example-skin-cream-and-rashes" id="toc-toy-example-skin-cream-and-rashes" class="nav-link" data-scroll-target="#toy-example-skin-cream-and-rashes"><span class="header-section-number">5.1.1</span> Toy example: skin cream and rashes</a></li>
   </ul></li>
@@ -185,7 +186,10 @@ ul.task-list li input[type="checkbox"] {
   <ul class="collapse">
   <li><a href="#relative-risk-in-jamovi" id="toc-relative-risk-in-jamovi" class="nav-link" data-scroll-target="#relative-risk-in-jamovi"><span class="header-section-number">5.2.1</span> Relative risk in jamovi</a></li>
   </ul></li>
-  <li><a href="#the-chi-square-test" id="toc-the-chi-square-test" class="nav-link" data-scroll-target="#the-chi-square-test"><span class="header-section-number">5.3</span> The chi-square test</a></li>
+  <li><a href="#the-chi-square-test" id="toc-the-chi-square-test" class="nav-link" data-scroll-target="#the-chi-square-test"><span class="header-section-number">5.3</span> The chi-square test</a>
+  <ul class="collapse">
+  <li><a href="#wrapping-up" id="toc-wrapping-up" class="nav-link" data-scroll-target="#wrapping-up"><span class="header-section-number">5.3.1</span> Wrapping up</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -209,6 +213,14 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="outline-of-notes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="outline-of-notes">Outline of notes</h2>
+<ol type="1">
+<li>Confidence intervals and hypothesis tests for proportions</li>
+<li>Relative Risk</li>
+<li>The chi-square test</li>
+</ol>
+</section>
 <section id="confidence-intervals-and-hypothesis-tests-for-proportions" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="confidence-intervals-and-hypothesis-tests-for-proportions"><span class="header-section-number">5.1</span> Confidence intervals and hypothesis tests for proportions</h2>
 <p>At the beginning of the class we reviewed confidence intervals and hypothesis tests for means. These methods can also be used for proportions</p>
@@ -345,9 +357,7 @@ RR = \frac{\text{Proportion A}}{\text{Proportion B}}
 <p><img src="images/Mod6_15.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
-<section id="relative-risk-in-jmp" class="level4" data-number="5.2.1.1">
-<h4 data-number="5.2.1.1" class="anchored" data-anchor-id="relative-risk-in-jmp"><span class="header-section-number">5.2.1.1</span> Relative risk in JMP</h4>
-<p>We see here that 𝑅𝑅 = 0.895.</p>
+<p>We see here that <span class="math inline">\(RR = 0.895\)</span>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod6_13-01.png" class="img-fluid figure-img"></p>
@@ -365,7 +375,6 @@ RR = \frac{\text{Proportion A}}{\text{Proportion B}}
 <p>Notice that, for “Better”, RR is small but (just barely) statistically significant, because the CI does not contain 1.</p>
 <p>For “Worse”, RR is large but (just barely) not statistically significant, because the CI contains 1.</p>
 <p>There is another very popular kind of ratio called an “odds ratio”, which we will consider more when we cover logistic regression.</p>
-</section>
 </section>
 </section>
 <section id="the-chi-square-test" class="level2" data-number="5.3">
@@ -439,12 +448,13 @@ RR = \frac{P(Worse|No)}{P(Worse|Yes)} \\
 </figure>
 </div>
 <p>No surprise; the frequencies were very different!</p>
-<p>My opinion on these</p>
-<p>I personally dislike statistical tests, and I really dislike tests that don’t incorporate an interpretable statistic.</p>
-<p>So, I am not a big fan of this chi-square test. To compare rates for categorical variables, I prefer a 95% CI around either a relative risk or a difference in proportions, whichever seems more meaning for the question at hand.</p>
-<p>Note that a “chi-square test” is quite general; it refers to any test whose test statistic follows a chi-square distribution. So you may see “chi-square tests” that are not being used to test against a null of independence for categorical variables.</p>
-<p>The methods we’ve covered in these notes are useful for analyzing fairly simple categorical data.</p>
-<p>In the next set of notes, we will look at logistic regression, which is a way to use regression modeling to predict the outcome of a categorical variable.</p>
+<p><em>Side note: there are lots of different “chi-square tests”; this term refers to any test whose test statistic follows a chi-square distribution. So you may see “chi-square tests” that are not being used to test against a null of independence for categorical variables.</em></p>
+</section>
+<section id="wrapping-up" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="wrapping-up"><span class="header-section-number">5.3.1</span> Wrapping up</h3>
+<p>My personal view is that hypothesis testing should only be used when a null hypothesis is of direct scientific interest. In general, I’m more interested in statistics that quantify the size of an “effect” than I am in deciding whether or not to reject a null of “no effect”. So, I am not a big fan of this chi-square test. To compare rates for categorical variables, I prefer a 95% CI around either a relative risk or a difference in proportions, whichever seems more meaningful for the question at hand.</p>
+<p>In the case of a political poll, I don’t believe that <em>identical</em> proportions of voters in the country would endorse two different statements, and so I’m not very interested testing this as a null hypothesis. I’m interested in how large a difference might be, and how much statistical uncertainty there is an estimate for that difference.</p>
+<p>The methods we’ve covered in these notes are useful for analyzing fairly simple categorical data. In the next set of notes, we will look at logistic regression, which is a way to use regression modeling to predict the outcome of a categorical variable.</p>
 
 
 </section>

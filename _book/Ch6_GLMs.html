@@ -177,18 +177,43 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#part-1-logistic-regression" id="toc-part-1-logistic-regression" class="nav-link active" data-scroll-target="#part-1-logistic-regression"><span class="header-section-number">6.1</span> Part 1: Logistic regression</a></li>
-  <li><a href="#the-logistic-regression-model" id="toc-the-logistic-regression-model" class="nav-link" data-scroll-target="#the-logistic-regression-model"><span class="header-section-number">6.2</span> The logistic regression model</a></li>
-  <li><a href="#odds" id="toc-odds" class="nav-link" data-scroll-target="#odds"><span class="header-section-number">6.3</span> Odds</a>
+  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link active" data-scroll-target="#outline-of-notes">Outline of notes</a></li>
+  <li><a href="#logistic-regression" id="toc-logistic-regression" class="nav-link" data-scroll-target="#logistic-regression"><span class="header-section-number">6.1</span> Logistic regression</a>
   <ul class="collapse">
-  <li><a href="#jamovi-example" id="toc-jamovi-example" class="nav-link" data-scroll-target="#jamovi-example"><span class="header-section-number">6.3.1</span> jamovi example</a></li>
+  <li><a href="#the-logistic-regression-model" id="toc-the-logistic-regression-model" class="nav-link" data-scroll-target="#the-logistic-regression-model"><span class="header-section-number">6.1.1</span> The logistic regression model</a></li>
+  <li><a href="#writing-a-logistic-regression-model" id="toc-writing-a-logistic-regression-model" class="nav-link" data-scroll-target="#writing-a-logistic-regression-model"><span class="header-section-number">6.1.2</span> Writing a logistic regression model</a></li>
+  <li><a href="#the-theoretical-logistic-regression-model" id="toc-the-theoretical-logistic-regression-model" class="nav-link" data-scroll-target="#the-theoretical-logistic-regression-model"><span class="header-section-number">6.1.3</span> The theoretical logistic regression model</a></li>
+  <li><a href="#logit-log-odds" id="toc-logit-log-odds" class="nav-link" data-scroll-target="#logit-log-odds"><span class="header-section-number">6.1.4</span> Logit: log odds</a></li>
   </ul></li>
-  <li><a href="#part-2-poisson-and-negative-binomial-regression" id="toc-part-2-poisson-and-negative-binomial-regression" class="nav-link" data-scroll-target="#part-2-poisson-and-negative-binomial-regression"><span class="header-section-number">6.4</span> Part 2: Poisson and negative binomial regression</a>
+  <li><a href="#odds" id="toc-odds" class="nav-link" data-scroll-target="#odds"><span class="header-section-number">6.2</span> Odds</a>
+  <ul class="collapse">
+  <li><a href="#odds-vs.-probability" id="toc-odds-vs.-probability" class="nav-link" data-scroll-target="#odds-vs.-probability"><span class="header-section-number">6.2.1</span> Odds vs.&nbsp;probability</a></li>
+  <li><a href="#back-to-the-logistic-regression-model" id="toc-back-to-the-logistic-regression-model" class="nav-link" data-scroll-target="#back-to-the-logistic-regression-model"><span class="header-section-number">6.2.2</span> Back to the logistic regression model</a></li>
+  <li><a href="#jamovi-example" id="toc-jamovi-example" class="nav-link" data-scroll-target="#jamovi-example"><span class="header-section-number">6.2.3</span> jamovi example</a></li>
+  </ul></li>
+  <li><a href="#interpreting-slope-in-logistic-regression" id="toc-interpreting-slope-in-logistic-regression" class="nav-link" data-scroll-target="#interpreting-slope-in-logistic-regression"><span class="header-section-number">6.3</span> Interpreting slope in logistic regression</a></li>
+  <li><a href="#poisson-regression" id="toc-poisson-regression" class="nav-link" data-scroll-target="#poisson-regression"><span class="header-section-number">6.4</span> Poisson regression</a>
   <ul class="collapse">
   <li><a href="#the-poisson-distribution" id="toc-the-poisson-distribution" class="nav-link" data-scroll-target="#the-poisson-distribution"><span class="header-section-number">6.4.1</span> The Poisson distribution</a></li>
-  <li><a href="#the-structure-of-a-glm" id="toc-the-structure-of-a-glm" class="nav-link" data-scroll-target="#the-structure-of-a-glm"><span class="header-section-number">6.4.2</span> The structure of a GLM</a></li>
-  <li><a href="#poisson-regression-example" id="toc-poisson-regression-example" class="nav-link" data-scroll-target="#poisson-regression-example"><span class="header-section-number">6.4.3</span> Poisson regression example</a></li>
-  <li><a href="#negative-binomial-regression" id="toc-negative-binomial-regression" class="nav-link" data-scroll-target="#negative-binomial-regression"><span class="header-section-number">6.4.4</span> Negative binomial regression</a></li>
+  <li><a href="#visualizing-the-poisson-distribution" id="toc-visualizing-the-poisson-distribution" class="nav-link" data-scroll-target="#visualizing-the-poisson-distribution"><span class="header-section-number">6.4.2</span> Visualizing the Poisson distribution</a></li>
+  </ul></li>
+  <li><a href="#the-structure-of-a-glm" id="toc-the-structure-of-a-glm" class="nav-link" data-scroll-target="#the-structure-of-a-glm"><span class="header-section-number">6.5</span> The structure of a GLM</a>
+  <ul class="collapse">
+  <li><a href="#the-link-function" id="toc-the-link-function" class="nav-link" data-scroll-target="#the-link-function"><span class="header-section-number">6.5.1</span> The link function</a></li>
+  <li><a href="#glm-examples" id="toc-glm-examples" class="nav-link" data-scroll-target="#glm-examples"><span class="header-section-number">6.5.2</span> GLM examples</a></li>
+  </ul></li>
+  <li><a href="#maximum-likelihood-estimation-conceptually" id="toc-maximum-likelihood-estimation-conceptually" class="nav-link" data-scroll-target="#maximum-likelihood-estimation-conceptually"><span class="header-section-number">6.6</span> Maximum likelihood estimation, conceptually</a></li>
+  <li><a href="#poisson-regression-example" id="toc-poisson-regression-example" class="nav-link" data-scroll-target="#poisson-regression-example"><span class="header-section-number">6.7</span> Poisson regression example</a>
+  <ul class="collapse">
+  <li><a href="#poisson-regression-eda" id="toc-poisson-regression-eda" class="nav-link" data-scroll-target="#poisson-regression-eda"><span class="header-section-number">6.7.1</span> Poisson regression EDA</a></li>
+  <li><a href="#interpreting-the-slope" id="toc-interpreting-the-slope" class="nav-link" data-scroll-target="#interpreting-the-slope"><span class="header-section-number">6.7.2</span> Interpreting the slope</a></li>
+  <li><a href="#overdispersion" id="toc-overdispersion" class="nav-link" data-scroll-target="#overdispersion"><span class="header-section-number">6.7.3</span> Overdispersion</a></li>
+  <li><a href="#fitting-a-larger-model" id="toc-fitting-a-larger-model" class="nav-link" data-scroll-target="#fitting-a-larger-model"><span class="header-section-number">6.7.4</span> Fitting a larger model</a></li>
+  </ul></li>
+  <li><a href="#negative-binomial-regression" id="toc-negative-binomial-regression" class="nav-link" data-scroll-target="#negative-binomial-regression"><span class="header-section-number">6.8</span> Negative binomial regression</a>
+  <ul class="collapse">
+  <li><a href="#negative-binomial-example" id="toc-negative-binomial-example" class="nav-link" data-scroll-target="#negative-binomial-example"><span class="header-section-number">6.8.1</span> Negative binomial example</a></li>
+  <li><a href="#negative-binomial-results" id="toc-negative-binomial-results" class="nav-link" data-scroll-target="#negative-binomial-results"><span class="header-section-number">6.8.2</span> Negative binomial results</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -213,8 +238,21 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="part-1-logistic-regression" class="level2" data-number="6.1">
-<h2 data-number="6.1" class="anchored" data-anchor-id="part-1-logistic-regression"><span class="header-section-number">6.1</span> Part 1: Logistic regression</h2>
+<section id="outline-of-notes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="outline-of-notes">Outline of notes</h2>
+<ol type="1">
+<li>Logistic regression</li>
+<li>Odds</li>
+<li>Interpreting slope in logistic regression</li>
+<li>Poisson regression</li>
+<li>The structure of a GLM</li>
+<li>Maximum likelihood estimation, conceptually</li>
+<li>Poisson regression example</li>
+<li>Negative binomial regression</li>
+</ol>
+</section>
+<section id="logistic-regression" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="logistic-regression"><span class="header-section-number">6.1</span> Logistic regression</h2>
 <p>All of the regression methods we’ve seen have involved models in which the response variable is normally distributed, given values for the predictor variables</p>
 <p>In other words, the residuals have been modeled as normal.</p>
 <p>What if we have a different kind of response variable? In particular, consider a binary response variable. Maybe the outcomes are “yes” and “no”, or “success” and “failure”, or “present” and “absent”.</p>
@@ -237,11 +275,8 @@ ul.task-list li input[type="checkbox"] {
 </div>
 <p>The predicted value of “Report” can be thought of as the predicted probability that Report=1 (for reported behavior)</p>
 <p>Note that this line can go below zero and above one. We don’t want to predict probability greater than 1! A straight line is not great here. Logistic regression is an alternative to this straight line model.</p>
-</section>
-<section id="the-logistic-regression-model" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="the-logistic-regression-model"><span class="header-section-number">6.2</span> The logistic regression model</h2>
-<section id="another-way-of-writing-a-linear-regression-model" class="level4" data-number="6.2.0.1">
-<h4 data-number="6.2.0.1" class="anchored" data-anchor-id="another-way-of-writing-a-linear-regression-model"><span class="header-section-number">6.2.0.1</span> Another way of writing a linear regression model</h4>
+<section id="the-logistic-regression-model" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="the-logistic-regression-model"><span class="header-section-number">6.1.1</span> The logistic regression model</h3>
 <p>By now we are well familiar with the linear regression model:</p>
 <p><span class="math display">\[
 Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi} + \varepsilon_i \\
@@ -254,8 +289,8 @@ Y_i \sim Normal(\mu_i, \sigma^2) \\
 \]</span></p>
 <p>In other words, the response variable is normally distributed with some mean <span class="math inline">\(\mu\)</span>, and the value of <span class="math inline">\(\mu\)</span> is determined by the predictor (<span class="math inline">\(x\)</span>) variables.</p>
 </section>
-<section id="writing-a-logistic-regression-model" class="level4" data-number="6.2.0.2">
-<h4 data-number="6.2.0.2" class="anchored" data-anchor-id="writing-a-logistic-regression-model"><span class="header-section-number">6.2.0.2</span> Writing a logistic regression model</h4>
+<section id="writing-a-logistic-regression-model" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="writing-a-logistic-regression-model"><span class="header-section-number">6.1.2</span> Writing a logistic regression model</h3>
 <p>We will take this approach to writing the logistic regression model.</p>
 <p>What we want is a regression equation that looks like this:</p>
 <p><span class="math display">\[
@@ -263,8 +298,8 @@ Y_i=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
 \]</span></p>
 <p>But that will work when <span class="math inline">\(Y_i\)</span> does not follow a normal distribution.</p>
 </section>
-<section id="the-theoretical-logistic-regression-model" class="level4" data-number="6.2.0.3">
-<h4 data-number="6.2.0.3" class="anchored" data-anchor-id="the-theoretical-logistic-regression-model"><span class="header-section-number">6.2.0.3</span> The theoretical logistic regression model</h4>
+<section id="the-theoretical-logistic-regression-model" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="the-theoretical-logistic-regression-model"><span class="header-section-number">6.1.3</span> The theoretical logistic regression model</h3>
 <p>Response variable <span class="math inline">\(Y\)</span> takes on the values 0 and 1.</p>
 <p>Denote the probability that <span class="math inline">\(Y = 1\)</span> as <span class="math inline">\(\pi\)</span>.</p>
 <p>This can be written <span class="math inline">\(Y\sim Bernoulli (\pi)\)</span></p>
@@ -278,8 +313,8 @@ Y_i\sim Bernoulli (\pi_i)
 \]</span></p>
 <p>The standard deviation of a Bernoulli distribution is <span class="math inline">\(\pi(1 − \pi )\)</span>. So, <span class="math inline">\(\pi\)</span> is the only parameter for this distribution. This is different from the normal distribution, which has two parameters <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</p>
 </section>
-<section id="logit-log-odds" class="level4" data-number="6.2.0.4">
-<h4 data-number="6.2.0.4" class="anchored" data-anchor-id="logit-log-odds"><span class="header-section-number">6.2.0.4</span> Logit: log odds</h4>
+<section id="logit-log-odds" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="logit-log-odds"><span class="header-section-number">6.1.4</span> Logit: log odds</h3>
 <p>But, as we saw in the opening example, a linear model for probability can have serious deficiencies.</p>
 <p>So, instead of a linear model for probability <span class="math inline">\(\pi\)</span>, we’ll make a linear model for a function of <span class="math inline">\(\pi\)</span>, so that the variable on the left hand side of the equation is linearly related to the variable(s) on the right.</p>
 <p>In logistic regression, we use the “logit” function, also known as “log odds”</p>
@@ -289,9 +324,9 @@ logit(\pi) = ln(\frac{\pi}{1-\pi}) = \textit{"log odds"}
 <p>Applied to our sexual harassment example, we would like to predict the probability that harassing behavior is reported. This probability is denoted <span class="math inline">\(\pi\)</span></p>
 <p>Plugging this into the logit formula:</p>
 <p><span class="math display">\[
-logit(P(reported)) = ln(\frac{P(reported}{1-P(reported)}) = \textit{"log odds" of reporting}
+logit(P(reported)) = ln(\frac{P(reported)}{1-P(reported)}) = \textit{"log odds" of reporting}
 \]</span></p>
-<p>This will be our response variable for logistic regression.</p>
+<p>This will be our response variable for logistic regression. Note that this time we wrote <span class="math inline">\(P(reported)\)</span> rather than <span class="math inline">\(\pi\)</span>; these mean the same thing.</p>
 <p>Logit vs.&nbsp;probability, visually:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -305,10 +340,10 @@ logit(P(reported)) = ln(\frac{P(reported}{1-P(reported)}) = \textit{"log odds" o
 </div>
 </section>
 </section>
-<section id="odds" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="odds"><span class="header-section-number">6.3</span> Odds</h2>
-<section id="odds-vs.-probability" class="level4" data-number="6.3.0.1">
-<h4 data-number="6.3.0.1" class="anchored" data-anchor-id="odds-vs.-probability"><span class="header-section-number">6.3.0.1</span> Odds vs.&nbsp;probability</h4>
+<section id="odds" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="odds"><span class="header-section-number">6.2</span> Odds</h2>
+<section id="odds-vs.-probability" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="odds-vs.-probability"><span class="header-section-number">6.2.1</span> Odds vs.&nbsp;probability</h3>
 <p>To understand logistic regression, you’ll need to understand odds.</p>
 <p>In casual English, “odds” and “probability” are often used interchangeably.</p>
 <p>In statistics, they are not the same thing. Odds tell you how likely one outcome is compared to another.</p>
@@ -322,16 +357,49 @@ odds(A) = \frac{P(A)}{1-P(A)} = \frac{\textit{probability A occurs}}{\textit{pro
 P(A) = \frac{odds(A)}{odds(A) + 1}
 \]</span></p>
 <p>Some probabilities and their associated odds:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Mod6_pt2_5.png" class="img-fluid figure-img" width="400"></p>
-</figure>
-</div>
+<table class="table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(P(A)=\)</span></th>
+<th><span class="math inline">\(Odds(A)=\frac{P(A)}{1-P(A)}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0.001</td>
+<td>0.001/0.999=0.001001</td>
+</tr>
+<tr class="even">
+<td>0.05</td>
+<td>0.05/0.95=0.0526</td>
+</tr>
+<tr class="odd">
+<td>0.2</td>
+<td>0.2/0.4=0.25</td>
+</tr>
+<tr class="even">
+<td>0.5</td>
+<td>0.5/0.5=1</td>
+</tr>
+<tr class="odd">
+<td>0.8</td>
+<td>0.8/0.2=4</td>
+</tr>
+<tr class="even">
+<td>0.95</td>
+<td>0.95/0.05=19</td>
+</tr>
+<tr class="odd">
+<td>0.999</td>
+<td>0.999/0.001=999</td>
+</tr>
+</tbody>
+</table>
 <p>Think of odds(A) as “how many times will A occur for every time A does not occur?”</p>
 <p>Sometimes we add “to 1” to an odds statement, e.g.&nbsp;“odds of 4 to 1” means “this outcomes occurs 4 times for every 1 time it does not occur.”</p>
 </section>
-<section id="back-to-the-logistic-regression-model" class="level4" data-number="6.3.0.2">
-<h4 data-number="6.3.0.2" class="anchored" data-anchor-id="back-to-the-logistic-regression-model"><span class="header-section-number">6.3.0.2</span> Back to the logistic regression model</h4>
+<section id="back-to-the-logistic-regression-model" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="back-to-the-logistic-regression-model"><span class="header-section-number">6.2.2</span> Back to the logistic regression model</h3>
 <p>The response variable for logistic regression, again, is:</p>
 <p><span class="math display">\[
 logit(\pi) = ln(\frac{\pi}{1-\pi}) = \textit{"log odds"}
@@ -342,24 +410,28 @@ Y_i\sim Bernoulli (\pi_i)
 \\
 ln(\frac{\pi_i}{1-\pi_i})=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
 \]</span></p>
-<p>We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have <span class="math inline">\(logit(\hat{\pi}_i)\)</span>, we can <span class="math inline">\(\hat{\pi}_i\)</span> back via the inverse logit function:</p>
+<p>We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have <span class="math inline">\(logit(\hat{\pi}_i)\)</span>, we can <span class="math inline">\(\hat{\pi}_i\)</span> back via the inverse logit function, <span class="math inline">\(logit^{-1}(x)=\frac{e^x}{1+e^x}\)</span>:</p>
 <p><span class="math display">\[
+\begin{align}
 logit^{-1}(logit(\pi)) \\
-= \frac{e^{logit(\pi)}}{1 + e^{logit(\pi)}} \\
-= \frac{odds}{1 + odds} \\
-= \frac{\frac{\pi}{1-\pi}}{\frac{1-\pi}{1 - \pi} + \frac{\pi}{1-\pi}} \\
-= \frac{\frac{\pi}{1-\pi}}{\frac{1}{1-\pi}} \\
-= \pi
+&amp;= \frac{e^{logit(\pi)}}{1 + e^{logit(\pi)}} \\
+&amp;= \frac{odds}{1 + odds} \\
+&amp;= \frac{\frac{\pi}{1-\pi}}{\frac{1-\pi}{1 - \pi} + \frac{\pi}{1-\pi}} \\
+&amp;= \frac{\frac{\pi}{1-\pi}}{\frac{1}{1-\pi}} \\
+&amp;= \pi
+\end{align}
 \]</span></p>
 <p>In the context of the logistic regression model:</p>
 <p><span class="math display">\[
-\hat{\pi}_i  \\
-=\frac{e^{\text{log odds}}}{1 + e^{\text{log odds}}} \\
-=\frac{e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}
+\begin{align}
+\hat{\pi}_i &amp; =logit^{-1}(logit(\hat{\pi_i}))\\
+&amp;=\frac{e^{logit(\hat{\pi_i})}}{1 + e^{logit(\hat{\pi_i})}} \\
+&amp;=\frac{e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}
+\end{align}
 \]</span></p>
 </section>
-<section id="jamovi-example" class="level3" data-number="6.3.1">
-<h3 data-number="6.3.1" class="anchored" data-anchor-id="jamovi-example"><span class="header-section-number">6.3.1</span> jamovi example</h3>
+<section id="jamovi-example" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="jamovi-example"><span class="header-section-number">6.2.3</span> jamovi example</h3>
 <p>Applying this to the harassment data, we use Linear Models / Generalized Linear Models in jamovi and select Logistic under Categorical dependent variable.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -370,7 +442,7 @@ logit^{-1}(logit(\pi)) \\
 <p>jamovi also produces a Loglikelihood ratio test, but we will just focus on “Parameter Estimates”:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/Mod6_pt2_7.png" class="img-fluid figure-img"></p>
+<p><img src="images/Mod6_pt2_7.png" class="img-fluid figure-img" width="500"></p>
 </figure>
 </div>
 <p>Here is our estimated model:</p>
@@ -379,15 +451,19 @@ logit^{-1}(logit(\pi)) \\
 \]</span></p>
 <p>Plugging in large and small values for OffensBeh:</p>
 <p><span class="math display">\[
-\textit{log odds (Reported)} = -1.7976 + 0.4869*1 = -1.3107 \\
+\textit{log odds (Reported)} = -1.7976 + 0.4869*1 = -1.3107
+\]</span> <span class="math display">\[
 \textit{log odds (Reported)} = -1.7976 + 0.4869*8 = 2.0976
 \]</span></p>
 <p><span class="math display">\[
-\hat{\pi}|OffensBeh = 1: \frac{e^{-1.3107}}{1 + e^{-1.3107}} = \frac{0.2696}{1.2696} = 0.21 \\
-\hat{\pi}|OffensBeh = 8: \frac{e^{-2.0976}}{1 + e^{-2.0976}} = \frac{8.1466}{9.1466} = 0.89
+\hat{\pi}|OffensBeh = 1: \\ \frac{e^{-1.3107}}{1 + e^{-1.3107}} = \frac{0.2696}{1.2696} = 0.21
+\]</span> <span class="math display">\[
+\hat{\pi}|OffensBeh = 8: \\ \frac{e^{-2.0976}}{1 + e^{-2.0976}} = \frac{8.1466}{9.1466} = 0.89
 \]</span></p>
-<section id="interpreting-slope-in-logistic-regression" class="level4" data-number="6.3.1.1">
-<h4 data-number="6.3.1.1" class="anchored" data-anchor-id="interpreting-slope-in-logistic-regression"><span class="header-section-number">6.3.1.1</span> Interpreting slope in logistic regression</h4>
+</section>
+</section>
+<section id="interpreting-slope-in-logistic-regression" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="interpreting-slope-in-logistic-regression"><span class="header-section-number">6.3</span> Interpreting slope in logistic regression</h2>
 <p>The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. “Log odds” are not of direct interest.</p>
 <p>Exponentiating both sides of the equation gives straight odds</p>
 <p><span class="math display">\[
@@ -403,14 +479,12 @@ odds = (\frac{\pi_i}{1-\pi_i})=e^{\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots 
 <p>Comparing probabilities and odds from this model:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/Mod6_pt2_8.png" class="img-fluid figure-img"></p>
+<p><img src="images/Mod6_pt2_8.png" class="img-fluid figure-img" width="500"></p>
 </figure>
 </div>
 </section>
-</section>
-</section>
-<section id="part-2-poisson-and-negative-binomial-regression" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="part-2-poisson-and-negative-binomial-regression"><span class="header-section-number">6.4</span> Part 2: Poisson and negative binomial regression</h2>
+<section id="poisson-regression" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="poisson-regression"><span class="header-section-number">6.4</span> Poisson regression</h2>
 <p>We’ll now look at two other popular GLMs: Poisson (“pwa-sawn” roughly) and negative binomial.</p>
 <p>These are used for modeling count data, which can be extended to how often a categorical variable takes on some value. Thus Poisson regression can be used to model contingency table data.</p>
 <section id="the-poisson-distribution" class="level3" data-number="6.4.1">
@@ -422,8 +496,9 @@ odds = (\frac{\pi_i}{1-\pi_i})=e^{\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots 
 <p><span class="math display">\[
 P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 \]</span></p>
-<section id="visualizing-the-poisson-distribution" class="level4" data-number="6.4.1.1">
-<h4 data-number="6.4.1.1" class="anchored" data-anchor-id="visualizing-the-poisson-distribution"><span class="header-section-number">6.4.1.1</span> Visualizing the Poisson distribution</h4>
+</section>
+<section id="visualizing-the-poisson-distribution" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="visualizing-the-poisson-distribution"><span class="header-section-number">6.4.2</span> Visualizing the Poisson distribution</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod6_pt2_9.png" class="img-fluid figure-img"></p>
@@ -431,10 +506,10 @@ P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 </div>
 </section>
 </section>
-<section id="the-structure-of-a-glm" class="level3" data-number="6.4.2">
-<h3 data-number="6.4.2" class="anchored" data-anchor-id="the-structure-of-a-glm"><span class="header-section-number">6.4.2</span> The structure of a GLM</h3>
-<section id="the-link-function" class="level4" data-number="6.4.2.1">
-<h4 data-number="6.4.2.1" class="anchored" data-anchor-id="the-link-function"><span class="header-section-number">6.4.2.1</span> The link function</h4>
+<section id="the-structure-of-a-glm" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="the-structure-of-a-glm"><span class="header-section-number">6.5</span> The structure of a GLM</h2>
+<section id="the-link-function" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="the-link-function"><span class="header-section-number">6.5.1</span> The link function</h3>
 <p>In logistic regression, the response variable was $logit(\pi) = ln(\frac{\pi}{1-\pi}) $</p>
 <p>In Poisson regression, the response variable is <span class="math inline">\(ln(\lambda)\)</span></p>
 <p>The reasoning will be that the natural log allows the estimated rate to be modeled as a linear function of some predictor variables.</p>
@@ -446,22 +521,21 @@ P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 <li><p>A linear expression of the predictor variables: <span class="math inline">\(\beta_0 + \beta_1X_1 + \beta_2X_2 \dots\)</span></p></li>
 </ol>
 </section>
-<section id="glm-examples" class="level4" data-number="6.4.2.2">
-<h4 data-number="6.4.2.2" class="anchored" data-anchor-id="glm-examples"><span class="header-section-number">6.4.2.2</span> GLM examples</h4>
+<section id="glm-examples" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="glm-examples"><span class="header-section-number">6.5.2</span> GLM examples</h3>
 <p>Logistic regression uses <span class="math inline">\(Y\sim Bernoulli (\pi)\)</span> as the response variable and <span class="math inline">\(g(\pi) = ln(\frac{\pi}{1-\pi})\)</span> as the link function.</p>
 <p>Poisson regression uses <span class="math inline">\(Y\sim Poisson(\lambda)\)</span> as the response variable and <span class="math inline">\(g(\lambda) = ln(\lambda)\)</span> as the link function.</p>
-<p>Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses <span class="math inline">\(Y\sim Normal (\mu, \sigma^2)\)</span> and the response variable and the identity function, <span class="math inline">\(g(\mu) = \mu\)</span> as the link.</p>
-<p><em>UNABLE TO FIND IN NOTES</em></p>
+<p>Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses <span class="math inline">\(Y\sim Normal (\mu, \sigma^2)\)</span> as the response variable and the identity function, <span class="math inline">\(g(\mu) = \mu\)</span> as the link.</p>
+</section>
+</section>
+<section id="maximum-likelihood-estimation-conceptually" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="maximum-likelihood-estimation-conceptually"><span class="header-section-number">6.6</span> Maximum likelihood estimation, conceptually</h2>
 <p>It’s worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not “least squares”. So, we are not getting our <span class="math inline">\(\beta\)</span>’s by minimizing sums of squared residuals.</p>
-<p>Instead, the estimation procedure we use is called “maximum likelihood”. This method finds the values of the parameter estimates that maximize (i.e.&nbsp;make as large as possible for a given set of data) something called “the likelihood function”.</p>
-<p>The likelihood function takes a fixed set of data and an assumed distribution (e.g.&nbsp;normal), and gives the “probability of the data”, given</p>
-<p>So, if we have:</p>
-<p>Then the likelihood function is:</p>
-<p>Values of 𝛽መ , 𝛽መ , 𝜎ො are found that maximize this function, i.e.&nbsp;that maximize the probability of the data, given the parameter estimates.</p>
+<p>Instead, the estimation procedure we use is called “maximum likelihood”. This method finds the values of the parameter estimates that maximize (i.e.&nbsp;make as large as possible for a given set of data) something called “the likelihood function”. The likelihood function takes a fixed set of data and an assumed distribution (e.g.&nbsp;normal), and gives the “probability of the data”, given some set of parameter values.</p>
+<p>So, the coefficient estimates that we get in GLM output would make our data “more likely” than our data would be under any other set of possible estimates. They are the estimates that maximize the likelihood of our data.</p>
 </section>
-</section>
-<section id="poisson-regression-example" class="level3" data-number="6.4.3">
-<h3 data-number="6.4.3" class="anchored" data-anchor-id="poisson-regression-example"><span class="header-section-number">6.4.3</span> Poisson regression example</h3>
+<section id="poisson-regression-example" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="poisson-regression-example"><span class="header-section-number">6.7</span> Poisson regression example</h2>
 <p>We’ll use some General Social Survey data for this example.</p>
 <p>Poisson is good for modeling count data, so we’ll use a response variable that takes the form of counts.</p>
 <p>For this example, the goal will be to look at the relationship (if any) between the number of sibling a person has, and the number of children that person has.</p>
@@ -481,8 +555,8 @@ P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 </ul>
 <p>We’ll just look at 2018 data. The GSS lets us choose any years we want, going back to 1972.</p>
 <p>This data set is on Canvas, as GSS_Children_Siblings.jmp</p>
-<section id="poisson-regression-eda" class="level4" data-number="6.4.3.1">
-<h4 data-number="6.4.3.1" class="anchored" data-anchor-id="poisson-regression-eda"><span class="header-section-number">6.4.3.1</span> Poisson regression EDA</h4>
+<section id="poisson-regression-eda" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="poisson-regression-eda"><span class="header-section-number">6.7.1</span> Poisson regression EDA</h3>
 <p>First thing to do is plot our variables.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -522,7 +596,7 @@ P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 <p>To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/Mod6_pt2_15.png" class="img-fluid figure-img" width="400"></p>
+<p><img src="images/Mod6_pt2_15.png" class="img-fluid figure-img" width="300"></p>
 </figure>
 </div>
 <p>JMP will automatically choose the log link</p>
@@ -538,8 +612,8 @@ P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 ln(\hat{\lambda}) = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
 \]</span></p>
 </section>
-<section id="interpreting-the-slope" class="level4" data-number="6.4.3.2">
-<h4 data-number="6.4.3.2" class="anchored" data-anchor-id="interpreting-the-slope"><span class="header-section-number">6.4.3.2</span> Interpreting the slope</h4>
+<section id="interpreting-the-slope" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="interpreting-the-slope"><span class="header-section-number">6.7.2</span> Interpreting the slope</h3>
 <p>You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable: <span class="math inline">\(e^{0.0627} = 1.065\)</span></p>
 <p><img src="images/Mod6_pt2_17.png" class="img-fluid" width="511"><br>
 So, increasing # of siblings by one is associated with an 6.5% increase in # of children.</p>
@@ -549,22 +623,22 @@ So, increasing # of siblings by one is associated with an 6.5% increase in # of 
 <p>Downside is that # of children is not normally distributed.</p>
 <p>As is often the case, we are trading some interpretability for a better fitting model.</p>
 </section>
-<section id="interpreting-the-slope-1" class="level4" data-number="6.4.3.3">
-<h4 data-number="6.4.3.3" class="anchored" data-anchor-id="interpreting-the-slope-1"><span class="header-section-number">6.4.3.3</span> Interpreting the slope</h4>
+<section id="overdispersion" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="overdispersion"><span class="header-section-number">6.7.3</span> Overdispersion</h3>
 <p>The Poisson distribution makes a strong assumption: the mean should be equal to the variance.</p>
 <p>Often, we observe real data in which the variance is greater than the mean.</p>
 <p>This is referred to as “overdispersion”.</p>
-<p>JMP reports an overdispersion estimate:</p>
+<p>Jamovi reports an overdispersion estimate:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod6_pt2_18.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 <p>The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom.</p>
-<p>If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model will fit better.</p>
+<p>If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model should fit better.</p>
 </section>
-<section id="fitting-a-larger-model" class="level4" data-number="6.4.3.4">
-<h4 data-number="6.4.3.4" class="anchored" data-anchor-id="fitting-a-larger-model"><span class="header-section-number">6.4.3.4</span> Fitting a larger model</h4>
+<section id="fitting-a-larger-model" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="fitting-a-larger-model"><span class="header-section-number">6.7.4</span> Fitting a larger model</h3>
 <p>For these data, it turns out that # of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -575,8 +649,8 @@ So, increasing # of siblings by one is associated with an 6.5% increase in # of 
 <p>One thing to notice is that the estimate for SIBS has not changed much. So, while the other covariates and interactions matter, they don’t substantially change our interpretation of the SIBS predictor.</p>
 </section>
 </section>
-<section id="negative-binomial-regression" class="level3" data-number="6.4.4">
-<h3 data-number="6.4.4" class="anchored" data-anchor-id="negative-binomial-regression"><span class="header-section-number">6.4.4</span> Negative binomial regression</h3>
+<section id="negative-binomial-regression" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="negative-binomial-regression"><span class="header-section-number">6.8</span> Negative binomial regression</h2>
 <p>There is also still some overdispersion, though less than there was before:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -597,8 +671,8 @@ Y\sim NB(r,p)
 <p>For practical purposes, negative binomial regression will show better fit than Poisson regression in the presence of overdispersion.</p>
 <p>The tradeoff is that the interpretation is less generally applicable. It might not make sense to think of your count variable as # of successes for a certain # of failures.</p>
 <p>As with Poisson regression, negative binomial regression uses a GLM with a log link.</p>
-<section id="negative-binomial-example" class="level4" data-number="6.4.4.1">
-<h4 data-number="6.4.4.1" class="anchored" data-anchor-id="negative-binomial-example"><span class="header-section-number">6.4.4.1</span> Negative binomial example</h4>
+<section id="negative-binomial-example" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="negative-binomial-example"><span class="header-section-number">6.8.1</span> Negative binomial example</h3>
 <p>Here is where you select negative binomial regression in jamovi:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -607,8 +681,8 @@ Y\sim NB(r,p)
 </div>
 <p>Under “Generalized Linear Models”, under “Frequencies” choose “Negative Binomial”.</p>
 </section>
-<section id="negative-binomial-results" class="level4" data-number="6.4.4.2">
-<h4 data-number="6.4.4.2" class="anchored" data-anchor-id="negative-binomial-results"><span class="header-section-number">6.4.4.2</span> Negative binomial results</h4>
+<section id="negative-binomial-results" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="negative-binomial-results"><span class="header-section-number">6.8.2</span> Negative binomial results</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod6_pt2_22.png" class="img-fluid figure-img"></p>
@@ -618,7 +692,6 @@ Y\sim NB(r,p)
 <p>It is often the case that different statistical methods designed for the same purpose will with similar results.</p>
 
 
-</section>
 </section>
 </section>
 

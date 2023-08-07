@@ -177,11 +177,61 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-replication-crisis" id="toc-the-replication-crisis" class="nav-link active" data-scroll-target="#the-replication-crisis"><span class="header-section-number">8.1</span> The “replication crisis”</a>
+  <li><a href="#outline-of-notes" id="toc-outline-of-notes" class="nav-link active" data-scroll-target="#outline-of-notes">Outline of notes</a></li>
+  <li><a href="#the-replication-crisis" id="toc-the-replication-crisis" class="nav-link" data-scroll-target="#the-replication-crisis"><span class="header-section-number">8.1</span> The “replication crisis”</a></li>
+  <li><a href="#power" id="toc-power" class="nav-link" data-scroll-target="#power"><span class="header-section-number">8.2</span> Power</a>
   <ul class="collapse">
-  <li><a href="#assessing-bias-using-meta-analysis" id="toc-assessing-bias-using-meta-analysis" class="nav-link" data-scroll-target="#assessing-bias-using-meta-analysis"><span class="header-section-number">8.1.1</span> Assessing bias using meta-analysis</a></li>
-  <li><a href="#debates-over-statistical-signficance" id="toc-debates-over-statistical-signficance" class="nav-link" data-scroll-target="#debates-over-statistical-signficance"><span class="header-section-number">8.1.2</span> Debates over statistical signficance</a></li>
-  <li><a href="#proposed-reforms" id="toc-proposed-reforms" class="nav-link" data-scroll-target="#proposed-reforms"><span class="header-section-number">8.1.3</span> Proposed reforms</a></li>
+  <li><a href="#type-i-and-type-ii-errors" id="toc-type-i-and-type-ii-errors" class="nav-link" data-scroll-target="#type-i-and-type-ii-errors"><span class="header-section-number">8.2.1</span> Type I and Type II errors</a></li>
+  <li><a href="#problem-power-is-unknown" id="toc-problem-power-is-unknown" class="nav-link" data-scroll-target="#problem-power-is-unknown"><span class="header-section-number">8.2.2</span> Problem: power is unknown!</a></li>
+  </ul></li>
+  <li><a href="#some-history-on-nhst" id="toc-some-history-on-nhst" class="nav-link" data-scroll-target="#some-history-on-nhst"><span class="header-section-number">8.3</span> Some history on “NHST”</a>
+  <ul class="collapse">
+  <li><a href="#ronald-fisher" id="toc-ronald-fisher" class="nav-link" data-scroll-target="#ronald-fisher"><span class="header-section-number">8.3.1</span> Ronald Fisher</a></li>
+  <li><a href="#neyman-and-pearson" id="toc-neyman-and-pearson" class="nav-link" data-scroll-target="#neyman-and-pearson"><span class="header-section-number">8.3.2</span> Neyman and Pearson</a></li>
+  <li><a href="#nhst" id="toc-nhst" class="nav-link" data-scroll-target="#nhst"><span class="header-section-number">8.3.3</span> NHST</a></li>
+  </ul></li>
+  <li><a href="#when-p-0.05-isnt-that-meaningful" id="toc-when-p-0.05-isnt-that-meaningful" class="nav-link" data-scroll-target="#when-p-0.05-isnt-that-meaningful"><span class="header-section-number">8.4</span> When “p &lt; 0.05” isn’t that meaningful</a>
+  <ul class="collapse">
+  <li><a href="#capitalizing-upon-flexibility-so-that-pp-0.05-0.05" id="toc-capitalizing-upon-flexibility-so-that-pp-0.05-0.05" class="nav-link" data-scroll-target="#capitalizing-upon-flexibility-so-that-pp-0.05-0.05"><span class="header-section-number">8.4.1</span> Capitalizing upon flexibility, so that <span class="math inline">\(P(p &lt; 0.05) &gt; 0.05\)</span></a></li>
+  <li><a href="#the-null-could-be-false-due-to-something-you-havent-thought-of" id="toc-the-null-could-be-false-due-to-something-you-havent-thought-of" class="nav-link" data-scroll-target="#the-null-could-be-false-due-to-something-you-havent-thought-of"><span class="header-section-number">8.4.2</span> The null could be false due to something you haven’t thought of</a></li>
+  <li><a href="#do-we-even-think-the-null-could-be-true" id="toc-do-we-even-think-the-null-could-be-true" class="nav-link" data-scroll-target="#do-we-even-think-the-null-could-be-true"><span class="header-section-number">8.4.3</span> Do we even think the null could be true?</a></li>
+  <li><a href="#is-there-a-decision-to-be-made" id="toc-is-there-a-decision-to-be-made" class="nav-link" data-scroll-target="#is-there-a-decision-to-be-made"><span class="header-section-number">8.4.4</span> Is there a decision to be made?</a></li>
+  <li><a href="#big-sample-sizes-give-small-p-values" id="toc-big-sample-sizes-give-small-p-values" class="nav-link" data-scroll-target="#big-sample-sizes-give-small-p-values"><span class="header-section-number">8.4.5</span> Big sample sizes give small p-values</a></li>
+  <li><a href="#ebay-study-example" id="toc-ebay-study-example" class="nav-link" data-scroll-target="#ebay-study-example"><span class="header-section-number">8.4.6</span> eBay study example</a></li>
+  </ul></li>
+  <li><a href="#what-kind-of-type-i-error-are-you-referring-to" id="toc-what-kind-of-type-i-error-are-you-referring-to" class="nav-link" data-scroll-target="#what-kind-of-type-i-error-are-you-referring-to"><span class="header-section-number">8.5</span> What kind of Type I error are you referring to?</a></li>
+  <li><a href="#what-do-people-think-small-p-values-mean" id="toc-what-do-people-think-small-p-values-mean" class="nav-link" data-scroll-target="#what-do-people-think-small-p-values-mean"><span class="header-section-number">8.6</span> What do people think small p-values mean?</a></li>
+  <li><a href="#assessing-bias-using-meta-analysis" id="toc-assessing-bias-using-meta-analysis" class="nav-link" data-scroll-target="#assessing-bias-using-meta-analysis"><span class="header-section-number">8.7</span> Assessing bias using meta-analysis</a>
+  <ul class="collapse">
+  <li><a href="#the-sampling-distribution-of-the-p-value" id="toc-the-sampling-distribution-of-the-p-value" class="nav-link" data-scroll-target="#the-sampling-distribution-of-the-p-value"><span class="header-section-number">8.7.1</span> The sampling distribution of the p-value</a></li>
+  <li><a href="#what-n-is-required-for-sufficient-power-to-detect-obvious-effects" id="toc-what-n-is-required-for-sufficient-power-to-detect-obvious-effects" class="nav-link" data-scroll-target="#what-n-is-required-for-sufficient-power-to-detect-obvious-effects"><span class="header-section-number">8.7.2</span> What N is required for sufficient power to detect obvious effects?</a></li>
+  <li><a href="#more-on-publication-bias" id="toc-more-on-publication-bias" class="nav-link" data-scroll-target="#more-on-publication-bias"><span class="header-section-number">8.7.3</span> More on publication bias</a></li>
+  <li><a href="#funnel-plot" id="toc-funnel-plot" class="nav-link" data-scroll-target="#funnel-plot"><span class="header-section-number">8.7.4</span> Funnel plot</a></li>
+  <li><a href="#inter-ocular-trauma-test" id="toc-inter-ocular-trauma-test" class="nav-link" data-scroll-target="#inter-ocular-trauma-test"><span class="header-section-number">8.7.5</span> Inter-ocular trauma test</a></li>
+  </ul></li>
+  <li><a href="#type-m-errors" id="toc-type-m-errors" class="nav-link" data-scroll-target="#type-m-errors"><span class="header-section-number">8.8</span> Type “M” errors</a>
+  <ul class="collapse">
+  <li><a href="#visually-using-confidence-intervals" id="toc-visually-using-confidence-intervals" class="nav-link" data-scroll-target="#visually-using-confidence-intervals"><span class="header-section-number">8.8.1</span> Visually, using confidence intervals</a></li>
+  <li><a href="#visually-using-sampling-distributions" id="toc-visually-using-sampling-distributions" class="nav-link" data-scroll-target="#visually-using-sampling-distributions"><span class="header-section-number">8.8.2</span> Visually, using sampling distributions</a></li>
+  <li><a href="#the-extreme-example" id="toc-the-extreme-example" class="nav-link" data-scroll-target="#the-extreme-example"><span class="header-section-number">8.8.3</span> The extreme example</a></li>
+  <li><a href="#can-low-power-be-assessed-empirically" id="toc-can-low-power-be-assessed-empirically" class="nav-link" data-scroll-target="#can-low-power-be-assessed-empirically"><span class="header-section-number">8.8.4</span> Can low power be assessed empirically?</a></li>
+  <li><a href="#estimating-power-meta-analytically-r-index" id="toc-estimating-power-meta-analytically-r-index" class="nav-link" data-scroll-target="#estimating-power-meta-analytically-r-index"><span class="header-section-number">8.8.5</span> Estimating power meta-analytically: R-Index</a></li>
+  </ul></li>
+  <li><a href="#should-we-throw-away-non-significant-results" id="toc-should-we-throw-away-non-significant-results" class="nav-link" data-scroll-target="#should-we-throw-away-non-significant-results"><span class="header-section-number">8.9</span> Should we throw away non-significant results?</a>
+  <ul class="collapse">
+  <li><a href="#there-was-no-effect-p0.05" id="toc-there-was-no-effect-p0.05" class="nav-link" data-scroll-target="#there-was-no-effect-p0.05"><span class="header-section-number">8.9.1</span> “There was no effect (p&gt;0.05)”</a></li>
+  <li><a href="#published-example-knee-surgery-study" id="toc-published-example-knee-surgery-study" class="nav-link" data-scroll-target="#published-example-knee-surgery-study"><span class="header-section-number">8.9.2</span> Published example: knee surgery study</a></li>
+  </ul></li>
+  <li><a href="#debates-over-statistical-signficance" id="toc-debates-over-statistical-signficance" class="nav-link" data-scroll-target="#debates-over-statistical-signficance"><span class="header-section-number">8.10</span> Debates over statistical signficance</a>
+  <ul class="collapse">
+  <li><a href="#redefine-statistical-significance" id="toc-redefine-statistical-significance" class="nav-link" data-scroll-target="#redefine-statistical-significance"><span class="header-section-number">8.10.1</span> “Redefine statistical significance”</a></li>
+  <li><a href="#justify-your-alpha" id="toc-justify-your-alpha" class="nav-link" data-scroll-target="#justify-your-alpha"><span class="header-section-number">8.10.2</span> “Justify your alpha”</a></li>
+  <li><a href="#abandon-statistical-significance" id="toc-abandon-statistical-significance" class="nav-link" data-scroll-target="#abandon-statistical-significance"><span class="header-section-number">8.10.3</span> “Abandon statistical significance”</a></li>
+  </ul></li>
+  <li><a href="#proposed-reforms" id="toc-proposed-reforms" class="nav-link" data-scroll-target="#proposed-reforms"><span class="header-section-number">8.11</span> Proposed reforms</a>
+  <ul class="collapse">
+  <li><a href="#some-proposals-for-doing-things-differently" id="toc-some-proposals-for-doing-things-differently" class="nav-link" data-scroll-target="#some-proposals-for-doing-things-differently"><span class="header-section-number">8.11.1</span> Some proposals for doing things differently</a></li>
+  <li><a href="#some-closing-remarks" id="toc-some-closing-remarks" class="nav-link" data-scroll-target="#some-closing-remarks"><span class="header-section-number">8.11.2</span> Some closing remarks</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -207,6 +257,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 <p>These notes cover some general problems that come up in applied data analysis. Many are issues that have come to light recently.</p>
+<section id="outline-of-notes" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="outline-of-notes">Outline of notes</h2>
+<ol type="1">
+<li>The “replication crisis”</li>
+<li>Power</li>
+<li>Some history on “NHST”</li>
+<li>When “p &lt; 0.05” isn’t that meaningful</li>
+<li>What kind of Type I error are you referring to?</li>
+<li>What do people think small p-values mean?</li>
+<li>Assessing bias using meta-analysis</li>
+<li>Type “M” errors</li>
+<li>Should we throw away non-significant results?</li>
+<li>Debates over statistical significance</li>
+<li>Proposed reforms</li>
+</ol>
+</section>
 <section id="the-replication-crisis" class="level2" data-number="8.1">
 <h2 data-number="8.1" class="anchored" data-anchor-id="the-replication-crisis"><span class="header-section-number">8.1</span> The “replication crisis”</h2>
 <p>“The replication crisis” refers to a recent realization in many areas of science that previously published results often fail to replicate.</p>
@@ -220,27 +286,28 @@ ul.task-list li input[type="checkbox"] {
 <p>2015’s “Reproducibility Project: Psychology” by the Center for Open Science found that a large number of published experimental results in top Psychology journals failed to replicate.</p>
 <p>Similar studies in Cancer Biology, Medicine, Economics, Marketing, and Sports Science have found high rates of non-replication.</p>
 <p>Why do so many studies fail to replicate? There are many reasons, and statistical analysis plays a prominent role. These notes cover the role of statistics in the replication crisis.</p>
-<section id="power" class="level4" data-number="8.1.0.1">
-<h4 data-number="8.1.0.1" class="anchored" data-anchor-id="power"><span class="header-section-number">8.1.0.1</span> Power</h4>
+</section>
+<section id="power" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="power"><span class="header-section-number">8.2</span> Power</h2>
 <p>Many of the statistical issues surrounding the replication crisis concern “power”.</p>
 <p>Statistical power is the probability of rejecting a null hypothesis (<span class="math inline">\(H_0\)</span>), in the case that <span class="math inline">\(H_0\)</span> is false.</p>
 <p>In terms of real-world effects, if power is high, then there is a good chance of “detecting” an effect – i.e.&nbsp;of declaring statistical significance.</p>
 <p>If power is low, then even if a real-world effect exists, the result of a hypothesis test will likely be “fail to reject” <span class="math inline">\(H_0\)</span>; i.e.&nbsp;non-significance.</p>
-</section>
-<section id="type-i-and-type-ii-errors" class="level4" data-number="8.1.0.2">
-<h4 data-number="8.1.0.2" class="anchored" data-anchor-id="type-i-and-type-ii-errors"><span class="header-section-number">8.1.0.2</span> Type I and Type II errors</h4>
+<section id="type-i-and-type-ii-errors" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="type-i-and-type-ii-errors"><span class="header-section-number">8.2.1</span> Type I and Type II errors</h3>
 <p>A “Type I” error occurs when a true <span class="math inline">\(H_0\)</span> is rejected. In other words, if we declare a result “statistically significant” even though no real-world effect exists, we are committing a Type I error. This is sometimes called a “false positive” outcome.</p>
 <p>A “Type II” error occurs when a false <span class="math inline">\(H_0\)</span> is not rejected. In other words, if we declare a result “not significant” even though a real-world effect does exist, we are committing a Type II error. This is sometimes called a “false negative” outcome.</p>
 <p>Low statistical power implies a high chance of a false negative.</p>
 </section>
-<section id="problem-power-is-unknown" class="level4" data-number="8.1.0.3">
-<h4 data-number="8.1.0.3" class="anchored" data-anchor-id="problem-power-is-unknown"><span class="header-section-number">8.1.0.3</span> Problem: power is unknown!</h4>
+<section id="problem-power-is-unknown" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="problem-power-is-unknown"><span class="header-section-number">8.2.2</span> Problem: power is unknown!</h3>
 <p>The “true” power of a statistical test is almost never known. To calculate power, one must assume the “true” size of the effect being studied.</p>
 <p>For instance, power to reject the null hypothesis that a new drug is equally effective as a previous drug depends in part upon how different the two drugs are in effectiveness. But if we knew that, we wouldn’t need to conduct a study!</p>
 <p>There has been research estimating average statistical power in various research fields, and reason to believe that low power studies are not uncommon. Which means that a lot of these replication failures might be “false negatives”, rather than the original studies being “false positives”.</p>
 </section>
-<section id="some-history-on-nhst" class="level4" data-number="8.1.0.4">
-<h4 data-number="8.1.0.4" class="anchored" data-anchor-id="some-history-on-nhst"><span class="header-section-number">8.1.0.4</span> Some history on “NHST”</h4>
+</section>
+<section id="some-history-on-nhst" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="some-history-on-nhst"><span class="header-section-number">8.3</span> Some history on “NHST”</h2>
 <p>The form of hypothesis testing used today is sometimes called Null Hypothesis Significance Testing (NHST). It combines what used to be two different methods created by two “camps”. The camps disagreed with one another, and did not get along personally.</p>
 <p>Ronald Fisher</p>
 <div class="quarto-figure quarto-figure-center">
@@ -254,27 +321,27 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="images/Mod9_3.png" class="img-fluid figure-img" width="400"></p>
 </figure>
 </div>
-</section>
-<section id="ronald-fisher" class="level4" data-number="8.1.0.5">
-<h4 data-number="8.1.0.5" class="anchored" data-anchor-id="ronald-fisher"><span class="header-section-number">8.1.0.5</span> Ronald Fisher</h4>
+<section id="ronald-fisher" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="ronald-fisher"><span class="header-section-number">8.3.1</span> Ronald Fisher</h3>
 <p>Introduced the null hypothesis and p-value</p>
 <p>On interpreting small p-values: <em>“Either an exceptionally rare chance has occurred, or the theory of random distribution is not true”</em></p>
 <p>On the use of p &lt; 0.05 as a standard of evidence: <em>“In order to assert that a natural phenomenon is experimentally demonstrable we need, not an isolated record, but a reliable method of procedure. In relation to the test of significance, we may say that a phenomenon is experimentally demonstrable when we know how to conduct an experiment which will rarely fail to give us a statistically significant result”</em></p>
 </section>
-<section id="neyman-and-pearson" class="level4" data-number="8.1.0.6">
-<h4 data-number="8.1.0.6" class="anchored" data-anchor-id="neyman-and-pearson"><span class="header-section-number">8.1.0.6</span> Neyman and Pearson</h4>
+<section id="neyman-and-pearson" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="neyman-and-pearson"><span class="header-section-number">8.3.2</span> Neyman and Pearson</h3>
 <p>Introduced the alternative hypothesis, Type I and II errors, and power.</p>
 <p>Reported only Type I and Type II error probabilities in testing; e.g.&nbsp;p-values of 0.001 and 0.04 would both be reported as falling under a pre-specified <span class="math inline">\(\alpha = 0.05\)</span> Type I error rate. A Type II error rate should also be reported.</p>
 <p><em>“We are inclined to think that as far as a particular hypothesis is concerned, no test based upon a theory of probability can by itself provide any valuable evidence of the truth or falsehood of a hypothesis”</em></p>
 </section>
-<section id="nhst" class="level4" data-number="8.1.0.7">
-<h4 data-number="8.1.0.7" class="anchored" data-anchor-id="nhst"><span class="header-section-number">8.1.0.7</span> NHST</h4>
+<section id="nhst" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="nhst"><span class="header-section-number">8.3.3</span> NHST</h3>
 <p>NHST is a mix between the two approaches.</p>
 <p>Hypothesis testing comes from Neyman and Pearson. They did not believe p-values should be interpreted directly as quantifying evidence. They saw their procedure as simply a method for making a decision.</p>
 <p>The direct interpretation of p-values as quantifying the probability of obtaining results at least as extreme, assuming the null hypothesis is true, comes from Fisher. He did not use an alternative hypothesis, and he did not accept formal power analysis.</p>
 </section>
-<section id="when-p-0.05-isnt-that-meaningful" class="level4" data-number="8.1.0.8">
-<h4 data-number="8.1.0.8" class="anchored" data-anchor-id="when-p-0.05-isnt-that-meaningful"><span class="header-section-number">8.1.0.8</span> When “p &lt; 0.05” isn’t that meaningful</h4>
+</section>
+<section id="when-p-0.05-isnt-that-meaningful" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="when-p-0.05-isnt-that-meaningful"><span class="header-section-number">8.4</span> When “p &lt; 0.05” isn’t that meaningful</h2>
 <p>We say results are “statistically significant” when we calculate a p-value less than the <span class="math inline">\(\alpha\)</span> level of significance, which is commonly 0.05.</p>
 <p>So, “significant” results are the kind that would be unlikely to occur by chance, if the null hypothesis were true.</p>
 <p>There are some issues here…</p>
@@ -298,15 +365,14 @@ ul.task-list li input[type="checkbox"] {
 -   Collecting more data than originally planned
 
 -   Ceasing data collection earlier than originally planned</code></pre>
-</section>
-<section id="capitalizing-upon-flexibility-so-that-pp-0.05-0.05" class="level4" data-number="8.1.0.9">
-<h4 data-number="8.1.0.9" class="anchored" data-anchor-id="capitalizing-upon-flexibility-so-that-pp-0.05-0.05"><span class="header-section-number">8.1.0.9</span> Capitalizing upon flexibility, so that <span class="math inline">\(P(p &lt; 0.05) &gt; 0.05\)</span></h4>
+<section id="capitalizing-upon-flexibility-so-that-pp-0.05-0.05" class="level3" data-number="8.4.1">
+<h3 data-number="8.4.1" class="anchored" data-anchor-id="capitalizing-upon-flexibility-so-that-pp-0.05-0.05"><span class="header-section-number">8.4.1</span> Capitalizing upon flexibility, so that <span class="math inline">\(P(p &lt; 0.05) &gt; 0.05\)</span></h3>
 <p>Flexible practices are perfectly justifiable in many contexts</p>
 <p>But – to interpret a p-value as “the probability of obtaining results at least this extreme, assuming the null is true”, there can be no flexibility, unless accounted for using a correction (e.g.&nbsp;Bonferroni). Flexibility renders the classical p-value interpretation invalid.</p>
 <p>Another way of putting it: if you report a p-value as “the probability of obtaining results this extreme, assuming the null is true”, you are implicitly claiming you would have conducted the identical analysis, even if the data had been different in any way.</p>
 </section>
-<section id="the-null-could-be-false-due-to-something-you-havent-thought-of" class="level4" data-number="8.1.0.10">
-<h4 data-number="8.1.0.10" class="anchored" data-anchor-id="the-null-could-be-false-due-to-something-you-havent-thought-of"><span class="header-section-number">8.1.0.10</span> The null could be false due to something you haven’t thought of</h4>
+<section id="the-null-could-be-false-due-to-something-you-havent-thought-of" class="level3" data-number="8.4.2">
+<h3 data-number="8.4.2" class="anchored" data-anchor-id="the-null-could-be-false-due-to-something-you-havent-thought-of"><span class="header-section-number">8.4.2</span> The null could be false due to something you haven’t thought of</h3>
 <p>Perhaps “<span class="math inline">\(H_0\)</span> is false” does not imply that the version of “not <span class="math inline">\(H_0\)</span>” you have in mind is true.</p>
 <p>In observational studies, we must always think about possible confounders. Maybe there is a “significant association” between variables for some reason that isn’t being considered.</p>
 <p>In experimental studies, we must consider all the possible effects of our interventions. Did the experiment produce “significant” results for a reason we didn’t consider, e.g.&nbsp;poor control, biased question wording?</p>
@@ -314,8 +380,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Does this suggest that completing these requirements in the first year results in higher grades and a higher chance of graduation?</p>
 <p>Could this “statistically significant” effect be due to confounding factors? Is it even reasonable to suspect that students who complete these classes during their first year should have identical grades and graduation rates as those who don’t? This is what the rejected <span class="math inline">\(H_0\)</span> states. Are we impressed that it is rejected?</p>
 </section>
-<section id="do-we-even-think-the-null-could-be-true" class="level4" data-number="8.1.0.11">
-<h4 data-number="8.1.0.11" class="anchored" data-anchor-id="do-we-even-think-the-null-could-be-true"><span class="header-section-number">8.1.0.11</span> Do we even think the null could be true?</h4>
+<section id="do-we-even-think-the-null-could-be-true" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="do-we-even-think-the-null-could-be-true"><span class="header-section-number">8.4.3</span> Do we even think the null could be true?</h3>
 <p><em>“All we know about the world teaches us that the effects of A and B are always different – in some decimal place – for any A and B. Thus asking ‘Are the effects different?’ is foolish”</em> - John Tukey</p>
 <p>The null can be used as a “Straw Man” that no one really believes. Overturning a straw man null may not be that impressive.</p>
 <p>A good question to ask: “would we expect this null to be true?”</p>
@@ -327,8 +393,8 @@ ul.task-list li input[type="checkbox"] {
 <p>In Ronald Fisher’s “The Lady Tasting Tea”, the subject of the story claimed she could tell whether milk or tea had been poured into a cup first, simply by tasting the result. The null is that she couldn’t tell. Seems plausible.</p>
 <p>My personal rule is that I am only interested in p-values when I think the null is plausible.</p>
 </section>
-<section id="is-there-a-decision-to-be-made" class="level4" data-number="8.1.0.12">
-<h4 data-number="8.1.0.12" class="anchored" data-anchor-id="is-there-a-decision-to-be-made"><span class="header-section-number">8.1.0.12</span> Is there a decision to be made?</h4>
+<section id="is-there-a-decision-to-be-made" class="level3" data-number="8.4.4">
+<h3 data-number="8.4.4" class="anchored" data-anchor-id="is-there-a-decision-to-be-made"><span class="header-section-number">8.4.4</span> Is there a decision to be made?</h3>
 <p>A significance test returns a binary outcome: the results are significant, or they are non-significant.</p>
 <p>Binary outcomes can produce binary thinking: the temptation to think “significant” means “real” and “non-significant” means “due to chance”.</p>
 <p>Is coming to a binary choice even necessary? Why not just report a point estimate and standard error or 95% CI?</p>
@@ -336,8 +402,8 @@ ul.task-list li input[type="checkbox"] {
 <p>Example: deciding whether to continue investing money into a research program.</p>
 <p>If the analysis is being done for the purpose of decision making, then a decision rule must be established, and “significance” can be such a rule. If the analysis is being done for the purpose of conveying information in data, I personally see no reason to add in a declaration of “significant” or “not significant”.</p>
 </section>
-<section id="big-sample-sizes-give-small-p-values" class="level4" data-number="8.1.0.13">
-<h4 data-number="8.1.0.13" class="anchored" data-anchor-id="big-sample-sizes-give-small-p-values"><span class="header-section-number">8.1.0.13</span> Big sample sizes give small p-values</h4>
+<section id="big-sample-sizes-give-small-p-values" class="level3" data-number="8.4.5">
+<h3 data-number="8.4.5" class="anchored" data-anchor-id="big-sample-sizes-give-small-p-values"><span class="header-section-number">8.4.5</span> Big sample sizes give small p-values</h3>
 <p>Consider the t-test statistic:</p>
 <p><span class="math display">\[
 t = \frac{\bar{x}_1 - \bar{x}_2}{\textit{std. error of }\bar{x}_1 - \bar{x}_2}
@@ -346,8 +412,8 @@ t = \frac{\bar{x}_1 - \bar{x}_2}{\textit{std. error of }\bar{x}_1 - \bar{x}_2}
 <p>So, the bigger the sample size, the smaller the value of <span class="math inline">\(\bar{x}_1 - \bar{x}_2\)</span> that is needed to achieve statistical significance.</p>
 <p>Upshot: if <span class="math inline">\(n\)</span> is larger, very small effects will be “significant”.</p>
 </section>
-<section id="ebay-study-example" class="level4" data-number="8.1.0.14">
-<h4 data-number="8.1.0.14" class="anchored" data-anchor-id="ebay-study-example"><span class="header-section-number">8.1.0.14</span> eBay study example</h4>
+<section id="ebay-study-example" class="level3" data-number="8.4.6">
+<h3 data-number="8.4.6" class="anchored" data-anchor-id="ebay-study-example"><span class="header-section-number">8.4.6</span> eBay study example</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod9_4.png" class="img-fluid figure-img"></p>
@@ -356,8 +422,9 @@ t = \frac{\bar{x}_1 - \bar{x}_2}{\textit{std. error of }\bar{x}_1 - \bar{x}_2}
 <p><em>“Women had a slightly higher percentage of transactions for which positive feedback had been given in the year preceding the current transaction (99.60% for women and 99.58% for men, P &lt; 0.05)”</em></p>
 <p>(http://advances.sciencemag.org/content/2/2/e1500599.full)</p>
 </section>
-<section id="what-kind-of-type-i-error-are-you-referring-to" class="level4" data-number="8.1.0.15">
-<h4 data-number="8.1.0.15" class="anchored" data-anchor-id="what-kind-of-type-i-error-are-you-referring-to"><span class="header-section-number">8.1.0.15</span> What kind of Type I error are you referring to?</h4>
+</section>
+<section id="what-kind-of-type-i-error-are-you-referring-to" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="what-kind-of-type-i-error-are-you-referring-to"><span class="header-section-number">8.5</span> What kind of Type I error are you referring to?</h2>
 <p>Going back to Type I errors, here is the “Type I error rate”:</p>
 <p><span class="math display">\[
 P(\textit{Reject } H_0|H_0\textit{ is true})
@@ -370,8 +437,8 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 <p>It says nothing about the probability <span class="math inline">\(H_0\)</span> is false, given that <span class="math inline">\(H_0\)</span> has been rejected. <span class="math inline">\(P(\textit{reject } H_0|H_0\textit{ is false}) \neq P(H_0\textit{ is false}|\textit{reject } H_0)\)</span></p>
 <p>Upshot: don’t imagine that a Type I error rate of 0.05 implies that only 5% of significant results you see should be Type I errors!</p>
 </section>
-<section id="what-do-people-think-small-p-values-mean" class="level4" data-number="8.1.0.16">
-<h4 data-number="8.1.0.16" class="anchored" data-anchor-id="what-do-people-think-small-p-values-mean"><span class="header-section-number">8.1.0.16</span> What do people think small p-values mean?</h4>
+<section id="what-do-people-think-small-p-values-mean" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="what-do-people-think-small-p-values-mean"><span class="header-section-number">8.6</span> What do people think small p-values mean?</h2>
 <p>Jacob Cohen:</p>
 <p><em>What’s wrong with NHST? Well, among many other things, it does not tell us what we want to know, and we so much want to know what we want to know that, out of desperation, we nevertheless believe that it does! What we want to know is “Given these data, what is the probability that</em> <span class="math inline">\(H_0\)</span> <em>is true?” But as most of us know, what it tells us is “Given that</em> <span class="math inline">\(H_0\)</span> <em>is true, what is the probability of these (or more extreme) data?“</em> - The Earth is Round (p&lt;0.05) (1994)</p>
 <p>“Statistical tests, P values, confidence intervals, and power: a guide to misinterpretations” (2016) lists a large number of popular misinterpretations. Some highlights…</p>
@@ -382,10 +449,10 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 <p><em>“When the same hypothesis is tested in two different populations and the resulting p-values are on opposite sides of 0.05, the results are conflicting.”</em></p>
 <p>(note: all of these are wrong)</p>
 </section>
-<section id="assessing-bias-using-meta-analysis" class="level3" data-number="8.1.1">
-<h3 data-number="8.1.1" class="anchored" data-anchor-id="assessing-bias-using-meta-analysis"><span class="header-section-number">8.1.1</span> Assessing bias using meta-analysis</h3>
-<section id="the-sampling-distribution-of-the-p-value" class="level4" data-number="8.1.1.1">
-<h4 data-number="8.1.1.1" class="anchored" data-anchor-id="the-sampling-distribution-of-the-p-value"><span class="header-section-number">8.1.1.1</span> The sampling distribution of the p-value</h4>
+<section id="assessing-bias-using-meta-analysis" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="assessing-bias-using-meta-analysis"><span class="header-section-number">8.7</span> Assessing bias using meta-analysis</h2>
+<section id="the-sampling-distribution-of-the-p-value" class="level3" data-number="8.7.1">
+<h3 data-number="8.7.1" class="anchored" data-anchor-id="the-sampling-distribution-of-the-p-value"><span class="header-section-number">8.7.1</span> The sampling distribution of the p-value</h3>
 <p>It is intuitive to think that larger p-values are more likely to occur than smaller p-values when the null is true.</p>
 <p>This is intuitive, but it is false. In most testing scenarios, all p-values are equally likely when the null is true. The distribution of p under <span class="math inline">\(H_0\)</span> is uniform:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -421,8 +488,8 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 </div>
 <p>If p-values close to 0.05 occur too frequently, the p-curve is consistent with a true <span class="math inline">\(H_0\)</span>, despite all p-values being less than 0.05.</p>
 </section>
-<section id="what-n-is-required-for-sufficient-power-to-detect-obvious-effects" class="level4" data-number="8.1.1.2">
-<h4 data-number="8.1.1.2" class="anchored" data-anchor-id="what-n-is-required-for-sufficient-power-to-detect-obvious-effects"><span class="header-section-number">8.1.1.2</span> What N is required for sufficient power to detect obvious effects?</h4>
+<section id="what-n-is-required-for-sufficient-power-to-detect-obvious-effects" class="level3" data-number="8.7.2">
+<h3 data-number="8.7.2" class="anchored" data-anchor-id="what-n-is-required-for-sufficient-power-to-detect-obvious-effects"><span class="header-section-number">8.7.2</span> What N is required for sufficient power to detect obvious effects?</h3>
 <ul>
 <li><p>Simmons, Simonsohn, and Leif conducted an Amazon M-Turk study (n = 697) to estimate required sample size to detect a variety of “effects” at <span class="math inline">\(\alpha = 0.05\)</span>. Examples:</p>
 <ul>
@@ -433,14 +500,14 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 </ul></li>
 </ul>
 </section>
-<section id="more-on-publication-bias" class="level4" data-number="8.1.1.3">
-<h4 data-number="8.1.1.3" class="anchored" data-anchor-id="more-on-publication-bias"><span class="header-section-number">8.1.1.3</span> More on publication bias</h4>
+<section id="more-on-publication-bias" class="level3" data-number="8.7.3">
+<h3 data-number="8.7.3" class="anchored" data-anchor-id="more-on-publication-bias"><span class="header-section-number">8.7.3</span> More on publication bias</h3>
 <p>“Publication bias” is the phenomenon by which statistically significant results are more likely to be published in a journal than results that are not statistically significant.</p>
 <p>There are many tools for trying to diagnose this (including P-curve)</p>
 <p>Test of Insufficient Variance: convert p-values to z-statistics. Expected variance of z-statistics is 1. Variance less than 1 could suggest “missing” studies.</p>
 </section>
-<section id="funnel-plot" class="level4" data-number="8.1.1.4">
-<h4 data-number="8.1.1.4" class="anchored" data-anchor-id="funnel-plot"><span class="header-section-number">8.1.1.4</span> Funnel plot</h4>
+<section id="funnel-plot" class="level3" data-number="8.7.4">
+<h3 data-number="8.7.4" class="anchored" data-anchor-id="funnel-plot"><span class="header-section-number">8.7.4</span> Funnel plot</h3>
 <p>Plot effect size vs.&nbsp;standard error. Variance in effect sizes should decrease as standard error decreases, but effect size and standard error should not be correlated.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -449,8 +516,8 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 </div>
 <p>Correlation could suggest “missing” studies.</p>
 </section>
-<section id="inter-ocular-trauma-test" class="level4" data-number="8.1.1.5">
-<h4 data-number="8.1.1.5" class="anchored" data-anchor-id="inter-ocular-trauma-test"><span class="header-section-number">8.1.1.5</span> Inter-ocular trauma test</h4>
+<section id="inter-ocular-trauma-test" class="level3" data-number="8.7.5">
+<h3 data-number="8.7.5" class="anchored" data-anchor-id="inter-ocular-trauma-test"><span class="header-section-number">8.7.5</span> Inter-ocular trauma test</h3>
 <p>“Do the results hit you between the eyes?”</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -459,8 +526,9 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 </div>
 <p>(z = 1.96 is the threshold for statistical significance)</p>
 </section>
-<section id="type-m-errors" class="level4" data-number="8.1.1.6">
-<h4 data-number="8.1.1.6" class="anchored" data-anchor-id="type-m-errors"><span class="header-section-number">8.1.1.6</span> Type “M” errors</h4>
+</section>
+<section id="type-m-errors" class="level2" data-number="8.8">
+<h2 data-number="8.8" class="anchored" data-anchor-id="type-m-errors"><span class="header-section-number">8.8</span> Type “M” errors</h2>
 <p>Despite the fact that large sample sizes are needed to detect what seem like “medium” effects, we see lots of studies will small sample sizes reporting significant effects.</p>
 <p>Also, significant effects from small sample sizes are always large.</p>
 <p>A likely culprit: the combination of publication bias and low power.</p>
@@ -481,9 +549,8 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 </figure>
 </div>
 <p>Notice: “the truth” is NOT in the “reject the null” region. So when power is low, “the truth” is not statistically significant!</p>
-</section>
-<section id="visually-using-confidence-intervals" class="level4" data-number="8.1.1.7">
-<h4 data-number="8.1.1.7" class="anchored" data-anchor-id="visually-using-confidence-intervals"><span class="header-section-number">8.1.1.7</span> Visually, using confidence intervals</h4>
+<section id="visually-using-confidence-intervals" class="level3" data-number="8.8.1">
+<h3 data-number="8.8.1" class="anchored" data-anchor-id="visually-using-confidence-intervals"><span class="header-section-number">8.8.1</span> Visually, using confidence intervals</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod9_12.png" class="img-fluid figure-img"></p>
@@ -493,8 +560,8 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 <p>Here, wide CI centered on true effect =&gt; not significant</p>
 <p>For CI to exclude zero, sample effect must greatly overestimate true effect</p>
 </section>
-<section id="visually-using-sampling-distributions" class="level4" data-number="8.1.1.8">
-<h4 data-number="8.1.1.8" class="anchored" data-anchor-id="visually-using-sampling-distributions"><span class="header-section-number">8.1.1.8</span> Visually, using sampling distributions</h4>
+<section id="visually-using-sampling-distributions" class="level3" data-number="8.8.2">
+<h3 data-number="8.8.2" class="anchored" data-anchor-id="visually-using-sampling-distributions"><span class="header-section-number">8.8.2</span> Visually, using sampling distributions</h3>
 <p>Below: Sampling distribution of the Cohen’s d statistic (standardized diff. in means). Simulated so that power = 0.27 and population d = 0.5.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -509,38 +576,38 @@ P(H_0\textit{ is true}|\textit{Reject } H_0)
 </div>
 <p>Upshot: conditioning an unbiased estimator on p &lt; 0.05 creates a biased estimator. The lower the power, the greater the bias.</p>
 </section>
-<section id="the-extreme-example" class="level4" data-number="8.1.1.9">
-<h4 data-number="8.1.1.9" class="anchored" data-anchor-id="the-extreme-example"><span class="header-section-number">8.1.1.9</span> The extreme example</h4>
+<section id="the-extreme-example" class="level3" data-number="8.8.3">
+<h3 data-number="8.8.3" class="anchored" data-anchor-id="the-extreme-example"><span class="header-section-number">8.8.3</span> The extreme example</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod9_15.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </section>
-<section id="can-low-power-be-assessed-empirically" class="level4" data-number="8.1.1.10">
-<h4 data-number="8.1.1.10" class="anchored" data-anchor-id="can-low-power-be-assessed-empirically"><span class="header-section-number">8.1.1.10</span> Can low power be assessed empirically?</h4>
+<section id="can-low-power-be-assessed-empirically" class="level3" data-number="8.8.4">
+<h3 data-number="8.8.4" class="anchored" data-anchor-id="can-low-power-be-assessed-empirically"><span class="header-section-number">8.8.4</span> Can low power be assessed empirically?</h3>
 <p>“Post-hoc” power analysis describes performing a power analysis on a data set after having conducted a significance test.</p>
 <p>Sometimes researchers will get a non-significant result, and suspect low power is the reason. So, they do a power analysis using the effect size and standard error from the data, and find low power.</p>
 <p>THIS IS INVALID! If p &gt; 0.05, then post-hoc power must be lower than 50%.</p>
 <p>So, “non-significant” results will always be identified as “low power”, post-hoc.</p>
 </section>
-<section id="estimating-power-meta-analytically-r-index" class="level4" data-number="8.1.1.11">
-<h4 data-number="8.1.1.11" class="anchored" data-anchor-id="estimating-power-meta-analytically-r-index"><span class="header-section-number">8.1.1.11</span> Estimating power meta-analytically: R-Index</h4>
+<section id="estimating-power-meta-analytically-r-index" class="level3" data-number="8.8.5">
+<h3 data-number="8.8.5" class="anchored" data-anchor-id="estimating-power-meta-analytically-r-index"><span class="header-section-number">8.8.5</span> Estimating power meta-analytically: R-Index</h3>
 <p>R-Index: calculate observed power for each study. Compare average power to proportion of studies showing significance. Lower observed power could suggest missing studies.</p>
 <p>e.g.&nbsp;observed power = 0.6, 10 / 10 results significant; 6 / 10 expected if power = 0.6.</p>
 <p>If a collection of studies all show significant results, then average observed power must be greater than 50%. But, it might not be <em>much</em> greater.</p>
 </section>
-<section id="should-we-throw-away-non-significant-results" class="level4" data-number="8.1.1.12">
-<h4 data-number="8.1.1.12" class="anchored" data-anchor-id="should-we-throw-away-non-significant-results"><span class="header-section-number">8.1.1.12</span> Should we throw away non-significant results?</h4>
+</section>
+<section id="should-we-throw-away-non-significant-results" class="level2" data-number="8.9">
+<h2 data-number="8.9" class="anchored" data-anchor-id="should-we-throw-away-non-significant-results"><span class="header-section-number">8.9</span> Should we throw away non-significant results?</h2>
 <p>There are statistical problems that arise when only reporting significant results.</p>
 <p>There is also a scientific problem: are non-significant results really uninteresting?</p>
 <p>If the question is worth asking (“do I have evidence for this substantive hypothesis?”), isn’t the answer worth knowing?</p>
 <p>The practice of throwing away non-significant results goes hand in hand with a false interpretation of NHST results: that non-significance implies “no effect”.</p>
 <p>p-value &lt; 0.05 is commonly interpreted as evidence for an effect.</p>
 <p>But, p-value &gt; 0.05 should not necessarily be interpreted as evidence for no effect.</p>
-</section>
-<section id="there-was-no-effect-p0.05" class="level4" data-number="8.1.1.13">
-<h4 data-number="8.1.1.13" class="anchored" data-anchor-id="there-was-no-effect-p0.05"><span class="header-section-number">8.1.1.13</span> “There was no effect (p&gt;0.05)”</h4>
+<section id="there-was-no-effect-p0.05" class="level3" data-number="8.9.1">
+<h3 data-number="8.9.1" class="anchored" data-anchor-id="there-was-no-effect-p0.05"><span class="header-section-number">8.9.1</span> “There was no effect (p&gt;0.05)”</h3>
 <p>Example: suppose three studies (A, B, and C) all aimed to estimate a standardized difference in means in terms of Cohen’s d:</p>
 <p><span class="math display">\[
 d= \frac{\bar{x}_1 - \bar{x}_2}{s_p}
@@ -556,8 +623,8 @@ d= \frac{\bar{x}_1 - \bar{x}_2}{s_p}
 <p>However, the first CI is also consistent with a very large effect, which could be positive or negative. The third CI is consistent with no effect or a very small effect .</p>
 <p>But - the p-values are the same! In all three cases, p = 0.51.</p>
 </section>
-<section id="published-example-knee-surgery-study" class="level4" data-number="8.1.1.14">
-<h4 data-number="8.1.1.14" class="anchored" data-anchor-id="published-example-knee-surgery-study"><span class="header-section-number">8.1.1.14</span> Published example: knee surgery study</h4>
+<section id="published-example-knee-surgery-study" class="level3" data-number="8.9.2">
+<h3 data-number="8.9.2" class="anchored" data-anchor-id="published-example-knee-surgery-study"><span class="header-section-number">8.9.2</span> Published example: knee surgery study</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Mod9_17.png" class="img-fluid figure-img"></p>
@@ -581,35 +648,35 @@ d= \frac{\bar{x}_1 - \bar{x}_2}{s_p}
 <p>The first argument says “the estimated difference is no bigger than what would be expected by chance.” The second says “the largest plausible value for the difference is still too small to be interesting.”</p>
 </section>
 </section>
-<section id="debates-over-statistical-signficance" class="level3" data-number="8.1.2">
-<h3 data-number="8.1.2" class="anchored" data-anchor-id="debates-over-statistical-signficance"><span class="header-section-number">8.1.2</span> Debates over statistical signficance</h3>
+<section id="debates-over-statistical-signficance" class="level2" data-number="8.10">
+<h2 data-number="8.10" class="anchored" data-anchor-id="debates-over-statistical-signficance"><span class="header-section-number">8.10</span> Debates over statistical signficance</h2>
 <p>The use of statistical significance has always been controversial.</p>
 <p>Three recent high profile papers have argued for some different viewpoints on statistical significance.</p>
-<section id="redefine-statistical-significance" class="level4" data-number="8.1.2.1">
-<h4 data-number="8.1.2.1" class="anchored" data-anchor-id="redefine-statistical-significance"><span class="header-section-number">8.1.2.1</span> “Redefine statistical significance”</h4>
+<section id="redefine-statistical-significance" class="level3" data-number="8.10.1">
+<h3 data-number="8.10.1" class="anchored" data-anchor-id="redefine-statistical-significance"><span class="header-section-number">8.10.1</span> “Redefine statistical significance”</h3>
 <p>“Redefine Statistical Significance” (2017) calls for lowering the standard threshold for significance to p &lt; 0.005</p>
 <p>The argument: p &lt; 0.05 is too easy to obtain from noise.</p>
 <p>This paper proposes labeling p-values between 0.005 and 0.05 as “suggestive”, and p-values less than 0.005 as “significant”.</p>
 <p>An exception: if the procedure is pre-registered, p &lt; 0.05 can be labeled “significant”. So a distinction is drawn between exploratory and confirmatory data analyses.</p>
 </section>
-<section id="justify-your-alpha" class="level4" data-number="8.1.2.2">
-<h4 data-number="8.1.2.2" class="anchored" data-anchor-id="justify-your-alpha"><span class="header-section-number">8.1.2.2</span> “Justify your alpha”</h4>
+<section id="justify-your-alpha" class="level3" data-number="8.10.2">
+<h3 data-number="8.10.2" class="anchored" data-anchor-id="justify-your-alpha"><span class="header-section-number">8.10.2</span> “Justify your alpha”</h3>
 <p>“Justify Your Alpha” (2017), written in response, calls for allowing flexibility in alpha levels rather than defaulting to p &lt; 0.05.</p>
 <p>The argument: alpha (a.k.a. the significance level) sets a trade-off between Type I errors and Type II errors.</p>
 <p>Smaller values of alpha lower Type I error rates but increase Type II error rates, and vice versa.</p>
 <p>The optimal trade-off will be different for different research fields. FDA drug trials should not use the same trade-off as exploratory research in brand new research fields.</p>
 </section>
-<section id="abandon-statistical-significance" class="level4" data-number="8.1.2.3">
-<h4 data-number="8.1.2.3" class="anchored" data-anchor-id="abandon-statistical-significance"><span class="header-section-number">8.1.2.3</span> “Abandon statistical significance”</h4>
+<section id="abandon-statistical-significance" class="level3" data-number="8.10.3">
+<h3 data-number="8.10.3" class="anchored" data-anchor-id="abandon-statistical-significance"><span class="header-section-number">8.10.3</span> “Abandon statistical significance”</h3>
 <p>“Abandon Statistical Significance” (2017) calls for the elimination of thresholds entirely.</p>
 <p>The argument: “significance” is just a way of taking continuous phenomena (e.g.&nbsp;differences in means, probabilities, correlations) and forcing them into one of two categories.</p>
 <p>Instead, why not report the evidence on its own terms? No need to force it into an artificial and simplistic “either / or” distinction.</p>
 </section>
 </section>
-<section id="proposed-reforms" class="level3" data-number="8.1.3">
-<h3 data-number="8.1.3" class="anchored" data-anchor-id="proposed-reforms"><span class="header-section-number">8.1.3</span> Proposed reforms</h3>
-<section id="some-proposals-for-doing-things-differently" class="level4" data-number="8.1.3.1">
-<h4 data-number="8.1.3.1" class="anchored" data-anchor-id="some-proposals-for-doing-things-differently"><span class="header-section-number">8.1.3.1</span> Some proposals for doing things differently</h4>
+<section id="proposed-reforms" class="level2" data-number="8.11">
+<h2 data-number="8.11" class="anchored" data-anchor-id="proposed-reforms"><span class="header-section-number">8.11</span> Proposed reforms</h2>
+<section id="some-proposals-for-doing-things-differently" class="level3" data-number="8.11.1">
+<h3 data-number="8.11.1" class="anchored" data-anchor-id="some-proposals-for-doing-things-differently"><span class="header-section-number">8.11.1</span> Some proposals for doing things differently</h3>
 <p>Pre-registration and registered reports: data analysis plans are stated ahead of time. This removes flexibility in analysis.</p>
 <p>With registered reports, data analysis plans are peer reviewed, and papers can be accepted for publication before results are known. This removes publication bias.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -640,8 +707,8 @@ d= \frac{\bar{x}_1 - \bar{x}_2}{s_p}
 <p>The Peer Reviewers’ Openness Initiative calls on reviewers to require open data, open methods, and code that will reproduce analyses, so that reviewers can double check the analyses and results.</p>
 <p>The GRIM test, SPRITE test, and Statcheck are algorithms that check for internal consistency of reported results. They provide a “sanity check” that can detect potentially p-hacked data analyses.</p>
 </section>
-<section id="some-closing-remarks" class="level4" data-number="8.1.3.2">
-<h4 data-number="8.1.3.2" class="anchored" data-anchor-id="some-closing-remarks"><span class="header-section-number">8.1.3.2</span> Some closing remarks</h4>
+<section id="some-closing-remarks" class="level3" data-number="8.11.2">
+<h3 data-number="8.11.2" class="anchored" data-anchor-id="some-closing-remarks"><span class="header-section-number">8.11.2</span> Some closing remarks</h3>
 <p>As stated at the outset, there is great controversy over the appropriate use of statistical methods!</p>
 <p>Some wise words from participants in this controversy:</p>
 <blockquote class="blockquote">
@@ -654,7 +721,6 @@ d= \frac{\bar{x}_1 - \bar{x}_2}{s_p}
 <p>Andrew Gelman, “The problems with p-values are not just p-values”</p>
 
 
-</section>
 </section>
 </section>
 

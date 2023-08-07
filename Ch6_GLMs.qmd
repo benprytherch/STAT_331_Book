@@ -1,6 +1,17 @@
 # Generalized Linear Models (GLMs)
 
-## Part 1: Logistic regression
+## Outline of notes {.unnumbered}
+
+1.  Logistic regression
+2.  Odds
+3.  Interpreting slope in logistic regression
+4.  Poisson regression
+5.  The structure of a GLM
+6.  Maximum likelihood estimation, conceptually
+7.  Poisson regression example
+8.  Negative binomial regression
+
+## Logistic regression
 
 All of the regression methods we've seen have involved models in which the response variable is normally distributed, given values for the predictor variables
 
@@ -30,9 +41,7 @@ The predicted value of "Report" can be thought of as the predicted probability t
 
 Note that this line can go below zero and above one. We don't want to predict probability greater than 1! A straight line is not great here. Logistic regression is an alternative to this straight line model.
 
-## The logistic regression model
-
-#### Another way of writing a linear regression model
+### The logistic regression model
 
 By now we are well familiar with the linear regression model:
 
@@ -50,7 +59,7 @@ $$
 
 In other words, the response variable is normally distributed with some mean $\mu$, and the value of $\mu$ is determined by the predictor ($x$) variables.
 
-#### Writing a logistic regression model
+### Writing a logistic regression model
 
 We will take this approach to writing the logistic regression model.
 
@@ -62,7 +71,7 @@ $$
 
 But that will work when $Y_i$ does not follow a normal distribution.
 
-#### The theoretical logistic regression model
+### The theoretical logistic regression model
 
 Response variable $Y$ takes on the values 0 and 1.
 
@@ -84,7 +93,7 @@ $$
 
 The standard deviation of a Bernoulli distribution is $\pi(1 − \pi )$. So, $\pi$ is the only parameter for this distribution. This is different from the normal distribution, which has two parameters $\mu$ and $\sigma$.
 
-#### Logit: log odds
+### Logit: log odds
 
 But, as we saw in the opening example, a linear model for probability can have serious deficiencies.
 
@@ -101,10 +110,10 @@ Applied to our sexual harassment example, we would like to predict the probabili
 Plugging this into the logit formula:
 
 $$
-logit(P(reported)) = ln(\frac{P(reported}{1-P(reported)}) = \textit{"log odds" of reporting}
+logit(P(reported)) = ln(\frac{P(reported)}{1-P(reported)}) = \textit{"log odds" of reporting}
 $$
 
-This will be our response variable for logistic regression.
+This will be our response variable for logistic regression. Note that this time we wrote $P(reported)$ rather than $\pi$; these mean the same thing.
 
 Logit vs. probability, visually:
 
@@ -114,7 +123,7 @@ Logit vs. probability, visually:
 
 ## Odds
 
-#### Odds vs. probability
+### Odds vs. probability
 
 To understand logistic regression, you'll need to understand odds.
 
@@ -138,13 +147,21 @@ $$
 
 Some probabilities and their associated odds:
 
-![](images/Mod6_pt2_5.png){fig-align="center" width="400"}
+| $P(A)=$ | $Odds(A)=\frac{P(A)}{1-P(A)}$ |
+|---------|-------------------------------|
+| 0.001   | 0.001/0.999=0.001001          |
+| 0.05    | 0.05/0.95=0.0526              |
+| 0.2     | 0.2/0.4=0.25                  |
+| 0.5     | 0.5/0.5=1                     |
+| 0.8     | 0.8/0.2=4                     |
+| 0.95    | 0.95/0.05=19                  |
+| 0.999   | 0.999/0.001=999               |
 
 Think of odds(A) as "how many times will A occur for every time A does not occur?"
 
 Sometimes we add "to 1" to an odds statement, e.g. "odds of 4 to 1" means "this outcomes occurs 4 times for every 1 time it does not occur."
 
-#### Back to the logistic regression model
+### Back to the logistic regression model
 
 The response variable for logistic regression, again, is:
 
@@ -160,23 +177,27 @@ Y_i\sim Bernoulli (\pi_i)
 ln(\frac{\pi_i}{1-\pi_i})=\beta_0+\beta_1x_{1i} + \beta_2x_{2i} + \dots + \beta_px_{pi}
 $$
 
-We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have $logit(\hat{\pi}_i)$, we can $\hat{\pi}_i$ back via the inverse logit function:
+We are not actually interested in log odds; we only make this conversion for mathematical convenience. So, once we have $logit(\hat{\pi}_i)$, we can $\hat{\pi}_i$ back via the inverse logit function, $logit^{-1}(x)=\frac{e^x}{1+e^x}$:
 
 $$
+\begin{align}
 logit^{-1}(logit(\pi)) \\
-= \frac{e^{logit(\pi)}}{1 + e^{logit(\pi)}} \\
-= \frac{odds}{1 + odds} \\
-= \frac{\frac{\pi}{1-\pi}}{\frac{1-\pi}{1 - \pi} + \frac{\pi}{1-\pi}} \\
-= \frac{\frac{\pi}{1-\pi}}{\frac{1}{1-\pi}} \\
-= \pi
+&= \frac{e^{logit(\pi)}}{1 + e^{logit(\pi)}} \\
+&= \frac{odds}{1 + odds} \\
+&= \frac{\frac{\pi}{1-\pi}}{\frac{1-\pi}{1 - \pi} + \frac{\pi}{1-\pi}} \\
+&= \frac{\frac{\pi}{1-\pi}}{\frac{1}{1-\pi}} \\
+&= \pi
+\end{align}
 $$
 
 In the context of the logistic regression model:
 
 $$
-\hat{\pi}_i  \\
-=\frac{e^{\text{log odds}}}{1 + e^{\text{log odds}}} \\
-=\frac{e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}
+\begin{align}
+\hat{\pi}_i & =logit^{-1}(logit(\hat{\pi_i}))\\
+&=\frac{e^{logit(\hat{\pi_i})}}{1 + e^{logit(\hat{\pi_i})}} \\
+&=\frac{e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}{1 + e^{\hat{\beta}_0 + \hat{\beta}_1x_{1i} + \hat{\beta}_2x_{2i} + \dots + \hat{\beta}_px_{pi}}}
+\end{align}
 $$
 
 ### jamovi example
@@ -189,7 +210,7 @@ Note that "Target Level" defaults to zero. Changing it to 1 makes sense in this 
 
 jamovi also produces a Loglikelihood ratio test, but we will just focus on "Parameter Estimates":
 
-![](images/Mod6_pt2_7.png){fig-align="center"}
+![](images/Mod6_pt2_7.png){fig-align="center" width="500"}
 
 Here is our estimated model:
 
@@ -200,16 +221,20 @@ $$
 Plugging in large and small values for OffensBeh:
 
 $$
-\textit{log odds (Reported)} = -1.7976 + 0.4869*1 = -1.3107 \\
+\textit{log odds (Reported)} = -1.7976 + 0.4869*1 = -1.3107 
+$$
+$$
 \textit{log odds (Reported)} = -1.7976 + 0.4869*8 = 2.0976
 $$
 
 $$
-\hat{\pi}|OffensBeh = 1: \frac{e^{-1.3107}}{1 + e^{-1.3107}} = \frac{0.2696}{1.2696} = 0.21 \\
-\hat{\pi}|OffensBeh = 8: \frac{e^{-2.0976}}{1 + e^{-2.0976}} = \frac{8.1466}{9.1466} = 0.89
+\hat{\pi}|OffensBeh = 1: \\ \frac{e^{-1.3107}}{1 + e^{-1.3107}} = \frac{0.2696}{1.2696} = 0.21
+$$
+$$
+\hat{\pi}|OffensBeh = 8: \\ \frac{e^{-2.0976}}{1 + e^{-2.0976}} = \frac{8.1466}{9.1466} = 0.89
 $$
 
-#### Interpreting slope in logistic regression 
+## Interpreting slope in logistic regression
 
 The slope coefficient is directly interpreted as change in log odds for a one unit increase in the predictor. "Log odds" are not of direct interest.
 
@@ -233,9 +258,9 @@ In other words, there is about a 63% increase in odds of reporting when OffensBe
 
 Comparing probabilities and odds from this model:
 
-![](images/Mod6_pt2_8.png){fig-align="center"}
+![](images/Mod6_pt2_8.png){fig-align="center" width="500"}
 
-## Part 2: Poisson and negative binomial regression
+## Poisson regression
 
 We'll now look at two other popular GLMs: Poisson ("pwa-sawn" roughly) and negative binomial.
 
@@ -255,13 +280,13 @@ $$
 P(count = k) = \frac{\lambda^k}{e^\lambda k!}
 $$
 
-#### Visualizing the Poisson distribution
+### Visualizing the Poisson distribution
 
 ![](images/Mod6_pt2_9.png){fig-align="center"}
 
-### The structure of a GLM
+## The structure of a GLM
 
-#### The link function
+### The link function
 
 In logistic regression, the response variable was \$logit(\\pi) = ln(\\frac{\\pi}{1-\\pi}) \$
 
@@ -279,29 +304,23 @@ A GLM has three parts:
 
 3.  A linear expression of the predictor variables: $\beta_0 + \beta_1X_1 + \beta_2X_2 \dots$
 
-#### GLM examples
+### GLM examples
 
 Logistic regression uses $Y\sim Bernoulli (\pi)$ as the response variable and $g(\pi) = ln(\frac{\pi}{1-\pi})$ as the link function.
 
 Poisson regression uses $Y\sim Poisson(\lambda)$ as the response variable and $g(\lambda) = ln(\lambda)$ as the link function.
 
-Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses $Y\sim Normal (\mu, \sigma^2)$ and the response variable and the identity function, $g(\mu) = \mu$ as the link.
+Ordinary least squares (OLS) regression can also be considered a special case of a GLM. It uses $Y\sim Normal (\mu, \sigma^2)$ as the response variable and the identity function, $g(\mu) = \mu$ as the link.
 
-*UNABLE TO FIND IN NOTES*
+## Maximum likelihood estimation, conceptually
 
 It's worth briefly noting that the mathematical method used to come up with parameter estimates for GLMs is not "least squares". So, we are not getting our $\beta$'s by minimizing sums of squared residuals.
 
-Instead, the estimation procedure we use is called "maximum likelihood". This method finds the values of the parameter estimates that maximize (i.e. make as large as possible for a given set of data) something called "the likelihood function".
+Instead, the estimation procedure we use is called "maximum likelihood". This method finds the values of the parameter estimates that maximize (i.e. make as large as possible for a given set of data) something called "the likelihood function". The likelihood function takes a fixed set of data and an assumed distribution (e.g. normal), and gives the "probability of the data", given some set of parameter values.
 
-The likelihood function takes a fixed set of data and an assumed distribution (e.g. normal), and gives the "probability of the data", given
+So, the coefficient estimates that we get in GLM output would make our data "more likely" than our data would be under any other set of possible estimates. They are the estimates that maximize the likelihood of our data.
 
-So, if we have:
-
-Then the likelihood function is:
-
-Values of 𝛽መ , 𝛽መ , 𝜎ො are found that maximize this function, i.e. that maximize the probability of the data, given the parameter estimates.
-
-### Poisson regression example
+## Poisson regression example
 
 We'll use some General Social Survey data for this example.
 
@@ -333,7 +352,7 @@ We'll just look at 2018 data. The GSS lets us choose any years we want, going ba
 
 This data set is on Canvas, as GSS_Children_Siblings.jmp
 
-#### Poisson regression EDA
+### Poisson regression EDA
 
 First thing to do is plot our variables.
 
@@ -369,7 +388,7 @@ This looks a lot like a Poisson distribution. Hooray!
 
 To run the regression, use Linear Models / Generalized Linear Models and choose Poisson(overdispersion) for Frequencies.
 
-![](images/Mod6_pt2_15.png){fig-align="center" width="400"}
+![](images/Mod6_pt2_15.png){fig-align="center" width="300"}
 
 JMP will automatically choose the log link
 
@@ -385,7 +404,7 @@ $$
 ln(\hat{\lambda}) = 0.375 + 0.0631(𝑆𝐼𝐵𝑆)
 $$
 
-#### Interpreting the slope
+### Interpreting the slope
 
 You might not be surprised to learn that, due to the log link, the exponentiated slope is interpreted as the multiplicative change in the estimated value of the response variable, given a one unit increase in the predictor variable: $e^{0.0627} = 1.065$
 
@@ -402,7 +421,7 @@ Downside is that \# of children is not normally distributed.
 
 As is often the case, we are trading some interpretability for a better fitting model.
 
-#### Interpreting the slope
+### Overdispersion
 
 The Poisson distribution makes a strong assumption: the mean should be equal to the variance.
 
@@ -410,15 +429,15 @@ Often, we observe real data in which the variance is greater than the mean.
 
 This is referred to as "overdispersion".
 
-JMP reports an overdispersion estimate:
+Jamovi reports an overdispersion estimate:
 
 ![](images/Mod6_pt2_18.png){fig-align="center"}
 
 The overdispersion statistic is the ratio of the Pearson chi-square statistic to its degrees of freedom.
 
-If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model will fit better.
+If mean = variance, this should be equal to 1. But it rarely is. If there is strong overdispersion, a negative binomial model should fit better.
 
-#### Fitting a larger model
+### Fitting a larger model
 
 For these data, it turns out that \# of siblings, age, frequency of attending religious services, and the interactions between age and the other two variables are all statistically significant and all improve model fit. Here are the parameter estimate results for this model:
 
@@ -428,7 +447,7 @@ The other predictor variables and the interactions can be interpreted in the usu
 
 One thing to notice is that the estimate for SIBS has not changed much. So, while the other covariates and interactions matter, they don't substantially change our interpretation of the SIBS predictor.
 
-### Negative binomial regression
+## Negative binomial regression
 
 There is also still some overdispersion, though less than there was before:
 
@@ -460,7 +479,7 @@ The tradeoff is that the interpretation is less generally applicable. It might n
 
 As with Poisson regression, negative binomial regression uses a GLM with a log link.
 
-#### Negative binomial example
+### Negative binomial example
 
 Here is where you select negative binomial regression in jamovi:
 
@@ -468,7 +487,7 @@ Here is where you select negative binomial regression in jamovi:
 
 Under "Generalized Linear Models", under "Frequencies" choose "Negative Binomial".
 
-#### Negative binomial results
+### Negative binomial results
 
 ![](images/Mod6_pt2_22.png){fig-align="center"}
 

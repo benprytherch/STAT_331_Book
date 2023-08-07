@@ -2,6 +2,21 @@
 
 These notes cover some general problems that come up in applied data analysis. Many are issues that have come to light recently.
 
+## Outline of notes {.unnumbered}
+
+1. The "replication crisis"
+2. Power
+3. Some history on "NHST"
+4. When "p < 0.05" isn't that meaningful
+5. What kind of Type I error are you referring to?
+6. What do people think small p-values mean?
+7. Assessing bias using meta-analysis
+8. Type "M" errors
+9. Should we throw away non-significant results?
+10. Debates over statistical significance
+11. Proposed reforms
+
+
 ## The "replication crisis"
 
 "The replication crisis" refers to a recent realization in many areas of science that previously published results often fail to replicate.
@@ -18,7 +33,7 @@ Similar studies in Cancer Biology, Medicine, Economics, Marketing, and Sports Sc
 
 Why do so many studies fail to replicate? There are many reasons, and statistical analysis plays a prominent role. These notes cover the role of statistics in the replication crisis.
 
-#### Power
+## Power
 
 Many of the statistical issues surrounding the replication crisis concern "power".
 
@@ -28,7 +43,7 @@ In terms of real-world effects, if power is high, then there is a good chance of
 
 If power is low, then even if a real-world effect exists, the result of a hypothesis test will likely be "fail to reject" $H_0$; i.e. non-significance.
 
-#### Type I and Type II errors
+### Type I and Type II errors
 
 A "Type I" error occurs when a true $H_0$ is rejected. In other words, if we declare a result "statistically significant" even though no real-world effect exists, we are committing a Type I error. This is sometimes called a "false positive" outcome.
 
@@ -36,7 +51,7 @@ A "Type II" error occurs when a false $H_0$ is not rejected. In other words, if 
 
 Low statistical power implies a high chance of a false negative.
 
-#### Problem: power is unknown!
+### Problem: power is unknown!
 
 The "true" power of a statistical test is almost never known. To calculate power, one must assume the "true" size of the effect being studied.
 
@@ -44,7 +59,7 @@ For instance, power to reject the null hypothesis that a new drug is equally eff
 
 There has been research estimating average statistical power in various research fields, and reason to believe that low power studies are not uncommon. Which means that a lot of these replication failures might be "false negatives", rather than the original studies being "false positives".
 
-#### Some history on "NHST"
+## Some history on "NHST"
 
 The form of hypothesis testing used today is sometimes called Null Hypothesis Significance Testing (NHST). It combines what used to be two different methods created by two "camps". The camps disagreed with one another, and did not get along personally.
 
@@ -56,7 +71,7 @@ Jerzy Neyman and Egon Pearson
 
 ![](images/Mod9_3.png){fig-align="center" width="400"}
 
-#### Ronald Fisher
+### Ronald Fisher
 
 Introduced the null hypothesis and p-value
 
@@ -64,7 +79,7 @@ On interpreting small p-values: *"Either an exceptionally rare chance has occurr
 
 On the use of p \< 0.05 as a standard of evidence: *"In order to assert that a natural phenomenon is experimentally demonstrable we need, not an isolated record, but a reliable method of procedure. In relation to the test of significance, we may say that a phenomenon is experimentally demonstrable when we know how to conduct an experiment which will rarely fail to give us a statistically significant result"*
 
-#### Neyman and Pearson
+### Neyman and Pearson
 
 Introduced the alternative hypothesis, Type I and II errors, and power.
 
@@ -72,7 +87,7 @@ Reported only Type I and Type II error probabilities in testing; e.g. p-values o
 
 *"We are inclined to think that as far as a particular hypothesis is concerned, no test based upon a theory of probability can by itself provide any valuable evidence of the truth or falsehood of a hypothesis"*
 
-#### NHST
+### NHST
 
 NHST is a mix between the two approaches.
 
@@ -80,7 +95,7 @@ Hypothesis testing comes from Neyman and Pearson. They did not believe p-values 
 
 The direct interpretation of p-values as quantifying the probability of obtaining results at least as extreme, assuming the null hypothesis is true, comes from Fisher. He did not use an alternative hypothesis, and he did not accept formal power analysis.
 
-#### When "p \< 0.05" isn't that meaningful
+## When "p < 0.05" isn't that meaningful
 
 We say results are "statistically significant" when we calculate a p-value less than the $\alpha$ level of significance, which is commonly 0.05.
 
@@ -112,7 +127,7 @@ Less derogatory alternatives: "Researcher degrees of freedom", "The garden of fo
 
     -   Ceasing data collection earlier than originally planned
 
-#### Capitalizing upon flexibility, so that $P(p < 0.05) > 0.05$
+### Capitalizing upon flexibility, so that $P(p < 0.05) > 0.05$
 
 Flexible practices are perfectly justifiable in many contexts
 
@@ -120,7 +135,7 @@ But -- to interpret a p-value as "the probability of obtaining results at least 
 
 Another way of putting it: if you report a p-value as "the probability of obtaining results this extreme, assuming the null is true", you are implicitly claiming you would have conducted the identical analysis, even if the data had been different in any way.
 
-#### The null could be false due to something you haven't thought of
+### The null could be false due to something you haven't thought of
 
 Perhaps "$H_0$ is false" does not imply that the version of "not $H_0$" you have in mind is true.
 
@@ -134,7 +149,7 @@ Does this suggest that completing these requirements in the first year results i
 
 Could this "statistically significant" effect be due to confounding factors? Is it even reasonable to suspect that students who complete these classes during their first year should have identical grades and graduation rates as those who don't? This is what the rejected $H_0$ states. Are we impressed that it is rejected?
 
-#### Do we even think the null could be true?
+### Do we even think the null could be true?
 
 *"All we know about the world teaches us that the effects of A and B are always different -- in some decimal place -- for any A and B. Thus asking 'Are the effects different?' is foolish"* - John Tukey
 
@@ -156,7 +171,7 @@ In Ronald Fisher's "The Lady Tasting Tea", the subject of the story claimed she 
 
 My personal rule is that I am only interested in p-values when I think the null is plausible.
 
-#### Is there a decision to be made?
+### Is there a decision to be made?
 
 A significance test returns a binary outcome: the results are significant, or they are non-significant.
 
@@ -170,7 +185,7 @@ Example: deciding whether to continue investing money into a research program.
 
 If the analysis is being done for the purpose of decision making, then a decision rule must be established, and "significance" can be such a rule. If the analysis is being done for the purpose of conveying information in data, I personally see no reason to add in a declaration of "significant" or "not significant".
 
-#### Big sample sizes give small p-values
+### Big sample sizes give small p-values
 
 Consider the t-test statistic:
 
@@ -184,7 +199,7 @@ So, the bigger the sample size, the smaller the value of $\bar{x}_1 - \bar{x}_2$
 
 Upshot: if $n$ is larger, very small effects will be "significant".
 
-#### eBay study example
+### eBay study example
 
 ![](images/Mod9_4.png){fig-align="center"}
 
@@ -192,7 +207,7 @@ Upshot: if $n$ is larger, very small effects will be "significant".
 
 (http://advances.sciencemag.org/content/2/2/e1500599.full)
 
-#### What kind of Type I error are you referring to?
+## What kind of Type I error are you referring to?
 
 Going back to Type I errors, here is the "Type I error rate":
 
@@ -212,7 +227,7 @@ It says nothing about the probability $H_0$ is false, given that $H_0$ has been 
 
 Upshot: don't imagine that a Type I error rate of 0.05 implies that only 5% of significant results you see should be Type I errors!
 
-#### What do people think small p-values mean?
+## What do people think small p-values mean?
 
 Jacob Cohen:
 
@@ -232,9 +247,9 @@ Jacob Cohen:
 
 (note: all of these are wrong)
 
-### Assessing bias using meta-analysis
+## Assessing bias using meta-analysis
 
-#### The sampling distribution of the p-value
+### The sampling distribution of the p-value
 
 It is intuitive to think that larger p-values are more likely to occur than smaller p-values when the null is true.
 
@@ -272,7 +287,7 @@ Formal test: "P-curve" (www.p-curve.com)
 
 If p-values close to 0.05 occur too frequently, the p-curve is consistent with a true $H_0$, despite all p-values being less than 0.05.
 
-#### What N is required for sufficient power to detect obvious effects?
+### What N is required for sufficient power to detect obvious effects?
 
 -   Simmons, Simonsohn, and Leif conducted an Amazon M-Turk study (n = 697) to estimate required sample size to detect a variety of "effects" at $\alpha = 0.05$. Examples:
 
@@ -284,7 +299,7 @@ If p-values close to 0.05 occur too frequently, the p-curve is consistent with a
 
     -   Men weigh more than women (n = 92) (!!!!!!!!!!!)
 
-#### More on publication bias
+### More on publication bias
 
 "Publication bias" is the phenomenon by which statistically significant results are more likely to be published in a journal than results that are not statistically significant.
 
@@ -292,7 +307,7 @@ There are many tools for trying to diagnose this (including P-curve)
 
 Test of Insufficient Variance: convert p-values to z-statistics. Expected variance of z-statistics is 1. Variance less than 1 could suggest "missing" studies.
 
-#### Funnel plot
+### Funnel plot
 
 Plot effect size vs. standard error. Variance in effect sizes should decrease as standard error decreases, but effect size and standard error should not be correlated.
 
@@ -300,7 +315,7 @@ Plot effect size vs. standard error. Variance in effect sizes should decrease as
 
 Correlation could suggest "missing" studies.
 
-#### Inter-ocular trauma test
+### Inter-ocular trauma test
 
 "Do the results hit you between the eyes?"
 
@@ -308,7 +323,7 @@ Correlation could suggest "missing" studies.
 
 (z = 1.96 is the threshold for statistical significance)
 
-#### Type "M" errors
+## Type "M" errors
 
 Despite the fact that large sample sizes are needed to detect what seem like "medium" effects, we see lots of studies will small sample sizes reporting significant effects.
 
@@ -334,7 +349,7 @@ A diagram of low power:
 
 Notice: "the truth" is NOT in the "reject the null" region. So when power is low, "the truth" is not statistically significant!
 
-#### Visually, using confidence intervals
+### Visually, using confidence intervals
 
 ![](images/Mod9_12.png){fig-align="center"}
 
@@ -344,7 +359,7 @@ Here, wide CI centered on true effect =\> not significant
 
 For CI to exclude zero, sample effect must greatly overestimate true effect
 
-#### Visually, using sampling distributions
+### Visually, using sampling distributions
 
 Below: Sampling distribution of the Cohen's d statistic (standardized diff. in means). Simulated so that power = 0.27 and population d = 0.5.
 
@@ -356,11 +371,11 @@ Below: same thing, but after removing all d statistics that do not achieve stati
 
 Upshot: conditioning an unbiased estimator on p \< 0.05 creates a biased estimator. The lower the power, the greater the bias.
 
-#### The extreme example
+### The extreme example
 
 ![](images/Mod9_15.png){fig-align="center"}
 
-#### Can low power be assessed empirically?
+### Can low power be assessed empirically?
 
 "Post-hoc" power analysis describes performing a power analysis on a data set after having conducted a significance test.
 
@@ -370,7 +385,7 @@ THIS IS INVALID! If p \> 0.05, then post-hoc power must be lower than 50%.
 
 So, "non-significant" results will always be identified as "low power", post-hoc.
 
-#### Estimating power meta-analytically: R-Index
+### Estimating power meta-analytically: R-Index
 
 R-Index: calculate observed power for each study. Compare average power to proportion of studies showing significance. Lower observed power could suggest missing studies.
 
@@ -378,7 +393,7 @@ e.g. observed power = 0.6, 10 / 10 results significant; 6 / 10 expected if power
 
 If a collection of studies all show significant results, then average observed power must be greater than 50%. But, it might not be *much* greater.
 
-#### Should we throw away non-significant results?
+## Should we throw away non-significant results?
 
 There are statistical problems that arise when only reporting significant results.
 
@@ -392,7 +407,7 @@ p-value \< 0.05 is commonly interpreted as evidence for an effect.
 
 But, p-value \> 0.05 should not necessarily be interpreted as evidence for no effect.
 
-#### "There was no effect (p\>0.05)"
+### "There was no effect (p\>0.05)"
 
 Example: suppose three studies (A, B, and C) all aimed to estimate a standardized difference in means in terms of Cohen's d:
 
@@ -412,7 +427,7 @@ However, the first CI is also consistent with a very large effect, which could b
 
 But - the p-values are the same! In all three cases, p = 0.51.
 
-#### Published example: knee surgery study
+### Published example: knee surgery study
 
 ![](images/Mod9_17.png){fig-align="center"}
 
@@ -432,13 +447,13 @@ However, later in the paper the authors make a much stronger argument: that the 
 
 The first argument says "the estimated difference is no bigger than what would be expected by chance." The second says "the largest plausible value for the difference is still too small to be interesting."
 
-### Debates over statistical signficance
+## Debates over statistical signficance
 
 The use of statistical significance has always been controversial.
 
 Three recent high profile papers have argued for some different viewpoints on statistical significance.
 
-#### "Redefine statistical significance"
+### "Redefine statistical significance"
 
 "Redefine Statistical Significance" (2017) calls for lowering the standard threshold for significance to p \< 0.005
 
@@ -448,7 +463,7 @@ This paper proposes labeling p-values between 0.005 and 0.05 as "suggestive", an
 
 An exception: if the procedure is pre-registered, p \< 0.05 can be labeled "significant". So a distinction is drawn between exploratory and confirmatory data analyses.
 
-#### "Justify your alpha"
+### "Justify your alpha"
 
 "Justify Your Alpha" (2017), written in response, calls for allowing flexibility in alpha levels rather than defaulting to p \< 0.05.
 
@@ -458,7 +473,7 @@ Smaller values of alpha lower Type I error rates but increase Type II error rate
 
 The optimal trade-off will be different for different research fields. FDA drug trials should not use the same trade-off as exploratory research in brand new research fields.
 
-#### "Abandon statistical significance"
+### "Abandon statistical significance"
 
 "Abandon Statistical Significance" (2017) calls for the elimination of thresholds entirely.
 
@@ -466,9 +481,9 @@ The argument: "significance" is just a way of taking continuous phenomena (e.g. 
 
 Instead, why not report the evidence on its own terms? No need to force it into an artificial and simplistic "either / or" distinction.
 
-### Proposed reforms
+## Proposed reforms
 
-#### Some proposals for doing things differently
+### Some proposals for doing things differently
 
 Pre-registration and registered reports: data analysis plans are stated ahead of time. This removes flexibility in analysis.
 
@@ -504,7 +519,7 @@ The Peer Reviewers' Openness Initiative calls on reviewers to require open data,
 
 The GRIM test, SPRITE test, and Statcheck are algorithms that check for internal consistency of reported results. They provide a "sanity check" that can detect potentially p-hacked data analyses.
 
-#### Some closing remarks
+### Some closing remarks
 
 As stated at the outset, there is great controversy over the appropriate use of statistical methods!
 

@@ -194,7 +194,12 @@ ul.task-list li input[type="checkbox"] {
   </ul></li>
   <li><a href="#ancova" id="toc-ancova" class="nav-link" data-scroll-target="#ancova"><span class="header-section-number">4.4</span> ANCOVA</a>
   <ul class="collapse">
-  <li><a href="#analyzing-paired-data-ancova-vs-anova" id="toc-analyzing-paired-data-ancova-vs-anova" class="nav-link" data-scroll-target="#analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.1</span> Analyzing paired data: ANCOVA vs ANOVA</a></li>
+  <li><a href="#looking-at-the-data" id="toc-looking-at-the-data" class="nav-link" data-scroll-target="#looking-at-the-data"><span class="header-section-number">4.4.1</span> Looking at the data</a></li>
+  <li><a href="#analysis-using-ancova" id="toc-analysis-using-ancova" class="nav-link" data-scroll-target="#analysis-using-ancova"><span class="header-section-number">4.4.2</span> Analysis using ANCOVA</a></li>
+  <li><a href="#analysis-using-regression-w-indicators" id="toc-analysis-using-regression-w-indicators" class="nav-link" data-scroll-target="#analysis-using-regression-w-indicators"><span class="header-section-number">4.4.3</span> Analysis using regression w/ indicators</a></li>
+  <li><a href="#analysis-using-regression-wfactor" id="toc-analysis-using-regression-wfactor" class="nav-link" data-scroll-target="#analysis-using-regression-wfactor"><span class="header-section-number">4.4.4</span> Analysis using regression w/factor</a></li>
+  <li><a href="#analyzing-paired-data-ancova-vs-anova" id="toc-analyzing-paired-data-ancova-vs-anova" class="nav-link" data-scroll-target="#analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.5</span> Analyzing paired data: ANCOVA vs ANOVA</a></li>
+  <li><a href="#analyze-differences-regression-approach" id="toc-analyze-differences-regression-approach" class="nav-link" data-scroll-target="#analyze-differences-regression-approach"><span class="header-section-number">4.4.6</span> Analyze differences, regression approach</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -460,8 +465,8 @@ Post_{ij} = \mu + type_j + \beta(pre_{ij} - \overline{pre}) + \epsilon_{ij}
 <p><span class="math display">\[
 Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)(pre_j - \overline{pre}) + \epsilon_{ij}
 \]</span></p>
-<section id="looking-at-the-data" class="level4" data-number="4.4.0.1">
-<h4 data-number="4.4.0.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">4.4.0.1</span> Looking at the data</h4>
+<section id="looking-at-the-data" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="looking-at-the-data"><span class="header-section-number">4.4.1</span> Looking at the data</h3>
 <p>The data file is called “test_pretest”. Here is the formatting:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -486,8 +491,8 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 </figure>
 </div>
 </section>
-<section id="analysis-using-ancova" class="level4" data-number="4.4.0.2">
-<h4 data-number="4.4.0.2" class="anchored" data-anchor-id="analysis-using-ancova"><span class="header-section-number">4.4.0.2</span> Analysis using ANCOVA</h4>
+<section id="analysis-using-ancova" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="analysis-using-ancova"><span class="header-section-number">4.4.2</span> Analysis using ANCOVA</h3>
 <p>Notice that the effect size for pre- score is far greater than the effect size for type, or for the interaction. This is not surprising.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -497,8 +502,8 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 <p>Type is still significant; it’s <span class="math inline">\(\eta^2p\)</span> value is much larger than its <span class="math inline">\(\eta^2\)</span> value.</p>
 <p>Careful interpreting the “Estimated marginal means” plot – it takes into account only “post” scores!</p>
 </section>
-<section id="analysis-using-regression-w-indicators" class="level4" data-number="4.4.0.3">
-<h4 data-number="4.4.0.3" class="anchored" data-anchor-id="analysis-using-regression-w-indicators"><span class="header-section-number">4.4.0.3</span> Analysis using regression w/ indicators</h4>
+<section id="analysis-using-regression-w-indicators" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="analysis-using-regression-w-indicators"><span class="header-section-number">4.4.3</span> Analysis using regression w/ indicators</h3>
 <p>For the regression analysis, we’ll use two indicator variables. We don’t have to do it this way; if we just include “type”, jamovi will create the indicators for us, using the first class type listed in the data.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -513,8 +518,8 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 </div>
 <p>According to this regression model, there is not a “significant” interaction.</p>
 </section>
-<section id="analysis-using-regression-wfactor" class="level4" data-number="4.4.0.4">
-<h4 data-number="4.4.0.4" class="anchored" data-anchor-id="analysis-using-regression-wfactor"><span class="header-section-number">4.4.0.4</span> Analysis using regression w/factor</h4>
+<section id="analysis-using-regression-wfactor" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="analysis-using-regression-wfactor"><span class="header-section-number">4.4.4</span> Analysis using regression w/factor</h3>
 <p>Here’s what happens if we put in “type” as a factor variable rather than making our own indicators. The results are the same.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -528,8 +533,8 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 </figure>
 </div>
 </section>
-<section id="analyzing-paired-data-ancova-vs-anova" class="level3" data-number="4.4.1">
-<h3 data-number="4.4.1" class="anchored" data-anchor-id="analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.1</span> Analyzing paired data: ANCOVA vs ANOVA</h3>
+<section id="analyzing-paired-data-ancova-vs-anova" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="analyzing-paired-data-ancova-vs-anova"><span class="header-section-number">4.4.5</span> Analyzing paired data: ANCOVA vs ANOVA</h3>
 <p>Another approach we could take would be to compute the differences in the two scores for each person, then do a regular ANOVA or regression analysis on those.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -547,8 +552,9 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 <p><img src="images/Mod5_29.png" class="img-fluid figure-img" width="333"></p>
 </figure>
 </div>
-<section id="analyze-differences-regression-approach" class="level4" data-number="4.4.1.1">
-<h4 data-number="4.4.1.1" class="anchored" data-anchor-id="analyze-differences-regression-approach"><span class="header-section-number">4.4.1.1</span> Analyze differences, regression approach</h4>
+</section>
+<section id="analyze-differences-regression-approach" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="analyze-differences-regression-approach"><span class="header-section-number">4.4.6</span> Analyze differences, regression approach</h3>
 <p>This agrees with the ANOVA results from the previous slide: we have a statistically significant difference in mean test score differences (post – pre) when comparing “combo” to “flipped” or “traditional”. And <span class="math inline">\(R^2 = \eta^2\)</span>!</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -561,7 +567,6 @@ Course\_avg_{ij} = \mu + type_j + \beta(pre_{ij} - \bar{pre}) + \gamma_j(type_j)
 <p>These question sound similar, but they aren’t the same! Whether to use ANCOVA or do the differencing first is a matter of subjective judgement, and the experts don’t all agree (see “Lord’s Paradox” for more fun on this).</p>
 
 
-</section>
 </section>
 </section>
 
