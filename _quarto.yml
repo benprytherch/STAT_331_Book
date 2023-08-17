@@ -15,7 +15,7 @@ book:
     - Ch6_GLMs.qmd
     - Ch7_Mixed.qmd
     - Ch8_Mind_the_Gap.qmd
-    - Ch9_Other_Topics.qmd
+#    - Ch9_Other_Topics.qmd
     - references.qmd
 
 bibliography: references.bib

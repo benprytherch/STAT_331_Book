@@ -25,7 +25,7 @@ These notes are broken up into 9 chapters (or "modules"):
 - Chapter 6: Generalized Linear Models (GLMs)
 - Chapter 7: Mixed-effects models
 - Chapter 8: Minding the gap between science and statistics
-- Chapter 9: Brief looks at major topics we didn’t cover
+
 
 You can access chapters and subsections directly through the table of contents.
 
